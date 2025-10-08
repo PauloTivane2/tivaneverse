@@ -3,10 +3,11 @@
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { FiExternalLink, FiGithub } from "react-icons/fi"
-import { projectsData } from "@/src/data"
+import { useProjects } from "@/src/hooks/useProjects"
 import { useRef } from "react"
 
 export function Projects() {
+  const { projectsData, loading, error } = useProjects()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -64,7 +65,27 @@ export function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
         >
-          {projectsData.map((project, index) => (
+          {loading ? (
+            // Loading skeleton
+            Array.from({ length: 4 }).map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div className="h-full rounded-xl bg-[#0D1117] border border-[#30363d] overflow-hidden">
+                  <div className="h-48 sm:h-56 bg-muted"></div>
+                  <div className="p-6 space-y-4">
+                    <div className="h-6 bg-muted rounded w-3/4"></div>
+                    <div className="h-4 bg-muted rounded"></div>
+                    <div className="h-4 bg-muted rounded w-5/6"></div>
+                    <div className="flex gap-2">
+                      <div className="h-6 bg-muted rounded w-16"></div>
+                      <div className="h-6 bg-muted rounded w-20"></div>
+                      <div className="h-6 bg-muted rounded w-18"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : projectsData.length > 0 ? (
+            projectsData.map((project, index) => (
             <motion.div key={project.title} variants={itemVariants} className="group">
               <div className="relative h-full rounded-xl bg-[#0D1117] border border-[#30363d] overflow-hidden hover:border-[#00BFA6] transition-all duration-300">
                 {/* Project Image */}
@@ -78,7 +99,7 @@ export function Projects() {
                   {/* Overlay on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-[#0D1117]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     <motion.a
-                      href={project.liveUrl}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-lg bg-[#00BFA6] text-[#0D1117] hover:bg-[#00d4b8] transition-colors"
@@ -89,7 +110,7 @@ export function Projects() {
                       <FiExternalLink size={20} />
                     </motion.a>
                     <motion.a
-                      href={project.githubUrl}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-lg bg-[#161b22] text-[#c9d1d9] hover:bg-[#1c2128] transition-colors"
@@ -135,7 +156,13 @@ export function Projects() {
                 </div>
               </div>
             </motion.div>
-          ))}
+          ))
+          ) : (
+            // Empty state
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">No projects available</p>
+            </div>
+          )}
         </motion.div>
 
         {/* View More */}

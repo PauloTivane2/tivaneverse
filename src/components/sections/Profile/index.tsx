@@ -3,12 +3,11 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { FiArrowRight, FiMail } from "react-icons/fi"
-// Removed static data import - now using only Sanity CMS data
-import { useSanityProfileAPI } from "@/src/hooks/useSanityProfileAPI"
+import { useProfile } from "@/src/hooks/useProfile"
 import { useEffect, useState } from "react"
 
 export function Profile() {
-  const { profileData: sanityData, loading, error } = useSanityProfileAPI()
+  const { profileData: sanityData, loading, error } = useProfile()
   const [displayedText, setDisplayedText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
   

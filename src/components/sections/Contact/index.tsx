@@ -5,9 +5,10 @@ import type React from "react"
 import { motion, useInView } from "framer-motion"
 import { useState, useRef } from "react"
 import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi"
-import { profileData } from "@/src/data/index"
+import { useContact } from "@/src/hooks/useContact"
 
 export function Contact() {
+  const { contactInfo, loading, error } = useContact()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -183,10 +184,10 @@ export function Contact() {
                   <div>
                     <h3 className="text-lg font-semibold text-[#c9d1d9] mb-1">Email</h3>
                     <a
-                      href={`mailto:${profileData.email}`}
+                      href={`mailto:${contactInfo?.email || 'contact@example.com'}`}
                       className="text-[#8b949e] hover:text-[#00BFA6] transition-colors"
                     >
-                      {profileData.email}
+                      {contactInfo?.email || 'contact@example.com'}
                     </a>
                   </div>
                 </div>
@@ -199,7 +200,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#c9d1d9] mb-1">Location</h3>
-                    <p className="text-[#8b949e]">{profileData.location}</p>
+                    <p className="text-[#8b949e]">{contactInfo?.location || 'Location not available'}</p>
                   </div>
                 </div>
               </div>
@@ -210,10 +211,10 @@ export function Contact() {
               <h3 className="text-lg font-semibold text-[#c9d1d9] mb-4">Connect With Me</h3>
               <div className="flex gap-4">
                 {[
-                  { icon: FiGithub, href: "https://github.com", label: "GitHub" },
-                  { icon: FiLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                  { icon: FiTwitter, href: "https://twitter.com", label: "Twitter" },
-                ].map((social) => (
+                  { icon: FiGithub, href: contactInfo?.social?.github || "#", label: "GitHub" },
+                  { icon: FiLinkedin, href: contactInfo?.social?.linkedin || "#", label: "LinkedIn" },
+                  { icon: FiTwitter, href: contactInfo?.social?.twitter || "#", label: "Twitter" },
+                ].filter(social => social.href !== "#").map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}

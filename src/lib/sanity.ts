@@ -7,7 +7,6 @@ export const client = createClient({
   apiVersion: '2023-05-03', // Use a stable API version
   useCdn: false, // Set to false for development to get fresh data
   perspective: 'published', // Only fetch published documents
-  studioUrl: '/studio', // Optional: if you have studio at /studio route
 })
 
 const builder = imageUrlBuilder(client)

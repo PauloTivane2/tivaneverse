@@ -1,11 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { expertiseData } from "@/src/data"
+import { useExpertise } from "@/src/hooks/useExpertise"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
 export function Expertise() {
+  const { expertiseData, loading, error } = useExpertise()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -64,7 +65,18 @@ export function Expertise() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
         >
-          {expertiseData.map((skill, index) => (
+          {loading ? (
+            // Loading skeleton
+            Array.from({ length: 12 }).map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div className="p-6 rounded-xl bg-[#161b22] border border-[#30363d] flex flex-col items-center justify-center gap-3 h-full">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-muted rounded"></div>
+                  <div className="h-4 bg-muted rounded w-16"></div>
+                </div>
+              </div>
+            ))
+          ) : expertiseData.length > 0 ? (
+            expertiseData.map((skill, index) => (
             <motion.div
               key={skill.name}
               variants={itemVariants}
@@ -108,7 +120,13 @@ export function Expertise() {
                 />
               </div>
             </motion.div>
-          ))}
+          ))
+          ) : (
+            // Empty state
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">No expertise data available</p>
+            </div>
+          )}
         </motion.div>
 
         {/* Additional Info */}
