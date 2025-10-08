@@ -51,12 +51,18 @@ export function useExpertise() {
           const transformedData: ExpertiseItem[] = data.map((item: any) => ({
             name: item.name || 'Unknown Skill',
             icon: iconMap[item.iconName] || TbCode, // Fallback to generic code icon
-            color: item.color || '#6B7280' // Fallback to gray color
+            color: item.color || '#6B7280', // Fallback to gray color
+            category: item.category,
+            proficiencyLevel: item.proficiencyLevel,
+            yearsOfExperience: item.yearsOfExperience,
+            description: item.description,
+            order: item.order,
+            featured: item.featured || false
           }))
           
           setExpertiseData(transformedData)
           console.log('✅ [EXPERTISE] Dados carregados do Sanity CMS:', transformedData.length, 'skills')
-          console.log('📊 [EXPERTISE] Skills encontradas:', transformedData.map(s => s.name))
+          console.log('📊 [EXPERTISE] Skills encontradas:', transformedData.map(s => `${s.name} (${s.category}) - Level ${s.proficiencyLevel}/10`))
         } else {
           console.warn('❌ [EXPERTISE] NENHUMA SKILL encontrada no Sanity CMS')
           console.warn('📝 [EXPERTISE] Você precisa criar documentos "Expertise" no Sanity Studio')
