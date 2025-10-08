@@ -3,22 +3,61 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { FiArrowRight, FiMail } from "react-icons/fi"
-import { profileData } from "@/src/data"
+// Removed static data import - now using only Sanity CMS data
+import { useSanityProfileAPI } from "@/src/hooks/useSanityProfileAPI"
 import { useEffect, useState } from "react"
 
 export function Profile() {
+  const { profileData: sanityData, loading, error } = useSanityProfileAPI()
   const [displayedText, setDisplayedText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
+  
+  // Use only Sanity data - no fallback to static data
+  const profileData = sanityData
+  
+  // All hooks must be called before any conditional returns
+  useEffect(() => {
+    // Reset animation when data changes
+    if (profileData) {
+      setDisplayedText("")
+      setCurrentIndex(0)
+    }
+  }, [profileData])
 
   useEffect(() => {
-    if (currentIndex < profileData.tagline.length) {
+    if (profileData && currentIndex < profileData.tagline.length) {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + profileData.tagline[currentIndex])
         setCurrentIndex((prev) => prev + 1)
       }, 50)
       return () => clearTimeout(timeout)
     }
-  }, [currentIndex])
+  }, [currentIndex, profileData])
+  
+  // Debug logs
+  console.log('Profile Component Debug:', {
+    sanityData: !!sanityData,
+    loading,
+    error,
+    hasData: !!profileData
+  })
+  
+  // Show loading state if no data yet - AFTER all hooks
+  if (!profileData) {
+    return (
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+        <div className="max-w-7xl mx-auto w-full text-center">
+          <div className="animate-pulse">
+            <div className="h-12 bg-muted rounded-lg mb-4 mx-auto max-w-md"></div>
+            <div className="h-6 bg-muted rounded-lg mb-6 mx-auto max-w-sm"></div>
+            <div className="h-4 bg-muted rounded-lg mb-2 mx-auto max-w-lg"></div>
+            <div className="h-4 bg-muted rounded-lg mb-8 mx-auto max-w-md"></div>
+            <p className="text-muted-foreground">Carregando dados do Sanity CMS...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)

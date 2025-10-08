@@ -16,7 +16,7 @@ export default defineConfig({
   
   plugins: [
     deskTool({
-      structure: deskStructure,
+      structure: deskStructure as any,
     }),
     visionTool(),
     colorInput(),

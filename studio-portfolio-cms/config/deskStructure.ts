@@ -1,4 +1,3 @@
-import { StructureBuilder } from 'sanity/desk'
 import {
   UserIcon,
   ProjectsIcon,
@@ -9,7 +8,7 @@ import {
   HomeIcon,
 } from '@sanity/icons'
 
-export const deskStructure = (S: StructureBuilder) =>
+export const deskStructure = (S: any) =>
   S.list()
     .title('Portfolio CMS')
     .items([
@@ -82,83 +81,4 @@ export const deskStructure = (S: StructureBuilder) =>
             )
         ),
 
-      S.divider(),
-
-      // Blog Posts
-      S.listItem()
-        .title('Blog Posts')
-        .icon(DocumentTextIcon)
-        .child(
-          S.list()
-            .title('Blog Management')
-            .items([
-              S.listItem()
-                .title('All Posts')
-                .child(
-                  S.documentTypeList('blogPost')
-                    .title('All Blog Posts')
-                    .filter('_type == "blogPost"')
-                ),
-              S.listItem()
-                .title('Published Posts')
-                .child(
-                  S.documentTypeList('blogPost')
-                    .title('Published Posts')
-                    .filter('_type == "blogPost" && published == true')
-                ),
-              S.listItem()
-                .title('Draft Posts')
-                .child(
-                  S.documentTypeList('blogPost')
-                    .title('Draft Posts')
-                    .filter('_type == "blogPost" && published == false')
-                ),
-              S.listItem()
-                .title('Featured Posts')
-                .child(
-                  S.documentTypeList('blogPost')
-                    .title('Featured Posts')
-                    .filter('_type == "blogPost" && featured == true')
-                ),
-            ])
-        ),
-
-      // Testimonials
-      S.listItem()
-        .title('Testimonials')
-        .icon(HeartIcon)
-        .child(
-          S.list()
-            .title('Testimonial Management')
-            .items([
-              S.listItem()
-                .title('All Testimonials')
-                .child(
-                  S.documentTypeList('testimonial')
-                    .title('All Testimonials')
-                    .filter('_type == "testimonial"')
-                ),
-              S.listItem()
-                .title('Published Testimonials')
-                .child(
-                  S.documentTypeList('testimonial')
-                    .title('Published Testimonials')
-                    .filter('_type == "testimonial" && published == true')
-                ),
-              S.listItem()
-                .title('Featured Testimonials')
-                .child(
-                  S.documentTypeList('testimonial')
-                    .title('Featured Testimonials')
-                    .filter('_type == "testimonial" && featured == true')
-                ),
-              S.listItem()
-                .title('5-Star Reviews')
-                .child(
-                  S.documentTypeList('testimonial')
-                    .title('5-Star Reviews')
-                    .filter('_type == "testimonial" && rating == 5')
-                ),
-            ])
-        ),
     ])

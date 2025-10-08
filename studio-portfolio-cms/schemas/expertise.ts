@@ -23,8 +23,8 @@ export const expertise = defineType({
     defineField({
       name: 'color',
       title: 'Brand Color',
-      type: 'color',
-      description: 'Brand color for this technology/skill',
+      type: 'string',
+      description: 'Brand color for this technology/skill (hex code, e.g., #3178c6)',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
