@@ -1,0 +1,108 @@
+"use client"
+
+import { motion, useInView } from "framer-motion"
+import { servicesData } from "@/src/data"
+import { useRef } from "react"
+import { FiCheck } from "react-icons/fi"
+
+export function Services() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  }
+
+  return (
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0D1117]" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-block px-4 py-2 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/20 text-[#00BFA6] text-sm font-medium mb-4"
+          >
+            What I Offer
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#c9d1d9] mb-4 text-balance">
+            Services
+          </h2>
+          <p className="text-lg text-[#8b949e] max-w-2xl mx-auto text-pretty">
+            Comprehensive IT solutions tailored to your business needs
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+        >
+          {servicesData.map((service, index) => (
+            <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} className="group relative">
+              <div className="relative h-full p-8 rounded-xl bg-[#161b22] border border-[#30363d] hover:border-[#00BFA6] transition-all duration-300">
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#00BFA6]/20 to-[#7C3AED]/20 border border-[#00BFA6]/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 h-7 text-[#00BFA6]" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold font-display text-[#c9d1d9] mb-3 group-hover:text-[#00BFA6] transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-[#8b949e] mb-6 leading-relaxed">{service.description}</p>
+
+                {/* Features List */}
+                <ul className="space-y-3">
+                  {service.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <div className="mt-1 w-5 h-5 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/30 flex items-center justify-center flex-shrink-0">
+                        <FiCheck className="w-3 h-3 text-[#00BFA6]" />
+                      </div>
+                      <span className="text-sm text-[#c9d1d9]">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Glow Effect */}
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#00BFA6]/5 via-transparent to-[#7C3AED]/5 rounded-xl" />
+                </div>
+
+                {/* Decorative Corner */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#7C3AED]/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
