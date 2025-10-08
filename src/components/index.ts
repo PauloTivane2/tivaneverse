@@ -12,4 +12,3 @@ export { Contact } from './sections/Contact'
 
 // Effect Components
 export { default as MatrixRain } from './effects/MatrixRain'
-export { default as MatrixBackground } from './effects/MatrixBackground'

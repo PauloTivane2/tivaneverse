@@ -8,15 +8,13 @@ interface Drop {
   x: number
   y: number
   speed: number
-  char: string
+  word: string
   opacity: number
   size: number
   brightness: number
   sway: number
   swayOffset: number
-  isWord?: boolean
-  word?: string
-  wordIndex?: number
+  color: string
 }
 
 export default function MatrixRain() {
@@ -39,14 +37,24 @@ export default function MatrixRain() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Paulo Babucho Issaca Tivane name letters only
-    const nameLetters = "PAULOBACHOISACTIVNE"
+    // 💻 Técnico / Profissional
+    const techWords = [
+      "CODE", "HTML", "CSS", "JS", "REACT", "NEXT", "NODE",
+      "API", "SQL", "GIT", "WEB", "APP", "UI", "UX", "JSON",
+      "HTTP", "HTTPS", "LINUX", "BASH", "SHELL",
+      "DOCKER", "NGINX", "MYSQL", "MONGO", "CLOUD", "DATA", "TECH",
+      "SANITY", "PORTFOLIO", "DEVLIFE"
+    ]
     
-    // IT words that will occasionally fall
-    const itWords = ["CODE", "HTML", "CSS", "JS", "REACT", "NODE", "API", "SQL", "GIT", "DEV", "WEB", "APP", "UI", "UX", "JSON", "HTTP", "HTTPS", "TCP", "IP", "DNS", "SSL", "AWS", "CLOUD", "AI", "ML", "DATA", "TECH", "CYBER", "HACK", "BYTE", "BIT", "PIXEL", "LINUX", "UNIX", "BASH", "SHELL", "DOCKER", "K8S", "NGINX", "APACHE", "MYSQL", "MONGO", "REDIS", "JAVA", "PYTHON", "PHP", "C++", "RUST", "GO", "SWIFT", "KOTLIN"]
+    // ⚡ Pessoal / Identidade
+    const personalWords = [
+      "TIVANE", "BABASS", "BE_THE_CHANGE", "FOCUS", "GROWTH",
+      "VISION", "PASSION", "RESILIENCE", "LOGIC", "CREATOR",
+      "INNOVATE", "MINDSET", "ENERGY", "SACRIFICE"
+    ]
     
-    // Use only name letters as base characters
-    const chars = nameLetters
+    // Combinar todas as palavras
+    const allWords = [...techWords, ...personalWords]
 
     let width = window.innerWidth
     let height = window.innerHeight
@@ -60,47 +68,37 @@ export default function MatrixRain() {
     }
 
     const initializeDrops = () => {
-      const columnWidth = 20
+      const columnWidth = 180 // Largura ainda maior para palavras completas
       const columns = Math.floor(width / columnWidth)
       dropsRef.current = []
 
       for (let i = 0; i < columns; i++) {
-        // Create multiple drops per column for denser effect
-        const dropsPerColumn = Math.floor(Math.random() * 3) + 1
+        // Criar apenas 1 palavra por coluna para evitar sobreposição
+        const dropsPerColumn = 1
         
         for (let j = 0; j < dropsPerColumn; j++) {
-          // 30% chance to create an IT word drop
-          const isWordDrop = Math.random() < 0.30
+          const word = allWords[Math.floor(Math.random() * allWords.length)]
           
-          if (isWordDrop) {
-            const word = itWords[Math.floor(Math.random() * itWords.length)]
-            dropsRef.current.push({
-              x: i * columnWidth + Math.random() * 10 - 5,
-              y: Math.random() * height - height,
-              speed: Math.random() * 2 + 0.5, // Slower for words
-              char: word[0], // Start with first letter
-              opacity: Math.random() * 0.6 + 0.4, // Brighter for words
-              size: Math.random() * 6 + 20, // Larger for words
-              brightness: Math.random() * 0.3 + 0.7, // Brighter
-              sway: Math.random() * 0.3 + 0.1,
-              swayOffset: Math.random() * Math.PI * 2,
-              isWord: true,
-              word: word,
-              wordIndex: 0
-            })
-          } else {
-            dropsRef.current.push({
-              x: i * columnWidth + Math.random() * 10 - 5,
-              y: Math.random() * height - height,
-              speed: Math.random() * 3 + 1,
-              char: chars[Math.floor(Math.random() * chars.length)],
-              opacity: Math.random() * 0.8 + 0.2,
-              size: Math.random() * 6 + 18, // Increased from 8+12 to 6+18
-              brightness: Math.random() * 0.5 + 0.5,
-              sway: Math.random() * 0.5 + 0.2,
-              swayOffset: Math.random() * Math.PI * 2
-            })
+          // Cores diferentes para diferentes tipos de palavras
+          let color = "0, 191, 166" // Verde padrão para tech
+          if (personalWords.includes(word)) {
+            color = "124, 58, 237" // Roxo para palavras pessoais/identidade
+          } else if (["REACT", "NEXT", "JS", "NODE", "SANITY"].includes(word)) {
+            color = "59, 130, 246" // Azul para tecnologias principais
           }
+          
+          dropsRef.current.push({
+            x: i * columnWidth + 10, // Posição fixa para evitar sobreposição
+            y: Math.random() * height - height,
+            speed: Math.random() * 1.2 + 0.6, // Velocidade mais lenta para palavras
+            word: word,
+            opacity: Math.random() * 0.8 + 0.2,
+            size: Math.random() * 3 + 16, // Tamanho consistente para palavras
+            brightness: Math.random() * 0.3 + 0.7,
+            sway: Math.random() * 0.15 + 0.05, // Menos movimento horizontal
+            swayOffset: Math.random() * Math.PI * 2,
+            color: color
+          })
         }
       }
     }
@@ -124,43 +122,28 @@ export default function MatrixRain() {
         // Add horizontal sway
         const swayX = Math.sin(time * 2 + drop.swayOffset) * drop.sway
 
-        // Handle character changes
-        if (drop.isWord && drop.word && drop.wordIndex !== undefined) {
-          // For IT words, cycle through letters slowly
-          if (Math.random() < 0.01) {
-            drop.wordIndex = (drop.wordIndex + 1) % drop.word.length
-            drop.char = drop.word[drop.wordIndex]
-          }
-        } else {
-          // For regular drops, use only name letters
-          if (Math.random() < 0.02) {
-            drop.char = nameLetters[Math.floor(Math.random() * nameLetters.length)]
-          }
-        }
-
         // Random brightness flicker
-        if (Math.random() < 0.05) {
-          drop.brightness = Math.random() * 0.5 + 0.5
+        if (Math.random() < 0.03) {
+          drop.brightness = Math.random() * 0.4 + 0.6
         }
 
-        // Set glow effect
-        const baseColor = theme === "dark" ? "0, 102, 255" : "0, 102, 255" // Green for dark, blue for light
-        const glowColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
+        // Set glow effect usando a cor específica da palavra
+        const glowColor = `rgba(${drop.color}, ${drop.opacity * drop.brightness})`
         
         ctx.shadowColor = glowColor
-        ctx.shadowBlur = 15
+        ctx.shadowBlur = 12
         ctx.fillStyle = glowColor
-        ctx.font = `${drop.size}px 'Courier New', monospace`
-        ctx.textAlign = "center"
+        ctx.font = `bold ${drop.size}px 'JetBrains Mono', 'Courier New', monospace`
+        ctx.textAlign = "left"
 
-        // Draw the character
-        ctx.fillText(drop.char, drop.x + swayX, drop.y)
+        // Draw the complete word
+        ctx.fillText(drop.word, drop.x + swayX, drop.y)
 
         // Add extra glow for brighter drops
-        if (drop.brightness > 0.7) {
-          ctx.shadowBlur = 25
-          ctx.fillStyle = `rgba(${baseColor}, ${drop.opacity * 0.3})`
-          ctx.fillText(drop.char, drop.x + swayX, drop.y)
+        if (drop.brightness > 0.8) {
+          ctx.shadowBlur = 20
+          ctx.fillStyle = `rgba(${drop.color}, ${drop.opacity * 0.4})`
+          ctx.fillText(drop.word, drop.x + swayX, drop.y)
         }
 
         // Reset shadow
@@ -171,35 +154,31 @@ export default function MatrixRain() {
 
         // Reset drop when it goes off screen
         if (drop.y > height + 50) {
-          drop.y = -50 - Math.random() * 100
-          drop.x = (index % Math.floor(width / 20)) * 20 + Math.random() * 10 - 5
+          drop.y = -50 - Math.random() * 200
+          drop.x = (index % Math.floor(width / 180)) * 180 + 10 // Posição fixa baseada na nova largura
           
-          // 30% chance to reset as IT word, 70% as name letter
-          if (Math.random() < 0.30) {
-            const word = itWords[Math.floor(Math.random() * itWords.length)]
-            drop.isWord = true
-            drop.word = word
-            drop.wordIndex = 0
-            drop.char = word[0]
-            drop.speed = Math.random() * 2 + 0.5
-            drop.opacity = Math.random() * 0.6 + 0.4
-            drop.size = Math.random() * 6 + 20
-            drop.brightness = Math.random() * 0.3 + 0.7
+          // Escolher nova palavra aleatória
+          const newWord = allWords[Math.floor(Math.random() * allWords.length)]
+          drop.word = newWord
+          
+          // Definir nova cor baseada na palavra
+          if (personalWords.includes(newWord)) {
+            drop.color = "124, 58, 237" // Roxo para palavras pessoais/identidade
+          } else if (["REACT", "NEXT", "JS", "NODE", "SANITY"].includes(newWord)) {
+            drop.color = "59, 130, 246" // Azul para tecnologias principais
           } else {
-            drop.isWord = false
-            drop.word = undefined
-            drop.wordIndex = undefined
-            drop.char = nameLetters[Math.floor(Math.random() * nameLetters.length)]
-            drop.speed = Math.random() * 3 + 1
-            drop.opacity = Math.random() * 0.8 + 0.2
-            drop.size = Math.random() * 6 + 18
-            drop.brightness = Math.random() * 0.5 + 0.5
+            drop.color = "0, 191, 166" // Verde padrão para tech
           }
+          
+          drop.speed = Math.random() * 1.2 + 0.6
+          drop.opacity = Math.random() * 0.8 + 0.2
+          drop.size = Math.random() * 3 + 16
+          drop.brightness = Math.random() * 0.3 + 0.7
         }
 
         // Fade out drops as they fall (depth effect)
-        if (drop.y > height * 0.7) {
-          drop.opacity = Math.max(0.1, drop.opacity * 0.995)
+        if (drop.y > height * 0.8) {
+          drop.opacity = Math.max(0.1, drop.opacity * 0.996)
         }
       })
 

@@ -5,6 +5,23 @@ export interface ProfileData {
   bio: string
   image: string
   email: string
+  phone?: string
   location: string
-  availability: string
+  resume?: {
+    asset: {
+      _ref: string
+      url?: string
+    }
+  }
+  social?: {
+    github?: string
+    linkedin?: string
+    twitter?: string
+    instagram?: string
+  }
+  skills?: string[]
+  availability: {
+    isAvailable: boolean
+    message: string
+  } | string
 }

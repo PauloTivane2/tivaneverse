@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { FiArrowRight, FiMail } from "react-icons/fi"
+import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
 import { useEffect, useState } from "react"
 
@@ -65,6 +65,27 @@ export function Profile() {
     }
   }
 
+  const handleResumeDownload = () => {
+    if (profileData.resume) {
+      const url = profileData.resume.asset?.url || `https://cdn.sanity.io/files/dtsldekb/production/${profileData.resume.asset._ref.replace('file-', '').replace('-pdf', '.pdf')}`
+      
+      // Criar um elemento temporário para forçar o download
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'Paulo_Tivane_Resume.pdf'
+      link.target = '_blank'
+      
+      // Adicionar ao DOM temporariamente
+      document.body.appendChild(link)
+      
+      // Disparar o clique
+      link.click()
+      
+      // Remover do DOM
+      document.body.removeChild(link)
+    }
+  }
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
       <div className="max-w-7xl mx-auto w-full">
@@ -110,15 +131,64 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed text-pretty"
+              className="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed text-pretty"
             >
               {profileData.bio}
             </motion.p>
 
+            {/* Location and Availability */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.65 }}
+              className="flex flex-wrap items-center gap-4 mb-6"
+            >
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <FiMapPin className="w-4 h-4" />
+                <span className="text-sm">{profileData.location}</span>
+              </div>
+              
+              {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-green-600 dark:text-green-400">
+                    {profileData.availability.message || 'Available for work'}
+                  </span>
+                </div>
+              )}
+            </motion.div>
+
+            {/* Skills */}
+            {profileData.skills && profileData.skills.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="mb-6"
+              >
+                <div className="flex flex-wrap gap-2">
+                  {profileData.skills.slice(0, 6).map((skill, index) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                  {profileData.skills.length > 6 && (
+                    <span className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full">
+                      +{profileData.skills.length - 6} more
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            )}
+
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.button
@@ -140,6 +210,19 @@ export function Profile() {
                 <FiMail />
                 Contact Me
               </motion.button>
+
+              {/* Resume Download Button */}
+              {profileData.resume && (
+                <motion.button
+                  onClick={handleResumeDownload}
+                  className="px-6 py-3 rounded-lg bg-card border border-border text-foreground font-semibold flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <FiDownload />
+                  Resume
+                </motion.button>
+              )}
             </motion.div>
           </motion.div>
 
@@ -151,7 +234,7 @@ export function Profile() {
             className="order-1 lg:order-2 flex justify-center"
           >
             <motion.div
-              className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
+              className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
@@ -162,9 +245,57 @@ export function Profile() {
                   src={profileData.image || "/placeholder.svg"}
                   alt={profileData.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-all duration-300 group-hover:blur-sm group-hover:scale-110"
                   priority
                 />
+                
+                {/* Social Links Overlay */}
+                {profileData.social && (
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/20 backdrop-blur-sm z-10">
+                    <div className="flex gap-4">
+                      {profileData.social.github && (
+                        <a
+                          href={profileData.social.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                        >
+                          <FiGithub className="w-5 h-5" />
+                        </a>
+                      )}
+                      {profileData.social.linkedin && (
+                        <a
+                          href={profileData.social.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                        >
+                          <FiLinkedin className="w-5 h-5" />
+                        </a>
+                      )}
+                      {profileData.social.twitter && (
+                        <a
+                          href={profileData.social.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                        >
+                          <FiTwitter className="w-5 h-5" />
+                        </a>
+                      )}
+                      {profileData.social.instagram && (
+                        <a
+                          href={profileData.social.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                        >
+                          <FiInstagram className="w-5 h-5" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <motion.div

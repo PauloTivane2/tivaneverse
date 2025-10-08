@@ -31,8 +31,12 @@ export function useProfile() {
               ? `https://cdn.sanity.io/images/${client.config().projectId}/production/${data.image.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}?w=400&h=400&fit=crop`
               : '/images/profile.png' : '/images/profile.png',
             email: data.email || 'paulo@example.com',
+            phone: data.phone,
             location: data.location || 'Mozambique',
-            availability: data.availability?.message || data.availability || 'Available for freelance projects'
+            resume: data.resume,
+            social: data.social,
+            skills: data.skills || [],
+            availability: data.availability || 'Available for freelance projects'
           }
           
           setProfileData(transformedData)
