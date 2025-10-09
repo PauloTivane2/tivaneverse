@@ -112,14 +112,12 @@ export function useSiteSettings() {
               animationSpeed: data.theme?.animationSpeed || 'normal',
             },
             matrixRain: {
-              techWords: data.matrixRain?.techWords || [
-                'CODE', 'HTML', 'CSS', 'JS', 'REACT', 'NEXT', 'NODE',
-                'API', 'SQL', 'GIT', 'WEB', 'APP', 'UI', 'UX', 'JSON'
-              ],
-              personalWords: data.matrixRain?.personalWords || [
-                'TIVANE', 'FOCUS', 'GROWTH', 'VISION', 'PASSION',
-                'RESILIENCE', 'LOGIC', 'CREATOR', 'INNOVATE', 'MINDSET'
-              ],
+              techWords: data.matrixRain?.techWords 
+                ? data.matrixRain.techWords.split(',').map((word: string) => word.trim().toUpperCase()).filter(Boolean)
+                : ['CODE', 'HTML', 'CSS', 'JS', 'REACT', 'NEXT', 'NODE', 'API', 'SQL', 'GIT', 'WEB', 'APP', 'UI', 'UX', 'JSON'],
+              personalWords: data.matrixRain?.personalWords 
+                ? data.matrixRain.personalWords.split(',').map((word: string) => word.trim().toUpperCase()).filter(Boolean)
+                : ['TIVANE', 'PAULO', 'MÃE', 'FAMÍLIA', 'PRÓXIMOS', 'FOCUS', 'GROWTH', 'VISION', 'PASSION', 'RESILIENCE', 'LOGIC', 'CREATOR', 'INNOVATE', 'MINDSET'],
               techColor: data.matrixRain?.techColor || '0, 191, 166',
               personalColor: data.matrixRain?.personalColor || '124, 58, 237',
               fallSpeed: data.matrixRain?.fallSpeed || 3,

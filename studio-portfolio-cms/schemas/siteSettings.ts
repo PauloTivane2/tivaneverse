@@ -121,22 +121,16 @@ export const siteSettings = defineType({
         defineField({
           name: 'techWords',
           title: 'Palavras Técnicas',
-          type: 'array',
-          of: [{ type: 'string' }],
-          description: 'Palavras técnicas que aparecem no Matrix (ex: REACT, NODE, API). Uma por linha.',
-          options: {
-            layout: 'tags',
-          },
+          type: 'text',
+          rows: 3,
+          description: 'Palavras técnicas que aparecem no Matrix separadas por vírgulas (ex: REACT, NODE, API, HTML, CSS, JAVASCRIPT).',
         }),
         defineField({
           name: 'personalWords',
           title: 'Palavras Pessoais',
-          type: 'array',
-          of: [{ type: 'string' }],
-          description: 'Palavras pessoais/motivacionais que aparecem no Matrix (ex: FOCUS, VISION, seu nome).',
-          options: {
-            layout: 'tags',
-          },
+          type: 'text',
+          rows: 3,
+          description: 'Palavras pessoais/motivacionais que aparecem no Matrix separadas por vírgulas (ex: TIVANE, PAULO, MÃE, FAMÍLIA, FOCUS, VISION, PASSION, GROWTH, PRÓXIMOS).',
         }),
         defineField({
           name: 'techColor',

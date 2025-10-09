@@ -32,6 +32,22 @@ interface MatrixRainProps {
    * Custom character set to use
    */
   characters?: string
+  /**
+   * Technical words to display
+   */
+  techWords?: string[]
+  /**
+   * Personal words to display
+   */
+  personalWords?: string[]
+  /**
+   * Color for technical words in RGB format
+   */
+  techColor?: string
+  /**
+   * Color for personal words in RGB format
+   */
+  personalColor?: string
 }
 
 interface Drop {
@@ -47,6 +63,9 @@ interface Drop {
   isWord?: boolean
   word?: string
   wordIndex?: number
+  wordType?: 'tech' | 'personal'
+  direction: 'vertical-down' | 'vertical-up'
+  angle: number
 }
 
 const colorMap = {
@@ -57,22 +76,22 @@ const colorMap = {
   cyan: "51, 255, 255"
 }
 
-// Paulo Babucho Issaca Tivane name letters only
-const nameLetters = "PAULOBACHOISACTIVNE"
-
-// IT words that will occasionally fall
-const itWords = ["CODE", "HTML", "CSS", "JS", "REACT", "NODE", "API", "SQL", "GIT", "DEV", "WEB", "APP", "UI", "UX", "JSON", "HTTP", "HTTPS", "TCP", "IP", "DNS", "SSL", "AWS", "CLOUD", "AI", "ML", "DATA", "TECH", "CYBER", "HACK", "BYTE", "BIT", "PIXEL", "LINUX", "UNIX", "BASH", "SHELL", "DOCKER", "K8S", "NGINX", "APACHE", "MYSQL", "MONGO", "REDIS", "JAVA", "PYTHON", "PHP", "C++", "RUST", "GO", "SWIFT", "KOTLIN"]
-
-const defaultCharacters = nameLetters
-
 export default function MatrixRain({
   color = "green",
-  opacity = 0.6,
+  opacity = 0.15,
   speed = 1,
   density = "medium",
   glow = true,
-  characters = defaultCharacters
+  characters = "01",
+  techWords = ["CODE", "HTML", "CSS", "JS", "REACT", "NODE", "API"],
+  personalWords = ["TIVANE", "PAULO", "FOCUS", "VISION", "PASSION"],
+  techColor = "0, 191, 166",
+  personalColor = "124, 58, 237"
 }: MatrixRainProps) {
+  
+  // Garantir que sempre temos palavras para mostrar
+  const safeTechWords = techWords && techWords.length > 0 ? techWords : ['REACT', 'NODE', 'API', 'CODE', 'HTML', 'CSS', 'JS']
+  const safePersonalWords = personalWords && personalWords.length > 0 ? personalWords : ['TIVANE', 'PAULO', 'FOCUS', 'VISION', 'PASSION']
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const [mounted, setMounted] = useState(false)
   const dropsRef = useRef<Drop[]>([])
@@ -103,29 +122,79 @@ export default function MatrixRain({
     }
 
     const initializeDrops = () => {
-      const columnWidth = 20
-      const columns = Math.floor(width / columnWidth)
       dropsRef.current = []
+      
+      // Densidade temporariamente aumentada para debug
+      const densityMultiplier = density === "low" ? 0.2 : density === "high" ? 0.5 : 0.3
+      const totalDrops = Math.floor((width * height) / 80000 * densityMultiplier)
+      
 
-      // Density multiplier
-      const densityMultiplier = density === "low" ? 0.5 : density === "high" ? 2 : 1
-
-      for (let i = 0; i < columns; i++) {
-        const dropsPerColumn = Math.floor((Math.random() * 3 + 1) * densityMultiplier)
+      for (let i = 0; i < totalDrops; i++) {
+        // Apenas movimento vertical (cima para baixo ou baixo para cima)
+        const directions = ['vertical-down', 'vertical-up'] as const
+        const direction = directions[Math.floor(Math.random() * directions.length)]
         
-        for (let j = 0; j < dropsPerColumn; j++) {
-          dropsRef.current.push({
-            x: i * columnWidth + Math.random() * 10 - 5,
-            y: Math.random() * height - height,
-            speed: (Math.random() * 3 + 1) * speed,
-            char: characters[Math.floor(Math.random() * characters.length)],
-            opacity: Math.random() * 0.8 + 0.2,
-            size: Math.random() * 8 + 12,
-            brightness: Math.random() * 0.5 + 0.5,
-            sway: Math.random() * 0.5 + 0.2,
-            swayOffset: Math.random() * Math.PI * 2
-          })
+        // Determinar tipo de conteúdo
+        const rand = Math.random()
+        let dropContent: any = {}
+
+        // 70% chance para palavras técnicas (ainda mais palavras visíveis)
+        if (rand < 0.7) {
+          const word = safeTechWords[Math.floor(Math.random() * safeTechWords.length)]
+          dropContent = {
+            char: word,
+            wordType: 'tech' as const,
+            isWord: true,
+            wordIndex: 0
+          }
         }
+        // 25% chance para palavras pessoais
+        else if (rand < 0.95) {
+          const word = safePersonalWords[Math.floor(Math.random() * safePersonalWords.length)]
+          dropContent = {
+            char: word,
+            word: word,
+            wordType: 'personal' as const,
+            isWord: true,
+            wordIndex: 0
+          }
+        }
+        // 5% chance para caracteres simples (quase só palavras)
+        else {
+          dropContent = {
+            char: characters[Math.floor(Math.random() * characters.length)],
+            isWord: false
+          }
+        }
+
+        // Posição inicial baseada na direção vertical
+        let startX, startY, angle
+        switch (direction) {
+          case 'vertical-down':
+            startX = Math.random() * width
+            startY = -Math.random() * 200
+            angle = Math.PI / 2 // 90 graus (cima para baixo)
+            break
+          case 'vertical-up':
+            startX = Math.random() * width
+            startY = height + Math.random() * 200
+            angle = -Math.PI / 2 // -90 graus (baixo para cima)
+            break
+        }
+
+        dropsRef.current.push({
+          x: startX,
+          y: startY,
+          speed: (Math.random() * 1 + 0.3) * speed, // Velocidade mais lenta
+          opacity: Math.random() * 0.4 + 0.6, // Opacidade muito alta
+          size: dropContent.isWord ? Math.random() * 6 + 18 : Math.random() * 4 + 14,
+          brightness: Math.random() * 0.2 + 0.8, // Brilho máximo
+          sway: Math.random() * 0.1 + 0.05, // Movimento lateral muito reduzido
+          swayOffset: Math.random() * Math.PI * 2,
+          direction,
+          angle,
+          ...dropContent
+        })
       }
     }
 
@@ -137,79 +206,105 @@ export default function MatrixRain({
     const animate = () => {
       time += 0.016
 
-      // Create fade effect
+      // Efeito de fade equilibrado - remove rastros mas mantém palavras visíveis
       ctx.fillStyle = "rgba(0, 0, 0, 0.08)"
       ctx.fillRect(0, 0, width, height)
 
-      // Update and draw drops
+      // Atualizar e desenhar drops
       dropsRef.current.forEach((drop, index) => {
-        const swayX = Math.sin(time * 2 + drop.swayOffset) * drop.sway
+        // Movimento mais suave e lento para evitar rastros
+        const swayX = Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * 0.3)
+        const swayY = Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
-        // Random character change for flickering effect
+        // Mudança aleatória de caracteres apenas para não-palavras
+        if (!drop.isWord && Math.random() < 0.01) {
+          drop.char = characters[Math.floor(Math.random() * characters.length)]
+        }
+
+        // Flicker de brilho mais sutil
         if (Math.random() < 0.02) {
-          // Higher chance for name letters to appear
-          if (Math.random() < 0.4) {
-            drop.char = nameLetters[Math.floor(Math.random() * nameLetters.length)]
-          } else {
-            drop.char = characters[Math.floor(Math.random() * characters.length)]
-          }
+          drop.brightness = Math.random() * 0.3 + 0.7
         }
 
-        // Random brightness flicker
-        if (Math.random() < 0.05) {
-          drop.brightness = Math.random() * 0.5 + 0.5
+        // Definir cor baseada no tipo de palavra
+        let baseColor = colorMap[color]
+        if (drop.wordType === 'tech') {
+          baseColor = techColor
+        } else if (drop.wordType === 'personal') {
+          baseColor = personalColor
         }
-
-        // Set color and glow effect
-        const baseColor = colorMap[color]
+        
         const dropColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
         
+        // Configurar sombra/glow forte para visibilidade máxima
         if (glow) {
           ctx.shadowColor = dropColor
-          ctx.shadowBlur = 15
+          ctx.shadowBlur = drop.isWord ? 25 : 15
         }
         
         ctx.fillStyle = dropColor
-        ctx.font = `${drop.size}px 'Courier New', monospace`
+        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px 'Courier New', monospace`
         ctx.textAlign = "center"
 
-        // Draw the character
-        ctx.fillText(drop.char, drop.x + swayX, drop.y)
+        // Salvar contexto para rotação
+        ctx.save()
+        ctx.translate(drop.x + swayX, drop.y + swayY)
+        
+        // Não aplicar rotação para movimento vertical
+        // (palavras sempre ficam na orientação normal)
 
-        // Add extra glow for brighter drops
-        if (glow && drop.brightness > 0.7) {
-          ctx.shadowBlur = 25
-          ctx.fillStyle = `rgba(${baseColor}, ${drop.opacity * 0.3})`
-          ctx.fillText(drop.char, drop.x + swayX, drop.y)
+        // Desenhar o caractere/palavra
+        ctx.fillText(drop.char, 0, 0)
+
+        // Glow extra forte para palavras importantes
+        if (glow && drop.isWord) {
+          ctx.shadowBlur = 35
+          ctx.fillStyle = `rgba(${baseColor}, ${drop.opacity * 0.4})`
+          ctx.fillText(drop.char, 0, 0)
         }
+
+        // Restaurar contexto
+        ctx.restore()
 
         // Reset shadow
         if (glow) {
           ctx.shadowBlur = 0
         }
 
-        // Update position
-        drop.y += drop.speed
+        // Atualizar posição baseada na direção
+        const moveX = Math.cos(drop.angle) * drop.speed
+        const moveY = Math.sin(drop.angle) * drop.speed
+        
+        drop.x += moveX
+        drop.y += moveY
 
-        // Reset drop when it goes off screen
-        if (drop.y > height + 50) {
-          drop.y = -50 - Math.random() * 100
-          drop.x = (index % Math.floor(width / 20)) * 20 + Math.random() * 10 - 5
-          // Higher chance for name letters when resetting
-          if (Math.random() < 0.3) {
-            drop.char = nameLetters[Math.floor(Math.random() * nameLetters.length)]
-          } else {
-            drop.char = characters[Math.floor(Math.random() * characters.length)]
+        // Reset drop quando sai da tela
+        const margin = 100
+        if (drop.x < -margin || drop.x > width + margin || 
+            drop.y < -margin || drop.y > height + margin) {
+          
+          // Reposicionar baseado na direção vertical
+          switch (drop.direction) {
+            case 'vertical-down':
+              drop.x = Math.random() * width
+              drop.y = -Math.random() * 200
+              break
+            case 'vertical-up':
+              drop.x = Math.random() * width
+              drop.y = height + Math.random() * 200
+              break
           }
-          drop.speed = (Math.random() * 3 + 1) * speed
-          drop.opacity = Math.random() * 0.8 + 0.2
-          drop.size = Math.random() * 8 + 12
-          drop.brightness = Math.random() * 0.5 + 0.5
+          
+          // Resetar propriedades com valores mais suaves
+          drop.speed = (Math.random() * 1 + 0.3) * speed
+          drop.opacity = Math.random() * 0.6 + 0.4
+          drop.brightness = Math.random() * 0.3 + 0.7
         }
 
-        // Fade out drops as they fall (depth effect)
-        if (drop.y > height * 0.7) {
-          drop.opacity = Math.max(0.1, drop.opacity * 0.995)
+        // Fade out gradual nas bordas
+        const fadeZone = 0.8
+        if (drop.x > width * fadeZone || drop.y > height * fadeZone) {
+          drop.opacity = Math.max(0.1, drop.opacity * 0.98)
         }
       })
 
@@ -224,7 +319,7 @@ export default function MatrixRain({
       }
       window.removeEventListener("resize", resizeCanvas)
     }
-  }, [mounted, color, opacity, speed, density, glow, characters])
+  }, [mounted, color, opacity, speed, density, glow, characters, techWords, personalWords, techColor, personalColor])
 
   if (!mounted) {
     return null
