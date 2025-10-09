@@ -3,20 +3,22 @@ import { DocumentTextIcon } from '@sanity/icons'
 
 export const blogPost = defineType({
   name: 'blogPost',
-  title: 'Blog Posts',
+  title: 'Posts do Blog',
   type: 'document',
   icon: DocumentTextIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Título do Post',
       type: 'string',
+      description: 'Título do artigo do blog (ex: "Como criar uma API REST com Node.js")',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL Amigável',
       type: 'slug',
+      description: 'URL amigável gerada automaticamente do título. Usado para acessar o post.',
       options: {
         source: 'title',
         maxLength: 96,
@@ -25,10 +27,10 @@ export const blogPost = defineType({
     }),
     defineField({
       name: 'excerpt',
-      title: 'Excerpt',
+      title: 'Resumo',
       type: 'text',
       rows: 3,
-      description: 'Brief description of the blog post',
+      description: 'Resumo do post que aparece na listagem de artigos e compartilhamentos. Máximo 200 caracteres.',
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({

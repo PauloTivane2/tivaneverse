@@ -9,14 +9,16 @@ export const project = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Project Title',
+      title: 'Título do Projeto',
       type: 'string',
+      description: 'Nome do seu projeto (ex: E-commerce Platform, Task Manager App)',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL Amigável',
       type: 'slug',
+      description: 'URL amigável gerada automaticamente do título. Usado para links diretos do projeto.',
       options: {
         source: 'title',
         maxLength: 96,
@@ -25,15 +27,17 @@ export const project = defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Descrição Curta',
       type: 'text',
       rows: 3,
+      description: 'Resumo do projeto em até 200 caracteres. Aparecerá no card do projeto.',
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
       name: 'longDescription',
-      title: 'Detailed Description',
+      title: 'Descrição Detalhada',
       type: 'array',
+      description: 'Descrição completa do projeto com formatação rica. Usado em modais ou páginas de detalhes.',
       of: [
         {
           type: 'block',
@@ -73,8 +77,9 @@ export const project = defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Main Image',
+      title: 'Imagem Principal',
       type: 'image',
+      description: 'Screenshot ou mockup principal do projeto. Recomendado: 1200x800px, formato landscape.',
       options: {
         hotspot: true,
       },
@@ -82,8 +87,9 @@ export const project = defineType({
     }),
     defineField({
       name: 'gallery',
-      title: 'Project Gallery',
+      title: 'Galeria do Projeto',
       type: 'array',
+      description: 'Screenshots adicionais do projeto. Usado em modais ou páginas de detalhes.',
       of: [
         {
           type: 'image',
@@ -91,8 +97,9 @@ export const project = defineType({
           fields: [
             {
               name: 'caption',
-              title: 'Caption',
+              title: 'Legenda',
               type: 'string',
+              description: 'Descrição da imagem (opcional)',
             },
           ],
         },
@@ -100,83 +107,88 @@ export const project = defineType({
     }),
     defineField({
       name: 'technologies',
-      title: 'Technologies Used',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags',
-      },
-      validation: (Rule) => Rule.required().min(1),
+      title: 'Tecnologias Utilizadas',
+      type: 'text',
+      rows: 2,
+      description: 'Digite as tecnologias separadas por vírgula (ex: React, TypeScript, Node.js, MongoDB)',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'category',
-      title: 'Project Category',
+      title: 'Categoria do Projeto',
       type: 'string',
+      description: 'Tipo de projeto para organização no portfólio',
       options: {
         list: [
-          { title: 'Web Application', value: 'web-app' },
-          { title: 'Mobile App', value: 'mobile-app' },
-          { title: 'Desktop Application', value: 'desktop-app' },
+          { title: 'Aplicação Web', value: 'web-app' },
+          { title: 'App Mobile', value: 'mobile-app' },
+          { title: 'Aplicação Desktop', value: 'desktop-app' },
           { title: 'API/Backend', value: 'api-backend' },
           { title: 'Website', value: 'website' },
           { title: 'E-commerce', value: 'ecommerce' },
           { title: 'Dashboard', value: 'dashboard' },
-          { title: 'Other', value: 'other' },
+          { title: 'Outro', value: 'other' },
         ],
       },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'liveUrl',
-      title: 'Live Demo URL',
+      title: 'URL da Demo',
       type: 'url',
+      description: 'Link para o projeto funcionando online (ex: https://meuapp.vercel.app)',
     }),
     defineField({
       name: 'githubUrl',
-      title: 'GitHub Repository URL',
+      title: 'URL do Repositório',
       type: 'url',
+      description: 'Link do código fonte no GitHub (ex: https://github.com/usuario/projeto)',
     }),
     defineField({
       name: 'featured',
-      title: 'Featured Project',
+      title: 'Projeto em Destaque',
       type: 'boolean',
-      description: 'Mark this project as featured to highlight it',
+      description: 'Marque para destacar este projeto com uma estrela especial',
       initialValue: false,
     }),
     defineField({
       name: 'status',
-      title: 'Project Status',
+      title: 'Status do Projeto',
       type: 'string',
+      description: 'Estado atual do desenvolvimento do projeto',
       options: {
         list: [
-          { title: 'Completed', value: 'completed' },
-          { title: 'In Progress', value: 'in-progress' },
-          { title: 'On Hold', value: 'on-hold' },
-          { title: 'Concept', value: 'concept' },
+          { title: 'Concluído', value: 'completed' },
+          { title: 'Em Progresso', value: 'in-progress' },
+          { title: 'Pausado', value: 'on-hold' },
+          { title: 'Conceito', value: 'concept' },
         ],
       },
       initialValue: 'completed',
     }),
     defineField({
       name: 'startDate',
-      title: 'Start Date',
+      title: 'Data de Início',
       type: 'date',
+      description: 'Quando você começou a trabalhar neste projeto',
     }),
     defineField({
       name: 'endDate',
-      title: 'End Date',
+      title: 'Data de Conclusão',
       type: 'date',
+      description: 'Quando o projeto foi finalizado (deixe vazio se ainda em desenvolvimento)',
     }),
     defineField({
       name: 'client',
-      title: 'Client/Company',
+      title: 'Cliente/Empresa',
       type: 'string',
+      description: 'Nome do cliente ou empresa para quem o projeto foi desenvolvido (opcional)',
     }),
     defineField({
       name: 'order',
-      title: 'Display Order',
+      title: 'Ordem de Exibição',
       type: 'number',
-      description: 'Lower numbers appear first',
+      description: 'Ordem de aparição no portfólio. Números menores aparecem primeiro (ex: 1, 2, 3...)',
     }),
   ],
   orderings: [

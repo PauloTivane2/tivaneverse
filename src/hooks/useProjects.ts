@@ -24,12 +24,26 @@ export function useProjects() {
           // Transform Sanity data to match Project interface
           const transformedData: Project[] = data.map((item: any) => ({
             title: item.title || 'Untitled Project',
+            slug: item.slug,
             description: item.description || 'No description available',
-            technologies: item.technologies || [],
+            longDescription: item.longDescription,
+            technologies: item.technologies 
+              ? item.technologies.split(',').map((tech: string) => tech.trim()).filter(Boolean)
+              : [],
             image: item.image ? urlFor(item.image).width(600).height(400).url() : '/placeholder-project.jpg',
+            gallery: item.gallery?.map((img: any) => ({
+              asset: img.asset,
+              caption: img.caption
+            })),
+            category: item.category,
             link: item.liveUrl || '#',
             github: item.githubUrl || '#',
-            featured: item.featured || false
+            featured: item.featured || false,
+            status: item.status,
+            startDate: item.startDate,
+            endDate: item.endDate,
+            client: item.client,
+            order: item.order
           }))
           
           setProjectsData(transformedData)
