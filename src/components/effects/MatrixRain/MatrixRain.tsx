@@ -243,7 +243,7 @@ export default function MatrixRain({
         }
         
         ctx.fillStyle = dropColor
-        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px 'Courier New', monospace`
+        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px var(--font-space-mono), 'Space Mono', monospace`
         ctx.textAlign = "center"
 
         // Salvar contexto para rotação

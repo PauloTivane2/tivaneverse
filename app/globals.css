@@ -206,3 +206,8 @@
     box-shadow: 0 0 15px rgba(0, 255, 153, 0.6), 0 0 25px rgba(0, 255, 153, 0.3);
   }
 }
+
+/* Fonte Space Mono para Matrix Rain */
+.font-space-mono {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+}

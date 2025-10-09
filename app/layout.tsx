@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Inter, Fira_Code } from "next/font/google"
+import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { MatrixRain } from "@/src/components"
@@ -18,6 +18,13 @@ const inter = Inter({
 const firaCode = Fira_Code({
   subsets: ["latin"],
   variable: "--font-fira-code",
+  display: "swap",
+})
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  variable: "--font-space-mono",
+  weight: ["400", "700"],
   display: "swap",
 })
 
@@ -223,7 +230,7 @@ export default function RootLayout({
         )}
       </head>
       <body 
-        className="font-sans antialiased bg-background text-foreground overflow-x-hidden"
+        className={`font-sans antialiased bg-background text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
         style={{
           '--color-primary': siteSettings.theme?.primaryColor || '#00BFA6',
           '--color-secondary': siteSettings.theme?.secondaryColor || '#7C3AED',
