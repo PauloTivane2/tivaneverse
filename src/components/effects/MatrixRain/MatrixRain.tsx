@@ -116,17 +116,37 @@ export default function MatrixRain({
     const resizeCanvas = () => {
       width = window.innerWidth
       height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
+      
+      // Otimização para mobile - usar devicePixelRatio para nitidez
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = width + 'px'
+      canvas.style.height = height + 'px'
+      ctx.scale(dpr, dpr)
+      
       initializeDrops()
     }
 
     const initializeDrops = () => {
       dropsRef.current = []
       
-      // Densidade temporariamente aumentada para debug
-      const densityMultiplier = density === "low" ? 0.2 : density === "high" ? 0.5 : 0.3
-      const totalDrops = Math.floor((width * height) / 80000 * densityMultiplier)
+      // Otimização para mobile - densidade baseada no tamanho da tela e performance
+      const isMobile = width < 768
+      const isTablet = width >= 768 && width < 1024
+      const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
+      
+      let baseMultiplier = 0.3
+      if (isMobile) {
+        baseMultiplier = isLowEndDevice ? 0.08 : 0.12
+      } else if (isTablet) {
+        baseMultiplier = isLowEndDevice ? 0.15 : 0.2
+      }
+      
+      const densityMultiplier = density === "low" ? baseMultiplier * 0.5 : 
+                               density === "high" ? baseMultiplier * 1.5 : baseMultiplier
+      const divisor = isMobile ? 150000 : isTablet ? 100000 : 80000
+      const totalDrops = Math.floor((width * height) / divisor * densityMultiplier)
       
 
       for (let i = 0; i < totalDrops; i++) {
@@ -182,14 +202,18 @@ export default function MatrixRain({
             break
         }
 
+        // Tamanhos otimizados para mobile
+        const wordSize = isMobile ? Math.random() * 4 + 14 : Math.random() * 6 + 18
+        const charSize = isMobile ? Math.random() * 3 + 10 : Math.random() * 4 + 14
+
         dropsRef.current.push({
           x: startX,
           y: startY,
           speed: (Math.random() * 1 + 0.3) * speed, // Velocidade mais lenta
           opacity: Math.random() * 0.4 + 0.6, // Opacidade muito alta
-          size: dropContent.isWord ? Math.random() * 6 + 18 : Math.random() * 4 + 14,
+          size: dropContent.isWord ? wordSize : charSize,
           brightness: Math.random() * 0.2 + 0.8, // Brilho máximo
-          sway: Math.random() * 0.1 + 0.05, // Movimento lateral muito reduzido
+          sway: isMobile ? 0 : Math.random() * 0.1 + 0.05, // Sem movimento lateral no mobile
           swayOffset: Math.random() * Math.PI * 2,
           direction,
           angle,
@@ -212,9 +236,10 @@ export default function MatrixRain({
 
       // Atualizar e desenhar drops
       dropsRef.current.forEach((drop, index) => {
-        // Movimento mais suave e lento para evitar rastros
-        const swayX = Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * 0.3)
-        const swayY = Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
+        // Movimento otimizado para mobile - sem sway se for mobile
+        const isMobile = width < 768
+        const swayX = isMobile ? 0 : Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * 0.3)
+        const swayY = isMobile ? 0 : Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
         // Mudança aleatória de caracteres apenas para não-palavras
         if (!drop.isWord && Math.random() < 0.01) {
@@ -245,15 +270,19 @@ export default function MatrixRain({
         ctx.fillStyle = dropColor
         ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px var(--font-space-mono), 'Space Mono', monospace`
         ctx.textAlign = "center"
+        
+        // Melhorar nitidez da fonte
+        ctx.textBaseline = "middle"
+        ctx.imageSmoothingEnabled = false
 
         // Salvar contexto para rotação
         ctx.save()
-        ctx.translate(drop.x + swayX, drop.y + swayY)
+        ctx.translate(Math.round(drop.x + swayX), Math.round(drop.y + swayY))
         
         // Não aplicar rotação para movimento vertical
         // (palavras sempre ficam na orientação normal)
 
-        // Desenhar o caractere/palavra
+        // Desenhar o caractere/palavra com posição arredondada para nitidez
         ctx.fillText(drop.char, 0, 0)
 
         // Glow extra forte para palavras importantes

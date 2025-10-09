@@ -209,6 +209,13 @@ export default function RootLayout({
         />
         <meta name="generator" content="v0.app" />
         
+        {/* Mobile Optimization Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="format-detection" content="telephone=no" />
+        
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content={siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'} />
         <meta property="og:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
@@ -235,7 +242,10 @@ export default function RootLayout({
           '--color-primary': siteSettings.theme?.primaryColor || '#00BFA6',
           '--color-secondary': siteSettings.theme?.secondaryColor || '#7C3AED',
           '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
-                                     siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
+                                     siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s',
+          // Mobile optimizations
+          'touchAction': 'manipulation',
+          'webkitTapHighlightColor': 'transparent'
         } as React.CSSProperties}
       >
         <ThemeProvider 

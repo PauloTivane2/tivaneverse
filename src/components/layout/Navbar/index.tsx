@@ -28,10 +28,37 @@ export function Navbar() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      // Melhor scroll para mobile
+      const isMobile = window.innerWidth < 768
+      element.scrollIntoView({ 
+        behavior: "smooth",
+        block: isMobile ? "start" : "center"
+      })
       setIsOpen(false)
     }
   }
+
+  // Fechar menu ao clicar fora (mobile)
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && !(event.target as Element).closest('nav')) {
+        setIsOpen(false)
+      }
+    }
+    
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside)
+      // Prevenir scroll do body quando menu está aberto
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
 
   return (
     <motion.nav
@@ -85,7 +112,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#c9d1d9] hover:text-[#00BFA6] transition-colors"
+              className="text-[#c9d1d9] hover:text-[#00BFA6] transition-colors p-2 rounded-lg hover:bg-white/10 active:bg-white/20"
               aria-label="Toggle menu"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -102,10 +129,10 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#161b22] border-t border-[#30363d]"
+            className="md:hidden bg-[#161b22]/95 backdrop-blur-md border-t border-[#30363d] shadow-lg"
           >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
+            <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
+              {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
@@ -113,8 +140,12 @@ export function Navbar() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="block text-base font-medium text-[#c9d1d9] hover:text-[#00BFA6] transition-colors"
+                  className="block text-base font-medium text-[#c9d1d9] hover:text-[#00BFA6] transition-colors py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
                   whileHover={{ x: 10 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {link.name}
                 </motion.a>

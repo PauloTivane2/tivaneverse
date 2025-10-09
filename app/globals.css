@@ -211,3 +211,68 @@
 .font-space-mono {
   font-family: var(--font-space-mono), 'Space Mono', monospace;
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  /* Reduzir animações em dispositivos móveis */
+  .matrix-glow {
+    animation-duration: 3s;
+  }
+  
+  .pulse-glow {
+    animation-duration: 3s;
+  }
+  
+  /* Melhor performance de scroll */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Otimizar hover states para touch */
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+  }
+  
+  /* Touch-friendly buttons */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .matrix-glow,
+  .pulse-glow {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tech-glow {
+    box-shadow: 0 0 5px rgba(0, 255, 153, 0.8);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}

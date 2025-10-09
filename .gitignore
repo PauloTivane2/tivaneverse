@@ -1,30 +1,283 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ========================================
+# GITIGNORE COMPLETO - PORTFÓLIO NEXT.JS + SANITY
+# ========================================
 
-# dependencies
-/node_modules
-/studio-portfolio-cms/node_modules
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# debug
+# ==========================================
+# DEPENDÊNCIAS E NODE_MODULES
+# ==========================================
+node_modules/
+*/node_modules/
+**/node_modules/
+/studio-portfolio-cms/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.yarn/
+.pnp.*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# env files
-.env*
+# ==========================================
+# NEXT.JS
+# ==========================================
+/.next/
+/out/
+/.swc/
+.next/
+out/
+build/
+dist/
+
+# ==========================================
+# ARQUIVOS DE AMBIENTE (.env)
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.production
+.env.test
+.env.staging
 /studio-portfolio-cms/.env*
 /studio-portfolio-cms/sanity.env.local
+/studio-portfolio-cms/.env.local
 
-# vercel
-.vercel
-
-# typescript
+# ==========================================
+# TYPESCRIPT
+# ==========================================
 *.tsbuildinfo
 next-env.d.ts
+.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ==========================================
+# SANITY CMS
+# ==========================================
+/studio-portfolio-cms/dist/
+/studio-portfolio-cms/.sanity/
+/studio-portfolio-cms/node_modules/
+.sanity/
+
+# ==========================================
+# VERCEL E DEPLOY
+# ==========================================
+.vercel
+.netlify/
+.firebase/
+.amplify/
+
+# ==========================================
+# EDITORES E IDEs
+# ==========================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# WebStorm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ==========================================
+# SISTEMA OPERACIONAL
+# ==========================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# LOGS E DEBUG
+# ==========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+.stylelintcache
+
+# ==========================================
+# CACHE E TEMPORÁRIOS
+# ==========================================
+.cache/
+.parcel-cache/
+.nuxt/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.nyc_output/
+coverage/
+*.lcov
+.coverage/
+lib-cov/
+
+# ==========================================
+# TESTES
+# ==========================================
+coverage/
+.nyc_output/
+.coverage/
+*.lcov
+junit.xml
+test-results/
+playwright-report/
+test-results.xml
+
+# ==========================================
+# ARQUIVOS DE BACKUP E TEMPORÁRIOS
+# ==========================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.rej
+*~
+.#*
+\#*#
+
+# ==========================================
+# CERTIFICADOS E CHAVES
+# ==========================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+ssl/
+certs/
+
+# ==========================================
+# DOCKER
+# ==========================================
+Dockerfile.local
+docker-compose.override.yml
+.dockerignore
+
+# ==========================================
+# ARQUIVOS DE CONFIGURAÇÃO LOCAL
+# ==========================================
+.local/
+.config/
+local.json
+config.local.js
+settings.local.json
+
+# ==========================================
+# ANALYTICS E TRACKING
+# ==========================================
+.analytics/
+.tracking/
+google-analytics.json
+gtag.json
+
+# ==========================================
+# OUTROS ARQUIVOS ESPECÍFICOS
+# ==========================================
+# Arquivos de imagem temporários
+*.tmp.jpg
+*.tmp.png
+*.tmp.gif
+*.tmp.webp
+
+# Arquivos de vídeo temporários
+*.tmp.mp4
+*.tmp.webm
+
+# Arquivos de áudio temporários
+*.tmp.mp3
+*.tmp.wav
+
+# Arquivos compactados temporários
+*.tmp.zip
+*.tmp.tar.gz
+*.tmp.rar
+
+# ==========================================
+# PASTAS DE UPLOAD E MÍDIA TEMPORÁRIA
+# ==========================================
+uploads/temp/
+temp/
+tmp/
+.tmp/
+
+# ==========================================
+# STORYBOOK
+# ==========================================
+storybook-static/
+.storybook/dist/
+
+# ==========================================
+# FERRAMENTAS DE BUILD
+# ==========================================
+.turbo/
+.rush/
+.pnp/
+.yarn/
+
+# ==========================================
+# MONOREPO
+# ==========================================
+.lerna/
+.rush/
+
+# ==========================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ==========================================
+# Adicione aqui arquivos específicos do seu projeto
+# Exemplo:
+# /src/temp/
+# /public/uploads/
+# /docs/private/
