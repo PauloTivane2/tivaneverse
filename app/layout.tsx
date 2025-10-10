@@ -245,7 +245,7 @@ export default function RootLayout({
                                      siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s',
           // Mobile optimizations
           'touchAction': 'manipulation',
-          'webkitTapHighlightColor': 'transparent'
+          'WebkitTapHighlightColor': 'transparent'
         } as React.CSSProperties}
       >
         <ThemeProvider 
@@ -256,21 +256,8 @@ export default function RootLayout({
           {/* Dynamic Head Updates */}
           <DynamicHead siteSettings={siteSettings} />
           
-          {/* Matrix Rain Effect */}
-          {siteSettings.theme?.showMatrixRain && (
-            <MatrixRain 
-              opacity={siteSettings.theme.matrixIntensity ? siteSettings.theme.matrixIntensity / 15 : 0.3}
-              speed={siteSettings.matrixRain?.fallSpeed || 3}
-              density={
-                siteSettings.matrixRain?.density && siteSettings.matrixRain.density > 7 ? "high" : 
-                siteSettings.matrixRain?.density && siteSettings.matrixRain.density < 4 ? "low" : "medium"
-              }
-              techWords={siteSettings.matrixRain?.techWords}
-              personalWords={siteSettings.matrixRain?.personalWords}
-              techColor={siteSettings.matrixRain?.techColor}
-              personalColor={siteSettings.matrixRain?.personalColor}
-            />
-          )}
+          {/* Matrix Rain Effect - Dynamic (CMS Integrated) */}
+          <MatrixRain />
           
           <div className="relative z-10">{children}</div>
           

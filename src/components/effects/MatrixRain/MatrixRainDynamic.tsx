@@ -8,13 +8,18 @@ interface Drop {
   x: number
   y: number
   speed: number
-  word: string
+  char: string
   opacity: number
   size: number
   brightness: number
   sway: number
   swayOffset: number
-  color: string
+  isWord?: boolean
+  word?: string
+  wordIndex?: number
+  wordType?: 'tech' | 'personal'
+  direction: 'vertical-down' | 'vertical-up'
+  angle: number
 }
 
 export default function MatrixRainDynamic() {
@@ -37,120 +42,244 @@ export default function MatrixRainDynamic() {
     if (!canvas || !ctx) return
 
     // Usar palavras do Sanity CMS ou fallback
-    const techWords = siteSettings.matrixRain?.techWords || [
-      "CODE", "HTML", "CSS", "JS", "REACT", "NEXT", "NODE",
-      "API", "SQL", "GIT", "WEB", "APP", "UI", "UX", "JSON"
-    ]
+    const safeTechWords = siteSettings.matrixRain?.techWords && siteSettings.matrixRain.techWords.length > 0 
+      ? siteSettings.matrixRain.techWords 
+      : ["CODE", "HTML", "CSS", "JS", "REACT", "NEXT", "NODE", "API", "SQL", "GIT", "WEB", "APP", "UI", "UX", "JSON"]
     
-    const personalWords = siteSettings.matrixRain?.personalWords || [
-      "TIVANE", "FOCUS", "GROWTH", "VISION", "PASSION",
-      "RESILIENCE", "LOGIC", "CREATOR", "INNOVATE", "MINDSET"
-    ]
-    
-    // Combinar todas as palavras
-    const allWords = [...techWords, ...personalWords]
+    const safePersonalWords = siteSettings.matrixRain?.personalWords && siteSettings.matrixRain.personalWords.length > 0 
+      ? siteSettings.matrixRain.personalWords 
+      : ["TIVANE", "FOCUS", "GROWTH", "VISION", "PASSION", "RESILIENCE", "LOGIC", "CREATOR", "INNOVATE", "MINDSET"]
 
     // Configurações dinâmicas do Sanity
     const techColor = siteSettings.matrixRain?.techColor || "0, 191, 166"
     const personalColor = siteSettings.matrixRain?.personalColor || "124, 58, 237"
-    const fallSpeed = (siteSettings.matrixRain?.fallSpeed || 3) * 0.5
+    const speed = (siteSettings.matrixRain?.fallSpeed || 3) * 0.3
     const density = siteSettings.matrixRain?.density || 5
     const matrixIntensity = siteSettings.theme?.matrixIntensity || 5
+    const characters = "01"
+    const glow = true
 
     let width = window.innerWidth
     let height = window.innerHeight
-    
-    canvas.width = width
-    canvas.height = height
 
-    // Função para redimensionar
-    const handleResize = () => {
+    const resizeCanvas = () => {
       width = window.innerWidth
       height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
       
-      // Reposicionar drops existentes
-      dropsRef.current.forEach((drop, index) => {
-        drop.x = (index % Math.floor(width / 180)) * 180 + 10
-      })
+      // Otimização para mobile - usar devicePixelRatio para nitidez
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = width + 'px'
+      canvas.style.height = height + 'px'
+      ctx.scale(dpr, dpr)
+      
+      initializeDrops()
     }
 
-    // Inicializar drops baseado na densidade
     const initializeDrops = () => {
       dropsRef.current = []
-      const columns = Math.floor(width / 180)
-      const totalDrops = Math.floor((columns * density) / 2)
       
+      // Otimização para mobile - densidade baseada no tamanho da tela e performance
+      const isMobile = width < 768
+      const isTablet = width >= 768 && width < 1024
+      const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
+      
+      let baseMultiplier = 0.3
+      if (isMobile) {
+        baseMultiplier = isLowEndDevice ? 0.08 : 0.12
+      } else if (isTablet) {
+        baseMultiplier = isLowEndDevice ? 0.15 : 0.2
+      }
+      
+      const densityMultiplier = density === 1 ? baseMultiplier * 0.3 : 
+                               density === 2 ? baseMultiplier * 0.5 :
+                               density === 3 ? baseMultiplier * 0.7 :
+                               density === 4 ? baseMultiplier * 1.0 :
+                               density >= 5 ? baseMultiplier * 1.5 : baseMultiplier
+      
+      const divisor = isMobile ? 150000 : isTablet ? 100000 : 80000
+      const totalDrops = Math.floor((width * height) / divisor * densityMultiplier)
+
       for (let i = 0; i < totalDrops; i++) {
-        const dropsPerColumn = Math.floor(density / 3) + 1
+        // Apenas movimento vertical (cima para baixo ou baixo para cima)
+        const directions = ['vertical-down', 'vertical-up'] as const
+        const direction = directions[Math.floor(Math.random() * directions.length)]
         
-        for (let j = 0; j < dropsPerColumn; j++) {
-          const word = allWords[Math.floor(Math.random() * allWords.length)]
-          
-          // Determinar cor baseada no tipo de palavra
-          let color = techColor // Verde padrão para tech
-          if (personalWords.includes(word)) {
-            color = personalColor // Roxo para palavras pessoais
+        // Determinar tipo de conteúdo
+        const rand = Math.random()
+        let dropContent: any = {}
+
+        // 70% chance para palavras técnicas
+        if (rand < 0.7) {
+          const word = safeTechWords[Math.floor(Math.random() * safeTechWords.length)]
+          dropContent = {
+            char: word,
+            wordType: 'tech' as const,
+            isWord: true,
+            wordIndex: 0
           }
-          
-          dropsRef.current.push({
-            x: (i % columns) * 180 + 10,
-            y: Math.random() * height,
-            speed: (Math.random() * fallSpeed + 0.5) * matrixIntensity * 0.2,
-            word: word,
-            opacity: Math.random() * 0.8 + 0.2,
-            size: Math.random() * 4 + 12,
-            brightness: Math.random() * 0.5 + 0.5,
-            sway: Math.random() * 2 - 1,
-            swayOffset: Math.random() * Math.PI * 2,
-            color: color
-          })
         }
+        // 25% chance para palavras pessoais
+        else if (rand < 0.95) {
+          const word = safePersonalWords[Math.floor(Math.random() * safePersonalWords.length)]
+          dropContent = {
+            char: word,
+            word: word,
+            wordType: 'personal' as const,
+            isWord: true,
+            wordIndex: 0
+          }
+        }
+        // 5% chance para caracteres simples
+        else {
+          dropContent = {
+            char: characters[Math.floor(Math.random() * characters.length)],
+            isWord: false
+          }
+        }
+
+        // Posição inicial baseada na direção vertical
+        let startX, startY, angle
+        switch (direction) {
+          case 'vertical-down':
+            startX = Math.random() * width
+            startY = -Math.random() * 200
+            angle = Math.PI / 2 // 90 graus (cima para baixo)
+            break
+          case 'vertical-up':
+            startX = Math.random() * width
+            startY = height + Math.random() * 200
+            angle = -Math.PI / 2 // -90 graus (baixo para cima)
+            break
+        }
+
+        // Tamanhos otimizados para mobile
+        const wordSize = isMobile ? Math.random() * 4 + 14 : Math.random() * 6 + 18
+        const charSize = isMobile ? Math.random() * 3 + 10 : Math.random() * 4 + 14
+
+        dropsRef.current.push({
+          x: startX,
+          y: startY,
+          speed: (Math.random() * 1 + 0.3) * speed * (matrixIntensity * 0.2),
+          opacity: Math.random() * 0.4 + 0.6,
+          size: dropContent.isWord ? wordSize : charSize,
+          brightness: Math.random() * 0.2 + 0.8,
+          sway: isMobile ? 0 : Math.random() * 0.1 + 0.05,
+          swayOffset: Math.random() * Math.PI * 2,
+          direction,
+          angle,
+          ...dropContent
+        })
       }
     }
 
-    // Função de animação
+    let time = 0
+
     const animate = () => {
-      // Limpar canvas com transparência baseada na intensidade
-      const alpha = Math.max(0.05, (11 - matrixIntensity) * 0.01)
-      ctx.fillStyle = theme === 'dark' ? `rgba(13, 17, 23, ${alpha})` : `rgba(255, 255, 255, ${alpha})`
+      time += 0.016
+
+      // Efeito de fade equilibrado - remove rastros mas mantém palavras visíveis
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)"
       ctx.fillRect(0, 0, width, height)
 
-      // Animar cada drop
+      // Atualizar e desenhar drops
       dropsRef.current.forEach((drop, index) => {
-        // Movimento vertical
-        drop.y += drop.speed
-        
-        // Movimento horizontal (sway)
-        drop.swayOffset += 0.02
-        const swayX = drop.x + Math.sin(drop.swayOffset) * drop.sway * 10
+        // Movimento otimizado para mobile - sem sway se for mobile
+        const isMobile = width < 768
+        const swayX = isMobile ? 0 : Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * 0.3)
+        const swayY = isMobile ? 0 : Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
-        // Configurar estilo do texto
-        ctx.font = `${drop.size}px 'Fira Code', 'Courier New', monospace`
-        ctx.fillStyle = `rgba(${drop.color}, ${drop.opacity * drop.brightness})`
-        ctx.textAlign = "left"
-        
-        // Desenhar a palavra
-        ctx.fillText(drop.word, swayX, drop.y)
+        // Mudança aleatória de caracteres apenas para não-palavras
+        if (!drop.isWord && Math.random() < 0.01) {
+          drop.char = characters[Math.floor(Math.random() * characters.length)]
+        }
 
-        // Reset quando sai da tela
-        if (drop.y > height + 50) {
-          drop.y = -50
-          drop.x = (index % Math.floor(width / 180)) * 180 + 10
+        // Flicker de brilho mais sutil
+        if (Math.random() < 0.02) {
+          drop.brightness = Math.random() * 0.3 + 0.7
+        }
+
+        // Definir cor baseada no tipo de palavra
+        let baseColor = "0, 255, 153" // Verde padrão
+        if (drop.wordType === 'tech') {
+          baseColor = techColor
+        } else if (drop.wordType === 'personal') {
+          baseColor = personalColor
+        }
+        
+        const dropColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
+        
+        // Configurar sombra/glow forte para visibilidade máxima
+        if (glow) {
+          ctx.shadowColor = dropColor
+          ctx.shadowBlur = drop.isWord ? 25 : 15
+        }
+        
+        ctx.fillStyle = dropColor
+        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px var(--font-space-mono), 'Space Mono', monospace`
+        ctx.textAlign = "center"
+        
+        // Melhorar nitidez da fonte
+        ctx.textBaseline = "middle"
+        ctx.imageSmoothingEnabled = false
+
+        // Salvar contexto para rotação
+        ctx.save()
+        ctx.translate(Math.round(drop.x + swayX), Math.round(drop.y + swayY))
+
+        // Desenhar o caractere/palavra com posição arredondada para nitidez
+        ctx.fillText(drop.char, 0, 0)
+
+        // Glow extra forte para palavras importantes
+        if (glow && drop.isWord) {
+          ctx.shadowBlur = 35
+          ctx.fillStyle = `rgba(${baseColor}, ${drop.opacity * 0.4})`
+          ctx.fillText(drop.char, 0, 0)
+        }
+
+        // Restaurar contexto
+        ctx.restore()
+
+        // Reset shadow
+        if (glow) {
+          ctx.shadowBlur = 0
+        }
+
+        // Atualizar posição baseada na direção
+        const moveX = Math.cos(drop.angle) * drop.speed
+        const moveY = Math.sin(drop.angle) * drop.speed
+        
+        drop.x += moveX
+        drop.y += moveY
+
+        // Reset drop quando sai da tela
+        const margin = 100
+        if (drop.x < -margin || drop.x > width + margin || 
+            drop.y < -margin || drop.y > height + margin) {
           
-          // Escolher nova palavra aleatória
-          const newWord = allWords[Math.floor(Math.random() * allWords.length)]
-          drop.word = newWord
+          // Reposicionar baseado na direção vertical
+          switch (drop.direction) {
+            case 'vertical-down':
+              drop.x = Math.random() * width
+              drop.y = -Math.random() * 200
+              break
+            case 'vertical-up':
+              drop.x = Math.random() * width
+              drop.y = height + Math.random() * 200
+              break
+          }
           
-          // Definir nova cor baseada na palavra
-          drop.color = personalWords.includes(newWord) ? personalColor : techColor
-          
-          // Variar propriedades
-          drop.speed = (Math.random() * fallSpeed + 0.5) * matrixIntensity * 0.2
-          drop.opacity = Math.random() * 0.8 + 0.2
-          drop.size = Math.random() * 4 + 12
-          drop.brightness = Math.random() * 0.5 + 0.5
+          // Resetar propriedades com valores mais suaves
+          drop.speed = (Math.random() * 1 + 0.3) * speed * (matrixIntensity * 0.2)
+          drop.opacity = Math.random() * 0.6 + 0.4
+          drop.brightness = Math.random() * 0.3 + 0.7
+        }
+
+        // Fade out gradual nas bordas
+        const fadeZone = 0.8
+        if (drop.x > width * fadeZone || drop.y > height * fadeZone) {
+          drop.opacity = Math.max(0.1, drop.opacity * 0.98)
         }
       })
 
@@ -158,18 +287,16 @@ export default function MatrixRainDynamic() {
     }
 
     // Inicializar e começar animação
-    initializeDrops()
+    resizeCanvas()
+    window.addEventListener("resize", resizeCanvas)
     animate()
-
-    // Event listeners
-    window.addEventListener('resize', handleResize)
 
     // Cleanup
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener("resize", resizeCanvas)
     }
   }, [mounted, theme, siteSettings])
 
@@ -181,9 +308,10 @@ export default function MatrixRainDynamic() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{
-        opacity: siteSettings.theme?.matrixIntensity ? siteSettings.theme.matrixIntensity * 0.1 : 0.5
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      style={{ 
+        opacity: (siteSettings.theme?.matrixIntensity || 5) * 0.08,
+        background: "transparent"
       }}
     />
   )

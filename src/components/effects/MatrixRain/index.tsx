@@ -1,2 +1,2 @@
-// Re-export the enhanced MatrixRain component
-export { default } from './MatrixRain'
+// Re-export the dynamic MatrixRain component (CMS integrated)
+export { default } from './MatrixRainDynamic'
