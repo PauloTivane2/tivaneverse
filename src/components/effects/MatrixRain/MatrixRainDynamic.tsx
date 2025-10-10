@@ -35,7 +35,16 @@ export default function MatrixRainDynamic() {
   }, [])
 
   useEffect(() => {
-    if (!mounted || !siteSettings.theme?.showMatrixRain) return
+    if (!mounted || !siteSettings.theme?.showMatrixRain) {
+      console.log('MatrixRain: Not rendering', { mounted, showMatrixRain: siteSettings.theme?.showMatrixRain })
+      return
+    }
+    
+    console.log('MatrixRain: Starting animation', { 
+      width: window.innerWidth, 
+      height: window.innerHeight,
+      intensity: siteSettings.theme?.matrixIntensity 
+    })
 
     const canvas = canvasRef.current
     const ctx = canvas?.getContext("2d")
@@ -80,38 +89,52 @@ export default function MatrixRainDynamic() {
     const initializeDrops = () => {
       dropsRef.current = []
       
-      // Otimização para mobile - densidade baseada no tamanho da tela e performance
+      // Detecção de dispositivo com configurações mais generosas
       const isMobile = width < 768
       const isTablet = width >= 768 && width < 1024
+      const isDesktop = width >= 1024
       const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
       
-      let baseMultiplier = 0.3
+      // Configurações de densidade mais visíveis para todos os dispositivos
+      let baseMultiplier = 0.8 // Aumentado significativamente
       if (isMobile) {
-        baseMultiplier = isLowEndDevice ? 0.08 : 0.12
+        baseMultiplier = isLowEndDevice ? 0.4 : 0.6 // Muito mais generoso
       } else if (isTablet) {
-        baseMultiplier = isLowEndDevice ? 0.15 : 0.2
+        baseMultiplier = isLowEndDevice ? 0.6 : 0.8
+      } else if (isDesktop) {
+        baseMultiplier = 1.0
       }
       
-      const densityMultiplier = density === 1 ? baseMultiplier * 0.3 : 
-                               density === 2 ? baseMultiplier * 0.5 :
-                               density === 3 ? baseMultiplier * 0.7 :
-                               density === 4 ? baseMultiplier * 1.0 :
+      // Mapeamento de densidade do CMS para multiplicadores mais visíveis
+      const densityMultiplier = density === 1 ? baseMultiplier * 0.6 : 
+                               density === 2 ? baseMultiplier * 0.8 :
+                               density === 3 ? baseMultiplier * 1.0 :
+                               density === 4 ? baseMultiplier * 1.2 :
                                density >= 5 ? baseMultiplier * 1.5 : baseMultiplier
       
-      const divisor = isMobile ? 150000 : isTablet ? 100000 : 80000
-      const totalDrops = Math.floor((width * height) / divisor * densityMultiplier)
+      // Divisores menores = mais drops visíveis - ainda mais generoso para mobile
+      const divisor = isMobile ? 15000 : isTablet ? 18000 : 15000
+      let totalDrops = Math.floor((width * height) / divisor * densityMultiplier)
+      
+      // Garantir mínimo de drops visíveis em qualquer tela - aumentado para mobile
+      const minDrops = isMobile ? 60 : isTablet ? 70 : 80
+      const maxDrops = isMobile ? 150 : isTablet ? 200 : 300
+      totalDrops = Math.max(minDrops, Math.min(maxDrops, totalDrops))
 
       for (let i = 0; i < totalDrops; i++) {
         // Apenas movimento vertical (cima para baixo ou baixo para cima)
         const directions = ['vertical-down', 'vertical-up'] as const
         const direction = directions[Math.floor(Math.random() * directions.length)]
         
-        // Determinar tipo de conteúdo
+        // Determinar tipo de conteúdo - mais palavras no mobile para maior visibilidade
         const rand = Math.random()
         let dropContent: any = {}
 
-        // 70% chance para palavras técnicas
-        if (rand < 0.7) {
+        // Ajustar proporções baseado no dispositivo
+        const techWordChance = isMobile ? 0.8 : 0.7 // 80% no mobile vs 70% desktop
+        const personalWordChance = isMobile ? 0.98 : 0.95 // 18% no mobile vs 25% desktop
+        
+        if (rand < techWordChance) {
           const word = safeTechWords[Math.floor(Math.random() * safeTechWords.length)]
           dropContent = {
             char: word,
@@ -120,8 +143,7 @@ export default function MatrixRainDynamic() {
             wordIndex: 0
           }
         }
-        // 25% chance para palavras pessoais
-        else if (rand < 0.95) {
+        else if (rand < personalWordChance) {
           const word = safePersonalWords[Math.floor(Math.random() * safePersonalWords.length)]
           dropContent = {
             char: word,
@@ -131,7 +153,7 @@ export default function MatrixRainDynamic() {
             wordIndex: 0
           }
         }
-        // 5% chance para caracteres simples
+        // Menos caracteres simples no mobile (2% vs 5%)
         else {
           dropContent = {
             char: characters[Math.floor(Math.random() * characters.length)],
@@ -139,33 +161,48 @@ export default function MatrixRainDynamic() {
           }
         }
 
-        // Posição inicial baseada na direção vertical
+        // Posição inicial baseada na direção vertical - concentrada no mobile
         let startX, startY, angle
+        
+        // No mobile, concentrar mais no centro da tela
+        if (isMobile) {
+          const centerX = width / 2
+          const spreadRange = width * 0.8 // 80% da largura da tela
+          startX = centerX + (Math.random() - 0.5) * spreadRange
+        } else {
+          startX = Math.random() * width
+        }
+        
         switch (direction) {
           case 'vertical-down':
-            startX = Math.random() * width
             startY = -Math.random() * 200
             angle = Math.PI / 2 // 90 graus (cima para baixo)
             break
           case 'vertical-up':
-            startX = Math.random() * width
             startY = height + Math.random() * 200
             angle = -Math.PI / 2 // -90 graus (baixo para cima)
             break
         }
 
-        // Tamanhos otimizados para mobile
-        const wordSize = isMobile ? Math.random() * 4 + 14 : Math.random() * 6 + 18
-        const charSize = isMobile ? Math.random() * 3 + 10 : Math.random() * 4 + 14
+        // Tamanhos legíveis para todas as telas
+        const wordSize = isMobile ? Math.random() * 3 + 16 : isTablet ? Math.random() * 4 + 18 : Math.random() * 6 + 20
+        const charSize = isMobile ? Math.random() * 2 + 12 : isTablet ? Math.random() * 3 + 14 : Math.random() * 4 + 16
+
+        // Velocidade e opacidade visíveis em todas as telas
+        const baseSpeed = (Math.random() * 0.8 + 0.4) * speed * (matrixIntensity * 0.15)
+        const finalSpeed = isMobile ? Math.max(baseSpeed, 0.3) : baseSpeed
+        
+        const baseOpacity = Math.random() * 0.5 + 0.5
+        const finalOpacity = isMobile ? Math.max(baseOpacity, 0.6) : baseOpacity
 
         dropsRef.current.push({
           x: startX,
           y: startY,
-          speed: (Math.random() * 1 + 0.3) * speed * (matrixIntensity * 0.2),
-          opacity: Math.random() * 0.4 + 0.6,
+          speed: finalSpeed,
+          opacity: finalOpacity,
           size: dropContent.isWord ? wordSize : charSize,
-          brightness: Math.random() * 0.2 + 0.8,
-          sway: isMobile ? 0 : Math.random() * 0.1 + 0.05,
+          brightness: Math.random() * 0.3 + 0.7, // Mais brilhante
+          sway: isMobile ? Math.random() * 0.05 + 0.02 : Math.random() * 0.1 + 0.05, // Sway sutil mesmo no mobile
           swayOffset: Math.random() * Math.PI * 2,
           direction,
           angle,
@@ -179,16 +216,20 @@ export default function MatrixRainDynamic() {
     const animate = () => {
       time += 0.016
 
-      // Efeito de fade equilibrado - remove rastros mas mantém palavras visíveis
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)"
+      // Fade mais suave para manter visibilidade em telas pequenas
+      const isMobile = width < 768
+      const isTablet = width >= 768 && width < 1024
+      const fadeAlpha = isMobile ? 0.05 : isTablet ? 0.06 : 0.08
+      
+      ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`
       ctx.fillRect(0, 0, width, height)
 
       // Atualizar e desenhar drops
       dropsRef.current.forEach((drop, index) => {
-        // Movimento otimizado para mobile - sem sway se for mobile
-        const isMobile = width < 768
-        const swayX = isMobile ? 0 : Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * 0.3)
-        const swayY = isMobile ? 0 : Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
+        // Movimento sutil para todos os dispositivos
+        const swayMultiplier = isMobile ? 0.2 : isTablet ? 0.25 : 0.3
+        const swayX = Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * swayMultiplier)
+        const swayY = Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
         // Mudança aleatória de caracteres apenas para não-palavras
         if (!drop.isWord && Math.random() < 0.01) {
@@ -210,14 +251,16 @@ export default function MatrixRainDynamic() {
         
         const dropColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
         
-        // Configurar sombra/glow forte para visibilidade máxima
+        // Configurar sombra/glow adaptativo para cada dispositivo
         if (glow) {
           ctx.shadowColor = dropColor
-          ctx.shadowBlur = drop.isWord ? 25 : 15
+          const glowIntensity = isMobile ? (drop.isWord ? 20 : 12) : isTablet ? (drop.isWord ? 22 : 14) : (drop.isWord ? 25 : 15)
+          ctx.shadowBlur = glowIntensity
         }
         
         ctx.fillStyle = dropColor
-        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px var(--font-space-mono), 'Space Mono', monospace`
+        const fontFamily = isMobile ? 'monospace' : "var(--font-space-mono), 'Space Mono', monospace"
+        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px ${fontFamily}`
         ctx.textAlign = "center"
         
         // Melhorar nitidez da fonte
@@ -258,21 +301,31 @@ export default function MatrixRainDynamic() {
         if (drop.x < -margin || drop.x > width + margin || 
             drop.y < -margin || drop.y > height + margin) {
           
-          // Reposicionar baseado na direção vertical
+          // Reposicionar baseado na direção vertical - concentrado no mobile
+          if (isMobile) {
+            const centerX = width / 2
+            const spreadRange = width * 0.8
+            drop.x = centerX + (Math.random() - 0.5) * spreadRange
+          } else {
+            drop.x = Math.random() * width
+          }
+          
           switch (drop.direction) {
             case 'vertical-down':
-              drop.x = Math.random() * width
               drop.y = -Math.random() * 200
               break
             case 'vertical-up':
-              drop.x = Math.random() * width
               drop.y = height + Math.random() * 200
               break
           }
           
-          // Resetar propriedades com valores mais suaves
-          drop.speed = (Math.random() * 1 + 0.3) * speed * (matrixIntensity * 0.2)
-          drop.opacity = Math.random() * 0.6 + 0.4
+          // Resetar propriedades mantendo visibilidade
+          const newBaseSpeed = (Math.random() * 0.8 + 0.4) * speed * (matrixIntensity * 0.15)
+          drop.speed = isMobile ? Math.max(newBaseSpeed, 0.3) : newBaseSpeed
+          
+          const newBaseOpacity = Math.random() * 0.5 + 0.5
+          drop.opacity = isMobile ? Math.max(newBaseOpacity, 0.6) : newBaseOpacity
+          
           drop.brightness = Math.random() * 0.3 + 0.7
         }
 
@@ -308,10 +361,11 @@ export default function MatrixRainDynamic() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none"
       style={{ 
-        opacity: (siteSettings.theme?.matrixIntensity || 5) * 0.08,
-        background: "transparent"
+        opacity: Math.max(0.6, (siteSettings.theme?.matrixIntensity || 5) * 0.12),
+        background: "transparent",
+        zIndex: -1 // Garantir que está atrás do conteúdo mas visível
       }}
     />
   )

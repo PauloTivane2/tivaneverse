@@ -163,8 +163,12 @@ export default function RootLayout({
   // Show loading state
   if (loading) {
     return (
-      <html lang="en" className={`${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
-        <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden">
+      <html
+        lang="pt"
+        className={`${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
+        suppressHydrationWarning
+      >
+        <body className="antialiased" style={{ background: 'transparent' }}>
           <div className="min-h-screen flex items-center justify-center">
             <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
           </div>
@@ -182,7 +186,7 @@ export default function RootLayout({
           <meta name="description" content={siteSettings.maintenance.message || 'Site temporariamente indisponível'} />
           {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}
         </head>
-        <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden">
+        <body className="font-sans antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent' }}>
           <ThemeProvider 
             attribute="class" 
             defaultTheme={siteSettings.theme?.darkMode ? "dark" : "light"} 
@@ -237,15 +241,13 @@ export default function RootLayout({
         )}
       </head>
       <body 
-        className={`font-sans antialiased bg-background text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
+        className={`font-sans antialiased text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
         style={{
+          background: 'transparent',
           '--color-primary': siteSettings.theme?.primaryColor || '#00BFA6',
           '--color-secondary': siteSettings.theme?.secondaryColor || '#7C3AED',
           '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
-                                     siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s',
-          // Mobile optimizations
-          'touchAction': 'manipulation',
-          'WebkitTapHighlightColor': 'transparent'
+                                     siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
         } as React.CSSProperties}
       >
         <ThemeProvider 
@@ -259,7 +261,7 @@ export default function RootLayout({
           {/* Matrix Rain Effect - Dynamic (CMS Integrated) */}
           <MatrixRain />
           
-          <div className="relative z-10">{children}</div>
+          <div className="relative z-10 bg-transparent">{children}</div>
           
           {/* Google Analytics */}
           {siteSettings.analytics?.googleAnalyticsId && (
