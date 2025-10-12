@@ -44,6 +44,50 @@ export interface MatrixRainConfig {
     techWordPercentage: number
     personalWordPercentage: number
   }
+  // Novas propriedades avançadas
+  wordFrequency: {
+    wordsPerWave: number
+    spawnInterval: number
+    burstMode: {
+      enabled: boolean
+      burstSize: number
+      burstInterval: number
+    }
+  }
+  brightness: {
+    baseBrightness: number
+    wordBrightness: {
+      techWords: number
+      personalWords: number
+    }
+    glowEffect: {
+      enabled: boolean
+      radius: number
+      intensity: number
+      pulsing: {
+        enabled: boolean
+        speed: number
+      }
+    }
+  }
+  responsiveSettings: {
+    desktop: {
+      maxWords: number
+      frameRate: number
+      enableAdvancedEffects: boolean
+    }
+    tablet: {
+      maxWords: number
+      frameRate: number
+      enableAdvancedEffects: boolean
+    }
+    mobile: {
+      maxWords: number
+      frameRate: number
+      enableAdvancedEffects: boolean
+      simplifiedMode: boolean
+    }
+  }
 }
 
 export interface ParticlesConfig {
@@ -201,6 +245,50 @@ const defaultConfig: VisualEffectsConfig = {
     wordDistribution: {
       techWordPercentage: 70,
       personalWordPercentage: 25
+    },
+    // Valores padrão para novas propriedades avançadas
+    wordFrequency: {
+      wordsPerWave: 5,
+      spawnInterval: 800,
+      burstMode: {
+        enabled: false,
+        burstSize: 15,
+        burstInterval: 20
+      }
+    },
+    brightness: {
+      baseBrightness: 1.0,
+      wordBrightness: {
+        techWords: 1.2,
+        personalWords: 1.5
+      },
+      glowEffect: {
+        enabled: true,
+        radius: 10,
+        intensity: 0.8,
+        pulsing: {
+          enabled: false,
+          speed: 1.0
+        }
+      }
+    },
+    responsiveSettings: {
+      desktop: {
+        maxWords: 50,
+        frameRate: 60,
+        enableAdvancedEffects: true
+      },
+      tablet: {
+        maxWords: 25,
+        frameRate: 45,
+        enableAdvancedEffects: true
+      },
+      mobile: {
+        maxWords: 15,
+        frameRate: 30,
+        enableAdvancedEffects: false,
+        simplifiedMode: false
+      }
     }
   },
   particles: {
@@ -581,6 +669,47 @@ export function useVisualEffects() {
               wordDistribution: {
                 ...defaultConfig.matrixRain.wordDistribution,
                 ...data.matrixRain?.wordDistribution
+              },
+              // Processar novas propriedades avançadas com fallbacks seguros
+              wordFrequency: {
+                ...defaultConfig.matrixRain.wordFrequency,
+                ...data.matrixRain?.wordFrequency,
+                burstMode: {
+                  ...defaultConfig.matrixRain.wordFrequency.burstMode,
+                  ...data.matrixRain?.wordFrequency?.burstMode
+                }
+              },
+              brightness: {
+                ...defaultConfig.matrixRain.brightness,
+                ...data.matrixRain?.brightness,
+                wordBrightness: {
+                  ...defaultConfig.matrixRain.brightness.wordBrightness,
+                  ...data.matrixRain?.brightness?.wordBrightness
+                },
+                glowEffect: {
+                  ...defaultConfig.matrixRain.brightness.glowEffect,
+                  ...data.matrixRain?.brightness?.glowEffect,
+                  pulsing: {
+                    ...defaultConfig.matrixRain.brightness.glowEffect.pulsing,
+                    ...data.matrixRain?.brightness?.glowEffect?.pulsing
+                  }
+                }
+              },
+              responsiveSettings: {
+                ...defaultConfig.matrixRain.responsiveSettings,
+                ...data.matrixRain?.responsiveSettings,
+                desktop: {
+                  ...defaultConfig.matrixRain.responsiveSettings.desktop,
+                  ...data.matrixRain?.responsiveSettings?.desktop
+                },
+                tablet: {
+                  ...defaultConfig.matrixRain.responsiveSettings.tablet,
+                  ...data.matrixRain?.responsiveSettings?.tablet
+                },
+                mobile: {
+                  ...defaultConfig.matrixRain.responsiveSettings.mobile,
+                  ...data.matrixRain?.responsiveSettings?.mobile
+                }
               }
             },
             particles: {

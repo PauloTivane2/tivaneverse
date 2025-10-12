@@ -85,9 +85,37 @@ export default function MatrixRainDynamic() {
       randomness: { characterChange: 0.01, brightnessFlicker: 0.02 } 
     }
     const wordDistribution = visualEffects.matrixRain.wordDistribution || { techWordPercentage: 70, personalWordPercentage: 25 }
-
+    
+    // Novas configurações avançadas
+    const wordFrequency = visualEffects.matrixRain.wordFrequency || {
+      wordsPerWave: 5,
+      spawnInterval: 800,
+      burstMode: { enabled: false, burstSize: 15, burstInterval: 20 }
+    }
+    const brightnessConfig = visualEffects.matrixRain.brightness || {
+      baseBrightness: 1.0,
+      wordBrightness: { techWords: 1.2, personalWords: 1.5 },
+      glowEffect: { enabled: true, radius: 10, intensity: 0.8, pulsing: { enabled: false, speed: 1.0 } }
+    }
+    
+    // Inicializar dimensões da tela
     let width = window.innerWidth
     let height = window.innerHeight
+    
+    // Detectar dispositivo e aplicar configurações responsivas
+    const isMobile = width < 768
+    const isTablet = width >= 768 && width < 1024
+    const isDesktop = width >= 1024
+    
+    const responsiveConfig = visualEffects.matrixRain.responsiveSettings || {
+      desktop: { maxWords: 50, frameRate: 60, enableAdvancedEffects: true },
+      tablet: { maxWords: 25, frameRate: 45, enableAdvancedEffects: true },
+      mobile: { maxWords: 15, frameRate: 30, enableAdvancedEffects: false, simplifiedMode: false }
+    }
+    
+    const currentDeviceConfig = isMobile ? responsiveConfig.mobile :
+                               isTablet ? responsiveConfig.tablet :
+                               responsiveConfig.desktop
 
     const resizeCanvas = () => {
       width = window.innerWidth
@@ -107,37 +135,30 @@ export default function MatrixRainDynamic() {
     const initializeDrops = () => {
       dropsRef.current = []
       
-      // Detecção de dispositivo com configurações mais generosas
-      const isMobile = width < 768
-      const isTablet = width >= 768 && width < 1024
-      const isDesktop = width >= 1024
+      // Usar configurações responsivas do CMS
       const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
       
-      // Configurações de densidade mais visíveis para todos os dispositivos
-      let baseMultiplier = 0.8 // Aumentado significativamente
-      if (isMobile) {
-        baseMultiplier = isLowEndDevice ? 0.4 : 0.6 // Muito mais generoso
-      } else if (isTablet) {
-        baseMultiplier = isLowEndDevice ? 0.6 : 0.8
-      } else if (isDesktop) {
-        baseMultiplier = 1.0
+      // Aplicar configurações baseadas no dispositivo e CMS
+      let maxWords = currentDeviceConfig.maxWords
+      
+      // Ajustar para dispositivos de baixa performance
+      if (isLowEndDevice) {
+        maxWords = Math.floor(maxWords * 0.7)
       }
       
-      // Mapeamento de densidade do CMS para multiplicadores mais visíveis
-      const densityMultiplier = density === 1 ? baseMultiplier * 0.6 : 
-                               density === 2 ? baseMultiplier * 0.8 :
-                               density === 3 ? baseMultiplier * 1.0 :
-                               density === 4 ? baseMultiplier * 1.2 :
-                               density >= 5 ? baseMultiplier * 1.5 : baseMultiplier
+      // Aplicar modo simplificado se configurado (apenas mobile)
+      if (isMobile && 'simplifiedMode' in currentDeviceConfig && currentDeviceConfig.simplifiedMode) {
+        maxWords = Math.floor(maxWords * 0.5)
+      }
       
-      // Divisores menores = mais drops visíveis - ainda mais generoso para mobile
-      const divisor = isMobile ? 15000 : isTablet ? 18000 : 15000
-      let totalDrops = Math.floor((width * height) / divisor * densityMultiplier)
+      // Usar configurações de densidade do CMS combinadas com limites do dispositivo
+      const densityMultiplier = density / 5.0 // Normalizar densidade (1-5 para 0.2-1.0)
+      let totalDrops = Math.floor(maxWords * densityMultiplier)
       
-      // Garantir mínimo de drops visíveis em qualquer tela - aumentado para mobile
-      const minDrops = isMobile ? 60 : isTablet ? 70 : 80
-      const maxDrops = isMobile ? 150 : isTablet ? 200 : 300
-      totalDrops = Math.max(minDrops, Math.min(maxDrops, totalDrops))
+      // Garantir limites mínimos e máximos baseados no dispositivo
+      const minDrops = Math.floor(maxWords * 0.3)
+      const maxDropsLimit = maxWords
+      totalDrops = Math.max(minDrops, Math.min(maxDropsLimit, totalDrops))
 
       for (let i = 0; i < totalDrops; i++) {
         // Direção baseada na configuração do CMS
@@ -243,15 +264,29 @@ export default function MatrixRainDynamic() {
     }
 
     let time = 0
+    let lastFrameTime = 0
+    
+    // Calcular intervalo de frame baseado no FPS configurado
+    const targetFPS = currentDeviceConfig.frameRate
+    const frameInterval = 1000 / targetFPS
 
-    const animate = () => {
-      time += 0.016
+    const animate = (currentTime: number = 0) => {
+      // Controle de FPS baseado nas configurações responsivas
+      if (currentTime - lastFrameTime < frameInterval) {
+        animationFrameRef.current = requestAnimationFrame(animate)
+        return
+      }
+      
+      lastFrameTime = currentTime
+      const deltaTime = Math.min(frameInterval / 1000, 0.016) // Cap at 60fps equivalent
+      time += deltaTime
 
       // Fade baseado nas configurações do CMS
-      const isMobile = width < 768
-      const isTablet = width >= 768 && width < 1024
-      const fadeAlpha = isMobile ? opacitySettings.fadeEffect * 0.6 : 
-                       isTablet ? opacitySettings.fadeEffect * 0.75 : opacitySettings.fadeEffect
+      // Recalcular dispositivo baseado nas dimensões atuais
+      const currentIsMobile = width < 768
+      const currentIsTablet = width >= 768 && width < 1024
+      const fadeAlpha = currentIsMobile ? opacitySettings.fadeEffect * 0.6 : 
+                       currentIsTablet ? opacitySettings.fadeEffect * 0.75 : opacitySettings.fadeEffect
       
       ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`
       ctx.fillRect(0, 0, width, height)
@@ -259,7 +294,7 @@ export default function MatrixRainDynamic() {
       // Atualizar e desenhar drops
       dropsRef.current.forEach((drop, index) => {
         // Movimento sutil para todos os dispositivos
-        const swayMultiplier = isMobile ? 0.2 : isTablet ? 0.25 : 0.3
+        const swayMultiplier = currentIsMobile ? 0.2 : currentIsTablet ? 0.25 : 0.3
         const swayX = Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * swayMultiplier)
         const swayY = Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
@@ -273,26 +308,54 @@ export default function MatrixRainDynamic() {
           drop.brightness = Math.random() * 0.3 + 0.7
         }
 
-        // Definir cor baseada no tipo de palavra
+        // Definir cor e brilho baseado no tipo de palavra e configurações avançadas
         let baseColor = "0, 255, 153" // Verde padrão
+        let brightnessMultiplier = brightnessConfig.baseBrightness
+        
         if (drop.wordType === 'tech') {
           baseColor = techColor
+          brightnessMultiplier *= brightnessConfig.wordBrightness.techWords
         } else if (drop.wordType === 'personal') {
           baseColor = personalColor
+          brightnessMultiplier *= brightnessConfig.wordBrightness.personalWords
         }
         
-        const dropColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
+        // Aplicar brilho avançado
+        const finalBrightness = drop.brightness * brightnessMultiplier
+        const dropColor = `rgba(${baseColor}, ${drop.opacity * finalBrightness})`
         
-        // Configurar sombra/glow baseado nas configurações do CMS
-        if (glow) {
+        // Configurar glow avançado baseado nas configurações do CMS
+        const useAdvancedGlow = brightnessConfig.glowEffect.enabled && 
+                               (currentDeviceConfig.enableAdvancedEffects || !currentIsMobile)
+        
+        if (useAdvancedGlow) {
+          ctx.shadowColor = dropColor
+          
+          // Calcular intensidade do glow com pulsação
+          let glowRadius = brightnessConfig.glowEffect.radius
+          let glowIntensityValue = brightnessConfig.glowEffect.intensity
+          
+          // Aplicar pulsação se habilitada
+          if (brightnessConfig.glowEffect.pulsing.enabled) {
+            const pulseSpeed = brightnessConfig.glowEffect.pulsing.speed
+            const pulseValue = Math.sin(time * pulseSpeed) * 0.3 + 0.7 // 0.4 a 1.0
+            glowRadius *= pulseValue
+            glowIntensityValue *= pulseValue
+          }
+          
+          // Aplicar multiplicadores por dispositivo
+          const deviceMultiplier = currentIsMobile ? 0.6 : currentIsTablet ? 0.8 : 1.0
+          ctx.shadowBlur = glowRadius * glowIntensityValue * deviceMultiplier
+        } else if (glow) {
+          // Fallback para glow básico
           ctx.shadowColor = dropColor
           const baseGlowIntensity = drop.isWord ? glowIntensity.words : glowIntensity.characters
-          const deviceMultiplier = isMobile ? 0.6 : isTablet ? 0.8 : 1.0
+          const deviceMultiplier = currentIsMobile ? 0.6 : currentIsTablet ? 0.8 : 1.0
           ctx.shadowBlur = baseGlowIntensity * deviceMultiplier
         }
         
         ctx.fillStyle = dropColor
-        const finalFontFamily = isMobile ? 'monospace' : fontFamily
+        const finalFontFamily = currentIsMobile ? 'monospace' : fontFamily
         ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px ${finalFontFamily}`
         ctx.textAlign = "center"
         
@@ -336,7 +399,7 @@ export default function MatrixRainDynamic() {
             drop.y < -margin || drop.y > height + margin) {
           
           // Reposicionar baseado na direção vertical - concentrado no mobile
-          if (isMobile) {
+          if (currentIsMobile) {
             const centerX = width / 2
             const spreadRange = width * 0.8
             drop.x = centerX + (Math.random() - 0.5) * spreadRange
@@ -355,10 +418,10 @@ export default function MatrixRainDynamic() {
           
           // Resetar propriedades mantendo visibilidade
           const newBaseSpeed = (Math.random() * 0.8 + 0.4) * speed * (matrixIntensity * 0.15)
-          drop.speed = isMobile ? Math.max(newBaseSpeed, 0.3) : newBaseSpeed
+          drop.speed = currentIsMobile ? Math.max(newBaseSpeed, 0.3) : newBaseSpeed
           
           const newBaseOpacity = Math.random() * 0.5 + 0.5
-          drop.opacity = isMobile ? Math.max(newBaseOpacity, 0.6) : newBaseOpacity
+          drop.opacity = currentIsMobile ? Math.max(newBaseOpacity, 0.6) : newBaseOpacity
           
           drop.brightness = Math.random() * 0.3 + 0.7
         }

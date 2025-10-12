@@ -75,6 +75,50 @@ export const visualEffectsQuery = `*[_type == "visualEffects" && isActive == tru
     wordDistribution {
       techWordPercentage,
       personalWordPercentage
+    },
+    // Novas propriedades avançadas
+    wordFrequency {
+      wordsPerWave,
+      spawnInterval,
+      burstMode {
+        enabled,
+        burstSize,
+        burstInterval
+      }
+    },
+    brightness {
+      baseBrightness,
+      wordBrightness {
+        techWords,
+        personalWords
+      },
+      glowEffect {
+        enabled,
+        radius,
+        intensity,
+        pulsing {
+          enabled,
+          speed
+        }
+      }
+    },
+    responsiveSettings {
+      desktop {
+        maxWords,
+        frameRate,
+        enableAdvancedEffects
+      },
+      tablet {
+        maxWords,
+        frameRate,
+        enableAdvancedEffects
+      },
+      mobile {
+        maxWords,
+        frameRate,
+        enableAdvancedEffects,
+        simplifiedMode
+      }
     }
   },
   particles {

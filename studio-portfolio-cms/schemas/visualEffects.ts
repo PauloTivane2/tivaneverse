@@ -375,6 +375,266 @@ export const visualEffects = defineType({
               initialValue: 25
             })
           ]
+        }),
+        
+        defineField({
+          name: 'wordFrequency',
+          title: 'Frequência de Palavras',
+          type: 'object',
+          description: 'Controla quantas palavras aparecem por vez e com que frequência novas palavras são geradas',
+          fields: [
+            defineField({
+              name: 'wordsPerWave',
+              title: 'Palavras por Onda',
+              type: 'number',
+              description: 'Número de palavras que aparecem simultaneamente em cada onda (1-20). Mais palavras = efeito mais denso.',
+              validation: (Rule) => Rule.min(1).max(20),
+              initialValue: 5
+            }),
+            defineField({
+              name: 'spawnInterval',
+              title: 'Intervalo de Geração',
+              type: 'number',
+              description: 'Tempo em milissegundos entre geração de novas palavras (100-5000ms). Menor valor = mais palavras aparecem.',
+              validation: (Rule) => Rule.min(100).max(5000),
+              initialValue: 800
+            }),
+            defineField({
+              name: 'burstMode',
+              title: 'Modo Rajada',
+              type: 'object',
+              description: 'Gera rajadas periódicas de muitas palavras para efeito dramático',
+              fields: [
+                defineField({
+                  name: 'enabled',
+                  title: 'Ativar Rajadas',
+                  type: 'boolean',
+                  description: 'Ativa rajadas periódicas de palavras',
+                  initialValue: false
+                }),
+                defineField({
+                  name: 'burstSize',
+                  title: 'Tamanho da Rajada',
+                  type: 'number',
+                  description: 'Número de palavras na rajada (5-50)',
+                  validation: (Rule) => Rule.min(5).max(50),
+                  initialValue: 15
+                }),
+                defineField({
+                  name: 'burstInterval',
+                  title: 'Intervalo entre Rajadas',
+                  type: 'number',
+                  description: 'Tempo entre rajadas em segundos (5-60s)',
+                  validation: (Rule) => Rule.min(5).max(60),
+                  initialValue: 20
+                })
+              ]
+            })
+          ]
+        }),
+        
+        defineField({
+          name: 'brightness',
+          title: 'Configurações de Brilho',
+          type: 'object',
+          description: 'Controles avançados de brilho, glow e efeitos luminosos das palavras e caracteres',
+          fields: [
+            defineField({
+              name: 'baseBrightness',
+              title: 'Brilho Base',
+              type: 'number',
+              description: 'Brilho base de todas as palavras e caracteres (0.1-2.0). Valores acima de 1.0 criam efeito super-brilhante.',
+              validation: (Rule) => Rule.min(0.1).max(2.0),
+              initialValue: 1.0
+            }),
+            defineField({
+              name: 'wordBrightness',
+              title: 'Brilho das Palavras',
+              type: 'object',
+              description: 'Brilho específico para palavras técnicas e pessoais',
+              fields: [
+                defineField({
+                  name: 'techWords',
+                  title: 'Brilho Palavras Técnicas',
+                  type: 'number',
+                  description: 'Multiplicador de brilho para palavras técnicas (0.5-3.0)',
+                  validation: (Rule) => Rule.min(0.5).max(3.0),
+                  initialValue: 1.2
+                }),
+                defineField({
+                  name: 'personalWords',
+                  title: 'Brilho Palavras Pessoais',
+                  type: 'number',
+                  description: 'Multiplicador de brilho para palavras pessoais (0.5-3.0)',
+                  validation: (Rule) => Rule.min(0.5).max(3.0),
+                  initialValue: 1.5
+                })
+              ]
+            }),
+            defineField({
+              name: 'glowEffect',
+              title: 'Efeito Glow Avançado',
+              type: 'object',
+              description: 'Configurações detalhadas do efeito de brilho/glow',
+              fields: [
+                defineField({
+                  name: 'enabled',
+                  title: 'Ativar Glow',
+                  type: 'boolean',
+                  description: 'Ativa efeito de brilho ao redor das palavras',
+                  initialValue: true
+                }),
+                defineField({
+                  name: 'radius',
+                  title: 'Raio do Glow',
+                  type: 'number',
+                  description: 'Tamanho do halo de luz ao redor das palavras (1-50px)',
+                  validation: (Rule) => Rule.min(1).max(50),
+                  initialValue: 10
+                }),
+                defineField({
+                  name: 'intensity',
+                  title: 'Intensidade do Glow',
+                  type: 'number',
+                  description: 'Força do efeito glow (0.1-2.0)',
+                  validation: (Rule) => Rule.min(0.1).max(2.0),
+                  initialValue: 0.8
+                }),
+                defineField({
+                  name: 'pulsing',
+                  title: 'Pulsação do Glow',
+                  type: 'object',
+                  description: 'Efeito de pulsação do brilho',
+                  fields: [
+                    defineField({
+                      name: 'enabled',
+                      title: 'Ativar Pulsação',
+                      type: 'boolean',
+                      description: 'Glow pulsa suavemente',
+                      initialValue: false
+                    }),
+                    defineField({
+                      name: 'speed',
+                      title: 'Velocidade da Pulsação',
+                      type: 'number',
+                      description: 'Velocidade da pulsação (0.1-5.0)',
+                      validation: (Rule) => Rule.min(0.1).max(5.0),
+                      initialValue: 1.0
+                    })
+                  ]
+                })
+              ]
+            })
+          ]
+        }),
+        
+        defineField({
+          name: 'responsiveSettings',
+          title: 'Configurações Responsivas',
+          type: 'object',
+          description: 'Configurações específicas para diferentes dispositivos (PC, Tablet, Mobile) para otimizar performance e experiência',
+          fields: [
+            defineField({
+              name: 'desktop',
+              title: 'Configurações Desktop/PC',
+              type: 'object',
+              description: 'Configurações otimizadas para computadores com boa performance',
+              fields: [
+                defineField({
+                  name: 'maxWords',
+                  title: 'Máximo de Palavras Simultâneas',
+                  type: 'number',
+                  description: 'Número máximo de palavras na tela ao mesmo tempo (10-100)',
+                  validation: (Rule) => Rule.min(10).max(100),
+                  initialValue: 50
+                }),
+                defineField({
+                  name: 'frameRate',
+                  title: 'Taxa de Quadros (FPS)',
+                  type: 'number',
+                  description: 'FPS alvo para animações (30-120fps)',
+                  validation: (Rule) => Rule.min(30).max(120),
+                  initialValue: 60
+                }),
+                defineField({
+                  name: 'enableAdvancedEffects',
+                  title: 'Efeitos Avançados',
+                  type: 'boolean',
+                  description: 'Ativa efeitos avançados como glow, sombras e blur',
+                  initialValue: true
+                })
+              ]
+            }),
+            defineField({
+              name: 'tablet',
+              title: 'Configurações Tablet',
+              type: 'object',
+              description: 'Configurações balanceadas para tablets',
+              fields: [
+                defineField({
+                  name: 'maxWords',
+                  title: 'Máximo de Palavras Simultâneas',
+                  type: 'number',
+                  description: 'Número máximo de palavras na tela (5-50)',
+                  validation: (Rule) => Rule.min(5).max(50),
+                  initialValue: 25
+                }),
+                defineField({
+                  name: 'frameRate',
+                  title: 'Taxa de Quadros (FPS)',
+                  type: 'number',
+                  description: 'FPS alvo para animações (20-60fps)',
+                  validation: (Rule) => Rule.min(20).max(60),
+                  initialValue: 45
+                }),
+                defineField({
+                  name: 'enableAdvancedEffects',
+                  title: 'Efeitos Avançados',
+                  type: 'boolean',
+                  description: 'Ativa efeitos avançados (pode afetar performance)',
+                  initialValue: true
+                })
+              ]
+            }),
+            defineField({
+              name: 'mobile',
+              title: 'Configurações Mobile',
+              type: 'object',
+              description: 'Configurações otimizadas para smartphones com foco na performance',
+              fields: [
+                defineField({
+                  name: 'maxWords',
+                  title: 'Máximo de Palavras Simultâneas',
+                  type: 'number',
+                  description: 'Número máximo de palavras na tela (3-30)',
+                  validation: (Rule) => Rule.min(3).max(30),
+                  initialValue: 15
+                }),
+                defineField({
+                  name: 'frameRate',
+                  title: 'Taxa de Quadros (FPS)',
+                  type: 'number',
+                  description: 'FPS alvo para animações (15-45fps)',
+                  validation: (Rule) => Rule.min(15).max(45),
+                  initialValue: 30
+                }),
+                defineField({
+                  name: 'enableAdvancedEffects',
+                  title: 'Efeitos Avançados',
+                  type: 'boolean',
+                  description: 'Desative para melhor performance em dispositivos mais fracos',
+                  initialValue: false
+                }),
+                defineField({
+                  name: 'simplifiedMode',
+                  title: 'Modo Simplificado',
+                  type: 'boolean',
+                  description: 'Ativa modo ultra-otimizado para dispositivos com pouca memória',
+                  initialValue: false
+                })
+              ]
+            })
+          ]
         })
       ]
     }),
