@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useTheme } from "next-themes"
-import { useSiteSettings } from "@/src/hooks/useSiteSettings"
+import { useVisualEffects } from "@/src/hooks/useVisualEffects"
 
 interface Drop {
   x: number
@@ -25,7 +25,7 @@ interface Drop {
 export default function MatrixRainDynamic() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const { theme } = useTheme()
-  const { siteSettings } = useSiteSettings()
+  const { visualEffects, loading } = useVisualEffects()
   const [mounted, setMounted] = useState(false)
   const dropsRef = useRef<Drop[]>([])
   const animationFrameRef = useRef<number | undefined>(undefined)
@@ -35,38 +35,56 @@ export default function MatrixRainDynamic() {
   }, [])
 
   useEffect(() => {
-    if (!mounted || !siteSettings.theme?.showMatrixRain) {
-      console.log('MatrixRain: Not rendering', { mounted, showMatrixRain: siteSettings.theme?.showMatrixRain })
+    if (!mounted || loading || !visualEffects.matrixRain.enabled) {
+      if (visualEffects.advanced.debugMode) {
+        console.log('MatrixRain: Not rendering', { 
+          mounted, 
+          loading, 
+          enabled: visualEffects.matrixRain.enabled 
+        })
+      }
       return
     }
     
-    console.log('MatrixRain: Starting animation', { 
-      width: window.innerWidth, 
-      height: window.innerHeight,
-      intensity: siteSettings.theme?.matrixIntensity 
-    })
+    if (visualEffects.advanced.debugMode) {
+      console.log('MatrixRain: Starting animation', { 
+        width: window.innerWidth, 
+        height: window.innerHeight,
+        intensity: visualEffects.matrixRain.intensity,
+        config: visualEffects.matrixRain
+      })
+    }
 
     const canvas = canvasRef.current
     const ctx = canvas?.getContext("2d")
     if (!canvas || !ctx) return
 
-    // Usar palavras do Sanity CMS ou fallback
-    const safeTechWords = siteSettings.matrixRain?.techWords && siteSettings.matrixRain.techWords.length > 0 
-      ? siteSettings.matrixRain.techWords 
+    // Usar palavras do CMS de efeitos visuais
+    const safeTechWords = visualEffects.matrixRain.techWords.length > 0 
+      ? visualEffects.matrixRain.techWords 
       : ["CODE", "HTML", "CSS", "JS", "REACT", "NEXT", "NODE", "API", "SQL", "GIT", "WEB", "APP", "UI", "UX", "JSON"]
     
-    const safePersonalWords = siteSettings.matrixRain?.personalWords && siteSettings.matrixRain.personalWords.length > 0 
-      ? siteSettings.matrixRain.personalWords 
+    const safePersonalWords = visualEffects.matrixRain.personalWords.length > 0 
+      ? visualEffects.matrixRain.personalWords 
       : ["TIVANE", "FOCUS", "GROWTH", "VISION", "PASSION", "RESILIENCE", "LOGIC", "CREATOR", "INNOVATE", "MINDSET"]
 
-    // Configurações dinâmicas do Sanity
-    const techColor = siteSettings.matrixRain?.techColor || "0, 191, 166"
-    const personalColor = siteSettings.matrixRain?.personalColor || "124, 58, 237"
-    const speed = (siteSettings.matrixRain?.fallSpeed || 3) * 0.3
-    const density = siteSettings.matrixRain?.density || 5
-    const matrixIntensity = siteSettings.theme?.matrixIntensity || 5
-    const characters = "01"
-    const glow = true
+    // Configurações dinâmicas do CMS de efeitos visuais
+    const techColor = visualEffects.matrixRain.techColor || "0, 191, 166"
+    const personalColor = visualEffects.matrixRain.personalColor || "124, 58, 237"
+    const speed = (visualEffects.matrixRain.fallSpeed || 3) * 0.3
+    const density = visualEffects.matrixRain.density || 5
+    const matrixIntensity = visualEffects.matrixRain.intensity || 5
+    const characters = visualEffects.matrixRain.characters || "01"
+    const glow = visualEffects.matrixRain.glowEffect?.enabled ?? true
+    const glowIntensity = visualEffects.matrixRain.glowEffect?.intensity || { words: 25, characters: 15 }
+    const fontFamily = visualEffects.matrixRain.fontFamily || 'monospace'
+    const fontSize = visualEffects.matrixRain.fontSize || { words: { min: 16, max: 26 }, characters: { min: 12, max: 20 } }
+    const opacitySettings = visualEffects.matrixRain.opacity || { min: 0.5, max: 1.0, fadeEffect: 0.08 }
+    const movementSettings = visualEffects.matrixRain.movement || { 
+      sway: { enabled: true, intensity: 0.3 }, 
+      randomness: { characterChange: 0.01, brightnessFlicker: 0.02 } 
+    }
+    const wordDistribution = visualEffects.matrixRain.wordDistribution || { techWordPercentage: 70, personalWordPercentage: 25 }
 
     let width = window.innerWidth
     let height = window.innerHeight
@@ -122,17 +140,26 @@ export default function MatrixRainDynamic() {
       totalDrops = Math.max(minDrops, Math.min(maxDrops, totalDrops))
 
       for (let i = 0; i < totalDrops; i++) {
-        // Apenas movimento vertical (cima para baixo ou baixo para cima)
-        const directions = ['vertical-down', 'vertical-up'] as const
-        const direction = directions[Math.floor(Math.random() * directions.length)]
+        // Direção baseada na configuração do CMS
+        let direction: 'vertical-down' | 'vertical-up'
+        if (visualEffects.matrixRain.direction === 'mixed') {
+          const directions = ['vertical-down', 'vertical-up'] as const
+          direction = directions[Math.floor(Math.random() * directions.length)]
+        } else {
+          direction = visualEffects.matrixRain.direction
+        }
         
-        // Determinar tipo de conteúdo - mais palavras no mobile para maior visibilidade
-        const rand = Math.random()
+        // Determinar tipo de conteúdo usando configurações do CMS
+        const rand = Math.random() * 100
         let dropContent: any = {}
 
-        // Ajustar proporções baseado no dispositivo
-        const techWordChance = isMobile ? 0.8 : 0.7 // 80% no mobile vs 70% desktop
-        const personalWordChance = isMobile ? 0.98 : 0.95 // 18% no mobile vs 25% desktop
+        // Usar porcentagens do CMS com ajuste para mobile
+        const techWordChance = isMobile ? 
+          Math.min(wordDistribution.techWordPercentage + 10, 90) : 
+          wordDistribution.techWordPercentage
+        const personalWordChance = techWordChance + (isMobile ? 
+          Math.min(wordDistribution.personalWordPercentage + 5, 95 - techWordChance) : 
+          wordDistribution.personalWordPercentage)
         
         if (rand < techWordChance) {
           const word = safeTechWords[Math.floor(Math.random() * safeTechWords.length)]
@@ -184,16 +211,19 @@ export default function MatrixRainDynamic() {
             break
         }
 
-        // Tamanhos legíveis para todas as telas
-        const wordSize = isMobile ? Math.random() * 3 + 16 : isTablet ? Math.random() * 4 + 18 : Math.random() * 6 + 20
-        const charSize = isMobile ? Math.random() * 2 + 12 : isTablet ? Math.random() * 3 + 14 : Math.random() * 4 + 16
+        // Tamanhos baseados nas configurações do CMS
+        const wordSizeRange = fontSize.words.max - fontSize.words.min
+        const charSizeRange = fontSize.characters.max - fontSize.characters.min
+        const wordSize = Math.random() * wordSizeRange + fontSize.words.min
+        const charSize = Math.random() * charSizeRange + fontSize.characters.min
 
-        // Velocidade e opacidade visíveis em todas as telas
+        // Velocidade e opacidade baseadas nas configurações do CMS
         const baseSpeed = (Math.random() * 0.8 + 0.4) * speed * (matrixIntensity * 0.15)
         const finalSpeed = isMobile ? Math.max(baseSpeed, 0.3) : baseSpeed
         
-        const baseOpacity = Math.random() * 0.5 + 0.5
-        const finalOpacity = isMobile ? Math.max(baseOpacity, 0.6) : baseOpacity
+        const opacityRange = opacitySettings.max - opacitySettings.min
+        const baseOpacity = Math.random() * opacityRange + opacitySettings.min
+        const finalOpacity = isMobile ? Math.max(baseOpacity, opacitySettings.min + 0.1) : baseOpacity
 
         dropsRef.current.push({
           x: startX,
@@ -201,8 +231,9 @@ export default function MatrixRainDynamic() {
           speed: finalSpeed,
           opacity: finalOpacity,
           size: dropContent.isWord ? wordSize : charSize,
-          brightness: Math.random() * 0.3 + 0.7, // Mais brilhante
-          sway: isMobile ? Math.random() * 0.05 + 0.02 : Math.random() * 0.1 + 0.05, // Sway sutil mesmo no mobile
+          brightness: Math.random() * 0.3 + 0.7,
+          sway: movementSettings.sway.enabled ? 
+            (isMobile ? Math.random() * 0.05 + 0.02 : Math.random() * movementSettings.sway.intensity) : 0,
           swayOffset: Math.random() * Math.PI * 2,
           direction,
           angle,
@@ -216,10 +247,11 @@ export default function MatrixRainDynamic() {
     const animate = () => {
       time += 0.016
 
-      // Fade mais suave para manter visibilidade em telas pequenas
+      // Fade baseado nas configurações do CMS
       const isMobile = width < 768
       const isTablet = width >= 768 && width < 1024
-      const fadeAlpha = isMobile ? 0.05 : isTablet ? 0.06 : 0.08
+      const fadeAlpha = isMobile ? opacitySettings.fadeEffect * 0.6 : 
+                       isTablet ? opacitySettings.fadeEffect * 0.75 : opacitySettings.fadeEffect
       
       ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`
       ctx.fillRect(0, 0, width, height)
@@ -231,13 +263,13 @@ export default function MatrixRainDynamic() {
         const swayX = Math.sin(time * 0.5 + drop.swayOffset) * (drop.sway * swayMultiplier)
         const swayY = Math.cos(time * 0.5 + drop.swayOffset) * (drop.sway * 0.1)
 
-        // Mudança aleatória de caracteres apenas para não-palavras
-        if (!drop.isWord && Math.random() < 0.01) {
+        // Mudança aleatória de caracteres baseada nas configurações
+        if (!drop.isWord && Math.random() < movementSettings.randomness.characterChange) {
           drop.char = characters[Math.floor(Math.random() * characters.length)]
         }
 
-        // Flicker de brilho mais sutil
-        if (Math.random() < 0.02) {
+        // Flicker de brilho baseado nas configurações
+        if (Math.random() < movementSettings.randomness.brightnessFlicker) {
           drop.brightness = Math.random() * 0.3 + 0.7
         }
 
@@ -251,16 +283,17 @@ export default function MatrixRainDynamic() {
         
         const dropColor = `rgba(${baseColor}, ${drop.opacity * drop.brightness})`
         
-        // Configurar sombra/glow adaptativo para cada dispositivo
+        // Configurar sombra/glow baseado nas configurações do CMS
         if (glow) {
           ctx.shadowColor = dropColor
-          const glowIntensity = isMobile ? (drop.isWord ? 20 : 12) : isTablet ? (drop.isWord ? 22 : 14) : (drop.isWord ? 25 : 15)
-          ctx.shadowBlur = glowIntensity
+          const baseGlowIntensity = drop.isWord ? glowIntensity.words : glowIntensity.characters
+          const deviceMultiplier = isMobile ? 0.6 : isTablet ? 0.8 : 1.0
+          ctx.shadowBlur = baseGlowIntensity * deviceMultiplier
         }
         
         ctx.fillStyle = dropColor
-        const fontFamily = isMobile ? 'monospace' : "var(--font-space-mono), 'Space Mono', monospace"
-        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px ${fontFamily}`
+        const finalFontFamily = isMobile ? 'monospace' : fontFamily
+        ctx.font = `${drop.isWord ? 'bold' : 'normal'} ${drop.size}px ${finalFontFamily}`
         ctx.textAlign = "center"
         
         // Melhorar nitidez da fonte
@@ -274,9 +307,10 @@ export default function MatrixRainDynamic() {
         // Desenhar o caractere/palavra com posição arredondada para nitidez
         ctx.fillText(drop.char, 0, 0)
 
-        // Glow extra forte para palavras importantes
+        // Glow extra forte para palavras importantes baseado nas configurações
         if (glow && drop.isWord) {
-          ctx.shadowBlur = 35
+          const extraGlowIntensity = glowIntensity.words * 1.4
+          ctx.shadowBlur = extraGlowIntensity
           ctx.fillStyle = `rgba(${baseColor}, ${drop.opacity * 0.4})`
           ctx.fillText(drop.char, 0, 0)
         }
@@ -351,10 +385,10 @@ export default function MatrixRainDynamic() {
       }
       window.removeEventListener("resize", resizeCanvas)
     }
-  }, [mounted, theme, siteSettings])
+  }, [mounted, theme, visualEffects, loading])
 
-  // Não renderizar se não estiver montado ou se Matrix estiver desabilitado
-  if (!mounted || !siteSettings.theme?.showMatrixRain) {
+  // Não renderizar se não estiver montado, carregando, ou se Matrix estiver desabilitado
+  if (!mounted || loading || !visualEffects.matrixRain.enabled) {
     return null
   }
 
@@ -363,7 +397,7 @@ export default function MatrixRainDynamic() {
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none"
       style={{ 
-        opacity: Math.max(0.6, (siteSettings.theme?.matrixIntensity || 5) * 0.12),
+        opacity: Math.max(0.6, (visualEffects.matrixRain.intensity || 5) * 0.12),
         background: "transparent",
         zIndex: -1 // Garantir que está atrás do conteúdo mas visível
       }}

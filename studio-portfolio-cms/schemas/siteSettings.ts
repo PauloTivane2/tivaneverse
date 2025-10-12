@@ -11,7 +11,7 @@ export const siteSettings = defineType({
       name: 'title',
       title: 'Título do Site',
       type: 'string',
-      description: '📋 Nome do seu portfólio que aparece na aba do navegador e nos resultados do Google. Este é o título principal do seu site e impacta diretamente no SEO.',
+      description: 'Nome do seu portfólio que aparece na aba do navegador e nos resultados do Google. Este é o título principal do seu site e impacta diretamente no SEO.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -19,7 +19,7 @@ export const siteSettings = defineType({
       title: 'Descrição do Site',
       type: 'text',
       rows: 3,
-      description: '📝 Descrição que aparece nos resultados do Google (snippet). Máximo 160 caracteres. Deve ser atrativa para aumentar cliques. Exemplo: "Desenvolvedor Full-Stack especializado em React e Node.js"',
+      description: 'Descrição que aparece nos resultados do Google (snippet). Máximo 160 caracteres. Deve ser atrativa para aumentar cliques. Exemplo: "Desenvolvedor Full-Stack especializado em React e Node.js"',
       validation: (Rule) => Rule.required().max(160),
     }),
     defineField({
@@ -30,13 +30,13 @@ export const siteSettings = defineType({
       options: {
         layout: 'tags',
       },
-      description: '🔍 Palavras-chave que ajudam o Google a entender seu site. Use termos que seus clientes procurariam. Exemplos: desenvolvedor, react, typescript, frontend, backend, moçambique, maputo',
+      description: 'Palavras-chave que ajudam o Google a entender seu site. Use termos que seus clientes procurariam. Exemplos: desenvolvedor, react, typescript, frontend, backend, moçambique, maputo',
     }),
     defineField({
       name: 'logo',
       title: 'Logo do Site',
       type: 'image',
-      description: '🎨 Logo ou marca pessoal que aparece no cabeçalho do site. Recomendado: PNG transparente, tamanho máximo 200x60px para melhor visualização.',
+      description: 'Logo ou marca pessoal que aparece no cabeçalho do site. Recomendado: PNG transparente, tamanho máximo 200x60px para melhor visualização.',
       options: {
         hotspot: true,
       },
@@ -45,13 +45,13 @@ export const siteSettings = defineType({
       name: 'favicon',
       title: 'Favicon',
       type: 'image',
-      description: '🔖 Ícone pequeno que aparece na aba do navegador ao lado do título. Recomendado: 32x32px ou 16x16px, formato ICO ou PNG. Representa sua marca.',
+      description: ' Ícone pequeno que aparece na aba do navegador ao lado do título. Recomendado: 32x32px ou 16x16px, formato ICO ou PNG. Representa sua marca.',
     }),
     defineField({
       name: 'ogImage',
       title: 'Imagem de Compartilhamento',
       type: 'image',
-      description: '📱 Imagem de preview que aparece quando alguém compartilha seu site no WhatsApp, Facebook, LinkedIn, etc. Recomendado: 1200x630px, com texto legível e sua foto/logo.',
+      description: 'Imagem de preview que aparece quando alguém compartilha seu site no WhatsApp, Facebook, LinkedIn, etc. Recomendado: 1200x630px, com texto legível e sua foto/logo.',
       options: {
         hotspot: true,
       },
@@ -60,47 +60,88 @@ export const siteSettings = defineType({
       name: 'theme',
       title: 'Configurações de Tema',
       type: 'object',
-      description: '🎨 Configurações visuais que definem a aparência do seu portfólio. Cores, modo escuro e efeitos especiais.',
+      description: 'Configurações visuais que definem a aparência do seu portfólio. Cores, modo escuro e efeitos especiais.',
       fields: [
         defineField({
           name: 'primaryColor',
           title: 'Cor Primária',
           type: 'string',
-          description: '🟢 Cor principal do seu portfólio em hexadecimal (ex: #00BFA6). Aparece em botões, links, destaques e elementos interativos. Escolha uma cor que represente sua marca.',
+          description: 'Cor principal do seu portfólio em hexadecimal (ex: #00BFA6). Aparece em botões, links, destaques e elementos interativos. Escolha uma cor que represente sua marca.',
         }),
         defineField({
           name: 'secondaryColor',
           title: 'Cor Secundária',
           type: 'string',
-          description: '🟣 Cor secundária em hexadecimal (ex: #7C3AED). Usada em badges, tags de habilidades e elementos de apoio. Deve complementar a cor primária.',
+          description: ' Cor secundária em hexadecimal (ex: #7C3AED). Usada em badges, tags de habilidades e elementos de apoio. Deve complementar a cor primária.',
         }),
         defineField({
           name: 'darkMode',
           title: 'Modo Escuro por Padrão',
           type: 'boolean',
-          description: '🌙 Define se o site deve carregar em modo escuro por padrão. Modo escuro é mais moderno e confortável para os olhos, especialmente para desenvolvedores.',
+          description: 'Define se o site deve carregar em modo escuro por padrão. Modo escuro é mais moderno e confortável para os olhos, especialmente para desenvolvedores.',
           initialValue: true,
         }),
         defineField({
-          name: 'showMatrixRain',
-          title: 'Mostrar Efeito Matrix',
-          type: 'boolean',
-          description: '💻 Ativa/desativa o efeito de chuva de código Matrix no fundo. Cria uma atmosfera tech e futurista. Pode ser desativado para melhor performance em dispositivos lentos.',
-          initialValue: true,
-        }),
-        defineField({
-          name: 'matrixIntensity',
-          title: 'Intensidade do Matrix',
-          type: 'number',
-          description: '⚡ Intensidade do efeito Matrix de 1 (quase invisível) a 10 (muito intenso). Valores baixos (1-3) são sutis, valores altos (7-10) são mais dramáticos mas podem distrair.',
-          validation: (Rule) => Rule.min(1).max(10),
-          initialValue: 5,
+          name: 'customFonts',
+          title: 'Fontes Personalizadas',
+          type: 'object',
+          description: 'Configure as fontes tipográficas do seu portfólio para criar uma identidade visual única e profissional.',
+          fields: [
+            defineField({
+              name: 'headingFont',
+              title: 'Fonte dos Títulos',
+              type: 'string',
+              description: 'Fonte para títulos e cabeçalhos. Escolha uma fonte que transmita sua personalidade profissional.',
+              options: {
+                list: [
+                  { title: 'Inter (Moderna e Limpa)', value: 'Inter' },
+                  { title: 'Poppins (Amigável e Profissional)', value: 'Poppins' },
+                  { title: 'Montserrat (Elegante e Versátil)', value: 'Montserrat' },
+                  { title: 'Roboto (Clássica e Legível)', value: 'Roboto' },
+                  { title: 'Open Sans (Universal e Confiável)', value: 'Open Sans' }
+                ]
+              },
+              initialValue: 'Inter'
+            }),
+            defineField({
+              name: 'bodyFont',
+              title: 'Fonte do Texto',
+              type: 'string',
+              description: 'Fonte para textos e parágrafos. Priorize legibilidade para uma boa experiência de leitura.',
+              options: {
+                list: [
+                  { title: 'Inter (Moderna e Limpa)', value: 'Inter' },
+                  { title: 'Source Sans Pro (Otimizada para Tela)', value: 'Source Sans Pro' },
+                  { title: 'Lato (Humanista e Amigável)', value: 'Lato' },
+                  { title: 'Nunito Sans (Suave e Legível)', value: 'Nunito Sans' },
+                  { title: 'System UI (Nativa do Sistema)', value: 'system-ui' }
+                ]
+              },
+              initialValue: 'Inter'
+            }),
+            defineField({
+              name: 'codeFont',
+              title: 'Fonte do Código',
+              type: 'string',
+              description: 'Fonte monoespaçada para trechos de código e elementos técnicos.',
+              options: {
+                list: [
+                  { title: 'Fira Code (Com Ligaduras)', value: 'Fira Code' },
+                  { title: 'JetBrains Mono (Desenvolvida para Código)', value: 'JetBrains Mono' },
+                  { title: 'Source Code Pro (Adobe)', value: 'Source Code Pro' },
+                  { title: 'Cascadia Code (Microsoft)', value: 'Cascadia Code' },
+                  { title: 'Consolas (Clássica)', value: 'Consolas' }
+                ]
+              },
+              initialValue: 'Fira Code'
+            })
+          ]
         }),
         defineField({
           name: 'animationSpeed',
           title: 'Velocidade das Animações',
           type: 'string',
-          description: '🏃 Velocidade global de todas as animações do site. Lenta = mais elegante, Rápida = mais dinâmica. Normal é recomendado para a maioria dos casos.',
+          description: 'Velocidade global de todas as animações do site. Lenta = mais elegante, Rápida = mais dinâmica. Normal é recomendado para a maioria dos casos.',
           options: {
             list: [
               { title: 'Lenta', value: 'slow' },
@@ -113,83 +154,45 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
-      name: 'matrixRain',
-      title: 'Configurações do Matrix Rain',
-      type: 'object',
-      description: '🌌 Personalize completamente o efeito Matrix: palavras que aparecem, cores e velocidade. Torne o efeito único com suas próprias palavras!',
-      fields: [
-        defineField({
-          name: 'techWords',
-          title: 'Palavras Técnicas',
-          type: 'text',
-          rows: 3,
-          description: '🛠️ Palavras técnicas que aparecem caindo no Matrix, separadas por vírgulas. Use suas tecnologias favoritas! Exemplo: REACT, NODE, API, HTML, CSS, JAVASCRIPT, TYPESCRIPT, PYTHON, AWS',
-        }),
-        defineField({
-          name: 'personalWords',
-          title: 'Palavras Pessoais',
-          type: 'text',
-          rows: 3,
-          description: '❤️ Palavras pessoais e motivacionais que aparecem no Matrix, separadas por vírgulas. Use seu nome, valores e motivações! Exemplo: TIVANE, PAULO, FAMÍLIA, FOCUS, VISION, PASSION, GROWTH, SONHOS, FUTURO',
-        }),
-        defineField({
-          name: 'techColor',
-          title: 'Cor das Palavras Técnicas',
-          type: 'string',
-          description: '🟢 Cor das palavras técnicas no Matrix em formato RGB (ex: 0, 191, 166 para verde tech). Use uma cor que combine com seu tema. Verde = clássico, Azul = moderno, Ciano = futurista.',
-          initialValue: '0, 191, 166',
-        }),
-        defineField({
-          name: 'personalColor',
-          title: 'Cor das Palavras Pessoais',
-          type: 'string',
-          description: '🟣 Cor das palavras pessoais no Matrix em formato RGB (ex: 124, 58, 237 para roxo). Deve contrastar com as palavras técnicas. Roxo = criativo, Rosa = pessoal, Dourado = aspiração.',
-          initialValue: '124, 58, 237',
-        }),
-        defineField({
-          name: 'fallSpeed',
-          title: 'Velocidade de Queda',
-          type: 'number',
-          description: '💨 Velocidade de queda das palavras de 1 (muito lento, zen) a 10 (muito rápido, intenso). Valores baixos (1-3) são relaxantes, valores altos (7-10) são energéticos.',
-          validation: (Rule) => Rule.min(1).max(10),
-          initialValue: 3,
-        }),
-        defineField({
-          name: 'density',
-          title: 'Densidade',
-          type: 'number',
-          description: '📊 Quantidade de palavras na tela de 1 (minimalista, poucas palavras) a 10 (intenso, muitas palavras). Mais densidade = mais impacto visual, mas pode afetar performance.',
-          validation: (Rule) => Rule.min(1).max(10),
-          initialValue: 5,
-        }),
-      ],
-    }),
-    defineField({
       name: 'performance',
       title: 'Configurações de Performance',
       type: 'object',
-      description: '⚡ Configurações para otimizar a velocidade e acessibilidade do seu site. Importante para SEO e experiência do usuário.',
+      description: 'Configurações para otimizar a velocidade e acessibilidade do seu site. Importante para SEO e experiência do usuário.',
       fields: [
         defineField({
           name: 'enableLazyLoading',
           title: 'Carregamento Preguiçoso',
           type: 'boolean',
-          description: '📷 Ativa carregamento preguiçoso de imagens (lazy loading). Imagens só carregam quando necessário, tornando o site mais rápido e economizando dados móveis.',
+          description: 'Ativa carregamento preguiçoso de imagens (lazy loading). Imagens só carregam quando necessário, tornando o site mais rápido e economizando dados móveis.',
           initialValue: true,
         }),
         defineField({
           name: 'enableImageOptimization',
           title: 'Otimização de Imagens',
           type: 'boolean',
-          description: '🖼️ Ativa otimização automática de imagens (compressão, redimensionamento). Reduz o tamanho dos arquivos sem perder qualidade visual.',
+          description: 'Ativa otimização automática de imagens (compressão, redimensionamento). Reduz o tamanho dos arquivos sem perder qualidade visual.',
           initialValue: true,
         }),
         defineField({
           name: 'enableAnimations',
           title: 'Animações Globais',
           type: 'boolean',
-          description: '🎨 Ativa/desativa todas as animações do site. Desative para melhor performance em dispositivos lentos ou para usuários que preferem menos movimento.',
+          description: 'Ativa/desativa todas as animações do site. Desative para melhor performance em dispositivos lentos ou para usuários que preferem menos movimento.',
           initialValue: true,
+        }),
+        defineField({
+          name: 'compressionLevel',
+          title: 'Nível de Compressão',
+          type: 'string',
+          description: 'Nível de compressão de imagens e assets para otimizar velocidade de carregamento.',
+          options: {
+            list: [
+              { title: 'Máxima Qualidade (Lento)', value: 'high' },
+              { title: 'Balanceado (Recomendado)', value: 'medium' },
+              { title: 'Máxima Velocidade (Rápido)', value: 'low' }
+            ]
+          },
+          initialValue: 'medium'
         }),
         defineField({
           name: 'reducedMotion',
@@ -201,22 +204,95 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: 'seo',
+      title: 'SEO Avançado',
+      type: 'object',
+      description: 'Configurações avançadas de SEO para melhorar o posicionamento do seu portfólio nos motores de busca.',
+      fields: [
+        defineField({
+          name: 'canonicalUrl',
+          title: 'URL Canônica',
+          type: 'url',
+          description: 'URL principal do seu site (ex: https://seudominio.com). Importante para evitar conteúdo duplicado no Google.',
+        }),
+        defineField({
+          name: 'robotsSettings',
+          title: 'Configurações de Indexação',
+          type: 'object',
+          description: 'Controla como os motores de busca devem indexar seu site.',
+          fields: [
+            defineField({
+              name: 'allowIndexing',
+              title: 'Permitir Indexação',
+              type: 'boolean',
+              description: 'Permite que o Google e outros motores de busca indexem seu site. Desative apenas durante desenvolvimento.',
+              initialValue: true
+            }),
+            defineField({
+              name: 'allowFollowLinks',
+              title: 'Seguir Links',
+              type: 'boolean',
+              description: 'Permite que motores de busca sigam links do seu site para outras páginas.',
+              initialValue: true
+            })
+          ]
+        }),
+        defineField({
+          name: 'structuredData',
+          title: 'Dados Estruturados',
+          type: 'object',
+          description: 'Informações estruturadas que ajudam o Google a entender melhor seu conteúdo.',
+          fields: [
+            defineField({
+              name: 'personType',
+              title: 'Tipo de Pessoa',
+              type: 'string',
+              description: 'Como você quer ser categorizado nos resultados de busca.',
+              options: {
+                list: [
+                  { title: 'Desenvolvedor de Software', value: 'SoftwareDeveloper' },
+                  { title: 'Designer', value: 'Designer' },
+                  { title: 'Engenheiro', value: 'Engineer' },
+                  { title: 'Consultor', value: 'Consultant' },
+                  { title: 'Freelancer', value: 'Freelancer' },
+                  { title: 'Empreendedor', value: 'Entrepreneur' }
+                ]
+              },
+              initialValue: 'SoftwareDeveloper'
+            }),
+            defineField({
+              name: 'jobTitle',
+              title: 'Cargo Atual',
+              type: 'string',
+              description: 'Seu cargo ou posição atual. Aparece nos resultados de busca do Google.',
+            }),
+            defineField({
+              name: 'organization',
+              title: 'Organização',
+              type: 'string',
+              description: 'Empresa ou organização onde trabalha atualmente.',
+            })
+          ]
+        })
+      ]
+    }),
+    defineField({
       name: 'analytics',
       title: 'Analytics e Rastreamento',
       type: 'object',
-      description: '📊 Configurações para rastreamento de visitantes e análise de tráfego. Essencial para entender seu público e melhorar o site.',
+      description: ' Configurações para rastreamento de visitantes e análise de tráfego. Essencial para entender seu público e melhorar o site.',
       fields: [
         defineField({
           name: 'googleAnalyticsId',
           title: 'ID do Google Analytics',
           type: 'string',
-          description: '📊 ID de medição do Google Analytics 4 (formato: G-XXXXXXXXXX). Rastreia visitantes, páginas mais vistas, origem do tráfego. Encontre em analytics.google.com → Admin → Propriedade → Fluxos de dados.',
+          description: ' ID de medição do Google Analytics 4 (formato: G-XXXXXXXXXX). Rastreia visitantes, páginas mais vistas, origem do tráfego. Encontre em analytics.google.com → Admin → Propriedade → Fluxos de dados.',
         }),
         defineField({
           name: 'googleTagManagerId',
           title: 'ID do Google Tag Manager',
           type: 'string',
-          description: '🏷️ ID do Google Tag Manager (formato: GTM-XXXXXXX). Permite gerenciar múltiplas ferramentas de rastreamento em um só lugar. Encontre em tagmanager.google.com → Workspace → ID do contêiner.',
+          description: 'ID do Google Tag Manager (formato: GTM-XXXXXXX). Permite gerenciar múltiplas ferramentas de rastreamento em um só lugar. Encontre em tagmanager.google.com → Workspace → ID do contêiner.',
         }),
       ],
     }),
@@ -230,7 +306,7 @@ export const siteSettings = defineType({
           name: 'enabled',
           title: 'Ativar Modo de Manutenção',
           type: 'boolean',
-          description: '⚠️ Ative para mostrar uma página de manutenção aos visitantes em vez do site normal. Use durante atualizações importantes. CUIDADO: Isso oculta todo o seu site!',
+          description: ' Ative para mostrar uma página de manutenção aos visitantes em vez do site normal. Use durante atualizações importantes. CUIDADO: Isso oculta todo o seu site!',
           initialValue: false,
         }),
         defineField({
@@ -238,7 +314,7 @@ export const siteSettings = defineType({
           title: 'Mensagem de Manutenção',
           type: 'text',
           rows: 2,
-          description: '💬 Mensagem personalizada que aparecerá na página de manutenção. Seja claro sobre quando o site voltará. Exemplo: "Site em atualização, volte em 2 horas!" ou "Adicionando novos projetos, volte amanhã!"',
+          description: ' Mensagem personalizada que aparecerá na página de manutenção. Seja claro sobre quando o site voltará. Exemplo: "Site em atualização, volte em 2 horas!" ou "Adicionando novos projetos, volte amanhã!"',
         }),
       ],
     }),

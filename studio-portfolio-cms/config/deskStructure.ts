@@ -6,6 +6,7 @@ import {
   HeartIcon,
   DocumentTextIcon,
   HomeIcon,
+  SparklesIcon,
 } from '@sanity/icons'
 
 export const deskStructure = (S: any) =>
@@ -32,6 +33,17 @@ export const deskStructure = (S: any) =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
             .title('Site Configuration')
+        ),
+
+      // Visual Effects
+      S.listItem()
+        .title('Visual Effects')
+        .icon(SparklesIcon)
+        .child(
+          S.document()
+            .schemaType('visualEffects')
+            .documentId('visualEffects')
+            .title('Visual Effects Configuration')
         ),
 
       S.divider(),

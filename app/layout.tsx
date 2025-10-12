@@ -4,7 +4,7 @@ import type React from "react"
 import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
-import { MatrixRain } from "@/src/components"
+import { EffectsManager } from "@/src/components/effects"
 import { useSiteSettings, type SiteSettings } from "@/src/hooks/useSiteSettings"
 import { useEffect } from "react"
 import Script from "next/script"
@@ -44,10 +44,11 @@ function MaintenanceMode({ message }: { message: string }) {
   )
 }
 
-// Dynamic Head Component for SEO and Meta Tags
+// Componente para aplicar configurações dinâmicas de SEO, meta tags e estilos
+// Aplica fontes personalizadas, cores do tema, meta tags e configurações de SEO
 function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
   useEffect(() => {
-    // Update document title
+    // Aplicar título dinâmico do documento
     if (siteSettings.title) {
       document.title = siteSettings.title
     }
@@ -116,7 +117,8 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       ogDescription.setAttribute('content', siteSettings.description)
     }
 
-    // Apply theme colors as CSS custom properties
+    // Aplicar cores do tema como propriedades CSS personalizadas
+    // Permite usar var(--color-primary) e var(--color-secondary) em todo o CSS
     if (siteSettings.theme?.primaryColor || siteSettings.theme?.secondaryColor) {
       const root = document.documentElement
       if (siteSettings.theme.primaryColor) {
@@ -126,28 +128,120 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
         root.style.setProperty('--color-secondary', siteSettings.theme.secondaryColor)
       }
     }
+    
+    // Aplicar fontes personalizadas como variáveis CSS
+    // Permite usar var(--font-heading), var(--font-body), var(--font-code)
+    if (siteSettings.theme?.customFonts) {
+      const root = document.documentElement
+      const fonts = siteSettings.theme.customFonts
+      
+      if (fonts.headingFont) {
+        root.style.setProperty('--font-heading', fonts.headingFont)
+      }
+      if (fonts.bodyFont) {
+        root.style.setProperty('--font-body', fonts.bodyFont)
+      }
+      if (fonts.codeFont) {
+        root.style.setProperty('--font-code', fonts.codeFont)
+      }
+    }
+    
+    // Aplicar meta tags de SEO avançado
+    if (siteSettings.seo) {
+      // URL canônica para evitar conteúdo duplicado
+      if (siteSettings.seo.canonicalUrl) {
+        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
+        if (!canonical) {
+          canonical = document.createElement('link')
+          canonical.rel = 'canonical'
+          document.head.appendChild(canonical)
+        }
+        canonical.href = siteSettings.seo.canonicalUrl
+      }
+      
+      // Meta tags de robots para controle de indexação
+      if (siteSettings.seo.robotsSettings) {
+        const { allowIndexing, allowFollowLinks } = siteSettings.seo.robotsSettings
+        let robotsContent = ''
+        
+        if (allowIndexing === false) robotsContent += 'noindex'
+        else robotsContent += 'index'
+        
+        if (allowFollowLinks === false) robotsContent += ', nofollow'
+        else robotsContent += ', follow'
+        
+        let robots = document.querySelector('meta[name="robots"]')
+        if (!robots) {
+          robots = document.createElement('meta')
+          robots.setAttribute('name', 'robots')
+          document.head.appendChild(robots)
+        }
+        robots.setAttribute('content', robotsContent)
+      }
+      
+      // Dados estruturados para melhor SEO
+      if (siteSettings.seo.structuredData) {
+        const structuredData = {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: siteSettings.title?.replace(' | Portfólio', '') || 'Paulo Babucho Issaca Tivane',
+          jobTitle: siteSettings.seo.structuredData.jobTitle,
+          worksFor: siteSettings.seo.structuredData.organization,
+          url: siteSettings.seo.canonicalUrl,
+          // Links sociais serão obtidos do profile.ts
+          sameAs: []
+        }
+        
+        let scriptTag = document.querySelector('script[type="application/ld+json"]')
+        if (!scriptTag) {
+          scriptTag = document.createElement('script')
+          scriptTag.type = 'application/ld+json'
+          document.head.appendChild(scriptTag)
+        }
+        scriptTag.textContent = JSON.stringify(structuredData)
+      }
+    }
 
-    // Apply performance settings
+    // Aplicar configurações de performance e acessibilidade
     if (siteSettings.performance?.reducedMotion) {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReducedMotion) {
+        // Desabilitar animações para usuários que preferem movimento reduzido
         document.documentElement.style.setProperty('--animation-duration', '0s')
         document.documentElement.style.setProperty('--transition-duration', '0s')
       }
     }
+    
+    // Aplicar configurações de compressão baseadas na performance
+    if (siteSettings.performance?.compressionLevel) {
+      const compressionMap = {
+        high: '95', // Máxima qualidade
+        medium: '80', // Balanceado
+        low: '60' // Máxima velocidade
+      }
+      const quality = compressionMap[siteSettings.performance.compressionLevel]
+      document.documentElement.style.setProperty('--image-quality', quality)
+    }
 
-    // Apply animation speed
+    // Aplicar velocidade global de animações
     if (siteSettings.theme?.animationSpeed) {
       const speedMap: Record<string, string> = {
-        slow: '1.5s',
-        normal: '1s',
-        fast: '0.5s'
+        slow: '1.5s', // Animações mais lentas e elegantes
+        normal: '1s', // Velocidade padrão equilibrada
+        fast: '0.5s' // Animações rápidas e dinâmicas
       }
       document.documentElement.style.setProperty(
         '--global-animation-speed', 
         speedMap[siteSettings.theme.animationSpeed] || '1s'
       )
     }
+    
+    // Log das configurações aplicadas para debug
+    console.log('🎨 [DYNAMIC HEAD] Configurações aplicadas:', {
+      theme: siteSettings.theme,
+      seo: siteSettings.seo,
+      performance: siteSettings.performance
+    })
   }, [siteSettings])
 
   return null
@@ -258,8 +352,8 @@ export default function RootLayout({
           {/* Dynamic Head Updates */}
           <DynamicHead siteSettings={siteSettings} />
           
-          {/* Matrix Rain Effect - Dynamic (CMS Integrated) */}
-          <MatrixRain />
+          {/* All Visual Effects - Managed by Sanity CMS */}
+          <EffectsManager />
           
           <div className="relative z-10 bg-transparent">{children}</div>
           
