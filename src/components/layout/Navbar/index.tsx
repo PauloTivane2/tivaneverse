@@ -36,16 +36,25 @@ export function Navbar() {
   }, [])
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      // Melhor scroll para mobile
-      const isMobile = window.innerWidth < 768
-      element.scrollIntoView({ 
-        behavior: "smooth",
-        block: isMobile ? "start" : "center"
-      })
-      setIsOpen(false)
-    }
+    // Fecha o menu primeiro em mobile
+    setIsOpen(false)
+    
+    // Pequeno delay para o menu fechar suavemente antes do scroll
+    setTimeout(() => {
+      const element = document.querySelector(href)
+      if (element) {
+        // Melhor scroll para mobile
+        const isMobile = window.innerWidth < 768
+        const offset = isMobile ? 80 : 100 // Offset para o navbar fixo
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+      }
+    }, 100) // 100ms delay
   }
 
   // Fechar menu ao clicar fora (mobile)

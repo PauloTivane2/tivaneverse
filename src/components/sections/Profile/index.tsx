@@ -95,7 +95,7 @@ export function Profile() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-[var(--color-bg-deep)]">
       {/* Gradient Transition to next section */}
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-deep)]/30 via-[var(--color-bg-night)]/70 to-[var(--color-bg-night)] pointer-events-none" />
       
