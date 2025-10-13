@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FiMenu, FiX } from "react-icons/fi"
 import Image from "next/image"
-import { ThemeToggle } from "../ThemeToggle"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
 import { colorDebug } from "@/src/lib/colors/debug"
 
@@ -137,12 +136,10 @@ export function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-primary-500)] group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
-            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <ThemeToggle />
+          <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors p-2 rounded-lg hover:bg-white/10 active:bg-white/20"
