@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FiMenu, FiX } from "react-icons/fi"
+import Image from "next/image"
 import { ThemeToggle } from "../ThemeToggle"
+import { useSiteSettings } from "@/src/hooks/useSiteSettings"
+import { colorDebug } from "@/src/lib/colors/debug"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -14,6 +17,7 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const { siteSettings, loading } = useSiteSettings()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -23,6 +27,12 @@ export function Navbar() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+  
+  // Debug: Verify color system usage
+  useEffect(() => {
+    colorDebug.verifyComponent('Navbar', false)
+    colorDebug.logComponentColors('Navbar', ['primary-500', 'bg-deep', 'border-dark', 'text-light'])
   }, [])
 
   const scrollToSection = (href: string) => {
@@ -66,7 +76,7 @@ export function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0D1117]/95 backdrop-blur-md border-b border-[#30363d]" : "bg-transparent"
+        scrolled ? "bg-[var(--color-bg-deep)]/95 backdrop-blur-md border-b border-[var(--color-border-dark)]" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,11 +88,25 @@ export function Navbar() {
               e.preventDefault()
               scrollToSection("#home")
             }}
-            className="text-xl font-bold font-display text-[#00BFA6] hover:text-[#00d4b8] transition-colors"
+            className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            PT
+            {siteSettings?.logo ? (
+              <div className="relative w-10 h-10">
+                <Image
+                  src={siteSettings.logo}
+                  alt={siteSettings.title || "Logo"}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            ) : (
+              <span className="text-xl font-bold font-display text-[var(--color-primary-500)] group-hover:text-[var(--color-primary-400)] transition-colors">
+                PT
+              </span>
+            )}
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -95,13 +119,13 @@ export function Navbar() {
                   e.preventDefault()
                   scrollToSection(link.href)
                 }}
-                className="text-sm font-medium text-[#c9d1d9] hover:text-[#00BFA6] transition-colors relative group"
+                className="text-sm font-medium text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors relative group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00BFA6] group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-primary-500)] group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
             <ThemeToggle />
@@ -112,7 +136,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#c9d1d9] hover:text-[#00BFA6] transition-colors p-2 rounded-lg hover:bg-white/10 active:bg-white/20"
+              className="text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors p-2 rounded-lg hover:bg-white/10 active:bg-white/20"
               aria-label="Toggle menu"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -129,7 +153,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#161b22]/95 backdrop-blur-md border-t border-[#30363d] shadow-lg"
+            className="md:hidden bg-[var(--color-bg-night)]/95 backdrop-blur-md border-t border-[var(--color-border-dark)] shadow-lg"
           >
             <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
               {navLinks.map((link, index) => (
@@ -140,7 +164,7 @@ export function Navbar() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="block text-base font-medium text-[#c9d1d9] hover:text-[#00BFA6] transition-colors py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
+                  className="block text-base font-medium text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}

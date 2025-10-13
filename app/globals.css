@@ -3,7 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/**
+ * Centralized Color System
+ * All colors are sourced from src/lib/colors/
+ */
 :root {
+  /* Base shadcn/ui variables */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -37,6 +42,45 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Centralized Color System Variables */
+  /* Primary Colors */
+  --color-primary-400: #00D4B8;
+  --color-primary-500: #00BFA6;
+  --color-primary-600: #009E8A;
+  
+  /* Secondary Colors */
+  --color-secondary-400: #8B5CF6;
+  --color-secondary-500: #7C3AED;
+  --color-secondary-600: #6D28D9;
+  
+  /* Background Colors */
+  --color-bg-deep: #0D1117;
+  --color-bg-night: #161B22;
+  --color-bg-card: #1A1F29;
+  --color-bg-elevated: #212835;
+  
+  /* Text Colors */
+  --color-text-light: #C9D1D9;
+  --color-text-soft: #8B949E;
+  --color-text-dim: #6E7681;
+  --color-text-dark: #0D1117;
+  
+  /* Border Colors */
+  --color-border-dark: #30363D;
+  --color-border-green: #00BFA6;
+  --color-border-purple: #7C3AED;
+  
+  /* Gradients */
+  --gradient-aurora: linear-gradient(90deg, #00BFA6, #00D4B8);
+  --gradient-twilight: linear-gradient(90deg, #7C3AED, #8B5CF6);
+  --gradient-duo: linear-gradient(90deg, #00BFA6, #7C3AED);
+  --gradient-card: linear-gradient(90deg, rgba(0,191,166,0.1), rgba(124,58,237,0.1));
+  --gradient-radial-green: radial-gradient(circle, rgba(0,191,166,0.2) 0%, transparent 70%);
+  --gradient-radial-purple: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+  --gradient-hero: linear-gradient(135deg, rgba(0,191,166,0.1) 0%, rgba(124,58,237,0.1) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(0,191,166,0.3) 0%, transparent 70%);
 }
 
 .dark {
@@ -75,7 +119,7 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  /* Shadcn/ui color mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -112,6 +156,56 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Centralized Color System - Tailwind Color Tokens */
+  /* Primary Scale - Full scale for Tailwind utilities */
+  --color-primary-50: rgba(0, 191, 166, 0.05);
+  --color-primary-100: rgba(0, 191, 166, 0.1);
+  --color-primary-200: rgba(0, 191, 166, 0.2);
+  --color-primary-300: rgba(0, 191, 166, 0.3);
+  --color-primary-400: #00D4B8;
+  --color-primary-500: #00BFA6;
+  --color-primary-600: #009E8A;
+  --color-primary-DEFAULT: #00BFA6;
+  
+  /* Secondary Scale - Full scale for Tailwind utilities */
+  --color-secondary-50: rgba(124, 58, 237, 0.05);
+  --color-secondary-100: rgba(124, 58, 237, 0.1);
+  --color-secondary-200: rgba(124, 58, 237, 0.2);
+  --color-secondary-300: rgba(124, 58, 237, 0.3);
+  --color-secondary-400: #8B5CF6;
+  --color-secondary-500: #7C3AED;
+  --color-secondary-600: #6D28D9;
+  --color-secondary-DEFAULT: #7C3AED;
+  
+  /* Semantic Background Colors - Direct values from :root */
+  --color-bg-deep: #0D1117;
+  --color-bg-night: #161B22;
+  --color-bg-card: #1A1F29;
+  --color-bg-elevated: #212835;
+  
+  /* Semantic Text Colors - Direct values from :root */
+  --color-text-light: #C9D1D9;
+  --color-text-soft: #8B949E;
+  --color-text-dim: #6E7681;
+  --color-text-dark: #0D1117;
+  
+  /* Semantic Border Colors - Direct values from :root */
+  --color-border-dark: #30363D;
+  --color-border-green: #00BFA6;
+  --color-border-purple: #7C3AED;
+  
+  /* Gradients - Available for Tailwind utilities */
+  --gradient-aurora: linear-gradient(90deg, #00BFA6, #00D4B8);
+  --gradient-twilight: linear-gradient(90deg, #7C3AED, #8B5CF6);
+  --gradient-duo: linear-gradient(90deg, #00BFA6, #7C3AED);
+  --gradient-card: linear-gradient(90deg, rgba(0,191,166,0.1), rgba(124,58,237,0.1));
+  --gradient-radial-green: radial-gradient(circle, rgba(0,191,166,0.2) 0%, transparent 70%);
+  --gradient-radial-purple: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+  --gradient-hero: linear-gradient(135deg, rgba(0,191,166,0.1) 0%, rgba(124,58,237,0.1) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(0,191,166,0.3) 0%, transparent 70%);
+  --gradient-animated: linear-gradient(45deg, #00BFA6, #7C3AED, #00D4B8, #8B5CF6);
 }
 
 @layer base {
@@ -143,7 +237,8 @@
 
 /* Selection */
 ::selection {
-  @apply bg-primary/20 text-primary;
+  background-color: rgba(0, 191, 166, 0.2);
+  color: var(--color-primary-500);
 }
 
 /* Matrix Animation Glow */
@@ -162,7 +257,7 @@
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
+  box-shadow: 0 0 15px rgba(0, 191, 166, 0.5);
 }
 
 /* Card Hover Effect */
@@ -177,33 +272,33 @@
 
 /* IT Theme Utilities */
 .tech-border {
-  border: 1px solid rgba(0, 255, 153, 0.2);
+  border: 1px solid rgba(0, 191, 166, 0.2);
 }
 
 .tech-glow {
-  box-shadow: 0 0 10px rgba(0, 255, 153, 0.2);
+  box-shadow: 0 0 10px rgba(0, 191, 166, 0.2);
 }
 
 .tech-glow-strong {
-  box-shadow: 0 0 20px rgba(0, 255, 153, 0.4), 0 0 40px rgba(0, 255, 153, 0.2);
+  box-shadow: 0 0 20px rgba(0, 191, 166, 0.4), 0 0 40px rgba(0, 191, 166, 0.2);
 }
 
 /* Keyframe Animations */
 @keyframes glow {
   0%, 100% {
-    text-shadow: 0 0 5px rgba(0, 255, 153, 0.5), 0 0 10px rgba(0, 255, 153, 0.3);
+    text-shadow: 0 0 5px rgba(0, 191, 166, 0.5), 0 0 10px rgba(0, 191, 166, 0.3);
   }
   50% {
-    text-shadow: 0 0 10px rgba(0, 255, 153, 0.8), 0 0 20px rgba(0, 255, 153, 0.5);
+    text-shadow: 0 0 10px rgba(0, 191, 166, 0.8), 0 0 20px rgba(0, 191, 166, 0.5);
   }
 }
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 5px rgba(0, 191, 166, 0.3);
   }
   50% {
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.6), 0 0 25px rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 15px rgba(0, 191, 166, 0.6), 0 0 25px rgba(0, 191, 166, 0.3);
   }
 }
 

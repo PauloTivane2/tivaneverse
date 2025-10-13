@@ -6,6 +6,7 @@ import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { EffectsManager } from "@/src/components/effects"
 import { useSiteSettings, type SiteSettings } from "@/src/hooks/useSiteSettings"
+import { colors } from "@/src/lib/colors"
 import { useEffect } from "react"
 import Script from "next/script"
 
@@ -192,7 +193,7 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
           sameAs: []
         }
         
-        let scriptTag = document.querySelector('script[type="application/ld+json"]')
+        let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement | null
         if (!scriptTag) {
           scriptTag = document.createElement('script')
           scriptTag.type = 'application/ld+json'
@@ -338,8 +339,8 @@ export default function RootLayout({
         className={`font-sans antialiased text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
         style={{
           background: 'transparent',
-          '--color-primary': siteSettings.theme?.primaryColor || '#00BFA6',
-          '--color-secondary': siteSettings.theme?.secondaryColor || '#7C3AED',
+          '--color-primary': siteSettings.theme?.primaryColor || colors.primary[500],
+          '--color-secondary': siteSettings.theme?.secondaryColor || colors.secondary[500],
           '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
                                      siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
         } as React.CSSProperties}

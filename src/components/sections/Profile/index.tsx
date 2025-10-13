@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
+import { colors } from "@/src/lib/colors"
+import { colorDebug } from "@/src/lib/colors/debug"
 import { useEffect, useState } from "react"
 
 export function Profile() {
@@ -22,6 +24,12 @@ export function Profile() {
       setCurrentIndex(0)
     }
   }, [profileData])
+  
+  // Debug: Verify color system usage
+  useEffect(() => {
+    colorDebug.verifyComponent('Profile', false)
+    colorDebug.logComponentColors('Profile', ['primary-500', 'text-light', 'bg-deep', 'border-dark'])
+  }, [])
 
   useEffect(() => {
     if (profileData && currentIndex < profileData.tagline.length) {
@@ -87,7 +95,10 @@ export function Profile() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+      {/* Gradient Transition to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-deep)]/30 via-[var(--color-bg-night)]/70 to-[var(--color-bg-night)] pointer-events-none" />
+      
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Text Content */}
@@ -121,9 +132,9 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-8 mb-6"
             >
-              <p className="text-lg text-primary font-mono font-medium matrix-glow">
+              <p className="text-lg text-[var(--color-primary-500)] font-mono font-medium matrix-glow">
                 {displayedText}
-                <span className="inline-block w-0.5 h-5 bg-primary ml-1 animate-pulse" />
+                <span className="inline-block w-0.5 h-5 bg-[var(--color-primary-500)] ml-1 animate-pulse" />
               </p>
             </motion.div>
 
@@ -150,8 +161,8 @@ export function Profile() {
               
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-green-600 dark:text-green-400">
+                  <div className="w-2 h-2 bg-[var(--color-primary-500)] rounded-full animate-pulse"></div>
+                  <span className="text-sm text-[var(--color-primary-500)]">
                     {profileData.availability.message || 'Available for work'}
                   </span>
                 </div>
@@ -170,7 +181,7 @@ export function Profile() {
                   {profileData.skills.slice(0, 6).map((skill, index) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20"
+                      className="px-3 py-1 text-xs font-medium bg-[var(--color-primary-100)] text-[var(--color-primary-500)] rounded-full border border-[var(--color-primary-200)]"
                     >
                       {skill}
                     </span>
@@ -193,7 +204,7 @@ export function Profile() {
             >
               <motion.button
                 onClick={() => scrollToSection("#projects")}
-                className="group px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all pulse-glow"
+                className="group px-6 py-3 rounded-lg bg-[var(--color-primary-500)] text-white font-semibold flex items-center justify-center gap-2 hover:shadow-[0_10px_30px_rgba(0,191,166,0.3)] transition-all pulse-glow"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -203,7 +214,7 @@ export function Profile() {
 
               <motion.button
                 onClick={() => scrollToSection("#contact")}
-                className="px-6 py-3 rounded-lg bg-card border border-border text-foreground font-semibold flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all"
+                className="px-6 py-3 rounded-lg bg-card border border-border text-foreground font-semibold flex items-center justify-center gap-2 hover:border-[var(--color-primary-500)] hover:text-[var(--color-primary-500)] transition-all"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -215,7 +226,7 @@ export function Profile() {
               {profileData.resume && (
                 <motion.button
                   onClick={handleResumeDownload}
-                  className="px-6 py-3 rounded-lg bg-card border border-border text-foreground font-semibold flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all"
+                  className="px-6 py-3 rounded-lg bg-card border border-border text-foreground font-semibold flex items-center justify-center gap-2 hover:border-[var(--color-primary-500)] hover:text-[var(--color-primary-500)] transition-all"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -224,6 +235,26 @@ export function Profile() {
                 </motion.button>
               )}
             </motion.div>
+
+            {/* Availability Badge with Gradient */}
+            {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="p-6 rounded-xl bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-secondary-100)] border border-[var(--color-primary-200)]"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-3 h-3 rounded-full bg-[var(--color-primary-500)] animate-pulse" />
+                  <span className="text-sm font-semibold text-[var(--color-primary-500)]">
+                    {profileData.availability.message || 'Available for Work'}
+                  </span>
+                </div>
+                <p className="text-sm text-[var(--color-text-soft)]">
+                  Open to new opportunities and collaborations. Let's build something amazing together!
+                </p>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Right Column - Profile Image */}
@@ -238,7 +269,7 @@ export function Profile() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 blur-3xl" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--color-primary-200)] via-[var(--color-primary-100)] to-[var(--color-secondary-100)] blur-3xl" />
 
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border shadow-2xl">
                 <Image
@@ -258,7 +289,7 @@ export function Profile() {
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
                         >
                           <FiGithub className="w-5 h-5" />
                         </a>
@@ -268,7 +299,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
                         >
                           <FiLinkedin className="w-5 h-5" />
                         </a>
@@ -278,7 +309,7 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
                         >
                           <FiTwitter className="w-5 h-5" />
                         </a>
@@ -288,7 +319,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-gray-800 hover:bg-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
                         >
                           <FiInstagram className="w-5 h-5" />
                         </a>
@@ -299,7 +330,7 @@ export function Profile() {
               </div>
 
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-primary/30"
+                className="absolute inset-0 rounded-full border-2 border-[var(--color-primary-300)]"
                 animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0.3, 0.6, 0.3],

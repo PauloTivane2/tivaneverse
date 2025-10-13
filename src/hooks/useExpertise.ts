@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { client } from '@/src/lib/sanity'
 import { expertiseQuery } from '@/src/lib/queries/expertise'
 import { ExpertiseItem } from '@/src/components/sections/Expertise/types'
+import { colors } from '@/src/lib/colors'
 import { IconType } from 'react-icons'
 
 // Icon mapping - import available icons
@@ -51,7 +52,7 @@ export function useExpertise() {
           const transformedData: ExpertiseItem[] = data.map((item: any) => ({
             name: item.name || 'Unknown Skill',
             icon: iconMap[item.iconName] || TbCode, // Fallback to generic code icon
-            color: item.color || '#6B7280', // Fallback to gray color
+            color: item.color || colors.text.soft, // Fallback to text-soft color
             category: item.category,
             proficiencyLevel: item.proficiencyLevel,
             yearsOfExperience: item.yearsOfExperience,

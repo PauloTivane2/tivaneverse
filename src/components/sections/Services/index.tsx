@@ -2,13 +2,20 @@
 
 import { motion, useInView } from "framer-motion"
 import { useServices } from "@/src/hooks/useServices"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { FiCheck } from "react-icons/fi"
+import { colorDebug } from "@/src/lib/colors/debug"
 
 export function Services() {
   const { servicesData, loading, error } = useServices()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  // Debug: Verify color system usage
+  useEffect(() => {
+    colorDebug.verifyComponent('Services', false)
+    colorDebug.logComponentColors('Services', ['primary-500', 'secondary-500', 'text-light', 'bg-deep'])
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,8 +39,14 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0D1117]" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-elevated)]" ref={ref}>
+      {/* Gradient Transition from previous section */}
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-card)] via-[var(--color-bg-card)]/70 via-[var(--color-bg-elevated)]/30 to-transparent pointer-events-none" />
+      
+      {/* Gradient Transition to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-elevated)]/30 via-[var(--color-bg-night)]/70 to-[var(--color-bg-night)] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,14 +58,14 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/20 text-[#00BFA6] text-sm font-medium mb-4"
+            className="inline-block px-4 py-2 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-200)] text-[var(--color-primary-500)] text-sm font-medium mb-4"
           >
             What I Offer
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#c9d1d9] mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
             Services
           </h2>
-          <p className="text-lg text-[#8b949e] max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
             Comprehensive IT solutions tailored to your business needs
           </p>
         </motion.div>
@@ -68,7 +81,7 @@ export function Services() {
             // Loading skeleton
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full p-8 rounded-xl bg-[#161b22] border border-[#30363d]">
+                <div className="h-full p-8 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)]">
                   <div className="mb-6">
                     <div className="w-14 h-14 rounded-lg bg-muted"></div>
                   </div>
@@ -88,39 +101,39 @@ export function Services() {
           ) : servicesData.length > 0 ? (
             servicesData.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} className="group relative">
-              <div className="relative h-full p-8 rounded-xl bg-[#161b22] border border-[#30363d] hover:border-[#00BFA6] transition-all duration-300">
+              <div className="relative h-full p-8 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] transition-all duration-300">
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#00BFA6]/20 to-[#7C3AED]/20 border border-[#00BFA6]/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-7 h-7 text-[#00BFA6]" />
+                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[var(--color-primary-200)] to-[var(--color-secondary-200)] border border-[var(--color-primary-300)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 h-7 text-[var(--color-primary-500)]" />
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold font-display text-[#c9d1d9] mb-3 group-hover:text-[#00BFA6] transition-colors">
+                <h3 className="text-2xl font-bold font-display text-[var(--color-text-light)] mb-3 group-hover:text-[var(--color-primary-500)] transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-[#8b949e] mb-6 leading-relaxed">{service.description}</p>
+                <p className="text-[var(--color-text-soft)] mb-6 leading-relaxed">{service.description}</p>
 
                 {/* Features List */}
                 <ul className="space-y-3">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <div className="mt-1 w-5 h-5 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/30 flex items-center justify-center flex-shrink-0">
-                        <FiCheck className="w-3 h-3 text-[#00BFA6]" />
+                      <div className="mt-1 w-5 h-5 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-300)] flex items-center justify-center flex-shrink-0">
+                        <FiCheck className="w-3 h-3 text-[var(--color-primary-500)]" />
                       </div>
-                      <span className="text-sm text-[#c9d1d9]">{feature}</span>
+                      <span className="text-sm text-[var(--color-text-light)]">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00BFA6]/5 via-transparent to-[#7C3AED]/5 rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-100)] via-transparent to-[var(--color-secondary-100)] rounded-xl" />
                 </div>
 
                 {/* Decorative Corner */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#7C3AED]/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[var(--color-secondary-100)] to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))

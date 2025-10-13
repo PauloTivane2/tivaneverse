@@ -202,44 +202,6 @@ export const visualEffects = defineType({
           }).error('Use formato RGB: "255, 255, 255" (números separados por vírgula)')
         }),
 
-        defineField({
-          name: 'glowEffect',
-          title: 'Efeito de Brilho',
-          type: 'object',
-          description: 'Configurações do efeito de brilho/glow',
-          fields: [
-            defineField({
-              name: 'enabled',
-              title: 'Ativar Brilho',
-              type: 'boolean',
-              description: 'Adicionar efeito de brilho aos caracteres',
-              initialValue: true
-            }),
-            defineField({
-              name: 'intensity',
-              title: 'Intensidade do Brilho',
-              type: 'object',
-              fields: [
-                defineField({
-                  name: 'words',
-                  title: 'Brilho das Palavras',
-                  type: 'number',
-                  description: 'Intensidade do brilho para palavras (5-50)',
-                  validation: (Rule) => Rule.min(5).max(50),
-                  initialValue: 25
-                }),
-                defineField({
-                  name: 'characters',
-                  title: 'Brilho dos Caracteres',
-                  type: 'number',
-                  description: 'Intensidade do brilho para caracteres (5-30)',
-                  validation: (Rule) => Rule.min(5).max(30),
-                  initialValue: 15
-                })
-              ]
-            })
-          ]
-        }),
 
         defineField({
           name: 'direction',
@@ -1283,52 +1245,6 @@ export const visualEffects = defineType({
       ]
     }),
 
-    // === CONFIGURAÇÕES DE RESPONSIVIDADE ===
-    defineField({
-      name: 'responsiveSettings',
-      title: 'Configurações Responsivas',
-      type: 'object',
-      description: 'Ajustes automáticos para diferentes tamanhos de tela',
-      options: {
-        collapsible: true,
-        collapsed: true
-      },
-      fields: [
-        defineField({
-          name: 'disableOnMobile',
-          title: 'Desabilitar em Mobile',
-          type: 'boolean',
-          description: 'Desativar todos os efeitos em dispositivos móveis para melhor performance',
-          initialValue: false
-        }),
-
-        defineField({
-          name: 'reducedMotion',
-          title: 'Respeitar Preferência de Movimento Reduzido',
-          type: 'boolean',
-          description: 'Desabilitar animações se o usuário preferir movimento reduzido',
-          initialValue: true
-        }),
-
-        defineField({
-          name: 'mobileIntensity',
-          title: 'Intensidade em Mobile',
-          type: 'number',
-          description: 'Multiplicador de intensidade para mobile (0.1-1.0)',
-          validation: (Rule) => Rule.min(0.1).max(1),
-          initialValue: 0.5
-        }),
-
-        defineField({
-          name: 'tabletIntensity',
-          title: 'Intensidade em Tablet',
-          type: 'number',
-          description: 'Multiplicador de intensidade para tablet (0.1-1.0)',
-          validation: (Rule) => Rule.min(0.1).max(1),
-          initialValue: 0.7
-        })
-      ]
-    }),
 
     // === CONFIGURAÇÕES AVANÇADAS ===
     defineField({

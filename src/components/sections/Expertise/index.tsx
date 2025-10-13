@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useExpertise } from "@/src/hooks/useExpertise"
+import { colors } from "@/src/lib/colors"
+import { colorDebug } from "@/src/lib/colors/debug"
 import { useRef, useState, useEffect } from "react"
 import { FiStar, FiAward, FiTrendingUp } from "react-icons/fi"
 
@@ -15,6 +17,12 @@ export function Expertise() {
   useEffect(() => {
     setSelectedSkill(null)
   }, [expertiseData])
+  
+  // Debug: Verify color system usage
+  useEffect(() => {
+    colorDebug.verifyComponent('Expertise', false)
+    colorDebug.logComponentColors('Expertise', ['primary-500', 'secondary-500', 'text-light', 'bg-deep'])
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,8 +47,14 @@ export function Expertise() {
   }
 
   return (
-    <section id="expertise" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0D1117]" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section id="expertise" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-night)]" ref={ref}>
+      {/* Gradient Transition from previous section */}
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-deep)] via-[var(--color-bg-deep)]/70 via-[var(--color-bg-night)]/30 to-transparent pointer-events-none" />
+      
+      {/* Gradient Transition to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-night)]/30 via-[var(--color-bg-card)]/70 to-[var(--color-bg-card)] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,14 +66,14 @@ export function Expertise() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-sm font-medium mb-4"
+            className="inline-block px-4 py-2 rounded-full bg-[var(--color-secondary-100)] border border-[var(--color-secondary-200)] text-[var(--color-secondary-500)] text-sm font-medium mb-4"
           >
             Technical Skills
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#c9d1d9] mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
             My Expertise
           </h2>
-          <p className="text-lg text-[#8b949e] max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
             Technologies and tools I use to build exceptional digital experiences
           </p>
         </motion.div>
@@ -75,7 +89,7 @@ export function Expertise() {
             // Loading skeleton
             Array.from({ length: 12 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="p-6 rounded-xl bg-[#161b22] border border-[#30363d] flex flex-col items-center justify-center gap-3 h-full">
+                <div className="p-6 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] flex flex-col items-center justify-center gap-3 h-full">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-muted rounded"></div>
                   <div className="h-4 bg-muted rounded w-16"></div>
                 </div>
@@ -90,10 +104,10 @@ export function Expertise() {
               className="group relative cursor-pointer"
               onClick={() => setSelectedSkill(skill)}
             >
-              <div className="relative p-6 rounded-xl bg-[#161b22] border border-[#30363d] hover:border-[#00BFA6] transition-all duration-300 flex flex-col items-center justify-center gap-3 h-full">
+              <div className="relative p-6 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] transition-all duration-300 flex flex-col items-center justify-center gap-3 h-full">
                 {/* Featured Badge */}
                 {skill.featured && (
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#00BFA6] rounded-full flex items-center justify-center">
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--color-primary-500)] rounded-full flex items-center justify-center">
                     <FiStar className="w-3 h-3 text-white" />
                   </div>
                 )}
@@ -118,7 +132,7 @@ export function Expertise() {
                 </div>
 
                 {/* Name */}
-                <p className="relative z-10 text-sm font-medium text-[#c9d1d9] text-center group-hover:text-[#00BFA6] transition-colors">
+                <p className="relative z-10 text-sm font-medium text-[var(--color-text-light)] text-center group-hover:text-[var(--color-primary-500)] transition-colors">
                   {skill.name}
                 </p>
 
@@ -139,7 +153,7 @@ export function Expertise() {
                         <div
                           key={i}
                           className={`w-1 h-1 rounded-full ${
-                            i < skill.proficiencyLevel! ? 'bg-[#00BFA6]' : 'bg-muted-foreground/30'
+                            i < skill.proficiencyLevel! ? 'bg-[var(--color-primary-500)]' : 'bg-muted-foreground/30'
                           }`}
                         />
                       ))}
@@ -184,7 +198,7 @@ export function Expertise() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-[#0D1117] border border-[#30363d] rounded-xl p-6 max-w-md w-full"
+              className="bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] rounded-xl p-6 max-w-md w-full"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-4 mb-4">
@@ -195,13 +209,13 @@ export function Expertise() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-[#c9d1d9] mb-1">{selectedSkill.name}</h3>
+                  <h3 className="text-xl font-bold text-[var(--color-text-light)] mb-1">{selectedSkill.name}</h3>
                   {selectedSkill.category && (
                     <p className="text-sm text-muted-foreground capitalize">{selectedSkill.category}</p>
                   )}
                 </div>
                 {selectedSkill.featured && (
-                  <div className="flex items-center gap-1 text-[#00BFA6]">
+                  <div className="flex items-center gap-1 text-[var(--color-primary-500)]">
                     <FiAward className="w-4 h-4" />
                     <span className="text-xs font-medium">Featured</span>
                   </div>
@@ -213,7 +227,7 @@ export function Expertise() {
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-2">
                     <FiTrendingUp className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm font-medium text-[#c9d1d9]">Proficiency Level</span>
+                    <span className="text-sm font-medium text-[var(--color-text-light)]">Proficiency Level</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
@@ -221,7 +235,7 @@ export function Expertise() {
                         <div
                           key={i}
                           className={`w-2 h-2 rounded-full ${
-                            i < selectedSkill.proficiencyLevel! ? 'bg-[#00BFA6]' : 'bg-muted-foreground/30'
+                            i < selectedSkill.proficiencyLevel! ? 'bg-[var(--color-primary-500)]' : 'bg-muted-foreground/30'
                           }`}
                         />
                       ))}
@@ -237,7 +251,7 @@ export function Expertise() {
               {selectedSkill.yearsOfExperience && (
                 <div className="mb-4">
                   <p className="text-sm text-muted-foreground">
-                    <span className="font-medium text-[#c9d1d9]">Experience:</span> {selectedSkill.yearsOfExperience} years
+                    <span className="font-medium text-[var(--color-text-light)]">Experience:</span> {selectedSkill.yearsOfExperience} years
                   </p>
                 </div>
               )}
@@ -254,7 +268,7 @@ export function Expertise() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedSkill(null)}
-                className="w-full py-2 px-4 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                className="w-full py-2 px-4 rounded-lg bg-[var(--color-primary-500)] text-white font-medium hover:bg-[var(--color-primary-600)] transition-colors"
               >
                 Close
               </button>

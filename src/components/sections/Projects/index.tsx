@@ -6,7 +6,9 @@ import { FiExternalLink, FiGithub, FiStar, FiCalendar, FiUser, FiTag, FiImage, F
 import { useProjects } from "@/src/hooks/useProjects"
 import { useProfile } from "@/src/hooks/useProfile"
 import { urlFor } from "@/src/lib/sanity"
-import { useRef, useState } from "react"
+import { colors } from "@/src/lib/colors"
+import { colorDebug } from "@/src/lib/colors/debug"
+import { useRef, useState, useEffect } from "react"
 
 export function Projects() {
   const { projectsData, loading, error } = useProjects()
@@ -25,13 +27,19 @@ export function Projects() {
     })
   }
 
+  // Debug: Verify color system usage
+  useEffect(() => {
+    colorDebug.verifyComponent('Projects', false)
+    colorDebug.logComponentColors('Projects', ['primary-500', 'secondary-500', 'text-light', 'bg-deep', 'border-dark'])
+  }, [])
+
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'completed': return 'text-green-400 bg-green-400/10'
-      case 'in-progress': return 'text-blue-400 bg-blue-400/10'
-      case 'on-hold': return 'text-yellow-400 bg-yellow-400/10'
-      case 'concept': return 'text-purple-400 bg-purple-400/10'
-      default: return 'text-gray-400 bg-gray-400/10'
+      case 'completed': return 'text-[var(--color-primary-500)] bg-[var(--color-primary-100)]'
+      case 'in-progress': return 'text-[#60A5FA] bg-[rgba(96,165,250,0.1)]' // Blue for in-progress
+      case 'on-hold': return 'text-[#FBBF24] bg-[rgba(251,191,36,0.1)]' // Yellow for on-hold
+      case 'concept': return 'text-[var(--color-secondary-500)] bg-[var(--color-secondary-100)]'
+      default: return 'text-[var(--color-text-soft)] bg-[var(--color-bg-elevated)]'
     }
   }
 
@@ -77,8 +85,14 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#161b22]" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-card)]" ref={ref}>
+      {/* Gradient Transition from previous section */}
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] via-[var(--color-bg-night)]/70 via-[var(--color-bg-card)]/30 to-transparent pointer-events-none" />
+      
+      {/* Gradient Transition to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-card)]/30 via-[var(--color-bg-elevated)]/70 to-[var(--color-bg-elevated)] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -90,14 +104,14 @@ export function Projects() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/20 text-[#38BDF8] text-sm font-medium mb-4"
+            className="inline-block px-4 py-2 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-200)] text-[var(--color-primary-500)] text-sm font-medium mb-4"
           >
             Portfolio
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#c9d1d9] mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
             Featured Projects
           </h2>
-          <p className="text-lg text-[#8b949e] max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
             A selection of projects showcasing my expertise in building modern web applications
           </p>
         </motion.div>
@@ -113,7 +127,7 @@ export function Projects() {
             // Loading skeleton
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full rounded-xl bg-[#0D1117] border border-[#30363d] overflow-hidden">
+                <div className="h-full rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] overflow-hidden">
                   <div className="h-48 sm:h-56 bg-muted"></div>
                   <div className="p-6 space-y-4">
                     <div className="h-6 bg-muted rounded w-3/4"></div>
@@ -131,9 +145,9 @@ export function Projects() {
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
             <motion.div key={project.title} variants={itemVariants} className="group">
-              <div className="relative h-full rounded-xl bg-[#0D1117] border border-[#30363d] overflow-hidden hover:border-[#00BFA6] transition-all duration-300">
+              <div className="relative h-full rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] overflow-hidden hover:border-[var(--color-primary-500)] transition-all duration-300">
                 {/* Project Image */}
-                <div className="relative h-48 sm:h-56 overflow-hidden bg-[#161b22]">
+                <div className="relative h-48 sm:h-56 overflow-hidden bg-[var(--color-bg-night)]">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -141,12 +155,12 @@ export function Projects() {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-[#0D1117]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-deep)] via-[var(--color-bg-deep)]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     {/* Gallery Button (priority over demo) */}
                     {project.gallery && project.gallery.length > 0 ? (
                       <motion.button
                         onClick={() => openGallery(project)}
-                        className="p-3 rounded-lg bg-[#00BFA6] text-[#0D1117] hover:bg-[#00d4b8] transition-colors"
+                        className="p-3 rounded-lg bg-[var(--color-primary-500)] text-[var(--color-text-dark)] hover:bg-[var(--color-primary-400)] transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver galeria do projeto"
@@ -158,7 +172,7 @@ export function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-lg bg-[#00BFA6] text-[#0D1117] hover:bg-[#00d4b8] transition-colors"
+                        className="p-3 rounded-lg bg-[var(--color-primary-500)] text-[var(--color-text-dark)] hover:bg-[var(--color-primary-400)] transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver demo ao vivo"
@@ -173,7 +187,7 @@ export function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-lg bg-[#161b22] text-[#c9d1d9] hover:bg-[#1c2128] transition-colors"
+                        className="p-3 rounded-lg bg-[var(--color-bg-night)] text-[var(--color-text-light)] hover:bg-[var(--color-bg-elevated)] transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver código fonte"
@@ -185,7 +199,7 @@ export function Projects() {
 
                   {/* Featured Badge */}
                   {project.featured && (
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#7C3AED] text-white text-xs font-semibold flex items-center gap-1">
+                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[var(--color-secondary-500)] text-white text-xs font-semibold flex items-center gap-1">
                       <FiStar className="w-3 h-3" />
                       Featured
                     </div>
@@ -196,7 +210,7 @@ export function Projects() {
                 <div className="p-6">
                   {/* Header with Title and Status */}
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold font-display text-[#c9d1d9] group-hover:text-[#00BFA6] transition-colors flex-1">
+                    <h3 className="text-xl font-bold font-display text-[var(--color-text-light)] group-hover:text-[var(--color-primary-500)] transition-colors flex-1">
                       {project.title}
                     </h3>
                     {project.status && (
@@ -209,13 +223,13 @@ export function Projects() {
                   {/* Category and Client */}
                   <div className="flex items-center gap-4 mb-3">
                     {project.category && (
-                      <div className="flex items-center gap-1 text-xs text-[#8b949e]">
+                      <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)]">
                         <FiTag className="w-3 h-3" />
                         <span className="capitalize">{project.category.replace('-', ' ')}</span>
                       </div>
                     )}
                     {project.client && (
-                      <div className="flex items-center gap-1 text-xs text-[#8b949e]">
+                      <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)]">
                         <FiUser className="w-3 h-3" />
                         <span>{project.client}</span>
                       </div>
@@ -224,7 +238,7 @@ export function Projects() {
 
                   {/* Date Range */}
                   {(project.startDate || project.endDate) && (
-                    <div className="flex items-center gap-1 text-xs text-[#8b949e] mb-3">
+                    <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)] mb-3">
                       <FiCalendar className="w-3 h-3" />
                       <span>
                         {formatDate(project.startDate)} 
@@ -234,14 +248,14 @@ export function Projects() {
                     </div>
                   )}
 
-                  <p className="text-[#8b949e] text-sm mb-4 leading-relaxed">{project.description}</p>
+                  <p className="text-[var(--color-text-soft)] text-sm mb-4 leading-relaxed">{project.description}</p>
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-full bg-[#161b22] border border-[#30363d] text-[#00BFA6] text-xs font-medium"
+                        className="px-3 py-1 rounded-full bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] text-[var(--color-primary-500)] text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -251,7 +265,7 @@ export function Projects() {
 
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00BFA6]/5 via-transparent to-[#7C3AED]/5" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-100)] via-transparent to-[var(--color-secondary-100)]" />
                 </div>
               </div>
             </motion.div>
@@ -275,7 +289,7 @@ export function Projects() {
             href={profileData?.social?.github || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0D1117] border border-[#30363d] text-[#c9d1d9] font-semibold hover:border-[#00BFA6] hover:text-[#00BFA6] transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] text-[var(--color-text-light)] font-semibold hover:border-[var(--color-primary-500)] hover:text-[var(--color-primary-500)] transition-all"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -297,27 +311,27 @@ export function Projects() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl w-full max-h-[90vh] bg-[#0D1117] rounded-xl overflow-hidden"
+              className="relative max-w-4xl w-full max-h-[90vh] bg-[var(--color-bg-deep)] rounded-xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-[#30363d]">
+              <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-dark)]">
                 <div>
-                  <h3 className="text-lg font-bold text-[#c9d1d9]">{selectedProject.title}</h3>
-                  <p className="text-sm text-[#8b949e]">
+                  <h3 className="text-lg font-bold text-[var(--color-text-light)]">{selectedProject.title}</h3>
+                  <p className="text-sm text-[var(--color-text-soft)]">
                     {selectedImageIndex + 1} de {selectedProject.gallery.length} imagens
                   </p>
                 </div>
                 <button
                   onClick={closeGallery}
-                  className="p-2 rounded-lg bg-[#161b22] text-[#c9d1d9] hover:bg-[#1c2128] transition-colors"
+                  className="p-2 rounded-lg bg-[var(--color-bg-night)] text-[var(--color-text-light)] hover:bg-[var(--color-bg-elevated)] transition-colors"
                 >
                   <FiX size={20} />
                 </button>
               </div>
 
               {/* Image Display */}
-              <div className="relative h-[60vh] bg-[#161b22]">
+              <div className="relative h-[60vh] bg-[var(--color-bg-night)]">
                 <Image
                   src={urlFor(selectedProject.gallery[selectedImageIndex].asset).width(1200).height(800).url()}
                   alt={selectedProject.gallery[selectedImageIndex].caption || `${selectedProject.title} - Imagem ${selectedImageIndex + 1}`}
@@ -346,8 +360,8 @@ export function Projects() {
 
               {/* Caption */}
               {selectedProject.gallery[selectedImageIndex].caption && (
-                <div className="p-4 border-t border-[#30363d]">
-                  <p className="text-[#8b949e] text-center">
+                <div className="p-4 border-t border-[var(--color-border-dark)]">
+                  <p className="text-[var(--color-text-soft)] text-center">
                     {selectedProject.gallery[selectedImageIndex].caption}
                   </p>
                 </div>
@@ -355,14 +369,14 @@ export function Projects() {
 
               {/* Thumbnails */}
               {selectedProject.gallery.length > 1 && (
-                <div className="p-4 border-t border-[#30363d]">
+                <div className="p-4 border-t border-[var(--color-border-dark)]">
                   <div className="flex gap-2 overflow-x-auto">
                     {selectedProject.gallery.map((img: any, index: number) => (
                       <button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
                         className={`relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-colors ${
-                          index === selectedImageIndex ? 'border-[#00BFA6]' : 'border-[#30363d]'
+                          index === selectedImageIndex ? 'border-[var(--color-primary-500)]' : 'border-[var(--color-border-dark)]'
                         }`}
                       >
                         <Image

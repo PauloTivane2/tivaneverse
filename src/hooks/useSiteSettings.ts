@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { client, urlFor } from '@/src/lib/sanity'
+import { colors } from '@/src/lib/colors'
 
 // Query GROQ para buscar todas as configurações do site do Sanity CMS
 // Inclui informações básicas, tema, SEO e performance
@@ -154,8 +155,8 @@ export function useSiteSettings() {
             
             // Configurações de tema e tipografia
             theme: {
-              primaryColor: data.theme?.primaryColor || '#00BFA6',
-              secondaryColor: data.theme?.secondaryColor || '#7C3AED',
+              primaryColor: data.theme?.primaryColor || colors.primary[500],
+              secondaryColor: data.theme?.secondaryColor || colors.secondary[500],
               darkMode: data.theme?.darkMode ?? true,
               animationSpeed: data.theme?.animationSpeed || 'normal',
               customFonts: {
