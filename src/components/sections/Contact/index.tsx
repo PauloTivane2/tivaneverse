@@ -47,33 +47,33 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-night)]" ref={ref}>
+    <section id="contact" className="corporate-section bg-[var(--color-bg-night)] relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-elevated)] via-[var(--color-bg-elevated)]/70 via-[var(--color-bg-night)]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-elevated)] to-transparent pointer-events-none" />
       
       {/* Gradient Transition to footer */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-night)]/30 via-[var(--color-bg-deep)]/70 to-[var(--color-bg-deep)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-deep)] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="corporate-container relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="corporate-section-header"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[var(--color-secondary-100)] border border-[var(--color-secondary-200)] text-[var(--color-secondary-500)] text-sm font-medium mb-4"
+            className="corporate-badge"
           >
             Get In Touch
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
+          <h2 className="corporate-section-title">
             Contact Me
           </h2>
-          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
+          <p className="corporate-section-description">
             Have a project in mind? Let's work together to bring your ideas to life
           </p>
         </motion.div>
@@ -85,10 +85,10 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="corporate-form">
               {/* Name Input */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[var(--color-text-light)] mb-2">
+              <div className="corporate-form-group">
+                <label htmlFor="name" className="corporate-form-label">
                   Name
                 </label>
                 <input
@@ -98,14 +98,14 @@ export function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] text-[var(--color-text-light)] placeholder-[var(--color-text-dim)] focus:border-[var(--color-primary-500)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-200)] transition-all"
+                  className="corporate-form-input"
                   placeholder="Your name"
                 />
               </div>
 
               {/* Email Input */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[var(--color-text-light)] mb-2">
+              <div className="corporate-form-group">
+                <label htmlFor="email" className="corporate-form-label">
                   Email
                 </label>
                 <input
@@ -115,14 +115,14 @@ export function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] text-[var(--color-text-light)] placeholder-[var(--color-text-dim)] focus:border-[var(--color-primary-500)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-200)] transition-all"
+                  className="corporate-form-input"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               {/* Message Textarea */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[var(--color-text-light)] mb-2">
+              <div className="corporate-form-group">
+                <label htmlFor="message" className="corporate-form-label">
                   Message
                 </label>
                 <textarea
@@ -132,7 +132,7 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] text-[var(--color-text-light)] placeholder-[var(--color-text-dim)] focus:border-[var(--color-primary-500)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-200)] transition-all resize-none"
+                  className="corporate-form-textarea"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -141,7 +141,7 @@ export function Contact() {
               <motion.button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-[var(--color-primary-500)] to-[var(--color-primary-400)] text-[var(--color-text-dark)] font-semibold flex items-center justify-center gap-2 hover:shadow-[0_10px_30px_rgba(0,191,166,0.2)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="corporate-button corporate-button-primary w-full"
                 whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
                 whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
               >
@@ -213,7 +213,11 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--color-text-light)] mb-1">Location</h3>
-                    <p className="text-[var(--color-text-soft)]">{contactInfo?.location || 'Location not available'}</p>
+                    <p className="text-[var(--color-text-soft)]">
+                      {typeof contactInfo?.location === 'string' 
+                        ? contactInfo.location 
+                        : (contactInfo?.location as any)?.city || 'Location not available'}
+                    </p>
                   </div>
                 </div>
               </div>

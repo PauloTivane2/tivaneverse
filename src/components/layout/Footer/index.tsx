@@ -39,51 +39,50 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative bg-[var(--color-bg-deep)] border-t border-[var(--color-border-dark)] py-12">
+    <footer className="corporate-footer">
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] via-[var(--color-bg-night)]/70 via-[var(--color-bg-deep)]/30 to-transparent pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className="corporate-footer-container">
+        <div className="corporate-footer-grid">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold font-display text-[var(--color-primary-500)] mb-4">
+            <h3 className="corporate-footer-section-title">
               {loading ? (
                 <div className="h-6 bg-[var(--color-bg-night)] rounded animate-pulse w-32"></div>
               ) : (
                 contactInfo?.name || 'Paulo Tivane'
               )}
             </h3>
-            <p className="text-[var(--color-text-soft)] text-sm leading-relaxed">
+            <p className="corporate-text-small">
               Software Engineer & IT Professional crafting innovative digital solutions.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-[var(--color-text-light)] mb-4 uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="corporate-footer-section-title">Quick Links</h4>
+            <div className="corporate-footer-links">
               {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      scrollToSection(link.href)
-                    }}
-                    className="text-[var(--color-text-soft)] hover:text-[var(--color-primary-500)] text-sm transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection(link.href)
+                  }}
+                  className="corporate-footer-link"
+                >
+                  {link.name}
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Social Links */}
           <div>
-            <h4 className="text-sm font-semibold text-[var(--color-text-light)] mb-4 uppercase tracking-wider">Connect</h4>
-            <div className="flex gap-4">
+            <h4 className="corporate-footer-section-title">Connect</h4>
+            <div className="corporate-footer-social">
               {loading ? (
                 // Loading skeleton for social links
                 Array.from({ length: 4 }).map((_, index) => (
@@ -96,7 +95,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] flex items-center justify-center text-[var(--color-text-soft)] hover:text-[var(--color-primary-500)] hover:border-[var(--color-primary-500)] transition-all"
+                    className="corporate-footer-social-link"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
@@ -111,10 +110,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="pt-8 border-t border-[var(--color-border-dark)]">
-          <p className="text-center text-[var(--color-text-dim)] text-sm">
-            © {new Date().getFullYear()} {contactInfo?.name || 'Paulo Babucho Issaca Tivane'}. All rights reserved.
+        {/* Copyright - Melhor Visibilidade */}
+        <div className="corporate-footer-bottom">
+          <p className="text-sm text-[var(--color-text-soft)] text-center">
+            © {new Date().getFullYear()}{' '}
+            <span className="font-semibold text-[var(--color-primary-500)]">
+              {contactInfo?.name || 'Paulo Babucho Issaca Tivane'}
+            </span>
+            {'. '}
+            <span className="text-[var(--color-text-dim)]">Todos os direitos reservados.</span>
           </p>
         </div>
       </div>

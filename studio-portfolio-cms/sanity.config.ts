@@ -6,6 +6,7 @@ import { colorInput } from '@sanity/color-input'
 // Import schemas and configuration
 import { schemaTypes } from './schemas'
 import { deskStructure } from './config/deskStructure'
+import { ResetColorsAction } from './components/ResetColorsAction'
 
 export default defineConfig({
   name: 'paulo-portfolio-cms',
@@ -24,6 +25,17 @@ export default defineConfig({
   
   schema: {
     types: schemaTypes,
+  },
+  
+  // Document actions - adiciona botão de reset para colorSettings
+  document: {
+    actions: (prev, context) => {
+      // Adiciona ação de reset apenas para o documento colorSettings
+      if (context.schemaType === 'colorSettings') {
+        return [...prev, ResetColorsAction]
+      }
+      return prev
+    },
   },
   
   // Studio configuration

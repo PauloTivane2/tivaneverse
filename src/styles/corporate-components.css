@@ -1,0 +1,848 @@
+/**
+ * =====================================================
+ * COMPONENTES CORPORATIVOS ESPECÍFICOS
+ * =====================================================
+ * 
+ * Estilos profissionais adaptados para os componentes
+ * do portfólio Paulo Tivane.
+ * 
+ * Mantém a filosofia corporativa: clareza, hierarquia,
+ * profissionalismo e atemporalidade.
+ */
+
+/* =====================================================
+   NAVBAR CORPORATIVO
+   ===================================================== */
+
+.corporate-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  
+  background: var(--corp-bg-deepest);
+  border-bottom: var(--border-thin) solid var(--corp-border-subtle);
+  box-shadow: var(--shadow-1);
+  
+  transition: 
+    box-shadow var(--transition-moderate) var(--easing-standard),
+    background var(--transition-moderate) var(--easing-standard);
+}
+
+.corporate-navbar.scrolled {
+  box-shadow: var(--shadow-3);
+}
+
+.corporate-navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.corporate-navbar-logo {
+  font-size: var(--type-scale-large);
+  font-weight: var(--font-weight-bold);
+  color: var(--corp-primary-base);
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-tight);
+  
+  transition: color var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-navbar-logo:hover {
+  color: var(--corp-primary-light);
+}
+
+.corporate-navbar-links {
+  display: flex;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.corporate-navbar-link {
+  position: relative;
+  padding: var(--space-2) 0;
+  
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--corp-text-secondary);
+  text-decoration: none;
+  
+  transition: color var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--corp-primary-base);
+  transition: width var(--transition-moderate) var(--easing-standard);
+}
+
+.corporate-navbar-link:hover {
+  color: var(--corp-primary-base);
+}
+
+.corporate-navbar-link:hover::after,
+.corporate-navbar-link.active::after {
+  width: 100%;
+}
+
+.corporate-navbar-link.active {
+  color: var(--corp-primary-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Mobile Menu */
+.corporate-navbar-mobile-toggle {
+  display: none;
+  padding: var(--space-2);
+  background: transparent;
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-subtle);
+  color: var(--corp-text-primary);
+  cursor: pointer;
+  
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-navbar-mobile-toggle:hover {
+  background: var(--corp-bg-medium);
+  border-color: var(--corp-primary-base);
+}
+
+@media (max-width: 768px) {
+  .corporate-navbar-links {
+    display: none;
+  }
+  
+  .corporate-navbar-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .corporate-navbar-mobile-menu {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--corp-bg-dark);
+    border-bottom: var(--border-thin) solid var(--corp-border-subtle);
+    box-shadow: var(--shadow-3);
+    padding: var(--space-6);
+  }
+  
+  .corporate-navbar-mobile-menu .corporate-navbar-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}
+
+/* =====================================================
+   HERO SECTION CORPORATIVO
+   ===================================================== */
+
+.corporate-hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  padding: var(--space-24) var(--space-6);
+  background: var(--corp-bg-deepest);
+}
+
+.corporate-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.corporate-hero-content {
+  max-width: 800px;
+}
+
+.corporate-hero-eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  
+  font-size: var(--type-scale-small);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-xwide);
+  text-transform: uppercase;
+  color: var(--corp-primary-base);
+}
+
+.corporate-hero-title {
+  margin-bottom: var(--space-6);
+  
+  font-size: var(--type-scale-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--corp-text-primary);
+}
+
+.corporate-hero-subtitle {
+  margin-bottom: var(--space-4);
+  
+  font-size: var(--type-scale-xlarge);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  color: var(--corp-text-secondary);
+}
+
+.corporate-hero-description {
+  margin-bottom: var(--space-8);
+  
+  font-size: var(--type-scale-large);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+  max-width: 60ch;
+}
+
+.corporate-hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .corporate-hero {
+    min-height: auto;
+    padding: var(--space-16) var(--space-4);
+  }
+  
+  .corporate-hero-title {
+    font-size: var(--type-scale-3xl);
+  }
+  
+  .corporate-hero-subtitle {
+    font-size: var(--type-scale-large);
+  }
+  
+  .corporate-hero-actions {
+    flex-direction: column;
+  }
+  
+  .corporate-hero-actions .corporate-button {
+    width: 100%;
+  }
+}
+
+/* =====================================================
+   PROJECT CARD CORPORATIVO
+   ===================================================== */
+
+.corporate-project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  background: var(--corp-bg-medium);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+  overflow: hidden;
+  
+  transition: 
+    box-shadow var(--transition-moderate) var(--easing-standard),
+    border-color var(--transition-moderate) var(--easing-standard);
+}
+
+.corporate-project-card:hover {
+  border-color: var(--corp-primary-base);
+  box-shadow: var(--shadow-3);
+}
+
+.corporate-project-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--corp-bg-dark);
+  overflow: hidden;
+}
+
+.corporate-project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow) var(--easing-standard);
+}
+
+.corporate-project-card:hover .corporate-project-card-image img {
+  transform: scale(1.02);
+}
+
+.corporate-project-card-content {
+  flex: 1;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.corporate-project-card-category {
+  font-size: var(--type-scale-xsmall);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-xwide);
+  text-transform: uppercase;
+  color: var(--corp-primary-base);
+}
+
+.corporate-project-card-title {
+  font-size: var(--type-scale-xlarge);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.corporate-project-card-description {
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+  flex: 1;
+}
+
+.corporate-project-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: var(--border-thin) solid var(--corp-border-subtle);
+  
+  font-size: var(--type-scale-small);
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-project-card-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.corporate-project-card-tech-tag {
+  padding: var(--space-1) var(--space-3);
+  
+  font-size: var(--type-scale-xsmall);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  
+  background: var(--corp-bg-dark);
+  color: var(--corp-primary-base);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-minimal);
+}
+
+/* =====================================================
+   EXPERTISE/SERVICES CARD CORPORATIVO
+   ===================================================== */
+
+.corporate-service-card {
+  padding: var(--space-8);
+  
+  background: var(--corp-bg-dark);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+  
+  transition: all var(--transition-moderate) var(--easing-standard);
+}
+
+.corporate-service-card:hover {
+  border-color: var(--corp-primary-base);
+  box-shadow: var(--shadow-2);
+}
+
+.corporate-service-card-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-5);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: var(--corp-primary-subtle);
+  border: var(--border-thin) solid var(--corp-border-primary);
+  border-radius: var(--radius-standard);
+  
+  font-size: 24px;
+  color: var(--corp-primary-base);
+}
+
+.corporate-service-card-title {
+  margin-bottom: var(--space-3);
+  
+  font-size: var(--type-scale-large);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  color: var(--corp-text-primary);
+}
+
+.corporate-service-card-description {
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+}
+
+.corporate-service-card-features {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: var(--border-thin) solid var(--corp-border-subtle);
+}
+
+.corporate-service-card-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  
+  font-size: var(--type-scale-small);
+  color: var(--corp-text-secondary);
+}
+
+.corporate-service-card-feature::before {
+  content: '✓';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: var(--font-weight-bold);
+  color: var(--corp-primary-base);
+  
+  background: var(--corp-primary-subtle);
+  border-radius: 50%;
+}
+
+/* =====================================================
+   CONTACT FORM CORPORATIVO
+   ===================================================== */
+
+.corporate-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.corporate-form-group {
+  margin-bottom: var(--space-6);
+}
+
+.corporate-form-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  
+  font-size: var(--type-scale-small);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--corp-text-primary);
+}
+
+.corporate-form-label-required::after {
+  content: '*';
+  margin-left: var(--space-1);
+  color: var(--corp-error);
+}
+
+.corporate-form-input,
+.corporate-form-textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  
+  font-family: inherit;
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-normal);
+  color: var(--corp-text-primary);
+  
+  background: var(--corp-bg-deepest);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-subtle);
+  
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-form-input:focus,
+.corporate-form-textarea:focus {
+  outline: none;
+  border-color: var(--corp-primary-base);
+  box-shadow: 0 0 0 3px var(--corp-primary-subtle);
+}
+
+.corporate-form-input::placeholder,
+.corporate-form-textarea::placeholder {
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.corporate-form-hint {
+  display: block;
+  margin-top: var(--space-2);
+  
+  font-size: var(--type-scale-xsmall);
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-form-error {
+  display: block;
+  margin-top: var(--space-2);
+  
+  font-size: var(--type-scale-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--corp-error);
+}
+
+.corporate-form-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-end;
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 640px) {
+  .corporate-form-actions {
+    flex-direction: column;
+  }
+  
+  .corporate-form-actions .corporate-button {
+    width: 100%;
+  }
+}
+
+/* =====================================================
+   FOOTER CORPORATIVO
+   ===================================================== */
+
+.corporate-footer {
+  background: var(--corp-bg-deepest);
+  color: var(--corp-text-tertiary);
+  padding: var(--space-20) var(--space-6) var(--space-8);
+}
+
+.corporate-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.corporate-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+.corporate-footer-section-title {
+  margin-bottom: var(--space-4);
+  
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--corp-text-primary);
+}
+
+.corporate-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.corporate-footer-link {
+  font-size: var(--type-scale-base);
+  color: var(--corp-text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-footer-link:hover {
+  color: var(--corp-primary-base);
+}
+
+.corporate-footer-bottom {
+  padding-top: var(--space-8);
+  border-top: var(--border-thin) solid var(--corp-border-subtle);
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.corporate-footer-copyright {
+  font-size: var(--type-scale-small);
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-footer-social {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.corporate-footer-social-link {
+  width: 36px;
+  height: 36px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: var(--corp-text-secondary);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-subtle);
+  
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-footer-social-link:hover {
+  color: var(--corp-primary-base);
+  background: var(--corp-bg-dark);
+  border-color: var(--corp-primary-base);
+}
+
+@media (max-width: 640px) {
+  .corporate-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =====================================================
+   STATISTICS / METRICS SECTION
+   ===================================================== */
+
+.corporate-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+}
+
+.corporate-stat-item {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.corporate-stat-value {
+  display: block;
+  margin-bottom: var(--space-2);
+  
+  font-size: var(--type-scale-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--corp-primary-base);
+}
+
+.corporate-stat-label {
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--corp-text-secondary);
+}
+
+/* =====================================================
+   TESTIMONIAL CARD
+   ===================================================== */
+
+.corporate-testimonial {
+  padding: var(--space-8);
+  
+  background: var(--corp-bg-medium);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+}
+
+.corporate-testimonial-quote {
+  margin-bottom: var(--space-6);
+  
+  font-size: var(--type-scale-large);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+  font-style: italic;
+}
+
+.corporate-testimonial-quote::before {
+  content: '"';
+  font-size: var(--type-scale-3xl);
+  line-height: 0;
+  color: var(--corp-primary-base);
+  margin-right: var(--space-2);
+}
+
+.corporate-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: var(--border-thin) solid var(--corp-border-subtle);
+}
+
+.corporate-testimonial-author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--corp-bg-dark);
+  overflow: hidden;
+}
+
+.corporate-testimonial-author-info {
+  flex: 1;
+}
+
+.corporate-testimonial-author-name {
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--corp-text-primary);
+}
+
+.corporate-testimonial-author-title {
+  font-size: var(--type-scale-small);
+  color: var(--corp-text-tertiary);
+}
+
+/* =====================================================
+   TIMELINE / PROCESS
+   ===================================================== */
+
+.corporate-timeline {
+  position: relative;
+  padding-left: var(--space-10);
+}
+
+.corporate-timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--corp-border-subtle);
+}
+
+.corporate-timeline-item {
+  position: relative;
+  padding-bottom: var(--space-10);
+}
+
+.corporate-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.corporate-timeline-marker {
+  position: absolute;
+  left: -36px;
+  top: 4px;
+  
+  width: 24px;
+  height: 24px;
+  
+  background: var(--corp-bg-deepest);
+  border: var(--border-thick) solid var(--corp-primary-base);
+  border-radius: 50%;
+}
+
+.corporate-timeline-date {
+  margin-bottom: var(--space-2);
+  
+  font-size: var(--type-scale-small);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--corp-primary-base);
+}
+
+.corporate-timeline-title {
+  margin-bottom: var(--space-2);
+  
+  font-size: var(--type-scale-large);
+  font-weight: var(--font-weight-semibold);
+  color: var(--corp-text-primary);
+}
+
+.corporate-timeline-description {
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+}
+
+/* =====================================================
+   CALL TO ACTION SECTION
+   ===================================================== */
+
+.corporate-cta {
+  padding: var(--space-20);
+  text-align: center;
+  
+  background: var(--corp-bg-medium);
+  border: var(--border-standard) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+}
+
+.corporate-cta-title {
+  margin-bottom: var(--space-4);
+  
+  font-size: var(--type-scale-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--corp-text-primary);
+}
+
+.corporate-cta-description {
+  margin-bottom: var(--space-8);
+  
+  font-size: var(--type-scale-large);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.corporate-cta-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   RESPONSIVE UTILITIES
+   ===================================================== */
+
+@media (max-width: 1024px) {
+  .corporate-hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .corporate-hide-mobile {
+    display: none !important;
+  }
+  
+  .corporate-project-card-content {
+    padding: var(--space-5);
+  }
+  
+  .corporate-service-card {
+    padding: var(--space-6);
+  }
+}
+
+@media (min-width: 769px) {
+  .corporate-show-mobile-only {
+    display: none !important;
+  }
+}

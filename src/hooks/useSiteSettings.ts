@@ -148,7 +148,12 @@ export function useSiteSettings() {
             // Informações básicas com fallbacks
             title: data.title || 'Paulo Babucho Issaca Tivane | Portfólio',
             description: data.description || 'Desenvolvedor Full-Stack especializado em soluções web modernas',
-            keywords: data.keywords || ['desenvolvedor', 'full-stack', 'react', 'typescript', 'moçambique'],
+            // Converter keywords de string separada por vírgulas para array
+            keywords: data.keywords 
+              ? (typeof data.keywords === 'string' 
+                  ? data.keywords.split(',').map((k: string) => k.trim()).filter((k: string) => k.length > 0)
+                  : data.keywords)
+              : ['desenvolvedor', 'full-stack', 'react', 'typescript', 'moçambique'],
             logo: data.logo ? urlFor(data.logo).width(200).height(200).url() : null,
             favicon: data.favicon ? urlFor(data.favicon).width(32).height(32).url() : null,
             ogImage: data.ogImage ? urlFor(data.ogImage).width(1200).height(630).url() : null,

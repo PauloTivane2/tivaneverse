@@ -17,6 +17,12 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
+        // Corporate variants
+        corporate: 'bg-[var(--corp-bg-medium)] text-[var(--corp-text-secondary)] border-[var(--corp-border-subtle)]',
+        'corporate-success': 'bg-[var(--corp-bg-success)] text-[var(--corp-success)] border-[var(--corp-success)]',
+        'corporate-warning': 'bg-[var(--corp-bg-warning)] text-[var(--corp-warning)] border-[var(--corp-warning)]',
+        'corporate-error': 'bg-[var(--corp-bg-error)] text-[var(--corp-error)] border-[var(--corp-error)]',
+        'corporate-info': 'bg-[var(--corp-bg-info)] text-[var(--corp-info)] border-[var(--corp-info)]',
       },
     },
     defaultVariants: {

@@ -7,6 +7,7 @@ export interface ProfileData {
   email: string
   phone?: string
   location: string
+  locationMapLink?: string
   resume?: {
     asset: {
       _ref: string

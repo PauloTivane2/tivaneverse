@@ -7,6 +7,7 @@ import {
   DocumentTextIcon,
   HomeIcon,
   SparklesIcon,
+  ColorWheelIcon,
 } from '@sanity/icons'
 
 export const deskStructure = (S: any) =>
@@ -44,6 +45,17 @@ export const deskStructure = (S: any) =>
             .schemaType('visualEffects')
             .documentId('visualEffects')
             .title('Visual Effects Configuration')
+        ),
+
+      // Color Settings
+      S.listItem()
+        .title('Configurações de Cores')
+        .icon(ColorWheelIcon)
+        .child(
+          S.document()
+            .schemaType('colorSettings')
+            .documentId('colorSettings')
+            .title('Gerenciamento de Cores')
         ),
 
       S.divider(),

@@ -34,11 +34,32 @@ export function useContact() {
         
         if (data) {
           // Transform Sanity data to match ContactInfo interface
+          // Parse location: pode ser string (formato antigo) ou objeto (formato novo)
+          let locationText: string = 'Mozambique'
+          
+          if (data.location) {
+            if (typeof data.location === 'string') {
+              // Formato antigo: string simples
+              locationText = data.location
+              console.log('📍 [CONTACT] Location is STRING:', locationText)
+            } else if (typeof data.location === 'object' && data.location !== null) {
+              // Formato novo: objeto com city e mapLink
+              locationText = data.location.city || 'Mozambique'
+              console.log('📍 [CONTACT] Location is OBJECT:', { city: locationText })
+            }
+          }
+          
+          // GARANTIR que location seja SEMPRE string
+          if (typeof locationText !== 'string') {
+            console.error('❌ [CONTACT] Location não é string!', locationText)
+            locationText = 'Mozambique'
+          }
+          
           const transformedData: ContactInfo = {
             name: data.name || 'Paulo Babucho Issaca Tivane',
             email: data.email || 'paulo@example.com',
             phone: data.phone,
-            location: data.location || 'Mozambique',
+            location: locationText,
             social: data.social || {}
           }
           

@@ -83,12 +83,10 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[var(--color-bg-deep)]/95 backdrop-blur-md border-b border-[var(--color-border-dark)]" : "bg-transparent"
-      }`}
+      className={`corporate-navbar ${scrolled ? "scrolled" : ""}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="corporate-navbar-container">
+        <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <motion.a
             href="#home"
@@ -111,14 +109,14 @@ export function Navbar() {
                 />
               </div>
             ) : (
-              <span className="text-xl font-bold font-display text-[var(--color-primary-500)] group-hover:text-[var(--color-primary-400)] transition-colors">
+              <span className="corporate-navbar-logo">
                 PT
               </span>
             )}
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="corporate-navbar-links hidden md:flex">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -127,13 +125,12 @@ export function Navbar() {
                   e.preventDefault()
                   scrollToSection(link.href)
                 }}
-                className="text-sm font-medium text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors relative group"
+                className="corporate-navbar-link"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-primary-500)] group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
@@ -142,7 +139,7 @@ export function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors p-2 rounded-lg hover:bg-white/10 active:bg-white/20"
+              className="corporate-navbar-mobile-toggle"
               aria-label="Toggle menu"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -159,9 +156,9 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[var(--color-bg-night)]/95 backdrop-blur-md border-t border-[var(--color-border-dark)] shadow-lg"
+            className="corporate-navbar-mobile-menu"
           >
-            <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
+            <div className="corporate-navbar-links flex flex-col">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
@@ -170,7 +167,7 @@ export function Navbar() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="block text-base font-medium text-[var(--color-text-light)] hover:text-[var(--color-primary-500)] transition-colors py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
+                  className="corporate-navbar-link"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}

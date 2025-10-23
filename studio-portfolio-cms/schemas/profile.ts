@@ -54,16 +54,42 @@ export const profile = defineType({
     }),
     defineField({
       name: 'phone',
-      title: 'Telefone',
+      title: 'Telefone de Contacto',
       type: 'string',
-      description: 'Seu número de telefone com código do país (ex: +258 84 123 4567) - Opcional',
+      description: 'Seu número de telefone/WhatsApp com código do país (ex: +258 84 123 4567)',
+      placeholder: '+258 84 123 4567',
+      validation: (Rule) => Rule.custom((phone) => {
+        if (!phone) return true // Optional
+        if (!/^\+?[0-9\s\-\(\)]+$/.test(phone)) {
+          return 'Por favor, insira um número de telefone válido'
+        }
+        return true
+      }),
     }),
     defineField({
       name: 'location',
       title: 'Localização',
-      type: 'string',
-      description: 'Sua cidade e país (ex: Maputo, Moçambique)',
-      validation: (Rule) => Rule.required(),
+      type: 'object',
+      description: 'Sua localização pode ser texto simples ou link do Google Maps',
+      fields: [
+        defineField({
+          name: 'city',
+          title: 'Cidade/País',
+          type: 'string',
+          description: 'Nome da sua cidade e país (ex: Maputo, Moçambique)',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'mapLink',
+          title: 'Link do Google Maps (Opcional)',
+          type: 'url',
+          description: 'Cole o link do Google Maps da sua localização. Se preenchido, a localização será clicável.',
+          validation: (Rule) => Rule.uri({
+            scheme: ['http', 'https'],
+            allowRelative: false
+          }),
+        }),
+      ],
     }),
     defineField({
       name: 'resume',
@@ -143,6 +169,15 @@ export const profile = defineType({
       title: 'name',
       subtitle: 'title',
       media: 'image',
+      location: 'location.city',
+    },
+    prepare(selection) {
+      const { title, subtitle, media, location } = selection
+      return {
+        title,
+        subtitle: location ? `${subtitle} • ${location}` : subtitle,
+        media,
+      }
     },
   },
 })

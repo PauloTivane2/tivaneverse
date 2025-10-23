@@ -39,33 +39,33 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-elevated)]" ref={ref}>
+    <section id="services" className="corporate-section bg-[var(--color-bg-elevated)] relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-card)] via-[var(--color-bg-card)]/70 via-[var(--color-bg-elevated)]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-card)] to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-elevated)]/30 via-[var(--color-bg-night)]/70 to-[var(--color-bg-night)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-night)] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="corporate-container relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="corporate-section-header"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-200)] text-[var(--color-primary-500)] text-sm font-medium mb-4"
+            className="corporate-hero-eyebrow"
           >
             What I Offer
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
+          <h2 className="corporate-section-title">
             Services
           </h2>
-          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
+          <p className="corporate-section-description">
             Comprehensive IT solutions tailored to your business needs
           </p>
         </motion.div>
@@ -101,31 +101,26 @@ export function Services() {
           ) : servicesData.length > 0 ? (
             servicesData.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} className="group relative">
-              <div className="relative h-full p-8 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] transition-all duration-300">
+              <div className="corporate-service-card">
                 {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[var(--color-primary-200)] to-[var(--color-secondary-200)] border border-[var(--color-primary-300)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-7 h-7 text-[var(--color-primary-500)]" />
-                  </div>
+                <div className="corporate-service-card-icon">
+                  <service.icon />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold font-display text-[var(--color-text-light)] mb-3 group-hover:text-[var(--color-primary-500)] transition-colors">
+                <h3 className="corporate-service-card-title">
                   {service.title}
                 </h3>
-                <p className="text-[var(--color-text-soft)] mb-6 leading-relaxed">{service.description}</p>
+                <p className="corporate-service-card-description">{service.description}</p>
 
                 {/* Features List */}
-                <ul className="space-y-3">
+                <div className="corporate-service-card-features">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <div className="mt-1 w-5 h-5 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-300)] flex items-center justify-center flex-shrink-0">
-                        <FiCheck className="w-3 h-3 text-[var(--color-primary-500)]" />
-                      </div>
-                      <span className="text-sm text-[var(--color-text-light)]">{feature}</span>
-                    </li>
+                    <div key={feature} className="corporate-service-card-feature">
+                      {feature}
+                    </div>
                   ))}
-                </ul>
+                </div>
 
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

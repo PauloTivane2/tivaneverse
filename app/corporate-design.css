@@ -1,0 +1,770 @@
+/**
+ * =====================================================
+ * CORPORATE DESIGN SYSTEM
+ * =====================================================
+ * 
+ * Sistema de design corporativo profissional e atemporal.
+ * Baseado em princípios clássicos de design institucional:
+ * 
+ * - Hierarquia tipográfica consistente e precisa
+ * - Espaçamento modular baseado em múltiplos de 8px
+ * - Geometria clara com alinhamento rigoroso
+ * - Transições técnicas e funcionais (não decorativas)
+ * - Paleta de cores sóbria e contrastante
+ * - Bordas definidas e estruturais
+ * - Sombras sutis e técnicas
+ * 
+ * Este sistema foi projetado para transmitir profissionalismo,
+ * confiança e maturidade técnica — características que permanecem
+ * relevantes independentemente de tendências temporárias.
+ */
+
+/* =====================================================
+   1. FUNDAMENTOS TIPOGRÁFICOS
+   ===================================================== */
+
+/**
+ * Escala tipográfica modular baseada em proporções clássicas.
+ * Ratio: 1.250 (Quarta Maior) - equilibrado e profissional.
+ * 
+ * Base: 16px (1rem)
+ * Escala: 12px, 14px, 16px, 20px, 25px, 31px, 39px, 49px, 61px
+ */
+
+:root {
+  /* Escala Tipográfica Corporativa */
+  --type-scale-base: 1rem;        /* 16px - Texto padrão */
+  --type-scale-small: 0.875rem;   /* 14px - Texto auxiliar */
+  --type-scale-xsmall: 0.75rem;   /* 12px - Legendas, labels */
+  --type-scale-large: 1.25rem;    /* 20px - Subtítulos */
+  --type-scale-xlarge: 1.563rem;  /* 25px - Títulos de seção */
+  --type-scale-2xl: 1.953rem;     /* 31px - Títulos principais */
+  --type-scale-3xl: 2.441rem;     /* 39px - Títulos hero */
+  --type-scale-4xl: 3.052rem;     /* 49px - Display */
+  
+  /* Pesos tipográficos - Limitados para clareza */
+  --font-weight-regular: 400;     /* Corpo de texto */
+  --font-weight-medium: 500;      /* Ênfase moderada */
+  --font-weight-semibold: 600;    /* Títulos secundários */
+  --font-weight-bold: 700;        /* Títulos principais */
+  
+  /* Alturas de linha - Otimizadas para legibilidade */
+  --line-height-tight: 1.25;      /* Títulos grandes */
+  --line-height-normal: 1.5;      /* Texto padrão */
+  --line-height-relaxed: 1.75;    /* Texto longo */
+  
+  /* Espaçamento entre letras */
+  --letter-spacing-tight: -0.025em;   /* Títulos grandes */
+  --letter-spacing-normal: 0;          /* Texto padrão */
+  --letter-spacing-wide: 0.025em;      /* Labels, botões */
+  --letter-spacing-xwide: 0.1em;       /* Subtítulos */
+}
+
+/* =====================================================
+   2. SISTEMA DE ESPAÇAMENTO MODULAR
+   ===================================================== */
+
+/**
+ * Grid de 8 pontos - Base para todo o espaçamento.
+ * Garante consistência e alinhamento perfeito em todos os elementos.
+ */
+
+:root {
+  --space-1: 0.25rem;   /* 4px  - Espaçamento mínimo */
+  --space-2: 0.5rem;    /* 8px  - Base do grid */
+  --space-3: 0.75rem;   /* 12px - Compacto */
+  --space-4: 1rem;      /* 16px - Padrão */
+  --space-5: 1.25rem;   /* 20px - Confortável */
+  --space-6: 1.5rem;    /* 24px - Respiração */
+  --space-8: 2rem;      /* 32px - Seções internas */
+  --space-10: 2.5rem;   /* 40px - Separação moderada */
+  --space-12: 3rem;     /* 48px - Separação clara */
+  --space-16: 4rem;     /* 64px - Divisão de seções */
+  --space-20: 5rem;     /* 80px - Espaço generoso */
+  --space-24: 6rem;     /* 96px - Separação major */
+  --space-32: 8rem;     /* 128px - Divisão de páginas */
+}
+
+/* =====================================================
+   3. GEOMETRIA E BORDAS
+   ===================================================== */
+
+/**
+ * Bordas definidas e estruturais.
+ * Raios mínimos - apenas o suficiente para suavizar cantos,
+ * sem criar aparência "bolhada" ou moderna demais.
+ */
+
+:root {
+  /* Raios de borda - Sutis e funcionais */
+  --radius-none: 0;           /* Completamente reto */
+  --radius-minimal: 2px;      /* Quase imperceptível */
+  --radius-subtle: 4px;       /* Suavização leve */
+  --radius-standard: 6px;     /* Padrão corporativo */
+  --radius-moderate: 8px;     /* Cards e containers */
+  
+  /* Larguras de borda - Linhas precisas */
+  --border-thin: 1px;         /* Linhas finas e discretas */
+  --border-standard: 2px;     /* Bordas padrão */
+  --border-thick: 3px;        /* Ênfase estrutural */
+  --border-heavy: 4px;        /* Separação forte */
+}
+
+/* =====================================================
+   4. SOMBRAS TÉCNICAS E ESTRUTURAIS
+   ===================================================== */
+
+/**
+ * Sombras sutis que sugerem profundidade física,
+ * não efeitos de "flutuação" modernos.
+ * Baseadas em princípios de elevação real de materiais.
+ */
+
+:root {
+  /* Elevações - Sistema de 5 níveis */
+  --shadow-none: none;
+  
+  --shadow-1: 
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  /* Leve contato com a superfície */
+  
+  --shadow-2: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 3px 6px rgba(0, 0, 0, 0.05);
+  /* Elevação de cards padrão */
+  
+  --shadow-3: 
+    0 4px 8px rgba(0, 0, 0, 0.10),
+    0 6px 12px rgba(0, 0, 0, 0.06);
+  /* Elementos destacados */
+  
+  --shadow-4: 
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    0 12px 24px rgba(0, 0, 0, 0.08);
+  /* Modais e overlays */
+  
+  --shadow-5: 
+    0 16px 32px rgba(0, 0, 0, 0.16),
+    0 24px 48px rgba(0, 0, 0, 0.10);
+  /* Máxima elevação */
+  
+  /* Sombras especiais para contextos específicos */
+  --shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-outline: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* =====================================================
+   5. TRANSIÇÕES FUNCIONAIS
+   ===================================================== */
+
+/**
+ * Animações mínimas e técnicas.
+ * Apenas quando necessárias para indicar mudança de estado,
+ * nunca decorativas ou chamativas.
+ */
+
+:root {
+  /* Durações - Rápidas e discretas */
+  --transition-instant: 100ms;    /* Feedback imediato */
+  --transition-fast: 150ms;       /* Interações padrão */
+  --transition-moderate: 250ms;   /* Mudanças de estado */
+  --transition-slow: 400ms;       /* Transições complexas */
+  
+  /* Easing - Natural e técnico */
+  --easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);    /* Material Design */
+  --easing-enter: cubic-bezier(0.0, 0.0, 0.2, 1);        /* Entrada */
+  --easing-exit: cubic-bezier(0.4, 0.0, 1, 1);           /* Saída */
+  --easing-linear: linear;                                /* Progressos */
+}
+
+/* =====================================================
+   6. SISTEMA DE CORES CORPORATIVAS ADAPTADO
+   ===================================================== */
+
+/**
+ * Paleta adaptada para tema escuro moderno.
+ * Mantém profissionalismo com cores vibrantes (Verde/Roxo).
+ * Contraste adequado para acessibilidade (WCAG AA/AAA).
+ */
+
+:root {
+  /* Escala de Backgrounds - Tema Escuro Profissional */
+  --corp-bg-deepest: var(--color-bg-deep);      /* #0D1117 - Mais escuro */
+  --corp-bg-dark: var(--color-bg-night);        /* #161B22 - Escuro */
+  --corp-bg-medium: var(--color-bg-card);       /* #1A1F29 - Médio */
+  --corp-bg-light: var(--color-bg-elevated);    /* #212835 - Mais claro */
+  
+  /* Escala de Texto - Clara e Legível */
+  --corp-text-primary: var(--color-text-light); /* #C9D1D9 - Texto principal */
+  --corp-text-secondary: var(--color-text-soft); /* #8B949E - Texto secundário */
+  --corp-text-tertiary: var(--color-text-dim);  /* #6E7681 - Texto terciário */
+  --corp-text-inverse: var(--color-text-dark);  /* #0D1117 - Texto em fundos claros */
+  
+  /* Escala de Bordas - Sutis e Estruturais */
+  --corp-border-subtle: var(--color-border-dark); /* #30363D - Bordas sutis */
+  --corp-border-primary: var(--color-border-green); /* #00BFA6 - Borda primária */
+  --corp-border-secondary: var(--color-border-purple); /* #7C3AED - Borda secundária */
+  
+  /* Cores de Ação - Verde (Primary) e Roxo (Secondary) */
+  --corp-primary-base: var(--color-primary-500);    /* #00BFA6 */
+  --corp-primary-light: var(--color-primary-400);   /* #00D4B8 */
+  --corp-primary-dark: var(--color-primary-600);    /* #009E8A */
+  --corp-primary-subtle: var(--color-primary-100);  /* rgba(0,191,166,0.1) */
+  
+  --corp-secondary-base: var(--color-secondary-500);   /* #7C3AED */
+  --corp-secondary-light: var(--color-secondary-400);  /* #8B5CF6 */
+  --corp-secondary-dark: var(--color-secondary-600);   /* #6D28D9 */
+  --corp-secondary-subtle: var(--color-secondary-100); /* rgba(124,58,237,0.1) */
+  
+  /* Cores Funcionais - Feedback e Estado */
+  --corp-success: #10B981;        /* Verde - Sucesso */
+  --corp-warning: #F59E0B;        /* Âmbar - Atenção */
+  --corp-error: #EF4444;          /* Vermelho - Erro */
+  --corp-info: #3B82F6;           /* Azul - Informação */
+  
+  /* Backgrounds funcionais com opacidade */
+  --corp-bg-success: rgba(16, 185, 129, 0.1);
+  --corp-bg-warning: rgba(245, 158, 11, 0.1);
+  --corp-bg-error: rgba(239, 68, 68, 0.1);
+  --corp-bg-info: rgba(59, 130, 246, 0.1);
+}
+
+/* =====================================================
+   7. CLASSES UTILITÁRIAS CORPORATIVAS
+   ===================================================== */
+
+/* Tipografia Base */
+.corporate-body {
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+  font-weight: var(--font-weight-regular);
+  color: var(--corp-text-secondary);
+}
+
+.corporate-heading {
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* Hierarquia de Títulos */
+.corporate-h1 {
+  font-size: var(--type-scale-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.corporate-h2 {
+  font-size: var(--type-scale-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-5);
+}
+
+.corporate-h3 {
+  font-size: var(--type-scale-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.corporate-h4 {
+  font-size: var(--type-scale-xlarge);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.corporate-h5 {
+  font-size: var(--type-scale-large);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  color: var(--corp-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* Texto de Corpo */
+.corporate-text-body {
+  font-size: var(--type-scale-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--corp-text-secondary);
+  max-width: 70ch; /* Largura ótima para leitura */
+}
+
+.corporate-text-lead {
+  font-size: var(--type-scale-large);
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-regular);
+  color: var(--corp-text-secondary);
+  max-width: 65ch;
+}
+
+.corporate-text-small {
+  font-size: var(--type-scale-small);
+  line-height: var(--line-height-normal);
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-text-caption {
+  font-size: var(--type-scale-xsmall);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-semibold);
+  color: var(--corp-text-tertiary);
+}
+
+/* Containers e Cards Corporativos */
+.corporate-container {
+  max-width: 1200px; /* Largura máxima confortável */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.corporate-card {
+  background: var(--corp-bg-medium);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-2);
+  transition: box-shadow var(--transition-moderate) var(--easing-standard);
+}
+
+.corporate-card:hover {
+  box-shadow: var(--shadow-3);
+}
+
+.corporate-card-flat {
+  background: var(--corp-bg-dark);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-standard);
+  padding: var(--space-8);
+  /* Sem sombra - aparência mais plana e formal */
+}
+
+/* Botões Corporativos */
+.corporate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  
+  padding: var(--space-3) var(--space-6);
+  
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: 1;
+  text-decoration: none;
+  
+  border: var(--border-standard) solid transparent;
+  border-radius: var(--radius-subtle);
+  
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  
+  /* Prevenir seleção de texto */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.corporate-button-primary {
+  background: var(--corp-primary-base);
+  color: var(--corp-text-inverse);
+  border-color: var(--corp-primary-base);
+}
+
+.corporate-button-primary:hover {
+  background: var(--corp-primary-light);
+  border-color: var(--corp-primary-light);
+  box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
+}
+
+.corporate-button-primary:active {
+  background: var(--corp-primary-dark);
+  box-shadow: var(--shadow-inset);
+}
+
+.corporate-button-secondary {
+  background: var(--corp-bg-dark);
+  color: var(--corp-text-primary);
+  border-color: var(--corp-border-subtle);
+}
+
+.corporate-button-secondary:hover {
+  background: var(--corp-bg-medium);
+  border-color: var(--corp-border-primary);
+  box-shadow: var(--shadow-1);
+}
+
+.corporate-button-secondary:active {
+  background: var(--corp-bg-light);
+  box-shadow: var(--shadow-inset);
+}
+
+.corporate-button-text {
+  background: transparent;
+  color: var(--corp-text-secondary);
+  border-color: transparent;
+  padding: var(--space-2) var(--space-4);
+}
+
+.corporate-button-text:hover {
+  background: var(--corp-bg-medium);
+  color: var(--corp-primary-base);
+}
+
+/* Formulários Corporativos */
+.corporate-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--corp-text-primary);
+  
+  background: var(--corp-bg-deepest);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-subtle);
+  
+  transition: all var(--transition-fast) var(--easing-standard);
+  
+  /* Reset de aparência */
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.corporate-input:focus {
+  outline: none;
+  border-color: var(--corp-primary-base);
+  box-shadow: 0 0 0 3px var(--corp-primary-subtle);
+}
+
+.corporate-input::placeholder {
+  color: var(--corp-text-tertiary);
+}
+
+.corporate-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  
+  font-size: var(--type-scale-small);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--corp-text-primary);
+}
+
+/* Listas e Navegação */
+.corporate-nav {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.corporate-nav-link {
+  font-size: var(--type-scale-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--corp-text-secondary);
+  text-decoration: none;
+  
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-standard) solid transparent;
+  
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.corporate-nav-link:hover {
+  color: var(--corp-primary-base);
+  border-bottom-color: var(--corp-primary-base);
+}
+
+.corporate-nav-link.active {
+  color: var(--corp-primary-base);
+  border-bottom-color: var(--corp-primary-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Seções e Layouts */
+.corporate-section {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-24);
+}
+
+.corporate-section-header {
+  margin-bottom: var(--space-12);
+  text-align: center;
+}
+
+.corporate-section-title {
+  font-size: var(--type-scale-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--corp-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.corporate-section-description {
+  font-size: var(--type-scale-large);
+  color: var(--corp-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid Corporativo */
+.corporate-grid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.corporate-grid-2 {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.corporate-grid-3 {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.corporate-grid-4 {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsividade do Grid */
+@media (max-width: 1024px) {
+  .corporate-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .corporate-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .corporate-grid-2,
+  .corporate-grid-3,
+  .corporate-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Divisores */
+.corporate-divider {
+  height: var(--border-thin);
+  background: var(--corp-border-subtle);
+  border: none;
+  margin: var(--space-12) 0;
+}
+
+.corporate-divider-vertical {
+  width: var(--border-thin);
+  background: var(--corp-border-subtle);
+  border: none;
+  margin: 0 var(--space-6);
+}
+
+/* Badges e Tags */
+.corporate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  padding: var(--space-2) var(--space-3);
+  
+  font-size: var(--type-scale-xsmall);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  
+  background: var(--corp-bg-medium);
+  color: var(--corp-text-secondary);
+  border: var(--border-thin) solid var(--corp-border-subtle);
+  border-radius: var(--radius-minimal);
+}
+
+.corporate-badge-success {
+  background: var(--corp-bg-success);
+  color: var(--corp-success);
+  border-color: var(--corp-success);
+}
+
+.corporate-badge-warning {
+  background: var(--corp-bg-warning);
+  color: var(--corp-warning);
+  border-color: var(--corp-warning);
+}
+
+.corporate-badge-error {
+  background: var(--corp-bg-error);
+  color: var(--corp-error);
+  border-color: var(--corp-error);
+}
+
+/* Utilitários de Espaçamento */
+.corporate-mt-1 { margin-top: var(--space-4); }
+.corporate-mt-2 { margin-top: var(--space-8); }
+.corporate-mt-3 { margin-top: var(--space-12); }
+.corporate-mt-4 { margin-top: var(--space-16); }
+
+.corporate-mb-1 { margin-bottom: var(--space-4); }
+.corporate-mb-2 { margin-bottom: var(--space-8); }
+.corporate-mb-3 { margin-bottom: var(--space-12); }
+.corporate-mb-4 { margin-bottom: var(--space-16); }
+
+.corporate-py-1 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.corporate-py-2 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.corporate-py-3 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+
+.corporate-px-1 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.corporate-px-2 { padding-left: var(--space-8); padding-right: var(--space-8); }
+.corporate-px-3 { padding-left: var(--space-12); padding-right: var(--space-12); }
+
+/* =====================================================
+   8. RESPONSIVIDADE CORPORATIVA
+   ===================================================== */
+
+/**
+ * Breakpoints técnicos e funcionais.
+ * Baseados em necessidades de layout, não em dispositivos específicos.
+ */
+
+@media (max-width: 1280px) {
+  :root {
+    --type-scale-4xl: 2.441rem; /* Redução sutil para telas médias */
+    --type-scale-3xl: 1.953rem;
+  }
+  
+  .corporate-container {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --type-scale-4xl: 1.953rem; /* Ajuste para mobile */
+    --type-scale-3xl: 1.563rem;
+    --type-scale-2xl: 1.25rem;
+  }
+  
+  .corporate-container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  
+  .corporate-section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+  
+  .corporate-card {
+    padding: var(--space-6);
+  }
+  
+  .corporate-button {
+    width: 100%; /* Botões full-width em mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .corporate-container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  
+  .corporate-nav {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}
+
+/* =====================================================
+   9. ACESSIBILIDADE E PREFERÊNCIAS DO USUÁRIO
+   ===================================================== */
+
+/* Respeitar preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --corp-border-subtle: #40464D;
+    --corp-text-tertiary: #9BA1A7;
+  }
+  
+  .corporate-button-primary {
+    border-width: var(--border-standard);
+  }
+  
+  .corporate-input:focus {
+    outline: var(--border-standard) solid var(--corp-primary-base);
+  }
+}
+
+/* Focus visível para navegação por teclado */
+:focus-visible {
+  outline: var(--border-standard) solid var(--corp-primary-base);
+  outline-offset: 2px;
+}
+
+/* Remover outline para mouse clicks */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =====================================================
+   10. UTILITÁRIOS DE IMPRESSÃO
+   ===================================================== */
+
+@media print {
+  .corporate-body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: black;
+  }
+  
+  .corporate-heading {
+    page-break-after: avoid;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  .corporate-card {
+    border: var(--border-thin) solid black;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+  
+  .corporate-button {
+    display: none; /* Ocultar botões na impressão */
+  }
+}

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./corporate-design.css";
+@import "../src/styles/corporate-components.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -241,65 +243,105 @@
   color: var(--color-primary-500);
 }
 
-/* Matrix Animation Glow */
-.matrix-glow {
-  animation: glow 2s ease-in-out infinite;
+/* =====================================================
+   ESTILOS CORPORATIVOS ADAPTADOS
+   ===================================================== */
+
+/**
+ * Substituição de efeitos modernos por alternativas corporativas.
+ * Foco em feedback sutil e profissional, sem brilhos ou flutuação.
+ */
+
+/* Texto com ênfase sutil (substitui matrix-glow) */
+.corporate-text-emphasis {
+  color: var(--color-primary-500);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast) var(--easing-standard);
 }
 
-/* Pulse Glow Animation */
-.pulse-glow {
-  animation: pulseGlow 2s ease-in-out infinite;
+/* Indicador visual discreto (substitui pulse-glow) */
+.corporate-indicator {
+  position: relative;
+  transition: box-shadow var(--transition-moderate) var(--easing-standard);
 }
 
-/* Hover Glow Effect */
-.hover-glow {
-  transition: all 0.3s ease;
+.corporate-indicator::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--color-primary-500);
+  border-radius: 2px;
 }
 
-.hover-glow:hover {
-  box-shadow: 0 0 15px rgba(0, 191, 166, 0.5);
+/* Hover profissional para elementos interativos */
+.corporate-hover {
+  transition: 
+    border-color var(--transition-fast) var(--easing-standard),
+    box-shadow var(--transition-fast) var(--easing-standard);
 }
 
-/* Card Hover Effect */
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.corporate-hover:hover {
+  border-color: var(--gray-400);
+  box-shadow: var(--shadow-2);
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+/* Hover para cards - elevação sutil */
+.corporate-card-interactive {
+  transition: 
+    box-shadow var(--transition-moderate) var(--easing-standard),
+    border-color var(--transition-moderate) var(--easing-standard);
 }
 
-/* IT Theme Utilities */
-.tech-border {
-  border: 1px solid rgba(0, 191, 166, 0.2);
+.corporate-card-interactive:hover {
+  border-color: var(--gray-400);
+  box-shadow: var(--shadow-3);
 }
 
-.tech-glow {
-  box-shadow: 0 0 10px rgba(0, 191, 166, 0.2);
+/* Bordas técnicas e estruturais */
+.corporate-border {
+  border: var(--border-thin) solid var(--gray-300);
 }
 
-.tech-glow-strong {
-  box-shadow: 0 0 20px rgba(0, 191, 166, 0.4), 0 0 40px rgba(0, 191, 166, 0.2);
+.corporate-border-accent {
+  border: var(--border-standard) solid var(--color-primary-500);
 }
 
-/* Keyframe Animations */
-@keyframes glow {
+.corporate-border-top {
+  border-top: var(--border-thin) solid var(--gray-300);
+}
+
+/* Animação funcional mínima para feedback de estado */
+@keyframes corporateFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.corporate-fade-in {
+  animation: corporateFadeIn var(--transition-moderate) var(--easing-enter);
+}
+
+/* Indicador de foco para acessibilidade */
+@keyframes corporatePulse {
   0%, 100% {
-    text-shadow: 0 0 5px rgba(0, 191, 166, 0.5), 0 0 10px rgba(0, 191, 166, 0.3);
+    opacity: 1;
   }
   50% {
-    text-shadow: 0 0 10px rgba(0, 191, 166, 0.8), 0 0 20px rgba(0, 191, 166, 0.5);
+    opacity: 0.7;
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 191, 166, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(0, 191, 166, 0.6), 0 0 25px rgba(0, 191, 166, 0.3);
-  }
+.corporate-pulse-subtle {
+  animation: corporatePulse 2s var(--easing-linear) infinite;
 }
 
 /* Fonte Space Mono para Matrix Rain */

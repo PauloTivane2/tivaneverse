@@ -6,6 +6,7 @@ import { expertise } from './expertise'
 
 import { siteSettings } from './siteSettings'
 import { visualEffects } from './visualEffects'
+import { colorSettings } from './colorSettings'
 
 // Export all schemas
 export const schemaTypes = [
@@ -16,4 +17,5 @@ export const schemaTypes = [
   expertise,
   siteSettings,
   visualEffects,
+  colorSettings,
 ]

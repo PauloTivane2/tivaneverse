@@ -22,6 +22,29 @@ export function useProfile() {
         
         if (data) {
           // Transform Sanity data to match ProfileData interface
+          // Parse location: pode ser string (formato antigo) ou objeto (formato novo)
+          let locationText: string = 'Mozambique'
+          let locationMap: string | undefined = undefined
+          
+          if (data.location) {
+            if (typeof data.location === 'string') {
+              // Formato antigo: string simples
+              locationText = data.location
+              console.log('📍 [PROFILE] Location is STRING:', locationText)
+            } else if (typeof data.location === 'object' && data.location !== null) {
+              // Formato novo: objeto com city e mapLink
+              locationText = data.location.city || 'Mozambique'
+              locationMap = data.location.mapLink || undefined
+              console.log('📍 [PROFILE] Location is OBJECT:', { city: locationText, mapLink: locationMap })
+            }
+          }
+          
+          // GARANTIR que location seja SEMPRE string
+          if (typeof locationText !== 'string') {
+            console.error('❌ [PROFILE] Location não é string!', locationText)
+            locationText = 'Mozambique'
+          }
+          
           const transformedData: ProfileData = {
             name: data.name || 'Paulo Babucho Issaca Tivane',
             title: data.title || 'Software Engineer | IT Professional',
@@ -32,12 +55,20 @@ export function useProfile() {
               : '/images/profile.png' : '/images/profile.png',
             email: data.email || 'paulo@example.com',
             phone: data.phone,
-            location: data.location || 'Mozambique',
+            location: locationText,
+            locationMapLink: locationMap,
             resume: data.resume,
             social: data.social,
             skills: data.skills || [],
             availability: data.availability || 'Available for freelance projects'
           }
+          
+          console.log('📍 [PROFILE] Location parsing:', {
+            raw: data.location,
+            parsed: locationText,
+            mapLink: locationMap,
+            phone: data.phone
+          })
           
           setProfileData(transformedData)
           console.log('✅ [PROFILE] Dados carregados do Sanity CMS com sucesso!')

@@ -25,12 +25,21 @@ export const siteSettings = defineType({
     defineField({
       name: 'keywords',
       title: 'Palavras-chave SEO',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags',
-      },
-      description: 'Palavras-chave que ajudam o Google a entender seu site. Use termos que seus clientes procurariam. Exemplos: desenvolvedor, react, typescript, frontend, backend, moçambique, maputo',
+      type: 'text',
+      rows: 3,
+      description: 'Palavras-chave separadas por vírgulas que ajudam o Google a entender seu site. Use termos que seus clientes procurariam.\n\nExemplo: desenvolvedor, react, typescript, frontend, backend, moçambique, maputo, web design, programação',
+      placeholder: 'desenvolvedor, react, typescript, node.js, frontend, backend...',
+      validation: (Rule) => Rule.custom((keywords) => {
+        if (!keywords) return true
+        const keywordArray = keywords.split(',').map((k: string) => k.trim()).filter((k: string) => k.length > 0)
+        if (keywordArray.length < 3) {
+          return 'Por favor, adicione pelo menos 3 palavras-chave separadas por vírgulas'
+        }
+        if (keywordArray.length > 20) {
+          return 'Máximo de 20 palavras-chave recomendado para melhor SEO'
+        }
+        return true
+      }),
     }),
     defineField({
       name: 'logo',
@@ -98,7 +107,14 @@ export const siteSettings = defineType({
                   { title: 'Poppins (Amigável e Profissional)', value: 'Poppins' },
                   { title: 'Montserrat (Elegante e Versátil)', value: 'Montserrat' },
                   { title: 'Roboto (Clássica e Legível)', value: 'Roboto' },
-                  { title: 'Open Sans (Universal e Confiável)', value: 'Open Sans' }
+                  { title: 'Open Sans (Universal e Confiável)', value: 'Open Sans' },
+                  { title: 'Playfair Display (Elegante e Serifa)', value: 'Playfair Display' },
+                  { title: 'Raleway (Fina e Sofisticada)', value: 'Raleway' },
+                  { title: 'Work Sans (Moderna e Geométrica)', value: 'Work Sans' },
+                  { title: 'Oswald (Forte e Impactante)', value: 'Oswald' },
+                  { title: 'Nunito (Arredondada e Amigável)', value: 'Nunito' },
+                  { title: 'Bebas Neue (Condensada e Moderna)', value: 'Bebas Neue' },
+                  { title: 'Space Grotesk (Única e Técnica)', value: 'Space Grotesk' }
                 ]
               },
               initialValue: 'Inter'
@@ -114,7 +130,12 @@ export const siteSettings = defineType({
                   { title: 'Source Sans Pro (Otimizada para Tela)', value: 'Source Sans Pro' },
                   { title: 'Lato (Humanista e Amigável)', value: 'Lato' },
                   { title: 'Nunito Sans (Suave e Legível)', value: 'Nunito Sans' },
-                  { title: 'System UI (Nativa do Sistema)', value: 'system-ui' }
+                  { title: 'System UI (Nativa do Sistema)', value: 'system-ui' },
+                  { title: 'PT Sans (Ideal para Textos Longos)', value: 'PT Sans' },
+                  { title: 'Mulish (Moderna e Legível)', value: 'Mulish' },
+                  { title: 'DM Sans (Geométrica e Clara)', value: 'DM Sans' },
+                  { title: 'Manrope (Moderna e Versátil)', value: 'Manrope' },
+                  { title: 'Plus Jakarta Sans (Elegante)', value: 'Plus Jakarta Sans' }
                 ]
               },
               initialValue: 'Inter'
@@ -130,7 +151,12 @@ export const siteSettings = defineType({
                   { title: 'JetBrains Mono (Desenvolvida para Código)', value: 'JetBrains Mono' },
                   { title: 'Source Code Pro (Adobe)', value: 'Source Code Pro' },
                   { title: 'Cascadia Code (Microsoft)', value: 'Cascadia Code' },
-                  { title: 'Consolas (Clássica)', value: 'Consolas' }
+                  { title: 'Consolas (Clássica)', value: 'Consolas' },
+                  { title: 'Monaco (Apple)', value: 'Monaco' },
+                  { title: 'IBM Plex Mono (IBM Design)', value: 'IBM Plex Mono' },
+                  { title: 'Roboto Mono (Google)', value: 'Roboto Mono' },
+                  { title: 'Space Mono (Geométrica)', value: 'Space Mono' },
+                  { title: 'Victor Mono (Com Itálico Cursivo)', value: 'Victor Mono' }
                 ]
               },
               initialValue: 'Fira Code'

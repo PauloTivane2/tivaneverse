@@ -5,6 +5,7 @@ import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { EffectsManager } from "@/src/components/effects"
+import { ColorManager } from "@/src/components/ColorManager"
 import { useSiteSettings, type SiteSettings } from "@/src/hooks/useSiteSettings"
 import { colors } from "@/src/lib/colors"
 import { useEffect } from "react"
@@ -130,20 +131,50 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       }
     }
     
-    // Aplicar fontes personalizadas como variáveis CSS
+    // Aplicar fontes personalizadas como variáveis CSS e carregar do Google Fonts
     // Permite usar var(--font-heading), var(--font-body), var(--font-code)
     if (siteSettings.theme?.customFonts) {
       const root = document.documentElement
       const fonts = siteSettings.theme.customFonts
       
-      if (fonts.headingFont) {
-        root.style.setProperty('--font-heading', fonts.headingFont)
+      // Coletar todas as fontes necessárias
+      const fontsToLoad: string[] = []
+      
+      if (fonts.headingFont && fonts.headingFont !== 'system-ui') {
+        root.style.setProperty('--font-heading', `'${fonts.headingFont}', sans-serif`)
+        fontsToLoad.push(fonts.headingFont)
       }
-      if (fonts.bodyFont) {
-        root.style.setProperty('--font-body', fonts.bodyFont)
+      if (fonts.bodyFont && fonts.bodyFont !== 'system-ui') {
+        root.style.setProperty('--font-body', `'${fonts.bodyFont}', sans-serif`)
+        fontsToLoad.push(fonts.bodyFont)
       }
-      if (fonts.codeFont) {
-        root.style.setProperty('--font-code', fonts.codeFont)
+      if (fonts.codeFont && !['Consolas', 'Monaco'].includes(fonts.codeFont)) {
+        root.style.setProperty('--font-code', `'${fonts.codeFont}', monospace`)
+        fontsToLoad.push(fonts.codeFont)
+      }
+      
+      // Carregar fontes do Google Fonts dinamicamente
+      if (fontsToLoad.length > 0) {
+        // Remover link anterior se existir
+        const oldLink = document.querySelector('link[data-google-fonts]')
+        if (oldLink) {
+          oldLink.remove()
+        }
+        
+        // Criar URL do Google Fonts com todas as fontes
+        const uniqueFonts = [...new Set(fontsToLoad)]
+        const fontFamilies = uniqueFonts.map(font => 
+          font.replace(/ /g, '+') + ':wght@300;400;500;600;700;800;900'
+        ).join('&family=')
+        
+        const googleFontsUrl = `https://fonts.googleapis.com/css2?family=${fontFamilies}&display=swap`
+        
+        // Adicionar link ao head
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = googleFontsUrl
+        link.setAttribute('data-google-fonts', 'true')
+        document.head.appendChild(link)
       }
     }
     
@@ -352,6 +383,9 @@ export default function RootLayout({
         >
           {/* Dynamic Head Updates */}
           <DynamicHead siteSettings={siteSettings} />
+          
+          {/* Color Management - Apply CMS colors globally */}
+          <ColorManager />
           
           {/* All Visual Effects - Managed by Sanity CMS */}
           <EffectsManager />

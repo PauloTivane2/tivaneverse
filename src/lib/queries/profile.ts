@@ -7,7 +7,10 @@ export const profileQuery = `*[_type == "profile"][0]{
   image,
   email,
   phone,
-  location,
+  location {
+    city,
+    mapLink
+  },
   resume,
   social,
   skills,

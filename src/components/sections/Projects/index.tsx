@@ -85,33 +85,33 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-card)]" ref={ref}>
+    <section id="projects" className="corporate-section bg-[var(--color-bg-card)] relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] via-[var(--color-bg-night)]/70 via-[var(--color-bg-card)]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-card)]/30 via-[var(--color-bg-elevated)]/70 to-[var(--color-bg-elevated)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-elevated)] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="corporate-container relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="corporate-section-header"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[var(--color-primary-100)] border border-[var(--color-primary-200)] text-[var(--color-primary-500)] text-sm font-medium mb-4"
+            className="corporate-hero-eyebrow"
           >
             Portfolio
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
+          <h2 className="corporate-section-title">
             Featured Projects
           </h2>
-          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
+          <p className="corporate-section-description">
             A selection of projects showcasing my expertise in building modern web applications
           </p>
         </motion.div>
@@ -145,9 +145,9 @@ export function Projects() {
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
             <motion.div key={project.title} variants={itemVariants} className="group">
-              <div className="relative h-full rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] overflow-hidden hover:border-[var(--color-primary-500)] transition-all duration-300">
+              <div className="corporate-project-card">
                 {/* Project Image */}
-                <div className="relative h-48 sm:h-56 overflow-hidden bg-[var(--color-bg-night)]">
+                <div className="corporate-project-card-image">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -207,10 +207,10 @@ export function Projects() {
                 </div>
 
                 {/* Project Info */}
-                <div className="p-6">
+                <div className="corporate-project-card-content">
                   {/* Header with Title and Status */}
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold font-display text-[var(--color-text-light)] group-hover:text-[var(--color-primary-500)] transition-colors flex-1">
+                    <h3 className="corporate-project-card-title">
                       {project.title}
                     </h3>
                     {project.status && (
@@ -221,9 +221,9 @@ export function Projects() {
                   </div>
 
                   {/* Category and Client */}
-                  <div className="flex items-center gap-4 mb-3">
+                  <div className="corporate-project-card-meta">
                     {project.category && (
-                      <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)]">
+                      <div className="corporate-project-card-category">
                         <FiTag className="w-3 h-3" />
                         <span className="capitalize">{project.category.replace('-', ' ')}</span>
                       </div>
@@ -248,14 +248,14 @@ export function Projects() {
                     </div>
                   )}
 
-                  <p className="text-[var(--color-text-soft)] text-sm mb-4 leading-relaxed">{project.description}</p>
+                  <p className="corporate-project-card-description">{project.description}</p>
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="corporate-project-card-technologies">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-full bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] text-[var(--color-primary-500)] text-xs font-medium"
+                        className="corporate-project-card-tech-tag"
                       >
                         {tech}
                       </span>
@@ -289,7 +289,7 @@ export function Projects() {
             href={profileData?.social?.github || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] text-[var(--color-text-light)] font-semibold hover:border-[var(--color-primary-500)] hover:text-[var(--color-primary-500)] transition-all"
+            className="corporate-button corporate-button-secondary"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >

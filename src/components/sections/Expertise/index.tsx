@@ -47,33 +47,33 @@ export function Expertise() {
   }
 
   return (
-    <section id="expertise" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-night)]" ref={ref}>
+    <section id="expertise" className="corporate-section bg-[var(--color-bg-night)] relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-deep)] via-[var(--color-bg-deep)]/70 via-[var(--color-bg-night)]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-deep)] to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-night)]/30 via-[var(--color-bg-card)]/70 to-[var(--color-bg-card)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-card)] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="corporate-container relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="corporate-section-header"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 rounded-full bg-[var(--color-secondary-100)] border border-[var(--color-secondary-200)] text-[var(--color-secondary-500)] text-sm font-medium mb-4"
+            className="corporate-badge corporate-badge-success"
           >
             Technical Skills
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[var(--color-text-light)] mb-4 text-balance">
+          <h2 className="corporate-section-title">
             My Expertise
           </h2>
-          <p className="text-lg text-[var(--color-text-soft)] max-w-2xl mx-auto text-pretty">
+          <p className="corporate-section-description">
             Technologies and tools I use to build exceptional digital experiences
           </p>
         </motion.div>
@@ -104,7 +104,7 @@ export function Expertise() {
               className="group relative cursor-pointer"
               onClick={() => setSelectedSkill(skill)}
             >
-              <div className="relative p-6 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] transition-all duration-300 flex flex-col items-center justify-center gap-3 h-full">
+              <div className="corporate-card flex flex-col items-center justify-center gap-3 h-full">
                 {/* Featured Badge */}
                 {skill.featured && (
                   <div className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--color-primary-500)] rounded-full flex items-center justify-center">
