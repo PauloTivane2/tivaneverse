@@ -17,6 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-space-mono)', 'Space Mono', 'monospace'],
+        mono: ['var(--font-space-mono)', 'Space Mono', 'monospace'],
+        inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        'fira-code': ['var(--font-fira-code)', 'Fira Code', 'monospace'],
+      },
       colors: {
         background: '#000000',
         foreground: '#FFFFFF',

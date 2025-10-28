@@ -277,10 +277,10 @@ export default function RootLayout({
     return (
       <html
         lang="pt"
-        className={`${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
+        className={`${spaceMono.variable} ${inter.variable} ${firaCode.variable}`}
         suppressHydrationWarning
       >
-        <body className="antialiased" style={{ background: 'transparent' }}>
+        <body className="antialiased" style={{ background: 'transparent', fontFamily: 'var(--font-space-mono), "Space Mono", monospace' }}>
           <div className="min-h-screen flex items-center justify-center">
             <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
           </div>
@@ -292,13 +292,13 @@ export default function RootLayout({
   // Show maintenance mode if enabled
   if (siteSettings.maintenance?.enabled) {
     return (
-      <html lang="en" className={`${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
+      <html lang="en" className={`${spaceMono.variable} ${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
         <head>
           <title>{siteSettings.title || 'Site em Manutenção'}</title>
           <meta name="description" content={siteSettings.maintenance.message || 'Site temporariamente indisponível'} />
           {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}
         </head>
-        <body className="font-sans antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent' }}>
+        <body className="antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent', fontFamily: 'var(--font-space-mono), "Space Mono", monospace' }}>
           <ThemeProvider 
             attribute="class" 
             defaultTheme={siteSettings.theme?.darkMode ? "dark" : "light"} 
@@ -312,8 +312,12 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceMono.variable} ${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
       <head>
+        {/* Google Fonts Preconnect para melhor performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         <title>{siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'}</title>
         <meta 
           name="description" 
@@ -351,9 +355,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#CFFF04" />
       </head>
       <body 
-        className={`font-sans antialiased text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
+        className={`antialiased text-foreground overflow-x-hidden ${spaceMono.variable} ${inter.variable} ${firaCode.variable}`}
         style={{
           background: 'transparent',
+          fontFamily: 'var(--font-space-mono), "Space Mono", monospace',
           '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
                                      siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
         } as React.CSSProperties}

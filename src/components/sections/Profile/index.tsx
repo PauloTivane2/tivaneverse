@@ -699,63 +699,57 @@ export function Profile() {
             )}
 
 
-            {/* Action Buttons - Profissional e Compacto */}
+            {/* Action Buttons - Circulares Minimalistas */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-wrap items-center gap-3 mt-8"
+              className="flex items-center gap-4 mt-8 mb-10"
             >
-              {/* View Projects */}
+              {/* Ver Projetos - Primary (Verde) */}
               <motion.button
                 onClick={() => scrollToSection("#projects")}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-black font-semibold text-sm hover:bg-primary/90 transition-all"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                title="Ver Projetos"
+                className="group relative w-14 h-14 rounded-full bg-primary text-black flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <FiArrowRight className="w-4 h-4" />
-                <span>Ver Projetos</span>
+                <FiArrowRight className="w-6 h-6 font-bold" />
+                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Ver Projetos
+                </span>
               </motion.button>
 
-              {/* Contact */}
+              {/* Contactar - Secondary (Laranja) */}
               <motion.button
                 onClick={() => scrollToSection("#contact")}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-foreground font-semibold text-sm hover:border-primary/40 hover:bg-white/10 transition-all"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                title="Contactar"
+                className="group relative w-14 h-14 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <FiMail className="w-4 h-4" />
-                <span>Contactar</span>
+                <FiMail className="w-6 h-6" />
+                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Contactar
+                </span>
               </motion.button>
 
-              {/* Resume Download */}
+              {/* Baixar CV - Outline (Branco) */}
               {profileData.resume && (
                 <motion.button
                   onClick={handleResumeDownload}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-foreground font-semibold text-sm hover:border-primary/40 hover:bg-white/10 transition-all"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  title="Baixar CV"
+                  className="group relative w-14 h-14 rounded-full bg-white/5 border-2 border-white/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <FiDownload className="w-4 h-4" />
-                  <span>Baixar CV</span>
+                  <FiDownload className="w-6 h-6" />
+                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Baixar CV
+                  </span>
                 </motion.button>
               )}
             </motion.div>
-
-            {/* Availability Badge - Simples */}
-            {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-primary/20"
-              >
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">
-                  {profileData.availability.message || 'Available for Work'}
-                </span>
-              </motion.div>
-            )}
           </motion.div>
 
           {/* Right Column - Profile Image */}
