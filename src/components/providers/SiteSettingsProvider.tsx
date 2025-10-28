@@ -20,15 +20,6 @@ export function SiteSettingsProvider({ children }: { children: React.ReactNode }
 
     const root = document.documentElement
 
-    // Aplicar cores customizadas
-    if (siteSettings.theme.primaryColor) {
-      root.style.setProperty('--color-primary', siteSettings.theme.primaryColor)
-    }
-    
-    if (siteSettings.theme.secondaryColor) {
-      root.style.setProperty('--color-secondary', siteSettings.theme.secondaryColor)
-    }
-
     // Aplicar velocidade de animação
     const animationDuration = {
       slow: '0.8s',

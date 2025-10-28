@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { FiMenu, FiX } from "react-icons/fi"
 import Image from "next/image"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
-import { colorDebug } from "@/src/lib/colors/debug"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -26,12 +25,6 @@ export function Navbar() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-  
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Navbar', false)
-    colorDebug.logComponentColors('Navbar', ['primary-500', 'bg-deep', 'border-dark', 'text-light'])
   }, [])
 
   const scrollToSection = (href: string) => {
@@ -125,10 +118,15 @@ export function Navbar() {
                   e.preventDefault()
                   scrollToSection(link.href)
                 }}
-                className="corporate-navbar-link"
+                className={link.name === "Contact" 
+                  ? "px-6 py-2.5 rounded-lg bg-secondary text-white font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
+                  : "corporate-navbar-link"
+                }
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={link.name === "Contact" ? { scale: 1.05, y: -2 } : {}}
+                whileTap={link.name === "Contact" ? { scale: 0.98 } : {}}
               >
                 {link.name}
               </motion.a>
@@ -167,11 +165,14 @@ export function Navbar() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="corporate-navbar-link"
+                  className={link.name === "Contact" 
+                    ? "px-6 py-3 rounded-lg bg-secondary text-white font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20 text-center"
+                    : "corporate-navbar-link"
+                  }
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
+                  whileHover={link.name === "Contact" ? { scale: 1.05 } : { x: 10 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {link.name}

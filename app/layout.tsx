@@ -5,9 +5,7 @@ import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { EffectsManager } from "@/src/components/effects"
-import { ColorManager } from "@/src/components/ColorManager"
 import { useSiteSettings, type SiteSettings } from "@/src/hooks/useSiteSettings"
-import { colors } from "@/src/lib/colors"
 import { useEffect } from "react"
 import Script from "next/script"
 
@@ -119,18 +117,6 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       ogDescription.setAttribute('content', siteSettings.description)
     }
 
-    // Aplicar cores do tema como propriedades CSS personalizadas
-    // Permite usar var(--color-primary) e var(--color-secondary) em todo o CSS
-    if (siteSettings.theme?.primaryColor || siteSettings.theme?.secondaryColor) {
-      const root = document.documentElement
-      if (siteSettings.theme.primaryColor) {
-        root.style.setProperty('--color-primary', siteSettings.theme.primaryColor)
-      }
-      if (siteSettings.theme.secondaryColor) {
-        root.style.setProperty('--color-secondary', siteSettings.theme.secondaryColor)
-      }
-    }
-    
     // Aplicar fontes personalizadas como variáveis CSS e carregar do Google Fonts
     // Permite usar var(--font-heading), var(--font-body), var(--font-code)
     if (siteSettings.theme?.customFonts) {
@@ -362,16 +348,12 @@ export default function RootLayout({
         {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}
         
         {/* Theme Colors */}
-        {siteSettings.theme?.primaryColor && (
-          <meta name="theme-color" content={siteSettings.theme.primaryColor} />
-        )}
+        <meta name="theme-color" content="#CFFF04" />
       </head>
       <body 
         className={`font-sans antialiased text-foreground overflow-x-hidden ${inter.variable} ${firaCode.variable} ${spaceMono.variable}`}
         style={{
           background: 'transparent',
-          '--color-primary': siteSettings.theme?.primaryColor || colors.primary[500],
-          '--color-secondary': siteSettings.theme?.secondaryColor || colors.secondary[500],
           '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
                                      siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
         } as React.CSSProperties}
@@ -383,9 +365,6 @@ export default function RootLayout({
         >
           {/* Dynamic Head Updates */}
           <DynamicHead siteSettings={siteSettings} />
-          
-          {/* Color Management - Apply CMS colors globally */}
-          <ColorManager />
           
           {/* All Visual Effects - Managed by Sanity CMS */}
           <EffectsManager />

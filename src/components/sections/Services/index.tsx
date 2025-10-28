@@ -2,20 +2,13 @@
 
 import { motion, useInView } from "framer-motion"
 import { useServices } from "@/src/hooks/useServices"
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
 import { FiCheck } from "react-icons/fi"
-import { colorDebug } from "@/src/lib/colors/debug"
 
 export function Services() {
   const { servicesData, loading, error } = useServices()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Services', false)
-    colorDebug.logComponentColors('Services', ['primary-500', 'secondary-500', 'text-light', 'bg-deep'])
-  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,12 +32,12 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="corporate-section bg-[var(--color-bg-elevated)] relative" ref={ref}>
+    <section id="services" className="corporate-section bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-card)] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-night)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-background pointer-events-none" />
       
       <div className="corporate-container relative z-10">
         {/* Section Header */}
@@ -81,18 +74,18 @@ export function Services() {
             // Loading skeleton
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full p-8 rounded-xl bg-[var(--color-bg-night)] border border-[var(--color-border-dark)]">
+                <div className="h-full p-8 rounded-xl bg-background border border-white/10">
                   <div className="mb-6">
-                    <div className="w-14 h-14 rounded-lg bg-muted"></div>
+                    <div className="w-14 h-14 rounded-lg bg-white/10"></div>
                   </div>
                   <div className="space-y-4">
-                    <div className="h-6 bg-muted rounded w-3/4"></div>
-                    <div className="h-4 bg-muted rounded"></div>
-                    <div className="h-4 bg-muted rounded w-5/6"></div>
+                    <div className="h-6 bg-white/10 rounded w-3/4"></div>
+                    <div className="h-4 bg-white/10 rounded"></div>
+                    <div className="h-4 bg-white/10 rounded w-5/6"></div>
                     <div className="space-y-2 mt-6">
-                      <div className="h-4 bg-muted rounded w-4/5"></div>
-                      <div className="h-4 bg-muted rounded w-3/5"></div>
-                      <div className="h-4 bg-muted rounded w-4/5"></div>
+                      <div className="h-4 bg-white/10 rounded w-4/5"></div>
+                      <div className="h-4 bg-white/10 rounded w-3/5"></div>
+                      <div className="h-4 bg-white/10 rounded w-4/5"></div>
                     </div>
                   </div>
                 </div>
@@ -124,18 +117,18 @@ export function Services() {
 
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-100)] via-transparent to-[var(--color-secondary-100)] rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 rounded-xl" />
                 </div>
 
                 {/* Decorative Corner */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[var(--color-secondary-100)] to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-secondary/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))
           ) : (
             // Empty state
             <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">No services available</p>
+              <p className="text-accent">No services available</p>
             </div>
           )}
         </motion.div>

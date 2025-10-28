@@ -179,55 +179,95 @@
 }
 
 /* =====================================================
-   6. SISTEMA DE CORES CORPORATIVAS ADAPTADO
+   6. SISTEMA DE CORES CORPORATIVAS SIMPLIFICADO
    ===================================================== */
 
 /**
- * Paleta adaptada para tema escuro moderno.
- * Mantém profissionalismo com cores vibrantes (Verde/Roxo).
- * Contraste adequado para acessibilidade (WCAG AA/AAA).
+ * Sistema de cores simplificado:
+ * - Primary: #CFFF04 (Verde Limão)
+ * - Secondary: #FB4D00 (Laranja)
+ * - Accent: #CAE7F7 (Azul Claro)
+ * - Background: #000000 (Preto Absoluto)
+ * - Foreground: #FFFFFF (Branco Absoluto)
  */
 
 :root {
-  /* Escala de Backgrounds - Tema Escuro Profissional */
-  --corp-bg-deepest: var(--color-bg-deep);      /* #0D1117 - Mais escuro */
-  --corp-bg-dark: var(--color-bg-night);        /* #161B22 - Escuro */
-  --corp-bg-medium: var(--color-bg-card);       /* #1A1F29 - Médio */
-  --corp-bg-light: var(--color-bg-elevated);    /* #212835 - Mais claro */
+  /* Cores Base */
+  --color-bg-deep: #000000;       /* Preto absoluto */
+  --color-bg-night: #0A0A0A;      /* Quase preto */
+  --color-bg-card: #141414;       /* Cinza muito escuro */
+  --color-bg-elevated: #1A1A1A;   /* Cinza escuro */
   
-  /* Escala de Texto - Clara e Legível */
-  --corp-text-primary: var(--color-text-light); /* #C9D1D9 - Texto principal */
-  --corp-text-secondary: var(--color-text-soft); /* #8B949E - Texto secundário */
-  --corp-text-tertiary: var(--color-text-dim);  /* #6E7681 - Texto terciário */
-  --corp-text-inverse: var(--color-text-dark);  /* #0D1117 - Texto em fundos claros */
+  --color-text-light: #FFFFFF;    /* Branco absoluto */
+  --color-text-soft: #E0E0E0;     /* Branco suave */
+  --color-text-dim: #A0A0A0;      /* Cinza claro */
+  --color-text-dark: #000000;     /* Preto */
   
-  /* Escala de Bordas - Sutis e Estruturais */
-  --corp-border-subtle: var(--color-border-dark); /* #30363D - Bordas sutis */
-  --corp-border-primary: var(--color-border-green); /* #00BFA6 - Borda primária */
-  --corp-border-secondary: var(--color-border-purple); /* #7C3AED - Borda secundária */
+  --color-border-dark: #2A2A2A;   /* Borda sutil */
   
-  /* Cores de Ação - Verde (Primary) e Roxo (Secondary) */
-  --corp-primary-base: var(--color-primary-500);    /* #00BFA6 */
-  --corp-primary-light: var(--color-primary-400);   /* #00D4B8 */
-  --corp-primary-dark: var(--color-primary-600);    /* #009E8A */
-  --corp-primary-subtle: var(--color-primary-100);  /* rgba(0,191,166,0.1) */
+  /* Cores Principais - Simplificadas */
+  --color-primary: #CFFF04;       /* Verde Limão */
+  --color-primary-100: rgba(207, 255, 4, 0.1);
+  --color-primary-200: rgba(207, 255, 4, 0.2);
+  --color-primary-400: rgba(207, 255, 4, 0.8);
+  --color-primary-500: #CFFF04;
+  --color-primary-600: #B8E600;
   
-  --corp-secondary-base: var(--color-secondary-500);   /* #7C3AED */
-  --corp-secondary-light: var(--color-secondary-400);  /* #8B5CF6 */
-  --corp-secondary-dark: var(--color-secondary-600);   /* #6D28D9 */
-  --corp-secondary-subtle: var(--color-secondary-100); /* rgba(124,58,237,0.1) */
+  --color-secondary: #FB4D00;     /* Laranja */
+  --color-secondary-100: rgba(251, 77, 0, 0.1);
+  --color-secondary-200: rgba(251, 77, 0, 0.2);
+  --color-secondary-400: rgba(251, 77, 0, 0.8);
+  --color-secondary-500: #FB4D00;
+  --color-secondary-600: #C23D00;
   
-  /* Cores Funcionais - Feedback e Estado */
-  --corp-success: #10B981;        /* Verde - Sucesso */
-  --corp-warning: #F59E0B;        /* Âmbar - Atenção */
-  --corp-error: #EF4444;          /* Vermelho - Erro */
-  --corp-info: #3B82F6;           /* Azul - Informação */
+  --color-accent: #CAE7F7;        /* Azul Claro */
+  --color-accent-100: rgba(202, 231, 247, 0.1);
+  --color-accent-200: rgba(202, 231, 247, 0.2);
+  --color-accent-500: #CAE7F7;
   
-  /* Backgrounds funcionais com opacidade */
-  --corp-bg-success: rgba(16, 185, 129, 0.1);
+  /* Escala Corporativa - Backgrounds */
+  --corp-bg-deepest: var(--color-bg-deep);
+  --corp-bg-dark: var(--color-bg-night);
+  --corp-bg-medium: var(--color-bg-card);
+  --corp-bg-light: var(--color-bg-elevated);
+  
+  /* Escala Corporativa - Texto */
+  --corp-text-primary: var(--color-text-light);
+  --corp-text-secondary: var(--color-text-soft);
+  --corp-text-tertiary: var(--color-text-dim);
+  --corp-text-inverse: var(--color-text-dark);
+  
+  /* Escala Corporativa - Bordas */
+  --corp-border-subtle: var(--color-border-dark);
+  --corp-border-primary: var(--color-primary);
+  --corp-border-secondary: var(--color-secondary);
+  --corp-border-accent: var(--color-accent);
+  
+  /* Cores de Ação */
+  --corp-primary-base: var(--color-primary-500);
+  --corp-primary-light: var(--color-primary-400);
+  --corp-primary-dark: var(--color-primary-600);
+  --corp-primary-subtle: var(--color-primary-100);
+  
+  --corp-secondary-base: var(--color-secondary-500);
+  --corp-secondary-light: var(--color-secondary-400);
+  --corp-secondary-dark: var(--color-secondary-600);
+  --corp-secondary-subtle: var(--color-secondary-100);
+  
+  --corp-accent-base: var(--color-accent-500);
+  --corp-accent-subtle: var(--color-accent-100);
+  
+  /* Cores Funcionais */
+  --corp-success: var(--color-primary);
+  --corp-warning: #F59E0B;
+  --corp-error: #EF4444;
+  --corp-info: var(--color-accent);
+  
+  /* Backgrounds funcionais */
+  --corp-bg-success: var(--color-primary-100);
   --corp-bg-warning: rgba(245, 158, 11, 0.1);
   --corp-bg-error: rgba(239, 68, 68, 0.1);
-  --corp-bg-info: rgba(59, 130, 246, 0.1);
+  --corp-bg-info: var(--color-accent-100);
 }
 
 /* =====================================================

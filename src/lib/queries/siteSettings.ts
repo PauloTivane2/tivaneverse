@@ -7,8 +7,6 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   favicon,
   ogImage,
   theme {
-    primaryColor,
-    secondaryColor,
     darkMode,
     showMatrixRain,
     matrixIntensity,

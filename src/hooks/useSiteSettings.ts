@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { client, urlFor } from '@/src/lib/sanity'
-import { colors } from '@/src/lib/colors'
 
 // Query GROQ para buscar todas as configurações do site do Sanity CMS
 // Inclui informações básicas, tema, SEO e performance
@@ -16,8 +15,6 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   
   // Configurações de tema e tipografia
   theme {
-    primaryColor,
-    secondaryColor,
     darkMode,
     animationSpeed,
     customFonts {
@@ -78,8 +75,6 @@ export interface SiteSettings {
   
   // Configurações de tema visual
   theme?: {
-    primaryColor?: string
-    secondaryColor?: string
     darkMode?: boolean
     animationSpeed?: 'slow' | 'normal' | 'fast'
     customFonts?: {
@@ -160,8 +155,6 @@ export function useSiteSettings() {
             
             // Configurações de tema e tipografia
             theme: {
-              primaryColor: data.theme?.primaryColor || colors.primary[500],
-              secondaryColor: data.theme?.secondaryColor || colors.secondary[500],
               darkMode: data.theme?.darkMode ?? true,
               animationSpeed: data.theme?.animationSpeed || 'normal',
               customFonts: {

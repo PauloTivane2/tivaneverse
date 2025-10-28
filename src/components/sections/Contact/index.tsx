@@ -3,10 +3,9 @@
 import type React from "react"
 
 import { motion, useInView } from "framer-motion"
-import { useState, useRef, useEffect } from "react"
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi"
+import { useState, useRef } from "react"
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter, FiArrowRight } from "react-icons/fi"
 import { useContact } from "@/src/hooks/useContact"
-import { colorDebug } from "@/src/lib/colors/debug"
 
 export function Contact() {
   const { contactInfo, loading, error } = useContact()
@@ -20,12 +19,6 @@ export function Contact() {
   })
 
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
-  
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Contact', false)
-    colorDebug.logComponentColors('Contact', ['primary-500', 'secondary-500', 'text-light', 'bg-deep', 'border-dark'])
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -47,12 +40,12 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="corporate-section bg-[var(--color-bg-night)] relative" ref={ref}>
+    <section id="contact" className="corporate-section bg-black relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-elevated)] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
       
       {/* Gradient Transition to footer */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-deep)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-black pointer-events-none" />
       
       <div className="corporate-container relative z-10">
         {/* Section Header */}
@@ -148,7 +141,7 @@ export function Contact() {
                 {status === "sending" ? (
                   <>
                     <motion.div
-                      className="w-5 h-5 border-2 border-[var(--color-text-dark)] border-t-transparent rounded-full"
+                      className="w-5 h-5 border-2 border-black border-t-transparent rounded-full"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     />
@@ -172,7 +165,7 @@ export function Contact() {
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-[var(--color-primary-500)] text-sm text-center"
+                  className="text-primary text-sm text-center"
                 >
                   Thank you! I'll get back to you soon.
                 </motion.p>
@@ -187,46 +180,47 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-8"
           >
-            {/* Info Cards */}
-            <div className="space-y-6">
-              <div className="p-6 rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)]">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-[var(--color-primary-100)] border border-[var(--color-primary-300)] flex items-center justify-center flex-shrink-0">
-                    <FiMail className="w-5 h-5 text-[var(--color-primary-500)]" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[var(--color-text-light)] mb-1">Email</h3>
-                    <a
-                      href={`mailto:${contactInfo?.email || 'contact@example.com'}`}
-                      className="text-[var(--color-text-soft)] hover:text-[var(--color-primary-500)] transition-colors"
-                    >
-                      {contactInfo?.email || 'contact@example.com'}
-                    </a>
-                  </div>
+            {/* Info Cards - Profissional e Compacto */}
+            <div className="space-y-3">
+              {/* Email */}
+              <motion.a
+                href={`mailto:${contactInfo?.email || 'contact@example.com'}`}
+                className="group flex items-center gap-3 p-4 rounded-lg bg-background border border-white/10 hover:border-primary/40 transition-all duration-200"
+                whileHover={{ x: 4 }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
+                  <FiMail className="w-4 h-4 text-accent group-hover:text-primary transition-colors" />
                 </div>
-              </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Email</h3>
+                  <p className="text-sm text-accent truncate">
+                    {contactInfo?.email || 'contact@example.com'}
+                  </p>
+                </div>
+              </motion.a>
 
-              <div className="p-6 rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)]">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-[var(--color-secondary-100)] border border-[var(--color-secondary-300)] flex items-center justify-center flex-shrink-0">
-                    <FiMapPin className="w-5 h-5 text-[var(--color-secondary-500)]" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[var(--color-text-light)] mb-1">Location</h3>
-                    <p className="text-[var(--color-text-soft)]">
-                      {typeof contactInfo?.location === 'string' 
-                        ? contactInfo.location 
-                        : (contactInfo?.location as any)?.city || 'Location not available'}
-                    </p>
-                  </div>
+              {/* Location */}
+              <motion.div
+                className="group flex items-center gap-3 p-4 rounded-lg bg-background border border-white/10"
+              >
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                  <FiMapPin className="w-4 h-4 text-accent" />
                 </div>
-              </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Location</h3>
+                  <p className="text-sm text-accent">
+                    {typeof contactInfo?.location === 'string' 
+                      ? contactInfo.location 
+                      : (contactInfo?.location as any)?.city || 'Location not available'}
+                  </p>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Social Links */}
+            {/* Social Links - Profissional */}
             <div>
-              <h3 className="text-lg font-semibold text-[var(--color-text-light)] mb-4">Connect With Me</h3>
-              <div className="flex gap-4">
+              <h3 className="text-sm font-semibold text-foreground mb-3">Connect With Me</h3>
+              <div className="flex gap-2">
                 {[
                   { icon: FiGithub, href: contactInfo?.social?.github || "#", label: "GitHub" },
                   { icon: FiLinkedin, href: contactInfo?.social?.linkedin || "#", label: "LinkedIn" },
@@ -237,25 +231,25 @@ export function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] flex items-center justify-center text-[var(--color-text-soft)] hover:text-[var(--color-primary-500)] hover:border-[var(--color-primary-500)] transition-all"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-primary hover:border-primary/40 hover:bg-white/10 transition-all"
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
                   >
-                    <social.icon size={20} />
+                    <social.icon className="w-4 h-4" />
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            {/* Availability Badge */}
-            <div className="p-6 rounded-xl bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-secondary-100)] border border-[var(--color-primary-200)]">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-3 h-3 rounded-full bg-[var(--color-primary-500)] animate-pulse" />
-                <span className="text-sm font-semibold text-[var(--color-primary-500)]">Available for Work</span>
+            {/* Availability Badge - Simples */}
+            <div className="p-4 rounded-lg bg-white/5 border border-primary/20">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-semibold text-primary">Available for Work</span>
               </div>
-              <p className="text-sm text-[var(--color-text-soft)]">
-                I'm currently available for freelance projects and consulting opportunities.
+              <p className="text-xs text-accent leading-relaxed">
+                Open for freelance projects and consulting opportunities.
               </p>
             </div>
           </motion.div>

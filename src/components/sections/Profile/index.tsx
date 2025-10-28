@@ -6,7 +6,6 @@ import Image from "next/image"
 import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiCalendar, FiPhone } from "react-icons/fi"
 import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
-import { colorDebug } from "@/src/lib/colors/debug"
 
 // Helper function para syntax highlighting PROFISSIONAL com cores vibrantes
 function SyntaxHighlight({ code }: { code: string }) {
@@ -483,12 +482,6 @@ export function Profile() {
       setCurrentIndex(0)
     }
   }, [profileData])
-  
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Profile', false)
-    colorDebug.logComponentColors('Profile', ['primary-500', 'text-light', 'bg-deep', 'border-dark'])
-  }, [])
 
   useEffect(() => {
     if (profileData && currentIndex < profileData.tagline.length) {
@@ -706,66 +699,61 @@ export function Profile() {
             )}
 
 
-            {/* Action Buttons - Responsivo com ícones destacados */}
+            {/* Action Buttons - Profissional e Compacto */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8"
+              className="flex flex-wrap items-center gap-3 mt-8"
             >
-              {/* View Projects - Primário com ícone grande */}
+              {/* View Projects */}
               <motion.button
                 onClick={() => scrollToSection("#projects")}
-                className="group flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-gradient-to-r from-[var(--color-primary-500)] to-[var(--color-primary-400)] text-white font-semibold text-base sm:text-lg shadow-lg shadow-[var(--color-primary-500)]/20 hover:shadow-xl hover:shadow-[var(--color-primary-500)]/30 transition-all duration-300 border-2 border-[var(--color-primary-500)] hover:border-[var(--color-primary-400)]"
-                whileHover={{ scale: 1.03, y: -3 }}
-                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-black font-semibold text-sm hover:bg-primary/90 transition-all"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <FiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+                <FiArrowRight className="w-4 h-4" />
                 <span>Ver Projetos</span>
               </motion.button>
 
-              {/* Contact Me - Secundário com destaque */}
+              {/* Contact */}
               <motion.button
                 onClick={() => scrollToSection("#contact")}
-                className="group flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[var(--color-bg-elevated)] border-2 border-[var(--color-border-dark)] text-[var(--color-text-light)] font-semibold text-base sm:text-lg hover:border-[var(--color-primary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-300 shadow-md hover:shadow-lg"
-                whileHover={{ scale: 1.03, y: -3 }}
-                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-foreground font-semibold text-sm hover:border-primary/40 hover:bg-white/10 transition-all"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <FiMail className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
-                <span className="hidden xs:inline">Contactar</span>
+                <FiMail className="w-4 h-4" />
+                <span>Contactar</span>
               </motion.button>
 
-              {/* Resume Download - Com ícone de download */}
+              {/* Resume Download */}
               {profileData.resume && (
                 <motion.button
                   onClick={handleResumeDownload}
-                  className="group flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[var(--color-bg-elevated)] border-2 border-[var(--color-border-dark)] text-[var(--color-text-light)] font-semibold text-base sm:text-lg hover:border-[var(--color-secondary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[var(--color-secondary-500)]/20"
-                  whileHover={{ scale: 1.03, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-foreground font-semibold text-sm hover:border-primary/40 hover:bg-white/10 transition-all"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <FiDownload className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-y-1 transition-transform" />
-                  <span className="hidden xs:inline">CV</span>
+                  <FiDownload className="w-4 h-4" />
+                  <span>Baixar CV</span>
                 </motion.button>
               )}
             </motion.div>
 
-            {/* Availability Badge with Gradient */}
+            {/* Availability Badge - Simples */}
             {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 }}
-                className="p-6 rounded-xl bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-secondary-100)] border border-[var(--color-primary-200)]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-primary/20"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-3 h-3 rounded-full bg-[var(--color-primary-500)] animate-pulse" />
-                  <span className="text-sm font-semibold text-[var(--color-primary-500)]">
-                    {profileData.availability.message || 'Available for Work'}
-                  </span>
-                </div>
-                <p className="text-sm text-[var(--color-text-soft)]">
-                  Open to new opportunities and collaborations. Let's build something amazing together!
-                </p>
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-semibold text-primary">
+                  {profileData.availability.message || 'Available for Work'}
+                </span>
               </motion.div>
             )}
           </motion.div>
@@ -779,12 +767,13 @@ export function Profile() {
           >
             <motion.div
               className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--color-primary-200)] via-[var(--color-primary-100)] to-[var(--color-secondary-100)] blur-3xl" />
+              {/* Sombra sutil profissional */}
+              <div className="absolute inset-0 rounded-full bg-primary/5 blur-2xl" />
 
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border shadow-2xl">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
                 <Image
                   src={profileData.image || "/placeholder.svg"}
                   alt={profileData.name}
@@ -793,16 +782,16 @@ export function Profile() {
                   priority
                 />
                 
-                {/* Social Links Overlay */}
+                {/* Social Links Overlay - Profissional */}
                 {profileData.social && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/30 z-10">
-                    <div className="flex gap-4">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/60 backdrop-blur-sm z-10">
+                    <div className="flex gap-3">
                       {profileData.social.github && (
                         <a
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiGithub className="w-5 h-5" />
                         </a>
@@ -812,7 +801,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiLinkedin className="w-5 h-5" />
                         </a>
@@ -822,7 +811,7 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiTwitter className="w-5 h-5" />
                         </a>
@@ -832,7 +821,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/90 text-[var(--color-text-dark)] hover:bg-[var(--color-primary-500)] hover:text-white hover:scale-110 hover:-translate-y-1 transition-all duration-200 shadow-lg cursor-pointer"
+                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiInstagram className="w-5 h-5" />
                         </a>
@@ -841,19 +830,6 @@ export function Profile() {
                   </div>
                 )}
               </div>
-
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-[var(--color-primary-300)]"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                }}
-              />
             </motion.div>
           </motion.div>
         </div>

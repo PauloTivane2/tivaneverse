@@ -6,9 +6,7 @@ import { FiExternalLink, FiGithub, FiStar, FiCalendar, FiUser, FiTag, FiImage, F
 import { useProjects } from "@/src/hooks/useProjects"
 import { useProfile } from "@/src/hooks/useProfile"
 import { urlFor } from "@/src/lib/sanity"
-import { colors } from "@/src/lib/colors"
-import { colorDebug } from "@/src/lib/colors/debug"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
 
 export function Projects() {
   const { projectsData, loading, error } = useProjects()
@@ -27,19 +25,13 @@ export function Projects() {
     })
   }
 
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Projects', false)
-    colorDebug.logComponentColors('Projects', ['primary-500', 'secondary-500', 'text-light', 'bg-deep', 'border-dark'])
-  }, [])
-
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'completed': return 'text-[var(--color-primary-500)] bg-[var(--color-primary-100)]'
+      case 'completed': return 'text-primary bg-primary/10'
       case 'in-progress': return 'text-[#60A5FA] bg-[rgba(96,165,250,0.1)]' // Blue for in-progress
       case 'on-hold': return 'text-[#FBBF24] bg-[rgba(251,191,36,0.1)]' // Yellow for on-hold
-      case 'concept': return 'text-[var(--color-secondary-500)] bg-[var(--color-secondary-100)]'
-      default: return 'text-[var(--color-text-soft)] bg-[var(--color-bg-elevated)]'
+      case 'concept': return 'text-secondary bg-secondary/10'
+      default: return 'text-accent bg-black/50'
     }
   }
 
@@ -85,12 +77,12 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="corporate-section bg-[var(--color-bg-card)] relative" ref={ref}>
+    <section id="projects" className="corporate-section bg-black relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[var(--color-bg-elevated)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-black/50 pointer-events-none" />
       
       <div className="corporate-container relative z-10">
         {/* Section Header */}
@@ -127,7 +119,7 @@ export function Projects() {
             // Loading skeleton
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full rounded-xl bg-[var(--color-bg-deep)] border border-[var(--color-border-dark)] overflow-hidden">
+                <div className="h-full rounded-xl bg-black border border-white/10 overflow-hidden">
                   <div className="h-48 sm:h-56 bg-muted"></div>
                   <div className="p-6 space-y-4">
                     <div className="h-6 bg-muted rounded w-3/4"></div>
@@ -155,12 +147,12 @@ export function Projects() {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-deep)] via-[var(--color-bg-deep)]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     {/* Gallery Button (priority over demo) */}
                     {project.gallery && project.gallery.length > 0 ? (
                       <motion.button
                         onClick={() => openGallery(project)}
-                        className="p-3 rounded-lg bg-[var(--color-primary-500)] text-[var(--color-text-dark)] hover:bg-[var(--color-primary-400)] transition-colors"
+                        className="p-3 rounded-lg bg-primary text-black hover:bg-primary/80 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver galeria do projeto"
@@ -172,7 +164,7 @@ export function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-lg bg-[var(--color-primary-500)] text-[var(--color-text-dark)] hover:bg-[var(--color-primary-400)] transition-colors"
+                        className="p-3 rounded-lg bg-primary text-black hover:bg-primary/80 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver demo ao vivo"
@@ -187,7 +179,7 @@ export function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-lg bg-[var(--color-bg-night)] text-[var(--color-text-light)] hover:bg-[var(--color-bg-elevated)] transition-colors"
+                        className="p-3 rounded-lg bg-black text-white hover:bg-black/80 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         aria-label="Ver código fonte"
@@ -199,7 +191,7 @@ export function Projects() {
 
                   {/* Featured Badge */}
                   {project.featured && (
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[var(--color-secondary-500)] text-white text-xs font-semibold flex items-center gap-1">
+                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-secondary text-white text-xs font-semibold flex items-center gap-1">
                       <FiStar className="w-3 h-3" />
                       Featured
                     </div>
@@ -229,7 +221,7 @@ export function Projects() {
                       </div>
                     )}
                     {project.client && (
-                      <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)]">
+                      <div className="flex items-center gap-1 text-xs text-accent">
                         <FiUser className="w-3 h-3" />
                         <span>{project.client}</span>
                       </div>
@@ -238,7 +230,7 @@ export function Projects() {
 
                   {/* Date Range */}
                   {(project.startDate || project.endDate) && (
-                    <div className="flex items-center gap-1 text-xs text-[var(--color-text-soft)] mb-3">
+                    <div className="flex items-center gap-1 text-xs text-accent mb-3">
                       <FiCalendar className="w-3 h-3" />
                       <span>
                         {formatDate(project.startDate)} 
@@ -265,7 +257,7 @@ export function Projects() {
 
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-100)] via-transparent to-[var(--color-secondary-100)]" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
                 </div>
               </div>
             </motion.div>
@@ -273,7 +265,7 @@ export function Projects() {
           ) : (
             // Empty state
             <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">No projects available</p>
+              <p className="text-accent">No projects available</p>
             </div>
           )}
         </motion.div>
@@ -311,27 +303,27 @@ export function Projects() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl w-full max-h-[90vh] bg-[var(--color-bg-deep)] rounded-xl overflow-hidden"
+              className="relative max-w-4xl w-full max-h-[90vh] bg-black rounded-xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-dark)]">
+              <div className="flex items-center justify-between p-4 border-b border-white/10">
                 <div>
-                  <h3 className="text-lg font-bold text-[var(--color-text-light)]">{selectedProject.title}</h3>
-                  <p className="text-sm text-[var(--color-text-soft)]">
+                  <h3 className="text-lg font-bold text-white">{selectedProject.title}</h3>
+                  <p className="text-sm text-accent">
                     {selectedImageIndex + 1} de {selectedProject.gallery.length} imagens
                   </p>
                 </div>
                 <button
                   onClick={closeGallery}
-                  className="p-2 rounded-lg bg-[var(--color-bg-night)] text-[var(--color-text-light)] hover:bg-[var(--color-bg-elevated)] transition-colors"
+                  className="p-2 rounded-lg bg-black text-white hover:bg-black/80 transition-colors"
                 >
                   <FiX size={20} />
                 </button>
               </div>
 
               {/* Image Display */}
-              <div className="relative h-[60vh] bg-[var(--color-bg-night)]">
+              <div className="relative h-[60vh] bg-black">
                 <Image
                   src={urlFor(selectedProject.gallery[selectedImageIndex].asset).width(1200).height(800).url()}
                   alt={selectedProject.gallery[selectedImageIndex].caption || `${selectedProject.title} - Imagem ${selectedImageIndex + 1}`}
@@ -360,8 +352,8 @@ export function Projects() {
 
               {/* Caption */}
               {selectedProject.gallery[selectedImageIndex].caption && (
-                <div className="p-4 border-t border-[var(--color-border-dark)]">
-                  <p className="text-[var(--color-text-soft)] text-center">
+                <div className="p-4 border-t border-white/10">
+                  <p className="text-accent text-center">
                     {selectedProject.gallery[selectedImageIndex].caption}
                   </p>
                 </div>
@@ -369,14 +361,14 @@ export function Projects() {
 
               {/* Thumbnails */}
               {selectedProject.gallery.length > 1 && (
-                <div className="p-4 border-t border-[var(--color-border-dark)]">
+                <div className="p-4 border-t border-white/10">
                   <div className="flex gap-2 overflow-x-auto">
                     {selectedProject.gallery.map((img: any, index: number) => (
                       <button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
                         className={`relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-colors ${
-                          index === selectedImageIndex ? 'border-[var(--color-primary-500)]' : 'border-[var(--color-border-dark)]'
+                          index === selectedImageIndex ? 'border-primary' : 'border-white/10'
                         }`}
                       >
                         <Image

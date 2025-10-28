@@ -3,8 +3,6 @@
 import { motion } from "framer-motion"
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from "react-icons/fi"
 import { useContact } from "@/src/hooks/useContact"
-import { colorDebug } from "@/src/lib/colors/debug"
-import { useEffect } from "react"
 
 const quickLinks = [
   { name: "Home", href: "#home" },
@@ -16,12 +14,6 @@ const quickLinks = [
 
 export function Footer() {
   const { contactInfo, loading, error } = useContact()
-  
-  // Debug: Verify color system usage
-  useEffect(() => {
-    colorDebug.verifyComponent('Footer', false)
-    colorDebug.logComponentColors('Footer', ['primary-500', 'bg-deep', 'border-dark', 'text-light'])
-  }, [])
   
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -41,28 +33,28 @@ export function Footer() {
   return (
     <footer className="corporate-footer">
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[var(--color-bg-night)] via-[var(--color-bg-night)]/70 via-[var(--color-bg-deep)]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black via-black/70 via-black/30 to-transparent pointer-events-none" />
       
       <div className="corporate-footer-container">
         <div className="corporate-footer-grid">
           {/* Brand */}
           <div>
-            <h3 className="corporate-footer-section-title">
+            <h3 className="text-lg font-bold text-primary mb-4">
               {loading ? (
-                <div className="h-6 bg-[var(--color-bg-night)] rounded animate-pulse w-32"></div>
+                <div className="h-6 bg-black rounded animate-pulse w-32"></div>
               ) : (
                 contactInfo?.name || 'Paulo Tivane'
               )}
             </h3>
-            <p className="corporate-text-small">
+            <p className="text-sm text-accent leading-relaxed">
               Software Engineer & IT Professional crafting innovative digital solutions.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="corporate-footer-section-title">Quick Links</h4>
-            <div className="corporate-footer-links">
+            <h4 className="text-sm font-bold text-secondary mb-4">Quick Links</h4>
+            <div className="flex flex-col gap-2">
               {quickLinks.map((link) => (
                 <a
                   key={link.name}
@@ -71,7 +63,7 @@ export function Footer() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="corporate-footer-link"
+                  className="text-sm text-accent hover:text-primary transition-colors"
                 >
                   {link.name}
                 </a>
@@ -79,14 +71,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links - Profissional */}
           <div>
-            <h4 className="corporate-footer-section-title">Connect</h4>
-            <div className="corporate-footer-social">
+            <h4 className="text-sm font-bold text-accent mb-4">Connect</h4>
+            <div className="flex flex-wrap gap-2">
               {loading ? (
                 // Loading skeleton for social links
                 Array.from({ length: 4 }).map((_, index) => (
-                  <div key={index} className="w-10 h-10 rounded-lg bg-[var(--color-bg-night)] border border-[var(--color-border-dark)] animate-pulse"></div>
+                  <div key={index} className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 animate-pulse"></div>
                 ))
               ) : socialLinks.length > 0 ? (
                 socialLinks.map((social) => (
@@ -95,16 +87,16 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="corporate-footer-social-link"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-primary hover:border-primary/40 hover:bg-white/10 transition-all"
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon className="w-4 h-4" />
                   </motion.a>
                 ))
               ) : (
-                <p className="text-[var(--color-text-dim)] text-sm">No social links available</p>
+                <p className="text-accent/60 text-sm">No social links available</p>
               )}
             </div>
           </div>
@@ -112,13 +104,13 @@ export function Footer() {
 
         {/* Copyright - Melhor Visibilidade */}
         <div className="corporate-footer-bottom">
-          <p className="text-sm text-[var(--color-text-soft)] text-center">
+          <p className="text-sm text-accent text-center">
             © {new Date().getFullYear()}{' '}
-            <span className="font-semibold text-[var(--color-primary-500)]">
+            <span className="font-semibold text-primary">
               {contactInfo?.name || 'Paulo Babucho Issaca Tivane'}
             </span>
             {'. '}
-            <span className="text-[var(--color-text-dim)]">Todos os direitos reservados.</span>
+            <span className="text-accent/60">Todos os direitos reservados.</span>
           </p>
         </div>
       </div>
