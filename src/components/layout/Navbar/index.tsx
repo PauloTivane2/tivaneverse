@@ -79,12 +79,12 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-black/90 backdrop-blur-md border-b border-white/10 shadow-lg" 
+          ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 shadow-lg" 
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between w-full h-16 sm:h-20">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between w-full h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <motion.a
             href="#home"
@@ -97,7 +97,7 @@ export function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             {siteSettings?.logo ? (
-              <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+              <div className="relative w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10">
                 <Image
                   src={siteSettings.logo}
                   alt={siteSettings.title || "Logo"}
@@ -107,13 +107,13 @@ export function Navbar() {
                 />
               </div>
             ) : (
-              <span className="text-xl sm:text-2xl font-bold text-primary">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                 PT
               </span>
             )}
           </motion.a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Aparecer apenas acima de 768px */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
             {navLinks.map((link, index) => (
               <motion.a
@@ -124,7 +124,7 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={link.name === "Contact" 
-                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-white text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
+                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-background text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
                   : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
@@ -141,16 +141,16 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Aparecer apenas ABAIXO de 768px */}
           <div className="md:hidden relative z-50">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground hover:bg-white/10 hover:border-primary/50 transition-all duration-300"
+              className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+              {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </motion.button>
           </div>
         </div>
@@ -167,7 +167,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -177,14 +177,14 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-black border-l border-white/10 shadow-2xl z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-[75vw] max-w-[280px] sm:max-w-[320px] bg-background border-l border-foreground/10 shadow-2xl z-50 md:hidden"
             >
               {/* Sidebar Header */}
-              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
-                <span className="text-lg sm:text-xl font-bold text-primary">Menu</span>
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-foreground/10">
+                <span className="text-base sm:text-lg font-bold text-primary">Menu</span>
                 <motion.button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground hover:bg-white/10 hover:border-primary/50 transition-all duration-300"
+                  className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Close menu"
@@ -194,7 +194,7 @@ export function Navbar() {
               </div>
 
               {/* Navigation Links */}
-              <nav className="flex flex-col gap-2 p-4 sm:p-6">
+              <nav className="flex flex-col gap-2 p-4 sm:p-5">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.name}
@@ -204,8 +204,8 @@ export function Navbar() {
                       scrollToSection(link.href)
                     }}
                     className={link.name === "Contact" 
-                      ? "w-full px-6 py-3 sm:py-4 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-white text-base sm:text-lg font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
-                      : "w-full px-6 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold text-foreground/80 hover:text-primary hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
+                      ? "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-background text-sm sm:text-base font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
+                      : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-foreground/80 hover:text-primary hover:bg-foreground/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
                     }
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -220,8 +220,8 @@ export function Navbar() {
               </nav>
 
               {/* Sidebar Footer - Optional branding */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-white/10">
-                <p className="text-xs sm:text-sm text-foreground/40 text-center">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 border-t border-foreground/10">
+                <p className="text-xs text-foreground/40 text-center">
                   © 2024 Paulo Tivane
                 </p>
               </div>

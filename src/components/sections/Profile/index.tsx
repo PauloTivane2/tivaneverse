@@ -1,470 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
-import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiCalendar, FiPhone } from "react-icons/fi"
+import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiPhone } from "react-icons/fi"
 import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
-
-// Helper function para syntax highlighting PROFISSIONAL com cores vibrantes
-function SyntaxHighlight({ code }: { code: string }) {
-  // Comentários - Cinza Itálico
-  if (code.trim().startsWith('//') || code.trim().startsWith('#') || code.trim().startsWith('/*')) {
-    return <span className="text-[#6A9955] italic opacity-80">{code}</span>
-  }
-  
-  // Parse completo com múltiplas cores
-  const parts: JSX.Element[] = []
-  let remaining = code
-  let key = 0
-
-  // Regex patterns
-  const patterns = [
-    // Strings (verde vibrante)
-    { regex: /(["'`])((?:\\.|(?!\1).)*?)\1/g, color: '#98C379', className: 'text-[#98C379] font-normal' },
-    // Números (laranja)
-    { regex: /\b(\d+\.?\d*|0x[0-9A-Fa-f]+)\b/g, color: '#D19A66', className: 'text-[#D19A66]' },
-    // Keywords (roxo forte)
-    { regex: /\b(const|let|var|function|class|def|struct|impl|public|private|package|import|using|return|if|else|while|for|async|await|new|type|interface|enum|extends|implements)\b/g, color: '#C678DD', className: 'text-[#C678DD] font-bold' },
-    // Booleans/Null (vermelho)
-    { regex: /\b(true|false|null|nil|undefined|None|self|this|MAX|INFINITY)\b/g, color: '#E06C75', className: 'text-[#E06C75] font-semibold' },
-    // Funções (azul ciano)
-    { regex: /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, color: '#61AFEF', className: 'text-[#61AFEF] font-medium' },
-    // Tipos/Classes (amarelo dourado)
-    { regex: /\b([A-Z][a-zA-Z0-9_]*)\b/g, color: '#E5C07B', className: 'text-[#E5C07B]' },
-    // Propriedades (ciano claro)
-    { regex: /\.([a-zA-Z_][a-zA-Z0-9_]*)/g, color: '#56B6C2', className: 'text-[#56B6C2]' },
-  ]
-
-  // Processar com todas as cores
-  let result = code
-  const segments: Array<{text: string, className?: string}> = []
-  
-  // Detectar e colorir cada parte
-  const processed: Array<{start: number, end: number, className: string, text: string}> = []
-  
-  patterns.forEach(pattern => {
-    const matches = [...code.matchAll(pattern.regex)]
-    matches.forEach(match => {
-      if (match.index !== undefined) {
-        processed.push({
-          start: match.index,
-          end: match.index + match[0].length,
-          className: pattern.className,
-          text: match[0]
-        })
-      }
-    })
-  })
-
-  // Ordenar por posição
-  processed.sort((a, b) => a.start - b.start)
-
-  // Construir resultado
-  let lastEnd = 0
-  const finalParts: JSX.Element[] = []
-  
-  processed.forEach((item, idx) => {
-    // Adicionar texto antes
-    if (item.start > lastEnd) {
-      finalParts.push(
-        <span key={`text-${idx}`} className="text-[#ABB2BF]">
-          {code.substring(lastEnd, item.start)}
-        </span>
-      )
-    }
-    // Adicionar parte colorida
-    finalParts.push(
-      <span key={`color-${idx}`} className={item.className}>
-        {item.text}
-      </span>
-    )
-    lastEnd = item.end
-  })
-
-  // Adicionar texto final
-  if (lastEnd < code.length) {
-    finalParts.push(
-      <span key="final" className="text-[#ABB2BF]">
-        {code.substring(lastEnd)}
-      </span>
-    )
-  }
-
-  return <span className="leading-relaxed">{finalParts.length > 0 ? finalParts : <span className="text-[#ABB2BF]">{code}</span>}</span>
-}
-
-// Componente Criativo de Código Multilíngue com Typewriter
-function MultilingualCodeDisplay({ profileName }: { profileName: string }) {
-  const [currentLanguage, setCurrentLanguage] = useState(0)
-  const [displayedCode, setDisplayedCode] = useState("")
-  const [currentLine, setCurrentLine] = useState(0)
-  const [isTyping, setIsTyping] = useState(true)
-
-  const codeSnippets = [
-    {
-      language: "JavaScript",
-      extension: "js",
-      icon: "⚡",
-      color: "#F7DF1E",
-      code: [
-        `// 👋 Olá! Bem-vindo ao meu universo digital!`,
-        `const desenvolvedor = {`,
-        `  nome: "${profileName}",`,
-        `  stack: ["React", "Next.js", "TypeScript", "Node.js"],`,
-        `  superpoder: "Transformar café em código ☕",`,
-        `  anosCodificando: new Date().getFullYear() - 2015,`,
-        `  amaOQueFaz: true,`,
-        `  missao: "Criar experiências digitais que encantam! ✨"`,
-        `};`,
-        `console.log("Vamos construir algo incrível juntos! 🚀");`
-      ]
-    },
-    {
-      language: "Python",
-      extension: "py",
-      icon: "🐍",
-      color: "#3776AB",
-      code: [
-        `# 🐍 Python é amor, Python é vida!`,
-        `class MagoDoCode:`,
-        `    def __init__(self, nome="${profileName}"):`,
-        `        self.nome = nome`,
-        `        self.energia = float('inf')  # Energia infinita!`,
-        `        self.projetos_incriveis = []`,
-        `        self.cafe_consumido = 9999  # litros ☕`,
-        `    `,
-        `    def criar_magica(self):`,
-        `        while True:`,
-        `            self.projetos_incriveis.append("✨ Magia Digital ✨")`,
-        `            return "IA + Dados + Criatividade = 🚀"`,
-        ``,
-        `# print("Dados são o novo petróleo! 🛢️")`
-      ]
-    },
-    {
-      language: "Go",
-      extension: "go",
-      icon: "🚀",
-      color: "#00ADD8",
-      code: [
-        `// 🚀 Go: Velocidade da luz em produção!`,
-        `package main`,
-        ``,
-        `type CodeNinja struct {`,
-        `    Nome        string`,
-        `    Goroutines  int    // Concorrência é vida! 🔥`,
-        `    Performance string // "9999ms"`,
-        `    Deploy      string // "Instantâneo ⚡"`,
-        `}`,
-        ``,
-        `func (n *CodeNinja) EscalarParaMilhoes() {`,
-        `    go n.ProcessarEmParalelo()`,
-        `    fmt.Println("⚡ Escala infinita! Cloud Native! ☁️")`,
-        `}`
-      ]
-    },
-    {
-      language: "Rust",
-      extension: "rs",
-      icon: "🦀",
-      color: "#CE412B",
-      code: [
-        `// 🦀 Rust: Zero-cost abstractions, Máxima segurança!`,
-        `struct SistemaPerfeito {`,
-        `    criador: String,`,
-        `    bugs_encontrados: u32,      // Sempre 0! 🎯`,
-        `    memoria_segura: bool,        // true forever`,
-        `    velocidade: &'static str,    // "Blazingly fast! 🔥"`,
-        `}`,
-        ``,
-        `impl SistemaPerfeito {`,
-        `    fn novo() -> Self {`,
-        `        Self {`,
-        `            criador: String::from("${profileName}"),`,
-        `            bugs_encontrados: 0,  // Borrow checker é meu amigo!`,
-        `            memoria_segura: true,`,
-        `            velocidade: "Warp speed! 🚀"`,
-        `        }`,
-        `    }`,
-        `}`
-      ]
-    },
-    {
-      language: "Java",
-      extension: "java",
-      icon: "☕",
-      color: "#007396",
-      code: [
-        `// ☕ Java: Enterprise Grade, Rock Solid!`,
-        `@Service`,
-        `public class ArquitetoSolucoes {`,
-        `    @Autowired`,
-        `    private final String arquiteto = "${profileName}";`,
-        `    private final int experiencia = 10; // anos`,
-        `    `,
-        `    @Transactional`,
-        `    public void revolucionarMercado() {`,
-        `        Stream.of("Microsserviços", "Cloud", "APIs")`,
-        `              .parallel()`,
-        `              .forEach(tech -> {`,
-        `                  System.out.println("🚀 Dominando: " + tech);`,
-        `              });`,
-        `        return "Escalação global alcançada! 🌍";`,
-        `    }`,
-        `}`
-      ]
-    },
-    {
-      language: "PHP",
-      extension: "php",
-      icon: "🐘",
-      color: "#777BB4",
-      code: [
-        `<?php`,
-        `// 🐘 PHP: O coração pulsante da web moderna!`,
-        ``,
-        `namespace App\Magos;`,
-        ``,
-        `class CriadorDeImpacto {`,
-        `    public function __construct(`,
-        `        private string $nome = '${profileName}',`,
-        `        private array $frameworks = ['Laravel', 'Symfony'],`,
-        `        private int $sites_criados = 500,`,
-        `        private bool $apaixonado = true`,
-        `    ) {}`,
-        `    `,
-        `    public function transformarVisao(): string {`,
-        `        return "🌐 80% da web roda em PHP! Orgulho! 💜";`,
-        `    }`,
-        `}`
-      ]
-    },
-    {
-      language: "C#",
-      extension: "cs",
-      icon: "🎮",
-      color: "#239120",
-      code: [
-        `// 🎮 C#: O poder do .NET em suas mãos!`,
-        `using System.Linq;`,
-        ``,
-        `public record DesenvolvedorGamer(`,
-        `    string Nome = "${profileName}",`,
-        `    bool Unity3DExpert = true,`,
-        `    int ProjetosCriados = 100`,
-        `) {`,
-        `    public async Task<string> CriarExperiencia() =>`,
-        `        await Task.Run(() => {`,
-        `            var tecnologias = new[] { "Blazor", "MAUI", "Unity" };`,
-        `            return string.Join(" + ",`,
-        `                tecnologias.Select(t => $"🚀 {t}"));`,
-        `        });`,
-        `}`,
-        `// LINQ é poesia! ❤️`
-      ]
-    },
-    {
-      language: "Ruby",
-      extension: "rb",
-      icon: "💎",
-      color: "#CC342D",
-      code: [
-        `# 💎 Ruby: Feito para a felicidade do desenvolvedor!`,
-        ``,
-        `class ArtistaDoCodigo`,
-        `  attr_accessor :nome, :frameworks, :filosofia`,
-        `  `,
-        `  def initialize(nome = '${profileName}')`,
-        `    @nome = nome`,
-        `    @frameworks = %w[Rails Sinatra Hanami]`,
-        `    @filosofia = 'Menos é mais, beleza importa! 🌸'`,
-        `  end`,
-        `  `,
-        `  def criar_com_amor`,
-        `    puts "✨ Código que parece poesia..."`,
-        `    puts "🚀 Rails: Convention over Configuration!"`,
-        `    [:felicidade, :produtividade, :elegancia].each(&:maximize!)`,
-        `  end`,
-        `end`
-      ]
-    }
-  ]
-
-  useEffect(() => {
-    const snippet = codeSnippets[currentLanguage]
-    const targetLine = snippet.code[currentLine]
-    
-    if (!targetLine) {
-      // Finished typing all lines, quick switch
-      const timer = setTimeout(() => {
-        setCurrentLanguage((prev) => (prev + 1) % codeSnippets.length)
-        setDisplayedCode("")
-        setCurrentLine(0)
-        setIsTyping(true)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-
-    if (isTyping && displayedCode.length < targetLine.length) {
-      // Typing effect - ULTRA RÁPIDO! 3-5s total
-      const timer = setTimeout(() => {
-        setDisplayedCode(targetLine.slice(0, displayedCode.length + 1))
-      }, 4)
-      return () => clearTimeout(timer)
-    } else if (displayedCode.length === targetLine.length) {
-      // Move to next line - mais rápido
-      const timer = setTimeout(() => {
-        setCurrentLine((prev) => prev + 1)
-        setDisplayedCode("")
-      }, 100)
-      return () => clearTimeout(timer)
-    }
-  }, [displayedCode, currentLine, currentLanguage, isTyping])
-
-  const snippet = codeSnippets[currentLanguage]
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1.2 }}
-      className="mt-12 sm:mt-16 md:mt-20 w-full px-4 sm:px-6 lg:px-8"
-    >
-      <div className="relative max-w-5xl mx-auto">
-        {/* Animated Glow Background - Professional 10yr CSS */}
-        <motion.div 
-          className="absolute inset-0 opacity-30 rounded-3xl blur-3xl"
-          animate={{ 
-            background: [
-              `radial-gradient(circle at 30% 50%, ${snippet.color}, transparent 70%)`,
-              `radial-gradient(circle at 70% 50%, ${snippet.color}, transparent 70%)`,
-              `radial-gradient(circle at 50% 30%, ${snippet.color}, transparent 70%)`,
-            ]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        {/* Main Container - Mobile-first responsive */}
-        <div className="relative bg-gradient-to-br from-[var(--color-bg-elevated)]/95 via-[var(--color-bg-deep)]/90 to-[var(--color-bg-elevated)]/95 backdrop-blur-2xl border border-[var(--color-border-dark)]/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_80px_-15px_rgba(0,0,0,0.6)] hover:border-[var(--color-border-dark)]">
-          {/* Terminal Header with Language Indicator */}
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-[var(--color-border-dark)]">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer" />
-              </div>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentLanguage}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="text-[10px] xs:text-xs sm:text-sm ml-2 sm:ml-4 font-mono flex items-center gap-1 sm:gap-2"
-                  style={{ color: snippet.color }}
-                >
-                  <span className="text-base sm:text-xl">{snippet.icon}</span>
-                  <span className="font-semibold hidden xs:inline">{snippet.language}</span>
-                  <span className="font-semibold xs:hidden">{snippet.language.slice(0, 4)}</span>
-                  <span className="text-[var(--color-text-dim)] hidden sm:inline">.{snippet.extension}</span>
-                </motion.span>
-              </AnimatePresence>
-            </div>
-            
-            {/* Language indicator dots - Hide on very small screens */}
-            <div className="hidden xs:flex gap-1 sm:gap-1.5">
-              {codeSnippets.map((_, index) => (
-                <motion.div
-                  key={index}
-                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300"
-                  style={{
-                    backgroundColor: index === currentLanguage ? snippet.color : 'rgba(255,255,255,0.2)',
-                    scale: index === currentLanguage ? 1.3 : 1,
-                    boxShadow: index === currentLanguage ? `0 0 8px ${snippet.color}` : 'none'
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Code Display Area - Professional responsive typography */}
-          <div className="font-mono text-[11px] xs:text-xs sm:text-sm md:text-base min-h-[240px] sm:min-h-[280px] md:min-h-[320px] transition-all duration-300">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentLanguage}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-2"
-              >
-                {snippet.code.slice(0, currentLine).map((line, idx) => (
-                  <div key={idx} className="flex gap-2 sm:gap-3 md:gap-4 group hover:bg-white/5 transition-colors rounded px-1 sm:px-2 -mx-1 sm:-mx-2">
-                    <span className="text-[var(--color-text-dim)] select-none w-4 sm:w-6 text-right opacity-60 group-hover:opacity-100 transition-opacity text-[10px] sm:text-xs">
-                      {idx + 1}
-                    </span>
-                    <pre className="flex-1 whitespace-pre-wrap break-words overflow-x-auto">
-                      <SyntaxHighlight code={line} />
-                    </pre>
-                  </div>
-                ))}
-                {displayedCode && (
-                  <div className="flex gap-2 sm:gap-3 md:gap-4 bg-white/5 rounded px-1 sm:px-2 -mx-1 sm:-mx-2">
-                    <span className="text-[var(--color-text-dim)] select-none w-4 sm:w-6 text-right text-[10px] sm:text-xs">
-                      {currentLine + 1}
-                    </span>
-                    <pre className="flex-1 overflow-x-auto">
-                      <SyntaxHighlight code={displayedCode} />
-                      <motion.span
-                        className="inline-block w-1.5 sm:w-2 h-3 sm:h-4 ml-0.5 bg-[var(--color-primary-500)] shadow-[0_0_10px_rgba(0,191,166,0.5)]"
-                        animate={{ opacity: [1, 0, 1] }}
-                        transition={{
-                          duration: 0.8,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    </pre>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Bottom Info Bar - Professional responsive */}
-          <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[var(--color-border-dark)]/50 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[10px] sm:text-xs">
-            <div className="flex items-center gap-2 sm:gap-4 text-[var(--color-text-soft)]">
-              <span className="font-medium">UTF-8</span>
-              <span className="hidden xs:inline">•</span>
-              <span className="flex items-center gap-1 sm:gap-1.5">
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
-                <span className="font-medium">Live</span>
-              </span>
-              <span className="hidden sm:inline">•</span>
-              <span className="hidden sm:inline text-[var(--color-text-dim)]" style={{ color: snippet.color }}>
-                {snippet.language}
-              </span>
-            </div>
-            <motion.span
-              className="text-[var(--color-text-soft)] italic text-center sm:text-right"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="hidden xs:inline">Cycling through</span>
-              <span className="xs:hidden">Loop:</span>
-              {' '}<span className="font-bold" style={{ color: snippet.color }}>{codeSnippets.length}</span>{' '}
-              <span className="hidden xs:inline">languages...</span>
-              <span className="xs:hidden">langs</span>
-              {' '}🌍
-            </motion.span>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+import { MultilingualCodeDisplay } from "./CodeDisplay"
 
 export function Profile() {
   const { profileData: sanityData, loading, error } = useProfile()
@@ -516,14 +58,14 @@ export function Profile() {
   // Show loading state if no data yet - AFTER all hooks
   if (!profileData) {
     return (
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background">
         <div className="max-w-7xl mx-auto w-full text-center">
           <div className="animate-pulse">
-            <div className="h-12 bg-muted rounded-lg mb-4 mx-auto max-w-md"></div>
-            <div className="h-6 bg-muted rounded-lg mb-6 mx-auto max-w-sm"></div>
-            <div className="h-4 bg-muted rounded-lg mb-2 mx-auto max-w-lg"></div>
-            <div className="h-4 bg-muted rounded-lg mb-8 mx-auto max-w-md"></div>
-            <p className="text-muted-foreground">Carregando dados do Sanity CMS...</p>
+            <div className="h-12 bg-foreground/10 rounded-lg mb-4 mx-auto max-w-md"></div>
+            <div className="h-6 bg-foreground/10 rounded-lg mb-6 mx-auto max-w-sm"></div>
+            <div className="h-4 bg-foreground/10 rounded-lg mb-2 mx-auto max-w-lg"></div>
+            <div className="h-4 bg-foreground/10 rounded-lg mb-8 mx-auto max-w-md"></div>
+            <p className="text-foreground/50">Carregando dados do Sanity CMS...</p>
           </div>
         </div>
       </section>
@@ -559,9 +101,9 @@ export function Profile() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 relative">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 relative bg-background">
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-deep)]/30 to-[var(--color-bg-night)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none" />
       
       <div className="container mx-auto max-w-7xl w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
@@ -596,9 +138,9 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-sm sm:text-base md:text-lg text-[var(--color-primary-500)] font-mono font-medium matrix-glow">
+              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-medium">
                 {displayedText}
-                <span className="inline-block w-0.5 h-4 sm:h-5 bg-[var(--color-primary-500)] ml-1 animate-pulse" />
+                <span className="inline-block w-0.5 h-4 sm:h-5 bg-primary ml-1 animate-pulse" />
               </p>
             </motion.div>
 
@@ -632,17 +174,17 @@ export function Profile() {
                     href={mapLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary hover:bg-foreground/10 transition-all duration-200 group"
                   >
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-primary-500)] group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="font-medium text-[var(--color-text-soft)] group-hover:text-[var(--color-primary-500)] truncate max-w-[150px] sm:max-w-none">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <span className="font-medium text-foreground/70 group-hover:text-primary truncate max-w-[150px] sm:max-w-none">
                       {locationText}
                     </span>
                   </a>
                 ) : (
-                  <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)]">
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-primary-500)] flex-shrink-0" />
-                    <span className="font-medium text-[var(--color-text-soft)] truncate max-w-[150px] sm:max-w-none">{locationText}</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                    <span className="font-medium text-foreground/70 truncate max-w-[150px] sm:max-w-none">{locationText}</span>
                   </div>
                 )
               })()}
@@ -652,17 +194,17 @@ export function Profile() {
                 <a
                   href={`tel:${profileData.phone.replace(/\s/g, '')}`}
                   title={`Ligar: ${profileData.phone}`}
-                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-secondary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group flex-shrink-0"
+                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-foreground/5 border border-foreground/10 hover:border-secondary hover:bg-foreground/10 transition-all duration-200 group flex-shrink-0"
                 >
-                  <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-secondary-500)] group-hover:scale-125 transition-transform" />
+                  <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:scale-125 transition-transform" />
                 </a>
               )}
               
               {/* Availability Badge */}
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
-                <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] border border-[var(--color-primary-200)]">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--color-primary-500)] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,191,166,0.6)] flex-shrink-0"></div>
-                  <span className="font-semibold text-[var(--color-primary-600)] whitespace-nowrap">
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-primary/10 border border-primary/30">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0"></div>
+                  <span className="font-semibold text-primary whitespace-nowrap">
                     {profileData.availability.message || 'Disponível'}
                   </span>
                 </div>
@@ -684,13 +226,13 @@ export function Profile() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
-                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] text-[var(--color-primary-600)] rounded-md sm:rounded-lg border border-[var(--color-primary-200)] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/30 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </motion.span>
                   ))}
                   {profileData.skills.length > 8 && (
-                    <span className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-[var(--color-bg-elevated)] text-[var(--color-text-soft)] rounded-md sm:rounded-lg border border-[var(--color-border-dark)]">
+                    <span className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-foreground/5 text-foreground/70 rounded-md sm:rounded-lg border border-foreground/10">
                       +{profileData.skills.length - 8}
                     </span>
                   )}
@@ -706,11 +248,11 @@ export function Profile() {
               transition={{ delay: 0.8 }}
               className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8 mb-8 sm:mb-10"
             >
-              {/* Ver Projetos - Primary (Verde) */}
+              {/* Ver Projetos - Primary */}
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-black flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -720,11 +262,11 @@ export function Profile() {
                 </span>
               </motion.button>
 
-              {/* Contactar - Secondary (Laranja) */}
+              {/* Contactar - Secondary */}
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -734,12 +276,12 @@ export function Profile() {
                 </span>
               </motion.button>
 
-              {/* Baixar CV - Outline (Branco) */}
+              {/* Baixar CV - Accent */}
               {profileData.resume && (
                 <motion.button
                   onClick={handleResumeDownload}
                   title="Baixar CV"
-                  className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/5 border-2 border-white/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -767,7 +309,7 @@ export function Profile() {
               {/* Sombra sutil profissional */}
               <div className="absolute inset-0 rounded-full bg-primary/5 blur-xl sm:blur-2xl" />
 
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-white/10 shadow-2xl">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-foreground/10 shadow-2xl">
                 <Image
                   src={profileData.image || "/placeholder.svg"}
                   alt={profileData.name}
@@ -778,14 +320,14 @@ export function Profile() {
                 
                 {/* Social Links Overlay - Profissional */}
                 {profileData.social && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/60 backdrop-blur-sm z-10">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-background/60 backdrop-blur-sm z-10">
                     <div className="flex gap-3">
                       {profileData.social.github && (
                         <a
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiGithub className="w-5 h-5" />
                         </a>
@@ -795,7 +337,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiLinkedin className="w-5 h-5" />
                         </a>
@@ -805,7 +347,7 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiTwitter className="w-5 h-5" />
                         </a>
@@ -815,7 +357,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-white/10 border border-white/20 text-foreground hover:bg-primary hover:text-black hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiInstagram className="w-5 h-5" />
                         </a>

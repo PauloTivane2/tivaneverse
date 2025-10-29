@@ -41,10 +41,10 @@ export function Expertise() {
   return (
     <section id="expertise" className="corporate-section bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
       
       <div className="corporate-container relative z-10">
         {/* Section Header */}
@@ -75,15 +75,15 @@ export function Expertise() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6"
         >
           {loading ? (
             // Loading skeleton
             Array.from({ length: 12 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="p-6 rounded-xl bg-background border border-white/10 flex flex-col items-center justify-center gap-3 h-full">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded"></div>
-                  <div className="h-4 bg-white/10 rounded w-16"></div>
+                <div className="p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-background border border-foreground/10 flex flex-col items-center justify-center gap-2 sm:gap-3 h-full">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-foreground/10 rounded"></div>
+                  <div className="h-3 sm:h-4 bg-foreground/10 rounded w-14 sm:w-16"></div>
                 </div>
               </div>
             ))
@@ -99,8 +99,8 @@ export function Expertise() {
               <div className="corporate-card flex flex-col items-center justify-center gap-3 h-full">
                 {/* Featured Badge */}
                 {skill.featured && (
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                    <FiStar className="w-3 h-3 text-black" />
+                  <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center">
+                    <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-background" />
                   </div>
                 )}
 
@@ -115,7 +115,7 @@ export function Expertise() {
                 {/* Icon */}
                 <div className="relative z-10">
                   <skill.icon
-                    className="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-all duration-300"
                     style={{
                       color: skill.color,
                       filter: "drop-shadow(0 0 8px currentColor)",
@@ -124,14 +124,14 @@ export function Expertise() {
                 </div>
 
                 {/* Name */}
-                <p className="relative z-10 text-sm font-medium text-foreground text-center group-hover:text-primary transition-colors">
+                <p className="relative z-10 text-xs sm:text-sm font-medium text-foreground text-center group-hover:text-primary transition-colors">
                   {skill.name}
                 </p>
 
                 {/* Category Badge */}
                 {skill.category && (
                   <div className="relative z-10">
-                    <span className="px-2 py-1 text-xs font-medium bg-white/10 text-accent rounded-full">
+                    <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-xs font-medium bg-foreground/10 text-accent rounded-full">
                       {skill.category}
                     </span>
                   </div>
@@ -140,17 +140,17 @@ export function Expertise() {
                 {/* Proficiency Level */}
                 {skill.proficiencyLevel && (
                   <div className="relative z-10 flex items-center gap-1">
-                    <div className="flex gap-1">
+                    <div className="flex gap-0.5 sm:gap-1">
                       {Array.from({ length: 10 }).map((_, i) => (
                         <div
                           key={i}
-                          className={`w-1 h-1 rounded-full ${
-                            i < skill.proficiencyLevel! ? 'bg-primary' : 'bg-white/30'
+                          className={`w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full ${
+                            i < skill.proficiencyLevel! ? 'bg-primary' : 'bg-foreground/30'
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="text-xs text-accent ml-2">
+                    <span className="text-[9px] sm:text-xs text-accent ml-1 sm:ml-2">
                       {skill.proficiencyLevel}/10
                     </span>
                   </div>
@@ -183,56 +183,56 @@ export function Expertise() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
             onClick={() => setSelectedSkill(null)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-background border border-white/20 rounded-xl p-6 max-w-md w-full"
+              className="bg-background border border-foreground/20 rounded-lg sm:rounded-xl p-4 sm:p-6 max-w-md w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 rounded-lg" style={{ backgroundColor: `${selectedSkill.color}20` }}>
+              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <div className="p-2 sm:p-3 rounded-lg" style={{ backgroundColor: `${selectedSkill.color}20` }}>
                   <selectedSkill.icon
-                    className="w-8 h-8"
+                    className="w-6 h-6 sm:w-8 sm:h-8"
                     style={{ color: selectedSkill.color }}
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-foreground mb-1">{selectedSkill.name}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">{selectedSkill.name}</h3>
                   {selectedSkill.category && (
-                    <p className="text-sm text-accent capitalize">{selectedSkill.category}</p>
+                    <p className="text-xs sm:text-sm text-accent capitalize">{selectedSkill.category}</p>
                   )}
                 </div>
                 {selectedSkill.featured && (
                   <div className="flex items-center gap-1 text-primary">
-                    <FiAward className="w-4 h-4" />
-                    <span className="text-xs font-medium">Featured</span>
+                    <FiAward className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="text-[10px] sm:text-xs font-medium">Featured</span>
                   </div>
                 )}
               </div>
 
               {/* Proficiency Level */}
               {selectedSkill.proficiencyLevel && (
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FiTrendingUp className="w-4 h-4 text-accent" />
-                    <span className="text-sm font-medium text-foreground">Proficiency Level</span>
+                <div className="mb-3 sm:mb-4">
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                    <FiTrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-accent" />
+                    <span className="text-xs sm:text-sm font-medium text-foreground">Proficiency Level</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       {Array.from({ length: 10 }).map((_, i) => (
                         <div
                           key={i}
-                          className={`w-2 h-2 rounded-full ${
-                            i < selectedSkill.proficiencyLevel! ? 'bg-primary' : 'bg-white/30'
+                          className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
+                            i < selectedSkill.proficiencyLevel! ? 'bg-primary' : 'bg-foreground/30'
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="text-sm text-accent">
+                    <span className="text-xs sm:text-sm text-accent">
                       {selectedSkill.proficiencyLevel}/10
                     </span>
                   </div>
@@ -241,8 +241,8 @@ export function Expertise() {
 
               {/* Years of Experience */}
               {selectedSkill.yearsOfExperience && (
-                <div className="mb-4">
-                  <p className="text-sm text-accent">
+                <div className="mb-3 sm:mb-4">
+                  <p className="text-xs sm:text-sm text-accent">
                     <span className="font-medium text-foreground">Experience:</span> {selectedSkill.yearsOfExperience} years
                   </p>
                 </div>
@@ -250,8 +250,8 @@ export function Expertise() {
 
               {/* Description */}
               {selectedSkill.description && (
-                <div className="mb-4">
-                  <p className="text-sm text-accent leading-relaxed">
+                <div className="mb-3 sm:mb-4">
+                  <p className="text-xs sm:text-sm text-accent leading-relaxed">
                     {selectedSkill.description}
                   </p>
                 </div>
@@ -260,7 +260,7 @@ export function Expertise() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedSkill(null)}
-                className="w-full py-2 px-4 rounded-lg bg-primary text-black font-medium hover:bg-primary/90 transition-colors"
+                className="w-full py-2 px-4 rounded-lg bg-primary text-background font-medium hover:bg-primary/90 transition-colors text-sm"
               >
                 Close
               </button>

@@ -32,33 +32,33 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-background relative" ref={ref}>
+    <section id="services" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-6 sm:mb-10 md:mb-12"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-3 sm:mb-4 text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 rounded-full border border-primary/20"
+            className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 mb-2 sm:mb-3 text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 rounded-full border border-primary/20"
           >
             What I Offer
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 px-3">
             Services
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
+          <p className="text-xs sm:text-sm md:text-base text-foreground/70 max-w-2xl mx-auto px-3">
             Comprehensive IT solutions tailored to your business needs
           </p>
         </motion.div>
@@ -68,24 +68,24 @@ export function Services() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
         >
           {loading ? (
             // Loading skeleton
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full p-8 rounded-xl bg-background border border-white/10">
-                  <div className="mb-6">
-                    <div className="w-14 h-14 rounded-lg bg-white/10"></div>
+                <div className="h-full p-4 sm:p-6 md:p-7 rounded-lg sm:rounded-xl bg-background border border-foreground/10">
+                  <div className="mb-4 sm:mb-5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg bg-foreground/10"></div>
                   </div>
-                  <div className="space-y-4">
-                    <div className="h-6 bg-white/10 rounded w-3/4"></div>
-                    <div className="h-4 bg-white/10 rounded"></div>
-                    <div className="h-4 bg-white/10 rounded w-5/6"></div>
-                    <div className="space-y-2 mt-6">
-                      <div className="h-4 bg-white/10 rounded w-4/5"></div>
-                      <div className="h-4 bg-white/10 rounded w-3/5"></div>
-                      <div className="h-4 bg-white/10 rounded w-4/5"></div>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="h-5 sm:h-6 bg-foreground/10 rounded w-3/4"></div>
+                    <div className="h-3 sm:h-4 bg-foreground/10 rounded"></div>
+                    <div className="h-3 sm:h-4 bg-foreground/10 rounded w-5/6"></div>
+                    <div className="space-y-2 mt-4 sm:mt-5">
+                      <div className="h-3 sm:h-4 bg-foreground/10 rounded w-4/5"></div>
+                      <div className="h-3 sm:h-4 bg-foreground/10 rounded w-3/5"></div>
+                      <div className="h-3 sm:h-4 bg-foreground/10 rounded w-4/5"></div>
                     </div>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export function Services() {
               
               return (
             <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} className="group relative">
-              <div className={`h-full p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-background border-2 ${colorScheme.border} hover:border-opacity-80 transition-all duration-300`}>
+              <div className={`relative h-full p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl bg-background border-2 ${colorScheme.border} hover:border-opacity-80 transition-all duration-300`}>
                 {/* Featured Badge */}
                 {service.featured && (
                   <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 z-10">
@@ -115,29 +115,29 @@ export function Services() {
                 )}
 
                 {/* Icon */}
-                <div className={`mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg ${colorScheme.bg} flex items-center justify-center text-lg sm:text-xl md:text-2xl`}>
+                <div className={`mb-3 sm:mb-4 md:mb-5 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg ${colorScheme.bg} flex items-center justify-center text-base sm:text-lg md:text-xl`}>
                   <service.icon className={colorScheme.text} />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3">
                   {service.title}
                 </h3>
-                <p className="text-sm sm:text-base text-foreground/70 mb-4 sm:mb-6 leading-relaxed">{service.description}</p>
+                <p className="text-xs sm:text-sm text-foreground/70 mb-3 sm:mb-4 leading-relaxed">{service.description}</p>
 
                 {/* Info Pills */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-3">
                   {service.deliveryTime && (
-                    <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
-                      <FiClock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent" />
-                      <span className="text-[10px] sm:text-xs text-foreground/80">{service.deliveryTime}</span>
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-md bg-foreground/5 border border-foreground/10">
+                      <FiClock className="w-3 h-3 text-accent" />
+                      <span className="text-[9px] sm:text-xs text-foreground/80">{service.deliveryTime}</span>
                     </div>
                   )}
                   
                   {service.pricing && service.pricing.startingPrice && (
-                    <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-white/5 border border-white/10">
-                      <FiDollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-                      <span className="text-[10px] sm:text-xs text-foreground/80">
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-md bg-foreground/5 border border-foreground/10">
+                      <FiDollarSign className="w-3 h-3 text-primary" />
+                      <span className="text-[9px] sm:text-xs text-foreground/80">
                         {service.pricing.currency === 'USD' && '$'}
                         {service.pricing.currency === 'EUR' && '€'}
                         {service.pricing.currency === 'MZN' && 'MT'}
@@ -151,38 +151,38 @@ export function Services() {
 
                 {/* Technologies */}
                 {service.technologies && service.technologies.length > 0 && (
-                  <div className="mb-3 sm:mb-4">
-                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
-                      <FiCode className={`w-3 h-3 sm:w-4 sm:h-4 ${colorScheme.text}`} />
-                      <span className={`text-[10px] sm:text-xs font-semibold ${colorScheme.text} uppercase tracking-wider`}>Tech Stack</span>
+                  <div className="mb-2 sm:mb-3">
+                    <div className="flex items-center gap-1 sm:gap-1.5 mb-1 sm:mb-1.5">
+                      <FiCode className={`w-3 h-3 ${colorScheme.text}`} />
+                      <span className={`text-[9px] sm:text-xs font-semibold ${colorScheme.text} uppercase tracking-wider`}>Tech Stack</span>
                     </div>
-                    <div className="flex flex-wrap gap-1 sm:gap-1.5">
+                    <div className="flex flex-wrap gap-1">
                       {service.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className={`px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs rounded-md ${colorScheme.bg} border ${colorScheme.border} ${colorScheme.text}`}
+                          className={`px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-xs font-semibold rounded ${colorScheme.bg} border ${colorScheme.border} ${colorScheme.text}`}
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-                  </div>
+                </div>
                 )}
 
                 {/* Features List */}
-                <div className="space-y-2 sm:space-y-3">
+                <div className="space-y-1.5 sm:space-y-2">
                   {service.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-2 sm:gap-3">
-                      <FiCheck className={`w-3 h-3 sm:w-4 sm:h-4 ${colorScheme.text} flex-shrink-0 mt-0.5`} />
-                      <span className="text-xs sm:text-sm text-foreground/80">{feature}</span>
+                    <div key={feature} className="flex items-start gap-1.5 sm:gap-2">
+                      <FiCheck className={`w-3 h-3 ${colorScheme.text} flex-shrink-0 mt-0.5`} />
+                      <span className="text-[10px] sm:text-xs text-foreground/80">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Pricing Note */}
                 {service.pricing?.note && (
-                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10">
-                    <p className="text-[10px] sm:text-xs text-foreground/60 italic">{service.pricing.note}</p>
+                  <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-foreground/10">
+                    <p className="text-[9px] sm:text-[10px] text-foreground/60 italic">{service.pricing.note}</p>
                   </div>
                 )}
 
