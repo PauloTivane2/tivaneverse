@@ -4,7 +4,6 @@ import type React from "react"
 import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
-import { EffectsManager } from "@/src/components/effects"
 import { useSiteSettings, type SiteSettings } from "@/src/hooks/useSiteSettings"
 import { useEffect } from "react"
 import Script from "next/script"
@@ -370,9 +369,6 @@ export default function RootLayout({
         >
           {/* Dynamic Head Updates */}
           <DynamicHead siteSettings={siteSettings} />
-          
-          {/* All Visual Effects - Managed by Sanity CMS */}
-          <EffectsManager />
           
           <div className="relative z-10 bg-transparent">{children}</div>
           

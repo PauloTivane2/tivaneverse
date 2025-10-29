@@ -1,5 +1,3 @@
-// Re-export the dynamic MatrixRain component (CMS integrated)
-export { default } from './MatrixRainDynamic'
-
-// Export static version (simpler, values falling down)
+// Export static version as default
+export { default } from './MatrixRainStatic'
 export { MatrixRainStatic } from './MatrixRainStatic'
