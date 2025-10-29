@@ -86,13 +86,11 @@ export function Navbar() {
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between w-full h-14 sm:h-16 md:h-20">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("#home")
+          <motion.button
+            onClick={() => {
+              window.location.reload()
             }}
-            className="flex items-center gap-2 sm:gap-3 group relative z-50"
+            className="flex items-center gap-2 sm:gap-3 group relative z-50 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -111,7 +109,7 @@ export function Navbar() {
                 PT
               </span>
             )}
-          </motion.a>
+          </motion.button>
 
           {/* Desktop Navigation - Aparecer apenas acima de 768px */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">

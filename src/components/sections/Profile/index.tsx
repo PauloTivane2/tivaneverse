@@ -148,7 +148,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl"
+              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl break-words"
             >
               {profileData.bio}
             </motion.p>
@@ -177,14 +177,14 @@ export function Profile() {
                     className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary hover:bg-foreground/10 transition-all duration-200 group"
                   >
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="font-medium text-foreground/70 group-hover:text-primary truncate max-w-[150px] sm:max-w-none">
+                    <span className="font-medium text-foreground/70 group-hover:text-primary break-words">
                       {locationText}
                     </span>
                   </a>
                 ) : (
                   <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10">
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-                    <span className="font-medium text-foreground/70 truncate max-w-[150px] sm:max-w-none">{locationText}</span>
+                    <span className="font-medium text-foreground/70 break-words">{locationText}</span>
                   </div>
                 )
               })()}
@@ -204,7 +204,7 @@ export function Profile() {
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
                 <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-primary/10 border border-primary/30">
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0"></div>
-                  <span className="font-semibold text-primary whitespace-nowrap">
+                  <span className="font-semibold text-primary">
                     {profileData.availability.message || 'Disponível'}
                   </span>
                 </div>
