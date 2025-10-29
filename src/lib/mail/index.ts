@@ -5,6 +5,11 @@
  */
 
 export { transporter } from './transporter'
-export { sendContactEmail, verifyEmailService } from './sendMail'
-export { getContactEmailTemplate, getContactEmailText } from './templates'
+export { sendContactEmail, sendAutoReply, verifyEmailService } from './sendMail'
+export { 
+  getContactEmailTemplate, 
+  getContactEmailText,
+  getAutoReplyTemplate,
+  getAutoReplyText
+} from './templates'
 export type { SendMailParams, SendMailResponse } from './sendMail'

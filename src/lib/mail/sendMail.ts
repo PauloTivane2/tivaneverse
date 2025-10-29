@@ -6,7 +6,12 @@
  */
 
 import { transporter } from './transporter'
-import { getContactEmailTemplate, getContactEmailText } from './templates'
+import { 
+  getContactEmailTemplate, 
+  getContactEmailText,
+  getAutoReplyTemplate,
+  getAutoReplyText
+} from './templates'
 
 export interface SendMailParams {
   name: string
@@ -101,6 +106,73 @@ export async function sendContactEmail(
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Erro desconhecido ao enviar email',
+    }
+  }
+}
+
+/**
+ * Envia auto-resposta para quem enviou a mensagem
+ * Confirma que a mensagem foi recebida
+ * 
+ * @param name - Nome da pessoa que enviou a mensagem
+ * @param email - Email para onde enviar a confirmação
+ * @param profileData - Dados do perfil (phone, social) - opcional
+ * @returns Promise com resultado do envio
+ */
+export async function sendAutoReply(
+  name: string,
+  email: string,
+  profileData?: { phone?: string; social?: any }
+): Promise<SendMailResponse> {
+  try {
+    // Validar parâmetros
+    if (!name || !email) {
+      return {
+        success: false,
+        error: 'Nome e email são obrigatórios para auto-resposta',
+      }
+    }
+
+    // Preparar dados para o template
+    const autoReplyData = {
+      name,
+      phone: profileData?.phone,
+      social: profileData?.social,
+    }
+
+    // Configurar email de auto-resposta
+    const mailOptions = {
+      from: {
+        name: 'Paulo Tivane - Portfólio',
+        address: process.env.EMAIL_USER as string,
+      },
+      to: email,
+      subject: 'Mensagem Recebida - Obrigado pelo Contato!',
+      text: getAutoReplyText(autoReplyData),
+      html: getAutoReplyTemplate(autoReplyData),
+      headers: {
+        'X-Auto-Response': 'true',
+      },
+    }
+
+    // Enviar auto-resposta
+    console.log(`📧 Enviando auto-resposta para: ${email}`)
+    const info = await transporter.sendMail(mailOptions)
+    
+    console.log('✅ Auto-resposta enviada com sucesso!')
+    console.log('📬 Message ID:', info.messageId)
+
+    return {
+      success: true,
+      messageId: info.messageId,
+    }
+  } catch (error) {
+    console.error('❌ Erro ao enviar auto-resposta:', error)
+    
+    // Não falhar o processo principal se auto-resposta falhar
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Erro ao enviar auto-resposta',
     }
   }
 }

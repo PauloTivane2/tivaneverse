@@ -11,7 +11,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { sendContactEmail } from '@/src/lib/mail'
+import { sendContactEmail, sendAutoReply } from '@/src/lib/mail'
 
 // Forçar runtime Node.js (necessário para Nodemailer no Vercel)
 export const runtime = 'nodejs'
@@ -190,12 +190,36 @@ export async function POST(request: NextRequest) {
       message: message.trim(),
     })
 
-    // 9. Retornar resposta
+    // 9. Enviar auto-resposta (não bloqueia se falhar)
     if (result.success) {
+      // Buscar dados do perfil para incluir na auto-resposta
+      const profileData = {
+        phone: process.env.NEXT_PUBLIC_PHONE || '846485506',
+        social: {
+          github: process.env.NEXT_PUBLIC_GITHUB || 'https://github.com/paulotivane',
+          linkedin: process.env.NEXT_PUBLIC_LINKEDIN || 'https://linkedin.com/in/paulotivane',
+          twitter: process.env.NEXT_PUBLIC_TWITTER,
+        }
+      }
+      
+      // Enviar auto-resposta em segundo plano com dados do perfil
+      sendAutoReply(name.trim(), email.trim().toLowerCase(), profileData)
+        .then((autoReplyResult) => {
+          if (autoReplyResult.success) {
+            console.log('✅ Auto-resposta enviada para:', email)
+          } else {
+            console.warn('⚠️ Falha ao enviar auto-resposta:', autoReplyResult.error)
+          }
+        })
+        .catch((error) => {
+          console.error('❌ Erro na auto-resposta:', error)
+        })
+
+      // Retornar sucesso imediatamente
       return NextResponse.json(
         {
           success: true,
-          message: 'Mensagem enviada com sucesso! Entrarei em contato em breve.',
+          message: 'Mensagem enviada com sucesso! Você receberá uma confirmação no seu email.',
           messageId: result.messageId,
         },
         {
