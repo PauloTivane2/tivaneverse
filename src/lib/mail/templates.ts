@@ -47,17 +47,17 @@ export function getContactEmailTemplate({
   margin: 0;
   padding: 0;
   font-family: 'Space Mono', 'Courier New', monospace;
-  background: linear-gradient(135deg, #000000 0%, #000000 100%);
-  color: #ffffff;
+  background: #FFFFFF;
+  color: #000000;
 ">
   <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
-    background: #000000;
+    background: #FFFFFF;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 25px 80px rgba(202, 231, 247, 0.15);
-    border: 1px solid rgba(202, 231, 247, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   ">
     <!-- Header Profissional -->
     <div class="header" style="
@@ -90,8 +90,8 @@ export function getContactEmailTemplate({
     <div class="content" style="padding: 32px;">
       <!-- Card do Remetente -->
       <div class="card" style="
-        background: linear-gradient(135deg, rgba(202, 231, 247, 0.05) 0%, rgba(202, 231, 247, 0.02) 100%);
-        border: 1px solid rgba(202, 231, 247, 0.2);
+        background: #F8F9FA;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 24px;
@@ -117,7 +117,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(202, 231, 247, 0.6);
+            color: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -127,7 +127,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 17px;
             font-weight: 500;
-            color: #ffffff;
+            color: #000000;
           ">
             ${name}
           </div>
@@ -137,7 +137,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(202, 231, 247, 0.6);
+            color: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -147,13 +147,13 @@ export function getContactEmailTemplate({
           <a href="mailto:${email}" style="
             font-size: 16px;
             font-weight: 500;
-            color: #CAE7F7;
+            color: #0066CC;
             text-decoration: none;
             display: inline-block;
             padding: 8px 14px;
-            background: rgba(202, 231, 247, 0.1);
+            background: #F0F7FF;
             border-radius: 8px;
-            border: 1px solid rgba(202, 231, 247, 0.2);
+            border: 1px solid #CAE7F7;
             transition: all 0.2s;
           ">
             ${email}
@@ -164,7 +164,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(202, 231, 247, 0.6);
+            color: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -174,7 +174,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 15px;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
+            color: #000000;
           ">
             ${subject}
           </div>
@@ -183,8 +183,8 @@ export function getContactEmailTemplate({
 
       <!-- Card da Mensagem -->
       <div class="card" style="
-        background: linear-gradient(135deg, rgba(202, 231, 247, 0.03) 0%, rgba(202, 231, 247, 0.01) 100%);
-        border: 1px solid rgba(202, 231, 247, 0.15);
+        background: #F8F9FA;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 16px;
         padding: 24px;
       ">
@@ -207,13 +207,14 @@ export function getContactEmailTemplate({
         <div style="
           font-size: 15px;
           line-height: 1.8;
-          color: rgba(255, 255, 255, 0.9);
+          color: #000000;
           white-space: pre-wrap;
           word-wrap: break-word;
-          background: rgba(0, 0, 0, 0.2);
+          background: #FFFFFF;
           padding: 20px;
           border-radius: 12px;
           border-left: 3px solid #CAE7F7;
+          border: 1px solid rgba(0, 0, 0, 0.1);
         ">
           ${message}
         </div>
@@ -222,15 +223,15 @@ export function getContactEmailTemplate({
 
     <!-- Footer Elegante -->
     <div class="footer" style="
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+      background: #F8F9FA;
       padding: 28px 32px;
       text-align: center;
-      border-top: 1px solid rgba(202, 231, 247, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     ">
       <p style="
         margin: 0 0 12px;
         font-size: 13px;
-        color: rgba(202, 231, 247, 0.7);
+        color: rgba(0, 0, 0, 0.6);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1.5px;
@@ -240,14 +241,14 @@ export function getContactEmailTemplate({
       <p style="
         margin: 0 0 6px;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(0, 0, 0, 0.5);
       ">
         © 2024 Paulo Tivane
       </p>
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(202, 231, 247, 0.3);
+        color: rgba(0, 0, 0, 0.4);
       ">
         Desenvolvedor Full-Stack | Moçambique
       </p>
@@ -263,18 +264,18 @@ export function getContactEmailTemplate({
     <div class="cta" style="
       display: inline-block;
       padding: 12px 24px;
-      background: rgba(202, 231, 247, 0.08);
-      border: 1px solid rgba(202, 231, 247, 0.2);
+      background: #F8F9FA;
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 12px;
     ">
       <p style="
         margin: 0;
         font-size: 14px;
-        color: #CAE7F7;
+        color: #000000;
         font-weight: 500;
         line-height: 1.6;
       ">
-        Responda clicando em <strong style="color: #CFFF04;">"Responder"</strong> para entrar em contato direto
+        Responda clicando em <strong style="color: #0066CC;">"Responder"</strong> para entrar em contato direto
       </p>
     </div>
   </div>
@@ -358,17 +359,17 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
   margin: 0;
   padding: 0;
   font-family: 'Space Mono', 'Courier New', monospace;
-  background: linear-gradient(135deg, #000000 0%, #000000 100%);
-  color: #ffffff;
+  background: #FFFFFF;
+  color: #000000;
 ">
   <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
-    background: #000000;
+    background: #FFFFFF;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 25px 80px rgba(202, 231, 247, 0.15);
-    border: 1px solid rgba(202, 231, 247, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   ">
     <!-- Header Success -->
     <div class="header" style="
@@ -404,7 +405,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0 0 16px;
           font-size: 22px;
           font-weight: 600;
-          color: #CAE7F7;
+          color: #000000;
         ">
           Olá ${name}!
         </h2>
@@ -412,7 +413,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0 0 16px;
           font-size: 16px;
           line-height: 1.7;
-          color: rgba(255, 255, 255, 0.9);
+          color: #000000;
         ">
           Recebi sua mensagem através do meu portfólio e quero agradecer pelo interesse em entrar em contato comigo.
         </p>
@@ -420,16 +421,16 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0;
           font-size: 16px;
           line-height: 1.7;
-          color: rgba(255, 255, 255, 0.9);
+          color: #000000;
         ">
-          Sua mensagem é importante para mim e <strong style="color: #CFFF04;">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: #B4FF00; font-weight: 600;">24 horas úteis</span>.
+          Sua mensagem é importante para mim e <strong style="color: #0066CC;">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: #0066CC; font-weight: 600;">24 horas úteis</span>.
         </p>
       </div>
 
       <!-- Card de Info -->
       <div class="card" style="
-        background: linear-gradient(135deg, rgba(202, 231, 247, 0.05) 0%, rgba(202, 231, 247, 0.02) 100%);
-        border: 1px solid rgba(202, 231, 247, 0.2);
+        background: #F8F9FA;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 32px;
@@ -461,24 +462,24 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
             margin-bottom: 12px;
             font-size: 15px;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
+            color: #000000;
           ">
-            <span style="color: rgba(255, 255, 255, 0.9);">Analisarei sua mensagem com atenção</span>
+            <span style="color: #000000;">Analisarei sua mensagem com atenção</span>
           </li>
           <li style="
             margin-bottom: 12px;
             font-size: 15px;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
+            color: #000000;
           ">
-            <span style="color: rgba(255, 255, 255, 0.9);">Prepararei uma resposta personalizada</span>
+            <span style="color: #000000;">Prepararei uma resposta personalizada</span>
           </li>
           <li style="
             font-size: 15px;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
+            color: #000000;
           ">
-            <span style="color: rgba(255, 255, 255, 0.9);">Entrarei em contato em breve</span>
+            <span style="color: #000000;">Entrarei em contato em breve</span>
           </li>
         </ol>
       </div>
@@ -487,14 +488,14 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <div style="
         text-align: center;
         padding: 24px;
-        background: rgba(0, 0, 0, 0.3);
+        background: #F8F9FA;
         border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.1);
       ">
         <p style="
           margin: 0 0 16px;
           font-size: 13px;
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(0, 0, 0, 0.6);
         ">
           Enquanto isso, você pode me encontrar em:
         </p>
@@ -508,10 +509,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" target="_blank" style="
             display: inline-block;
             padding: 12px 20px;
-            background: rgba(202, 231, 247, 0.1);
-            border: 2px solid rgba(202, 231, 247, 0.4);
+            background: #FFFFFF;
+            border: 2px solid #CAE7F7;
             border-radius: 8px;
-            color: #CAE7F7;
+            color: #0066CC;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -525,10 +526,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="${social.linkedin}" target="_blank" class="social-link" style="
             display: inline-block;
             padding: 12px 20px;
-            background: rgba(202, 231, 247, 0.1);
-            border: 2px solid rgba(202, 231, 247, 0.4);
+            background: #FFFFFF;
+            border: 2px solid #CAE7F7;
             border-radius: 8px;
-            color: #CAE7F7;
+            color: #0066CC;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -542,10 +543,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="${social.github}" target="_blank" style="
             display: inline-block;
             padding: 12px 20px;
-            background: rgba(202, 231, 247, 0.1);
-            border: 2px solid rgba(202, 231, 247, 0.4);
+            background: #FFFFFF;
+            border: 2px solid #CAE7F7;
             border-radius: 8px;
-            color: #CAE7F7;
+            color: #0066CC;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -559,10 +560,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="${social.twitter}" target="_blank" style="
             display: inline-block;
             padding: 12px 20px;
-            background: rgba(202, 231, 247, 0.1);
-            border: 2px solid rgba(202, 231, 247, 0.4);
+            background: #FFFFFF;
+            border: 2px solid #CAE7F7;
             border-radius: 8px;
-            color: #CAE7F7;
+            color: #0066CC;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -577,15 +578,15 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
 
     <!-- Footer -->
     <div class="footer" style="
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+      background: #F8F9FA;
       padding: 28px 32px;
       text-align: center;
-      border-top: 1px solid rgba(202, 231, 247, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     ">
       <p style="
         margin: 0 0 8px;
         font-size: 14px;
-        color: #CAE7F7;
+        color: #000000;
         font-weight: 600;
       ">
         Paulo Babucho Issaca Tivane
@@ -593,7 +594,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0 0 4px;
         font-size: 12px;
-        color: #CFFF04;
+        color: #0066CC;
         font-weight: 500;
       ">
         Desenvolvedor Full-Stack
@@ -601,7 +602,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(0, 0, 0, 0.5);
       ">
         Moçambique | © ${currentYear} Todos os direitos reservados
       </p>
@@ -617,7 +618,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
     <p style="
       margin: 0;
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(0, 0, 0, 0.5);
     ">
       Esta é uma mensagem automática de confirmação. Por favor, não responda a este email.
     </p>

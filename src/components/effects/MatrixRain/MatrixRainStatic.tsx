@@ -29,13 +29,19 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Caracteres que vão cair - apenas 0 e 1
-    const chars = '0 1'.split('');
+    // Caracteres que vão cair - apenas 0 e 1 com espaço
+    const chars = ['0', '1'];
     
     // Fonte menor em mobile para mais economia
     const fontSize = isMobile ? 24 : 30;
-    const columns = canvas.width / fontSize;
     
+    // Espaçamento entre colunas - dobrado para mais espaço
+    const columnSpacing = fontSize * 2;
+    const columns = Math.floor(canvas.width / columnSpacing);
+    
+    // Intervalo de animação muito mais lento para queda suave
+    const animationInterval = isMobile ? 150 : 120;
+
     // Array de gotas (uma por coluna) - APENAS 5% das colunas têm gotas
     const drops: number[] = [];
     for (let i = 0; i < columns; i++) {
@@ -55,15 +61,14 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
 
       // Loop através das gotas
       for (let i = 0; i < drops.length; i++) {
-        // Pegar caractere aleatório
         const text = chars[Math.floor(Math.random() * chars.length)];
-        
-        // Alternar cores: 70% #CFFF04 (secondary), 30% #CAE7F7 (accent)
+        const x = i * columnSpacing;
+        const y = drops[i] * fontSize;
         ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';
         
         // Só desenhar se a gota estiver visível
         if (drops[i] > 0) {
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          ctx.fillText(text, x, y);
         }
 
         // Resetar gota ao topo aleatoriamente depois de cair (extremamente esparso)
@@ -78,8 +83,7 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
       }
     }
 
-    // Animar (intervalo maior em mobile para economizar bateria)
-    const animationInterval = isMobile ? 80 : 60; // Mobile: 80ms, Desktop: 60ms
+    // Animar com intervalo definido acima
     const interval = setInterval(draw, animationInterval);
 
     return () => {
