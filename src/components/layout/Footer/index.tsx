@@ -33,7 +33,7 @@ export function Footer() {
   return (
     <footer className="corporate-footer">
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black via-black/70 via-black/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none" />
       
       <div className="corporate-footer-container">
         <div className="corporate-footer-grid">

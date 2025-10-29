@@ -76,15 +76,16 @@ export function SiteSettingsProvider({ children }: { children: React.ReactNode }
     }
 
     // Atualizar Open Graph image
-    if (siteSettings.ogImage) {
-      let ogImage = document.querySelector('meta[property="og:image"]')
-      if (!ogImage) {
-        ogImage = document.createElement('meta')
-        ogImage.setAttribute('property', 'og:image')
-        document.head.appendChild(ogImage)
-      }
-      ogImage.setAttribute('content', siteSettings.ogImage)
-    }
+    // OG Image forçada para usar /og-image.png local (não do Sanity)
+    // if (siteSettings.ogImage) {
+    //   let ogImage = document.querySelector('meta[property="og:image"]')
+    //   if (!ogImage) {
+    //     ogImage = document.createElement('meta')
+    //     ogImage.setAttribute('property', 'og:image')
+    //     document.head.appendChild(ogImage)
+    //   }
+    //   ogImage.setAttribute('content', siteSettings.ogImage)
+    // }
 
     // Adicionar keywords
     if (siteSettings.keywords && siteSettings.keywords.length > 0) {

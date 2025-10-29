@@ -86,15 +86,16 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
     }
 
     // Update Open Graph meta tags
-    if (siteSettings.ogImage) {
-      let ogImage = document.querySelector('meta[property="og:image"]')
-      if (!ogImage) {
-        ogImage = document.createElement('meta')
-        ogImage.setAttribute('property', 'og:image')
-        document.head.appendChild(ogImage)
-      }
-      ogImage.setAttribute('content', siteSettings.ogImage)
-    }
+    // OG Image forçada para usar /og-image.png local (não do Sanity)
+    // if (siteSettings.ogImage) {
+    //   let ogImage = document.querySelector('meta[property="og:image"]')
+    //   if (!ogImage) {
+    //     ogImage = document.createElement('meta')
+    //     ogImage.setAttribute('property', 'og:image')
+    //     document.head.appendChild(ogImage)
+    //   }
+    //   ogImage.setAttribute('content', siteSettings.ogImage)
+    // }
 
     if (siteSettings.title) {
       let ogTitle = document.querySelector('meta[property="og:title"]')
@@ -339,13 +340,17 @@ export default function RootLayout({
         <meta property="og:title" content={siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'} />
         <meta property="og:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
         <meta property="og:type" content="website" />
-        {siteSettings.ogImage && <meta property="og:image" content={siteSettings.ogImage} />}
+        <meta property="og:url" content="https://tivaneverse.vercel.app" />
+        <meta property="og:image" content="https://tivaneverse.vercel.app/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
         
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'} />
         <meta name="twitter:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
-        {siteSettings.ogImage && <meta name="twitter:image" content={siteSettings.ogImage} />}
+        <meta name="twitter:image" content="https://tivaneverse.vercel.app/og-image.png" />
         
         {/* Favicon */}
         {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}

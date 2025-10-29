@@ -84,179 +84,190 @@ export function Projects() {
       {/* Gradient Transition to next section */}
       <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-transparent to-background/50 pointer-events-none" />
       
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
+      <div className="corporate-container relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-6 sm:mb-10 md:mb-12"
+          className="corporate-section-header"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 mb-2 sm:mb-3 text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 rounded-full border border-primary/20"
+            className="corporate-badge"
           >
             Portfólio
           </motion.span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 px-3">
+          <h2 className="corporate-section-title">
             Projectos em Destaque
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-foreground/70 max-w-2xl mx-auto px-3">
+          <p className="corporate-section-description">
             Uma selecção de projectos que demonstram a minha experiência em construir aplicações web modernas
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - Enterprise Layout */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8"
         >
           {loading ? (
-            // Loading skeleton
+            // Loading skeleton - Enterprise Layout
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="h-full rounded-lg sm:rounded-xl bg-background border border-foreground/10 overflow-hidden">
-                  <div className="h-40 sm:h-48 md:h-56 bg-foreground/10"></div>
-                  <div className="p-3 sm:p-4 md:p-5 space-y-2 sm:space-y-3">
-                    <div className="h-5 sm:h-6 bg-foreground/10 rounded w-3/4"></div>
-                    <div className="h-3 sm:h-4 bg-foreground/10 rounded"></div>
-                    <div className="h-3 sm:h-4 bg-foreground/10 rounded w-5/6"></div>
-                    <div className="flex gap-1.5 sm:gap-2">
-                      <div className="h-5 sm:h-6 bg-foreground/10 rounded w-12 sm:w-16"></div>
-                      <div className="h-5 sm:h-6 bg-foreground/10 rounded w-16 sm:w-20"></div>
-                      <div className="h-5 sm:h-6 bg-foreground/10 rounded w-14 sm:w-18"></div>
+                <div className="corporate-card p-5 sm:p-6 h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-foreground/10 rounded-lg flex-shrink-0"></div>
+                    <div className="flex-1 space-y-2">
+                      <div className="h-6 bg-foreground/10 rounded w-3/4"></div>
+                      <div className="h-4 bg-foreground/10 rounded w-1/2"></div>
+                      <div className="flex gap-2 mt-2">
+                        <div className="h-5 bg-foreground/10 rounded w-16"></div>
+                        <div className="h-5 bg-foreground/10 rounded w-20"></div>
+                      </div>
                     </div>
+                  </div>
+                  <div className="space-y-2 mb-4">
+                    <div className="h-3 bg-foreground/10 rounded"></div>
+                    <div className="h-3 bg-foreground/10 rounded w-5/6"></div>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <div className="h-6 bg-foreground/10 rounded w-16"></div>
+                    <div className="h-6 bg-foreground/10 rounded w-20"></div>
+                    <div className="h-6 bg-foreground/10 rounded w-14"></div>
                   </div>
                 </div>
               </div>
             ))
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
-            <motion.div key={project.title} variants={itemVariants} className="group">
-              <div className="relative h-full rounded-lg sm:rounded-xl bg-background border border-foreground/10 overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-2xl">
-                {/* Project Image */}
-                <div className="relative h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 sm:gap-4">
-                    {/* Gallery Button (priority over demo) */}
-                    {project.gallery && project.gallery.length > 0 ? (
-                      <motion.button
+            <motion.div key={project.title} variants={itemVariants} whileHover={{ y: -4 }} className="group">
+              <div className="corporate-card p-5 sm:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300">
+                {/* Header: Image + Title + Badges */}
+                <div className="flex items-start gap-4 mb-4">
+                  {/* Image Thumbnail */}
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-lg transition-shadow">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Gallery Overlay */}
+                    {project.gallery && project.gallery.length > 0 && (
+                      <button
                         onClick={() => openGallery(project)}
-                        className="p-2 sm:p-3 rounded-lg bg-primary text-background hover:bg-primary/80 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Ver galeria do projeto"
+                        className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
                       >
-                        <FiImage size={18} className="sm:w-5 sm:h-5" />
-                      </motion.button>
-                    ) : project.link && project.link !== '#' ? (
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 sm:p-3 rounded-lg bg-primary text-background hover:bg-primary/80 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Ver demo ao vivo"
-                      >
-                        <FiExternalLink size={18} className="sm:w-5 sm:h-5" />
-                      </motion.a>
-                    ) : null}
+                        <FiImage className="w-5 h-5 text-primary" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Title, Status, Meta */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      {project.featured && (
+                        <div className="w-7 h-7 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                          <FiStar className="w-3.5 h-3.5 text-secondary" />
+                        </div>
+                      )}
+                    </div>
                     
-                    {/* GitHub Button */}
-                    {project.github && project.github !== '#' && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 sm:p-3 rounded-lg bg-foreground text-background hover:bg-foreground/80 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Ver código fonte"
-                      >
-                        <FiGithub size={18} className="sm:w-5 sm:h-5" />
-                      </motion.a>
-                    )}
-                  </div>
-
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-secondary text-background text-[9px] sm:text-xs font-semibold flex items-center gap-0.5 sm:gap-1">
-                      <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                      Featured
+                    {/* Status + Category */}
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      {project.status && (
+                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${getStatusColor(project.status)}`}>
+                          {getStatusText(project.status)}
+                        </span>
+                      )}
+                      {project.category && (
+                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-foreground/5 text-accent">
+                          {project.category.replace('-', ' ')}
+                        </span>
+                      )}
                     </div>
-                  )}
-                </div>
 
-                {/* Project Info */}
-                <div className="p-3 sm:p-4 md:p-5">
-                  {/* Header with Title and Status */}
-                  <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground line-clamp-2">
-                      {project.title}
-                    </h3>
-                    {project.status && (
-                      <span className={`px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium ${getStatusColor(project.status)} whitespace-nowrap flex-shrink-0`}>
-                        {getStatusText(project.status)}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Category and Client */}
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 text-[9px] sm:text-xs text-accent">
-                    {project.category && (
-                      <div className="flex items-center gap-1">
-                        <FiTag className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                        <span className="capitalize">{project.category.replace('-', ' ')}</span>
-                      </div>
-                    )}
-                    {project.client && (
-                      <div className="flex items-center gap-1">
-                        <FiUser className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                        <span>{project.client}</span>
+                    {/* Date */}
+                    {(project.startDate || project.endDate) && (
+                      <div className="flex items-center gap-1.5 text-xs text-accent">
+                        <FiCalendar className="w-3 h-3" />
+                        <span>
+                          {formatDate(project.startDate)}
+                          {project.startDate && project.endDate && ' - '}
+                          {formatDate(project.endDate)}
+                        </span>
                       </div>
                     )}
                   </div>
-
-                  {/* Date Range */}
-                  {(project.startDate || project.endDate) && (
-                    <div className="flex items-center gap-1 text-[9px] sm:text-xs text-accent mb-1.5 sm:mb-2">
-                      <FiCalendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                      <span>
-                        {formatDate(project.startDate)} 
-                        {project.startDate && project.endDate && ' - '}
-                        {formatDate(project.endDate)}
-                      </span>
-                    </div>
-                  )}
-
-                  <p className="text-xs sm:text-sm text-foreground/70 mb-2 sm:mb-3 leading-relaxed line-clamp-2 sm:line-clamp-3">{project.description}</p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-1">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-xs font-semibold bg-primary/10 text-primary rounded border border-primary/30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Glow Effect */}
-                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-accent leading-relaxed line-clamp-2 mb-4">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.technologies.slice(0, 4).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 4 && (
+                    <span className="px-2 py-1 text-xs font-medium bg-foreground/5 text-accent rounded">
+                      +{project.technologies.length - 4}
+                    </span>
+                  )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2 mt-auto pt-4 border-t border-foreground/10">
+                  {project.link && project.link !== '#' && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors"
+                    >
+                      <FiExternalLink className="w-3 h-3" />
+                      <span>Demo</span>
+                    </a>
+                  )}
+                  {project.github && project.github !== '#' && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-foreground/5 text-foreground rounded hover:bg-foreground/10 transition-colors"
+                    >
+                      <FiGithub className="w-3 h-3" />
+                      <span>Código</span>
+                    </a>
+                  )}
+                  {project.gallery && project.gallery.length > 0 && (
+                    <button
+                      onClick={() => openGallery(project)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-foreground/5 text-foreground rounded hover:bg-foreground/10 transition-colors ml-auto"
+                    >
+                      <FiImage className="w-3 h-3" />
+                      <span>{project.gallery.length} fotos</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Hover Glow */}
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl pointer-events-none">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
                 </div>
               </div>
