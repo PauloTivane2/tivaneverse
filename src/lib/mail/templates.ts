@@ -33,7 +33,7 @@ export function getContactEmailTemplate({
 <body style="
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Space Mono', 'Courier New', monospace;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #ffffff;
 ">
@@ -65,7 +65,7 @@ export function getContactEmailTemplate({
         font-size: 28px;
         font-weight: 300;
         color: #000000;
-        font-family: Arial, sans-serif;
+        font-family: 'Space Mono', 'Courier New', monospace;
       ">
         ✉
       </div>
@@ -119,7 +119,7 @@ export function getContactEmailTemplate({
             font-size: 18px;
             font-weight: 300;
             color: #CAE7F7;
-            font-family: Arial, sans-serif;
+            font-family: 'Space Mono', 'Courier New', monospace;
           ">
             ◉
           </div>
@@ -229,7 +229,7 @@ export function getContactEmailTemplate({
             font-size: 18px;
             font-weight: 300;
             color: #CAE7F7;
-            font-family: Arial, sans-serif;
+            font-family: 'Space Mono', 'Courier New', monospace;
           ">
             ✎
           </div>
@@ -278,7 +278,7 @@ export function getContactEmailTemplate({
         border-radius: 20px;
         border: 1px solid rgba(202, 231, 247, 0.1);
       ">
-        <span style="font-size: 14px; color: rgba(202, 231, 247, 0.7); font-family: Arial, sans-serif;">✉</span>
+        <span style="font-size: 14px; color: rgba(202, 231, 247, 0.7); font-family: 'Space Mono', 'Courier New', monospace;">✉</span>
         <span style="
           font-size: 12px;
           color: rgba(202, 231, 247, 0.7);
@@ -318,7 +318,7 @@ export function getContactEmailTemplate({
       border-radius: 12px;
     ">
       <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span style="font-size: 16px; color: #FB4D00; font-family: Arial, sans-serif; font-weight: 700;">➜</span>
+        <span style="font-size: 16px; color: #FB4D00; font-family: 'Space Mono', 'Courier New', monospace; font-weight: 700;">➜</span>
         <p style="
           margin: 0;
           font-size: 13px;
@@ -380,6 +380,8 @@ interface AutoReplyData {
  */
 export function getAutoReplyTemplate(data: AutoReplyData): string {
   const { name, phone, social } = data
+  const currentYear = new Date().getFullYear()
+
   return `
 <!DOCTYPE html>
 <html lang="pt">
@@ -391,7 +393,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
 <body style="
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Space Mono', 'Courier New', monospace;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #ffffff;
 ">
@@ -422,7 +424,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         font-size: 36px;
         font-weight: 300;
         color: #000000;
-        font-family: Arial, sans-serif;
+        font-family: 'Space Mono', 'Courier New', monospace;
       ">
         ✓
       </div>
@@ -500,7 +502,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
             font-size: 16px;
             font-weight: 700;
             color: #CFFF04;
-            font-family: Arial, sans-serif;
+            font-family: 'Space Mono', 'Courier New', monospace;
           ">
             ⓘ
           </div>
@@ -690,7 +692,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         font-size: 11px;
         color: rgba(255, 255, 255, 0.4);
       ">
-        Moçambique | © 2024 Todos os direitos reservados
+        Moçambique | © ${currentYear} Todos os direitos reservados
       </p>
     </div>
   </div>
@@ -719,6 +721,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
  */
 export function getAutoReplyText(data: AutoReplyData): string {
   const { name, phone, social } = data
+  const currentYear = new Date().getFullYear()
   
   let socialLinks = ''
   if (phone) socialLinks += `WhatsApp: https://wa.me/${phone.replace(/[^0-9]/g, '')}\n`
@@ -747,7 +750,7 @@ Paulo Babucho Issaca Tivane
 Desenvolvedor Full-Stack
 Moçambique
 
-© 2024 Todos os direitos reservados
+© ${currentYear} Todos os direitos reservados
 
 Esta é uma mensagem automática de confirmação.
   `.trim()
