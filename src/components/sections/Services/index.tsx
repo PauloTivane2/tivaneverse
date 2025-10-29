@@ -53,13 +53,13 @@ export function Services() {
             transition={{ duration: 0.5 }}
             className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 mb-2 sm:mb-3 text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 rounded-full border border-primary/20"
           >
-            What I Offer
+            O Que Ofereço
           </motion.span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 px-3">
-            Services
+            Serviços
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-foreground/70 max-w-2xl mx-auto px-3">
-            Comprehensive IT solutions tailored to your business needs
+            Soluções informáticas abrangentes adaptadas às necessidades do seu negócio
           </p>
         </motion.div>
 

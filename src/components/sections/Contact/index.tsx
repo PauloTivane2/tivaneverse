@@ -99,13 +99,13 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             className="corporate-badge"
           >
-            Get In Touch
+            Entre em Contacto
           </motion.span>
           <h2 className="corporate-section-title">
-            Contact Me
+            Contacte-me
           </h2>
           <p className="corporate-section-description">
-            Have a project in mind? Let's work together to bring your ideas to life
+            Tem um projecto em mente? Vamos trabalhar juntos para dar vida às suas ideias
           </p>
         </motion.div>
 
@@ -120,7 +120,7 @@ export function Contact() {
               {/* Name Input */}
               <div className="corporate-form-group">
                 <label htmlFor="name" className="corporate-form-label">
-                  Name
+                  Nome
                 </label>
                 <input
                   type="text"
@@ -130,7 +130,7 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   className="corporate-form-input"
-                  placeholder="Your name"
+                  placeholder="O seu nome"
                 />
               </div>
 
@@ -147,14 +147,14 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   className="corporate-form-input"
-                  placeholder="your.email@example.com"
+                  placeholder="o.seu.email@exemplo.com"
                 />
               </div>
 
               {/* Message Textarea */}
               <div className="corporate-form-group">
                 <label htmlFor="message" className="corporate-form-label">
-                  Message
+                  Mensagem
                 </label>
                 <textarea
                   id="message"
@@ -164,7 +164,7 @@ export function Contact() {
                   required
                   rows={6}
                   className="corporate-form-textarea"
-                  placeholder="Tell me about your project..."
+                  placeholder="Fale-me sobre o seu projecto..."
                 />
               </div>
 
@@ -183,7 +183,7 @@ export function Contact() {
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     />
-                    Sending...
+                    A enviar...
                   </>
                 ) : status === "success" ? (
                   <>
@@ -194,12 +194,12 @@ export function Contact() {
                     >
                       ✓
                     </motion.div>
-                    Message Sent!
+                    Mensagem Enviada!
                   </>
                 ) : (
                   <>
                     <FiSend />
-                    Send Message
+                    Enviar Mensagem
                   </>
                 )}
               </motion.button>
@@ -212,7 +212,7 @@ export function Contact() {
                   className="p-4 rounded-lg bg-primary/10 border border-primary/20"
                 >
                   <p className="text-primary text-sm text-center font-semibold">
-                    ✓ Thank you! I'll get back to you soon.
+                    ✓ Obrigado! Responderei em breve.
                   </p>
                 </motion.div>
               )}
@@ -266,7 +266,7 @@ export function Contact() {
                   <FiMapPin className="w-4 h-4 text-accent" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Location</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Localização</h3>
                   <p className="text-sm text-accent">
                     {typeof contactInfo?.location === 'string' 
                       ? contactInfo.location 
@@ -278,7 +278,7 @@ export function Contact() {
 
             {/* Social Links - Profissional */}
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">Connect With Me</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Conecte-se Comigo</h3>
               <div className="flex gap-2">
                 {[
                   { icon: FiGithub, href: contactInfo?.social?.github || "#", label: "GitHub" },
@@ -305,10 +305,10 @@ export function Contact() {
             <div className="p-4 rounded-lg bg-white/5 border border-primary/20">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">Available for Work</span>
+                <span className="text-sm font-semibold text-primary">Disponível para Trabalho</span>
               </div>
               <p className="text-xs text-accent leading-relaxed">
-                Open for freelance projects and consulting opportunities.
+                Disponível para projectos freelance e oportunidades de consultoria.
               </p>
             </div>
           </motion.div>

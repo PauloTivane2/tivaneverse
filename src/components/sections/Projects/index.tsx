@@ -98,13 +98,13 @@ export function Projects() {
             transition={{ duration: 0.5 }}
             className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 mb-2 sm:mb-3 text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 rounded-full border border-primary/20"
           >
-            Portfolio
+            Portfólio
           </motion.span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 px-3">
-            Featured Projects
+            Projectos em Destaque
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-foreground/70 max-w-2xl mx-auto px-3">
-            A selection of projects showcasing my expertise in building modern web applications
+            Uma selecção de projectos que demonstram a minha experiência em construir aplicações web modernas
           </p>
         </motion.div>
 
@@ -286,8 +286,8 @@ export function Projects() {
             whileTap={{ scale: 0.98 }}
           >
             <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="hidden xs:inline">View More on GitHub</span>
-            <span className="xs:hidden">More Projects</span>
+            <span className="hidden xs:inline">Ver Mais no GitHub</span>
+            <span className="xs:hidden">Mais Projectos</span>
           </motion.a>
         </motion.div>
 

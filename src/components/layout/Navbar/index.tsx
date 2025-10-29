@@ -7,11 +7,11 @@ import Image from "next/image"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Expertise", href: "#expertise" },
-  { name: "Projects", href: "#projects" },
-  { name: "Services", href: "#services" },
-  { name: "Contact", href: "#contact" },
+  { name: "Início", href: "#home" },
+  { name: "Especialização", href: "#expertise" },
+  { name: "Projectos", href: "#projects" },
+  { name: "Serviços", href: "#services" },
+  { name: "Contacto", href: "#contact" },
 ]
 
 export function Navbar() {
@@ -121,18 +121,18 @@ export function Navbar() {
                   e.preventDefault()
                   scrollToSection(link.href)
                 }}
-                className={link.name === "Contact" 
+                className={link.name === "Contacto" 
                   ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-background text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
                   : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={link.name === "Contact" ? { scale: 1.05, y: -2 } : {}}
-                whileTap={link.name === "Contact" ? { scale: 0.98 } : {}}
+                whileHover={link.name === "Contacto" ? { scale: 1.05, y: -2 } : {}}
+                whileTap={link.name === "Contacto" ? { scale: 0.98 } : {}}
               >
                 {link.name}
-                {link.name !== "Contact" && (
+                {link.name !== "Contacto" && (
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                 )}
               </motion.a>
@@ -201,7 +201,7 @@ export function Navbar() {
                       e.preventDefault()
                       scrollToSection(link.href)
                     }}
-                    className={link.name === "Contact" 
+                    className={link.name === "Contacto" 
                       ? "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-background text-sm sm:text-base font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
                       : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-foreground/80 hover:text-primary hover:bg-foreground/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
                     }

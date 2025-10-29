@@ -60,13 +60,13 @@ export function Expertise() {
             transition={{ duration: 0.5 }}
             className="corporate-badge corporate-badge-success"
           >
-            Technical Skills
+            Competências Técnicas
           </motion.span>
           <h2 className="corporate-section-title">
-            My Expertise
+            A Minha Especialização
           </h2>
           <p className="corporate-section-description">
-            Technologies and tools I use to build exceptional digital experiences
+            Tecnologias e ferramentas que utilizo para construir experiências digitais excepcionais
           </p>
         </motion.div>
 

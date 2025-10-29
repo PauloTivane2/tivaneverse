@@ -53,7 +53,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-secondary mb-4">Quick Links</h4>
+            <h4 className="text-sm font-bold text-secondary mb-4">Links Rápidos</h4>
             <div className="flex flex-col gap-2">
               {quickLinks.map((link) => (
                 <a
@@ -73,7 +73,7 @@ export function Footer() {
 
           {/* Social Links - Profissional */}
           <div>
-            <h4 className="text-sm font-bold text-accent mb-4">Connect</h4>
+            <h4 className="text-sm font-bold text-accent mb-4">Conecte-se</h4>
             <div className="flex flex-wrap gap-2">
               {loading ? (
                 // Loading skeleton for social links
