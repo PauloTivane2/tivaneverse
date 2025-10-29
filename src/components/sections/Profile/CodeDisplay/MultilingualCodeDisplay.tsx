@@ -20,6 +20,15 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
   const [displayedCode, setDisplayedCode] = useState("")
   const [currentLine, setCurrentLine] = useState(0)
   const [isTyping, setIsTyping] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detectar mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const codeSnippets = [
     {
@@ -227,20 +236,22 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
     }
 
     if (isTyping && displayedCode.length < targetLine.length) {
-      // Typing effect - ULTRA RÁPIDO! 3-5s total
+      // Typing effect - Mais rápido em mobile
+      const typingSpeed = isMobile ? 2 : 4 // Mobile: 2ms, Desktop: 4ms
       const timer = setTimeout(() => {
         setDisplayedCode(targetLine.slice(0, displayedCode.length + 1))
-      }, 4)
+      }, typingSpeed)
       return () => clearTimeout(timer)
     } else if (displayedCode.length === targetLine.length) {
-      // Move to next line - mais rápido
+      // Move to next line - Mais rápido em mobile
+      const lineDelay = isMobile ? 50 : 100 // Mobile: 50ms, Desktop: 100ms
       const timer = setTimeout(() => {
         setCurrentLine((prev) => prev + 1)
         setDisplayedCode("")
-      }, 100)
+      }, lineDelay)
       return () => clearTimeout(timer)
     }
-  }, [displayedCode, currentLine, currentLanguage, isTyping])
+  }, [displayedCode, currentLine, currentLanguage, isTyping, isMobile])
 
   const snippet = codeSnippets[currentLanguage]
 

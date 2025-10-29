@@ -252,11 +252,11 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-primary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 font-bold" />
+                <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 font-bold" />
                 <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Ver Projetos
                 </span>
@@ -266,11 +266,11 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-secondary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FiMail className="w-5 h-5 sm:w-6 sm:h-6" />
+                <FiMail className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Contactar
                 </span>
@@ -281,11 +281,11 @@ export function Profile() {
                 <motion.button
                   onClick={handleResumeDownload}
                   title="Baixar CV"
-                  className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiDownload className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <FiDownload className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                   <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Baixar CV
                   </span>
@@ -321,15 +321,15 @@ export function Profile() {
                 {/* Social Links Overlay - Profissional */}
                 {profileData.social && (
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-background/60 backdrop-blur-sm z-10">
-                    <div className="flex gap-3">
+                    <div className="flex gap-2 sm:gap-3">
                       {profileData.social.github && (
                         <a
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
-                          <FiGithub className="w-5 h-5" />
+                          <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
                       )}
                       {profileData.social.linkedin && (
@@ -337,9 +337,9 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
-                          <FiLinkedin className="w-5 h-5" />
+                          <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
                       )}
                       {profileData.social.twitter && (
@@ -347,9 +347,9 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
-                          <FiTwitter className="w-5 h-5" />
+                          <FiTwitter className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
                       )}
                       {profileData.social.instagram && (
@@ -357,9 +357,9 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
-                          <FiInstagram className="w-5 h-5" />
+                          <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
                       )}
                     </div>
