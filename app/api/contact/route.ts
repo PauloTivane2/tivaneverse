@@ -199,21 +199,21 @@ export async function POST(request: NextRequest) {
           github: process.env.NEXT_PUBLIC_GITHUB || 'https://github.com/paulotivane',
           linkedin: process.env.NEXT_PUBLIC_LINKEDIN || 'https://linkedin.com/in/paulotivane',
           twitter: process.env.NEXT_PUBLIC_TWITTER,
-        }
+        },
       }
-      
-      // Enviar auto-resposta em segundo plano com dados do perfil
-      sendAutoReply(name.trim(), email.trim().toLowerCase(), profileData)
-        .then((autoReplyResult) => {
-          if (autoReplyResult.success) {
-            console.log('✅ Auto-resposta enviada para:', email)
-          } else {
-            console.warn('⚠️ Falha ao enviar auto-resposta:', autoReplyResult.error)
-          }
-        })
-        .catch((error) => {
-          console.error('❌ Erro na auto-resposta:', error)
-        })
+
+      // Enviar auto-resposta e aguardar conclusão para ambientes serverless
+      const autoReplyResult = await sendAutoReply(
+        name.trim(),
+        email.trim().toLowerCase(),
+        profileData
+      )
+
+      if (autoReplyResult.success) {
+        console.log('✅ Auto-resposta enviada para:', email)
+      } else {
+        console.warn('⚠️ Falha ao enviar auto-resposta:', autoReplyResult.error)
+      }
 
       // Retornar sucesso imediatamente
       return NextResponse.json(
