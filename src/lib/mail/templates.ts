@@ -2,7 +2,7 @@
  * Email Templates
  * 
  * Templates HTML para emails enviados pelo sistema.
- * Cores Tailwind: Primary #CFFF04, Secondary #FB4D00, Accent #CAE7F7
+ * Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7
  */
 
 interface EmailTemplateProps {
@@ -29,15 +29,28 @@ export function getContactEmailTemplate({
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nova Mensagem de Contato</title>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .container { max-width: 100% !important; margin: 20px auto !important; }
+      .header { padding: 32px 20px !important; }
+      .content { padding: 20px !important; }
+      .card { padding: 16px !important; margin-bottom: 16px !important; }
+      .footer { padding: 20px !important; }
+      h1 { font-size: 22px !important; }
+      h2 { font-size: 14px !important; }
+      p { font-size: 14px !important; }
+      .cta { padding: 8px 16px !important; font-size: 13px !important; }
+    }
+  </style>
 </head>
 <body style="
   margin: 0;
   padding: 0;
   font-family: 'Space Mono', 'Courier New', monospace;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #000000 0%, #000000 100%);
   color: #ffffff;
 ">
-  <div style="
+  <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
     background: #000000;
@@ -47,31 +60,14 @@ export function getContactEmailTemplate({
     border: 1px solid rgba(202, 231, 247, 0.2);
   ">
     <!-- Header Profissional -->
-    <div style="
-      background: linear-gradient(135deg, #CAE7F7 0%, #87CEEB 100%);
-      padding: 40px 32px;
+    <div class="header" style="
+      background: #CAE7F7;
+      padding: 48px 32px;
       text-align: center;
-      position: relative;
     ">
-      <div style="
-        width: 60px;
-        height: 60px;
-        background: rgba(0, 0, 0, 0.15);
-        border-radius: 50%;
-        margin: 0 auto 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        font-weight: 300;
-        color: #000000;
-        font-family: 'Space Mono', 'Courier New', monospace;
-      ">
-        ✉
-      </div>
       <h1 style="
-        margin: 0;
-        font-size: 26px;
+        margin: 0 0 8px;
+        font-size: 28px;
         font-weight: 700;
         color: #000000;
         letter-spacing: -0.5px;
@@ -79,21 +75,21 @@ export function getContactEmailTemplate({
         Nova Mensagem Recebida
       </h1>
       <p style="
-        margin: 8px 0 0;
-        font-size: 13px;
-        color: rgba(0, 0, 0, 0.6);
+        margin: 0;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.7);
         font-weight: 500;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
       ">
         Portfólio Paulo Tivane
       </p>
     </div>
 
     <!-- Conteúdo -->
-    <div style="padding: 32px;">
+    <div class="content" style="padding: 32px;">
       <!-- Card do Remetente -->
-      <div style="
+      <div class="card" style="
         background: linear-gradient(135deg, rgba(202, 231, 247, 0.05) 0%, rgba(202, 231, 247, 0.02) 100%);
         border: 1px solid rgba(202, 231, 247, 0.2);
         border-radius: 16px;
@@ -101,35 +97,17 @@ export function getContactEmailTemplate({
         margin-bottom: 24px;
       ">
         <div style="
-          display: flex;
-          align-items: center;
-          gap: 12px;
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 1px solid rgba(202, 231, 247, 0.15);
+          border-bottom: 2px solid rgba(202, 231, 247, 0.2);
         ">
-          <div style="
-            width: 40px;
-            height: 40px;
-            background: rgba(202, 231, 247, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 300;
-            color: #CAE7F7;
-            font-family: 'Space Mono', 'Courier New', monospace;
-          ">
-            ◉
-          </div>
           <h2 style="
             margin: 0;
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: #CAE7F7;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
           ">
             Informações do Contato
           </h2>
@@ -204,42 +182,24 @@ export function getContactEmailTemplate({
       </div>
 
       <!-- Card da Mensagem -->
-      <div style="
+      <div class="card" style="
         background: linear-gradient(135deg, rgba(202, 231, 247, 0.03) 0%, rgba(202, 231, 247, 0.01) 100%);
         border: 1px solid rgba(202, 231, 247, 0.15);
         border-radius: 16px;
         padding: 24px;
       ">
         <div style="
-          display: flex;
-          align-items: center;
-          gap: 12px;
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 1px solid rgba(202, 231, 247, 0.1);
+          border-bottom: 2px solid rgba(202, 231, 247, 0.2);
         ">
-          <div style="
-            width: 40px;
-            height: 40px;
-            background: rgba(202, 231, 247, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 300;
-            color: #CAE7F7;
-            font-family: 'Space Mono', 'Courier New', monospace;
-          ">
-            ✎
-          </div>
           <h2 style="
             margin: 0;
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: #CAE7F7;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
           ">
             Mensagem
           </h2>
@@ -261,32 +221,22 @@ export function getContactEmailTemplate({
     </div>
 
     <!-- Footer Elegante -->
-    <div style="
+    <div class="footer" style="
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
       padding: 28px 32px;
       text-align: center;
       border-top: 1px solid rgba(202, 231, 247, 0.1);
     ">
-      <div style="
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 12px;
-        padding: 8px 16px;
-        background: rgba(202, 231, 247, 0.05);
-        border-radius: 20px;
-        border: 1px solid rgba(202, 231, 247, 0.1);
+      <p style="
+        margin: 0 0 12px;
+        font-size: 13px;
+        color: rgba(202, 231, 247, 0.7);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
       ">
-        <span style="font-size: 14px; color: rgba(202, 231, 247, 0.7); font-family: 'Space Mono', 'Courier New', monospace;">✉</span>
-        <span style="
-          font-size: 12px;
-          color: rgba(202, 231, 247, 0.7);
-          font-weight: 500;
-        ">
-          Formulário de Contato
-        </span>
-      </div>
+        Formulário de Contato
+      </p>
       <p style="
         margin: 0 0 6px;
         font-size: 12px;
@@ -310,24 +260,22 @@ export function getContactEmailTemplate({
     margin: 24px auto 40px;
     text-align: center;
   ">
-    <div style="
+    <div class="cta" style="
       display: inline-block;
       padding: 12px 24px;
       background: rgba(202, 231, 247, 0.08);
       border: 1px solid rgba(202, 231, 247, 0.2);
       border-radius: 12px;
     ">
-      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span style="font-size: 16px; color: #FB4D00; font-family: 'Space Mono', 'Courier New', monospace; font-weight: 700;">➜</span>
-        <p style="
-          margin: 0;
-          font-size: 13px;
-          color: #CAE7F7;
-          font-weight: 500;
-        ">
-          Responda clicando em <strong style="color: #CFFF04;">"Responder"</strong> para entrar em contato direto
-        </p>
-      </div>
+      <p style="
+        margin: 0;
+        font-size: 14px;
+        color: #CAE7F7;
+        font-weight: 500;
+        line-height: 1.6;
+      ">
+        Responda clicando em <strong style="color: #CFFF04;">"Responder"</strong> para entrar em contato direto
+      </p>
     </div>
   </div>
 </body>
@@ -389,15 +337,31 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mensagem Recebida - Paulo Tivane</title>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .container { max-width: 100% !important; margin: 20px auto !important; }
+      .header { padding: 32px 20px !important; }
+      .content { padding: 20px !important; }
+      .card { padding: 16px !important; margin-bottom: 16px !important; }
+      .footer { padding: 20px !important; }
+      .social-links { gap: 8px !important; }
+      .social-link { padding: 10px 16px !important; font-size: 12px !important; }
+      h1 { font-size: 24px !important; }
+      h2 { font-size: 18px !important; }
+      h3 { font-size: 14px !important; }
+      p { font-size: 14px !important; }
+      li { font-size: 13px !important; }
+    }
+  </style>
 </head>
 <body style="
   margin: 0;
   padding: 0;
   font-family: 'Space Mono', 'Courier New', monospace;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #000000 0%, #000000 100%);
   color: #ffffff;
 ">
-  <div style="
+  <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
     background: #000000;
@@ -407,30 +371,14 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
     border: 1px solid rgba(202, 231, 247, 0.2);
   ">
     <!-- Header Success -->
-    <div style="
-      background: linear-gradient(135deg, #CAE7F7 0%, #87CEEB 100%);
-      padding: 40px 32px;
+    <div class="header" style="
+      background: #CAE7F7;
+      padding: 48px 32px;
       text-align: center;
     ">
-      <div style="
-        width: 70px;
-        height: 70px;
-        background: rgba(0, 0, 0, 0.15);
-        border-radius: 50%;
-        margin: 0 auto 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 36px;
-        font-weight: 300;
-        color: #000000;
-        font-family: 'Space Mono', 'Courier New', monospace;
-      ">
-        ✓
-      </div>
       <h1 style="
         margin: 0 0 12px;
-        font-size: 28px;
+        font-size: 30px;
         font-weight: 700;
         color: #000000;
         letter-spacing: -0.5px;
@@ -439,9 +387,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       </h1>
       <p style="
         margin: 0;
-        font-size: 14px;
+        font-size: 15px;
         color: rgba(0, 0, 0, 0.7);
         font-weight: 500;
+        letter-spacing: 0.5px;
       ">
         Obrigado por entrar em contato
       </p>
@@ -473,12 +422,12 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           line-height: 1.7;
           color: rgba(255, 255, 255, 0.9);
         ">
-          Sua mensagem é importante para mim e <strong style="color: #CFFF04;">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: #FB4D00; font-weight: 600;">24 horas úteis</span>.
+          Sua mensagem é importante para mim e <strong style="color: #CFFF04;">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: #B4FF00; font-weight: 600;">24 horas úteis</span>.
         </p>
       </div>
 
       <!-- Card de Info -->
-      <div style="
+      <div class="card" style="
         background: linear-gradient(135deg, rgba(202, 231, 247, 0.05) 0%, rgba(202, 231, 247, 0.02) 100%);
         border: 1px solid rgba(202, 231, 247, 0.2);
         border-radius: 16px;
@@ -486,94 +435,52 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         margin-bottom: 32px;
       ">
         <div style="
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
+          padding-bottom: 12px;
+          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
         ">
-          <div style="
-            width: 36px;
-            height: 36px;
-            background: rgba(207, 255, 4, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          <h3 style="
+            margin: 0;
             font-size: 16px;
             font-weight: 700;
             color: #CFFF04;
-            font-family: 'Space Mono', 'Courier New', monospace;
-          ">
-            ⓘ
-          </div>
-          <h3 style="
-            margin: 0;
-            font-size: 14px;
-            font-weight: 600;
-            color: #CFFF04;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
           ">
             O Que Acontece Agora?
           </h3>
         </div>
         
-        <ul style="
+        <ol style="
           margin: 0;
-          padding: 0;
-          list-style: none;
+          padding: 0 0 0 20px;
+          list-style: decimal;
+          color: #CFFF04;
         ">
           <li style="
             margin-bottom: 12px;
-            padding-left: 24px;
-            position: relative;
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
           ">
-            <span style="
-              position: absolute;
-              left: 0;
-              color: #CFFF04;
-              font-weight: 700;
-              font-size: 15px;
-            ">1.</span>
-            Analisarei sua mensagem com atenção
+            <span style="color: rgba(255, 255, 255, 0.9);">Analisarei sua mensagem com atenção</span>
           </li>
           <li style="
             margin-bottom: 12px;
-            padding-left: 24px;
-            position: relative;
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
           ">
-            <span style="
-              position: absolute;
-              left: 0;
-              color: #CFFF04;
-              font-weight: 700;
-              font-size: 15px;
-            ">2.</span>
-            Prepararei uma resposta personalizada
+            <span style="color: rgba(255, 255, 255, 0.9);">Prepararei uma resposta personalizada</span>
           </li>
           <li style="
-            padding-left: 24px;
-            position: relative;
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
           ">
-            <span style="
-              position: absolute;
-              left: 0;
-              color: #FB4D00;
-              font-weight: 700;
-              font-size: 15px;
-            ">3.</span>
-            Entrarei em contato em breve
+            <span style="color: rgba(255, 255, 255, 0.9);">Entrarei em contato em breve</span>
           </li>
-        </ul>
+        </ol>
       </div>
 
       <!-- Links Sociais -->
@@ -600,72 +507,76 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           ${phone ? `
           <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" target="_blank" style="
             display: inline-block;
-            padding: 10px 18px;
+            padding: 12px 20px;
             background: rgba(202, 231, 247, 0.1);
-            border: 1.5px solid rgba(202, 231, 247, 0.4);
-            border-radius: 20px;
+            border: 2px solid rgba(202, 231, 247, 0.4);
+            border-radius: 8px;
             color: #CAE7F7;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           ">
-            ✆ WhatsApp
+            WhatsApp
           </a>` : ''}
           
           ${social?.linkedin ? `
-          <a href="${social.linkedin}" target="_blank" style="
+          <a href="${social.linkedin}" target="_blank" class="social-link" style="
             display: inline-block;
-            padding: 10px 18px;
+            padding: 12px 20px;
             background: rgba(202, 231, 247, 0.1);
-            border: 1.5px solid rgba(202, 231, 247, 0.4);
-            border-radius: 20px;
+            border: 2px solid rgba(202, 231, 247, 0.4);
+            border-radius: 8px;
             color: #CAE7F7;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           ">
-            in LinkedIn
+            LinkedIn
           </a>` : ''}
           
           ${social?.github ? `
           <a href="${social.github}" target="_blank" style="
             display: inline-block;
-            padding: 10px 18px;
+            padding: 12px 20px;
             background: rgba(202, 231, 247, 0.1);
-            border: 1.5px solid rgba(202, 231, 247, 0.4);
-            border-radius: 20px;
+            border: 2px solid rgba(202, 231, 247, 0.4);
+            border-radius: 8px;
             color: #CAE7F7;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           ">
-            ◉ GitHub
+            GitHub
           </a>` : ''}
           
           ${social?.twitter ? `
           <a href="${social.twitter}" target="_blank" style="
             display: inline-block;
-            padding: 10px 18px;
+            padding: 12px 20px;
             background: rgba(202, 231, 247, 0.1);
-            border: 1.5px solid rgba(202, 231, 247, 0.4);
-            border-radius: 20px;
+            border: 2px solid rgba(202, 231, 247, 0.4);
+            border-radius: 8px;
             color: #CAE7F7;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
           ">
-            ⊕ Twitter
+            Twitter
           </a>` : ''}
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <div style="
+    <div class="footer" style="
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
       padding: 28px 32px;
       text-align: center;

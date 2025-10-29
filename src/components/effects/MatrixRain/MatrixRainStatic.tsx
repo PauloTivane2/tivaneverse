@@ -30,7 +30,7 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     window.addEventListener('resize', setCanvasSize);
 
     // Caracteres que vão cair - apenas 0 e 1
-    const chars = '01'.split('');
+    const chars = '0 1'.split('');
     
     // Fonte menor em mobile para mais economia
     const fontSize = isMobile ? 24 : 30;
