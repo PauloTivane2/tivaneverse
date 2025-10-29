@@ -17,6 +17,9 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Detectar mobile
+    const isMobile = window.innerWidth < 768;
+
     // Set canvas size
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
@@ -29,7 +32,8 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     // Caracteres que vão cair - apenas 0 e 1
     const chars = '01'.split('');
     
-    const fontSize = 30; // Maior para muito menos colunas
+    // Fonte menor em mobile para mais economia
+    const fontSize = isMobile ? 24 : 30;
     const columns = canvas.width / fontSize;
     
     // Array de gotas (uma por coluna) - APENAS 5% das colunas têm gotas
@@ -74,8 +78,9 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
       }
     }
 
-    // Animar (intervalo maior para ser mais esparso)
-    const interval = setInterval(draw, 60);
+    // Animar (intervalo maior em mobile para economizar bateria)
+    const animationInterval = isMobile ? 80 : 60; // Mobile: 80ms, Desktop: 60ms
+    const interval = setInterval(draw, animationInterval);
 
     return () => {
       clearInterval(interval);
@@ -89,7 +94,7 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
       className="fixed top-0 left-0 w-full h-full pointer-events-none"
       style={{ 
         zIndex: 1,
-        opacity: 0.15
+        opacity: window.innerWidth < 768 ? 0.1 : 0.15 // Mais sutil em mobile
       }}
     />
   );
