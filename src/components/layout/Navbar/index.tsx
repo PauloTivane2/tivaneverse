@@ -8,7 +8,7 @@ import { useSiteSettings } from "@/src/hooks/useSiteSettings"
 
 const navLinks = [
   { name: "Início", href: "#home" },
-  { name: "Especialização", href: "#expertise" },
+  { name: "Competências", href: "#expertise" },
   { name: "Projectos", href: "#projects" },
   { name: "Serviços", href: "#services" },
   { name: "Contacto", href: "#contact" },
