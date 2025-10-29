@@ -99,13 +99,13 @@ export function getContactEmailTemplate({
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 2px solid rgba(202, 231, 247, 0.2);
+          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #CAE7F7;
+            color: #CFFF04;
             text-transform: uppercase;
             letter-spacing: 2px;
           ">
@@ -191,13 +191,13 @@ export function getContactEmailTemplate({
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 2px solid rgba(202, 231, 247, 0.2);
+          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #CAE7F7;
+            color: #CFFF04;
             text-transform: uppercase;
             letter-spacing: 2px;
           ">
