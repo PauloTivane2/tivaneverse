@@ -127,7 +127,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground/80 mb-3 sm:mb-4 md:mb-6"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground/80 mb-3 sm:mb-4 md:mb-6 break-words"
             >
               {profileData.title}
             </motion.h2>
@@ -138,7 +138,7 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-medium">
+              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-medium break-words">
                 {displayedText}
                 <span className="inline-block w-0.5 h-4 sm:h-5 bg-primary ml-1 animate-pulse" />
               </p>
