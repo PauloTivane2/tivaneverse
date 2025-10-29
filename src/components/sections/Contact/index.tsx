@@ -19,17 +19,55 @@ export function Contact() {
   })
 
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState<string>("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("sending")
+    setErrorMessage("")
 
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus("success")
-      setFormData({ name: "", email: "", message: "" })
-      setTimeout(() => setStatus("idle"), 3000)
-    }, 1500)
+    try {
+      // Enviar para API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        // Sucesso
+        setStatus("success")
+        setFormData({ name: "", email: "", message: "" })
+        
+        // Resetar após 5 segundos
+        setTimeout(() => {
+          setStatus("idle")
+        }, 5000)
+      } else {
+        // Erro da API
+        setStatus("error")
+        setErrorMessage(data.error || 'Erro ao enviar mensagem')
+        
+        // Resetar erro após 5 segundos
+        setTimeout(() => {
+          setStatus("idle")
+          setErrorMessage("")
+        }, 5000)
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error)
+      setStatus("error")
+      setErrorMessage('Erro de conexão. Verifique sua internet e tente novamente.')
+      
+      setTimeout(() => {
+        setStatus("idle")
+        setErrorMessage("")
+      }, 5000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -133,10 +171,10 @@ export function Contact() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || status === "success"}
                 className="corporate-button corporate-button-primary w-full"
-                whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
-                whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
+                whileHover={{ scale: status === "sending" || status === "success" ? 1 : 1.02 }}
+                whileTap={{ scale: status === "sending" || status === "success" ? 1 : 0.98 }}
               >
                 {status === "sending" ? (
                   <>
@@ -149,7 +187,13 @@ export function Contact() {
                   </>
                 ) : status === "success" ? (
                   <>
-                    <FiSend />
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                    >
+                      ✓
+                    </motion.div>
                     Message Sent!
                   </>
                 ) : (
@@ -162,13 +206,28 @@ export function Contact() {
 
               {/* Success Message */}
               {status === "success" && (
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-primary text-sm text-center"
+                  className="p-4 rounded-lg bg-primary/10 border border-primary/20"
                 >
-                  Thank you! I'll get back to you soon.
-                </motion.p>
+                  <p className="text-primary text-sm text-center font-semibold">
+                    ✓ Thank you! I'll get back to you soon.
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {status === "error" && errorMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-lg bg-red-500/10 border border-red-500/20"
+                >
+                  <p className="text-red-400 text-sm text-center font-semibold">
+                    ✕ {errorMessage}
+                  </p>
+                </motion.div>
               )}
             </form>
           </motion.div>

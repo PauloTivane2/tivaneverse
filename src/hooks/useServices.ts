@@ -39,7 +39,18 @@ export function useServices() {
             icon: iconMap[item.iconName] || FiTool, // Fallback to generic tool icon
             title: item.title || 'Service',
             description: item.description || 'No description available',
-            features: item.features || []
+            features: item.features || [],
+            technologies: item.technologies || [],
+            pricing: item.pricing ? {
+              startingPrice: item.pricing.startingPrice,
+              currency: item.pricing.currency || 'USD',
+              pricingModel: item.pricing.pricingModel,
+              note: item.pricing.note
+            } : undefined,
+            deliveryTime: item.deliveryTime,
+            available: item.available ?? true,
+            featured: item.featured ?? false,
+            order: item.order
           }))
           
           setServicesData(transformedData)

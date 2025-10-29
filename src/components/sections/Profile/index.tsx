@@ -559,12 +559,12 @@ export function Profile() {
   }
 
   return (
-    <section id="home" className="corporate-hero">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 relative">
       {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-deep)]/30 to-[var(--color-bg-night)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent via-[var(--color-bg-deep)]/30 to-[var(--color-bg-night)] pointer-events-none" />
       
-      <div className="corporate-hero-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto max-w-7xl w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -576,7 +576,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="corporate-hero-title"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 leading-tight"
             >
               {profileData.name}
             </motion.h1>
@@ -585,7 +585,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="corporate-hero-subtitle"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground/80 mb-3 sm:mb-4 md:mb-6"
             >
               {profileData.title}
             </motion.h2>
@@ -594,11 +594,11 @@ export function Profile() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="h-8 mb-6"
+              className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-lg text-[var(--color-primary-500)] font-mono font-medium matrix-glow">
+              <p className="text-sm sm:text-base md:text-lg text-[var(--color-primary-500)] font-mono font-medium matrix-glow">
                 {displayedText}
-                <span className="inline-block w-0.5 h-5 bg-[var(--color-primary-500)] ml-1 animate-pulse" />
+                <span className="inline-block w-0.5 h-4 sm:h-5 bg-[var(--color-primary-500)] ml-1 animate-pulse" />
               </p>
             </motion.div>
 
@@ -606,7 +606,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="corporate-hero-description"
+              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl"
             >
               {profileData.bio}
             </motion.p>
@@ -616,7 +616,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65 }}
-              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6"
+              className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 md:mb-6"
             >
               {/* Location - Clicável se houver mapLink */}
               {(() => {
@@ -632,17 +632,17 @@ export function Profile() {
                     href={mapLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-primary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group"
                   >
-                    <FiMapPin className="w-4 h-4 text-[var(--color-primary-500)] group-hover:scale-110 transition-transform" />
-                    <span className="text-sm font-medium text-[var(--color-text-soft)] group-hover:text-[var(--color-primary-500)]">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-primary-500)] group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <span className="font-medium text-[var(--color-text-soft)] group-hover:text-[var(--color-primary-500)] truncate max-w-[150px] sm:max-w-none">
                       {locationText}
                     </span>
                   </a>
                 ) : (
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)]">
-                    <FiMapPin className="w-4 h-4 text-[var(--color-primary-500)]" />
-                    <span className="text-sm font-medium text-[var(--color-text-soft)]">{locationText}</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)]">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-primary-500)] flex-shrink-0" />
+                    <span className="font-medium text-[var(--color-text-soft)] truncate max-w-[150px] sm:max-w-none">{locationText}</span>
                   </div>
                 )
               })()}
@@ -652,17 +652,17 @@ export function Profile() {
                 <a
                   href={`tel:${profileData.phone.replace(/\s/g, '')}`}
                   title={`Ligar: ${profileData.phone}`}
-                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-secondary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group"
+                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-[var(--color-bg-elevated)]/50 border border-[var(--color-border-dark)] hover:border-[var(--color-secondary-500)] hover:bg-[var(--color-bg-card)] transition-all duration-200 group flex-shrink-0"
                 >
-                  <FiPhone className="w-4 h-4 text-[var(--color-secondary-500)] group-hover:scale-125 transition-transform" />
+                  <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-secondary-500)] group-hover:scale-125 transition-transform" />
                 </a>
               )}
               
               {/* Availability Badge */}
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] border border-[var(--color-primary-200)]">
-                  <div className="w-2 h-2 bg-[var(--color-primary-500)] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,191,166,0.6)]"></div>
-                  <span className="text-sm font-semibold text-[var(--color-primary-600)]">
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] border border-[var(--color-primary-200)]">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--color-primary-500)] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,191,166,0.6)] flex-shrink-0"></div>
+                  <span className="font-semibold text-[var(--color-primary-600)] whitespace-nowrap">
                     {profileData.availability.message || 'Disponível'}
                   </span>
                 </div>
@@ -675,22 +675,22 @@ export function Profile() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="mb-8"
+                className="mb-6 sm:mb-7 md:mb-8"
               >
-                <div className="flex flex-wrap gap-2 sm:gap-3">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
                   {profileData.skills.slice(0, 8).map((skill, index) => (
                     <motion.span
                       key={skill}
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
-                      className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] text-[var(--color-primary-600)] rounded-lg border border-[var(--color-primary-200)] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-gradient-to-br from-[var(--color-primary-100)] to-[var(--color-primary-50)] text-[var(--color-primary-600)] rounded-md sm:rounded-lg border border-[var(--color-primary-200)] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </motion.span>
                   ))}
                   {profileData.skills.length > 8 && (
-                    <span className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold bg-[var(--color-bg-elevated)] text-[var(--color-text-soft)] rounded-lg border border-[var(--color-border-dark)]">
+                    <span className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-[var(--color-bg-elevated)] text-[var(--color-text-soft)] rounded-md sm:rounded-lg border border-[var(--color-border-dark)]">
                       +{profileData.skills.length - 8}
                     </span>
                   )}
@@ -704,18 +704,18 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex items-center gap-4 mt-8 mb-10"
+              className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8 mb-8 sm:mb-10"
             >
               {/* Ver Projetos - Primary (Verde) */}
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-14 h-14 rounded-full bg-primary text-black flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-black flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FiArrowRight className="w-6 h-6 font-bold" />
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <FiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 font-bold" />
+                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Ver Projetos
                 </span>
               </motion.button>
@@ -724,12 +724,12 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-14 h-14 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FiMail className="w-6 h-6" />
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <FiMail className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Contactar
                 </span>
               </motion.button>
@@ -739,12 +739,12 @@ export function Profile() {
                 <motion.button
                   onClick={handleResumeDownload}
                   title="Baixar CV"
-                  className="group relative w-14 h-14 rounded-full bg-white/5 border-2 border-white/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/5 border-2 border-white/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiDownload className="w-6 h-6" />
-                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <FiDownload className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Baixar CV
                   </span>
                 </motion.button>
@@ -760,14 +760,14 @@ export function Profile() {
             className="order-1 lg:order-2 flex justify-center"
           >
             <motion.div
-              className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group"
+              className="relative w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 group mx-auto"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               {/* Sombra sutil profissional */}
-              <div className="absolute inset-0 rounded-full bg-primary/5 blur-2xl" />
+              <div className="absolute inset-0 rounded-full bg-primary/5 blur-xl sm:blur-2xl" />
 
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-white/10 shadow-2xl">
                 <Image
                   src={profileData.image || "/placeholder.svg"}
                   alt={profileData.name}

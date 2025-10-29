@@ -72,14 +72,19 @@ export function Navbar() {
   }, [isOpen])
 
   return (
+    <>
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`corporate-navbar ${scrolled ? "scrolled" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-black/90 backdrop-blur-md border-b border-white/10 shadow-lg" 
+          : "bg-transparent"
+      }`}
     >
-      <div className="corporate-navbar-container">
-        <div className="flex items-center justify-between w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between w-full h-16 sm:h-20">
           {/* Logo */}
           <motion.a
             href="#home"
@@ -87,12 +92,12 @@ export function Navbar() {
               e.preventDefault()
               scrollToSection("#home")
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2 sm:gap-3 group relative z-50"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             {siteSettings?.logo ? (
-              <div className="relative w-10 h-10">
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10">
                 <Image
                   src={siteSettings.logo}
                   alt={siteSettings.title || "Logo"}
@@ -102,14 +107,14 @@ export function Navbar() {
                 />
               </div>
             ) : (
-              <span className="corporate-navbar-logo">
+              <span className="text-xl sm:text-2xl font-bold text-primary">
                 PT
               </span>
             )}
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="corporate-navbar-links hidden md:flex">
+          <div className="hidden md:flex items-center gap-1 lg:gap-2">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -119,8 +124,8 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={link.name === "Contact" 
-                  ? "px-6 py-2.5 rounded-lg bg-secondary text-white font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
-                  : "corporate-navbar-link"
+                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-white text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
+                  : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -129,59 +134,101 @@ export function Navbar() {
                 whileTap={link.name === "Contact" ? { scale: 0.98 } : {}}
               >
                 {link.name}
+                {link.name !== "Contact" && (
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                )}
               </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
+          <div className="md:hidden relative z-50">
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="corporate-navbar-mobile-toggle"
+              className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground hover:bg-white/10 hover:border-primary/50 transition-all duration-300"
               aria-label="Toggle menu"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
+              {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </motion.button>
           </div>
         </div>
       </div>
+    </motion.nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+    {/* Mobile Sidebar Menu - Slide from Right */}
+    <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="corporate-navbar-mobile-menu"
-          >
-            <div className="corporate-navbar-links flex flex-col">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    scrollToSection(link.href)
-                  }}
-                  className={link.name === "Contact" 
-                    ? "px-6 py-3 rounded-lg bg-secondary text-white font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20 text-center"
-                    : "corporate-navbar-link"
-                  }
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={link.name === "Contact" ? { scale: 1.05 } : { x: 10 }}
-                  whileTap={{ scale: 0.98 }}
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-black border-l border-white/10 shadow-2xl z-50 md:hidden"
+            >
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
+                <span className="text-lg sm:text-xl font-bold text-primary">Menu</span>
+                <motion.button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground hover:bg-white/10 hover:border-primary/50 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Close menu"
                 >
-                  {link.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
+                  <FiX size={20} />
+                </motion.button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col gap-2 p-4 sm:p-6">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection(link.href)
+                    }}
+                    className={link.name === "Contact" 
+                      ? "w-full px-6 py-3 sm:py-4 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-white text-base sm:text-lg font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
+                      : "w-full px-6 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold text-foreground/80 hover:text-primary hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
+                    }
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ delay: index * 0.05, type: "spring", damping: 20 }}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {link.name}
+                  </motion.a>
+                ))}
+              </nav>
+
+              {/* Sidebar Footer - Optional branding */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-white/10">
+                <p className="text-xs sm:text-sm text-foreground/40 text-center">
+                  © 2024 Paulo Tivane
+                </p>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   )
 }

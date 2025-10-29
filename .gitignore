@@ -34,6 +34,7 @@ dist/
 # ARQUIVOS DE AMBIENTE (.env)
 # ==========================================
 .env
+.env*.local
 .env.local
 .env.development.local
 .env.test.local
