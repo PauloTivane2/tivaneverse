@@ -141,7 +141,7 @@ export function Expertise() {
                     </div>
                     <div className="h-2 bg-foreground/10 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-primary"
+                        className="h-full rounded-full bg-gradient-to-r from-primary/70 via-primary to-secondary"
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.proficiencyLevel * 10}%` } : {}}
                         transition={{ duration: 1, delay: index * 0.1 }}

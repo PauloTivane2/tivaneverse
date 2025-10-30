@@ -422,15 +422,15 @@
 }
 
 .corporate-button-primary {
-  background: var(--corp-primary-base);
+  background: linear-gradient(135deg, #B4FF00 0%, #CFFF04 100%);
   color: var(--corp-text-inverse);
   border-color: var(--corp-primary-base);
 }
 
 .corporate-button-primary:hover {
-  background: var(--corp-primary-light);
+  background: linear-gradient(135deg, #CFFF04 0%, #B4FF00 100%);
   border-color: var(--corp-primary-light);
-  box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
+  box-shadow: 0 10px 30px rgba(180, 255, 0, 0.3);
 }
 
 .corporate-button-primary:active {
