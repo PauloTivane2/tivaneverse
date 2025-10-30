@@ -106,14 +106,8 @@ export function Expertise() {
                 {/* Header com Icon e Título */}
                 <div className="flex items-start gap-4 mb-4">
                   {/* Icon Container */}
-                  <div 
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${skill.color}15` }}
-                  >
-                    <skill.icon
-                      className="w-6 h-6 sm:w-7 sm:h-7"
-                      style={{ color: skill.color }}
-                    />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <skill.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                   </div>
 
                   {/* Título e Categoria */}
@@ -147,8 +141,7 @@ export function Expertise() {
                     </div>
                     <div className="h-2 bg-foreground/10 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full"
-                        style={{ backgroundColor: skill.color }}
+                        className="h-full rounded-full bg-primary"
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.proficiencyLevel * 10}%` } : {}}
                         transition={{ duration: 1, delay: index * 0.1 }}
@@ -167,16 +160,13 @@ export function Expertise() {
 
                 {/* Descrição */}
                 {skill.description && (
-                  <p className="text-xs sm:text-sm text-accent leading-relaxed line-clamp-2 mt-auto">
+                  <p className="text-xs sm:text-sm text-accent leading-relaxed mt-auto">
                     {skill.description}
                   </p>
                 )}
 
                 {/* Hover Glow Effect */}
-                <div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl"
-                  style={{ background: `radial-gradient(circle at center, ${skill.color}15, transparent 70%)` }}
-                />
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
               </div>
             </motion.div>
           ))

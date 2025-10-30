@@ -171,7 +171,7 @@ export function Projects() {
                   {/* Title, Status, Meta */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
                       {project.featured && (
@@ -210,7 +210,7 @@ export function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-accent leading-relaxed line-clamp-2 mb-4">
+                <p className="text-xs sm:text-sm text-accent leading-relaxed mb-4">
                   {project.description}
                 </p>
 
