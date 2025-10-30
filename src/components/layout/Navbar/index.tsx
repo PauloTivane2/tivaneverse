@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { FiMenu, FiX } from "react-icons/fi"
+import { FiMenu, FiX, FiArrowUp } from "react-icons/fi"
 import Image from "next/image"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
 
@@ -18,10 +18,12 @@ export function Navbar() {
   const { siteSettings, loading } = useSiteSettings()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
+      setShowScrollTop(window.scrollY > 300) // Mostrar após 300px de scroll
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -132,9 +134,6 @@ export function Navbar() {
                 whileTap={link.name === "Contacto" ? { scale: 0.98 } : {}}
               >
                 {link.name}
-                {link.name !== "Contacto" && (
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-                )}
               </motion.a>
             ))}
           </div>
@@ -225,6 +224,29 @@ export function Navbar() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Scroll to Top Button - Profissional */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              })
+            }}
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+            whileHover={{ scale: 1.1, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Voltar ao topo"
+          >
+            <FiArrowUp className="w-5 h-5" />
+          </motion.button>
         )}
       </AnimatePresence>
     </>
