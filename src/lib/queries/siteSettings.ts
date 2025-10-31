@@ -1,10 +1,10 @@
 // GROQ query for site settings data
+// NOTA: Favicon sempre usa /logo.png estático, não vem do Sanity
 export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   title,
   description,
   keywords,
   logo,
-  favicon,
   ogImage,
   theme {
     darkMode,

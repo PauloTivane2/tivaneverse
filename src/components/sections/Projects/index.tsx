@@ -77,7 +77,7 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-background relative" ref={ref}>
+    <section id="projects" className="corporate-section bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
@@ -92,19 +92,20 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="corporate-section-header"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="corporate-badge"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-secondary/10 via-secondary/5 to-primary/10 border border-secondary/20 mb-3 sm:mb-4"
           >
-            Portfólio
-          </motion.span>
+            <FiStar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary" />
+            <span className="text-xs sm:text-sm font-semibold text-secondary uppercase tracking-wider">Portfólio</span>
+          </motion.div>
           <h2 className="corporate-section-title">
             Projectos em Destaque
           </h2>
-          <p className="corporate-section-description">
-            Uma selecção de projectos que demonstram a minha experiência em construir aplicações web modernas
+          <p className="corporate-section-description max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
+            Aplicações reais que demonstram experiência em desenvolvimento full-stack
           </p>
         </motion.div>
 
@@ -113,13 +114,13 @@ export function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
         >
           {loading ? (
             // Loading skeleton - Enterprise Layout
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="corporate-card p-5 sm:p-6 h-full">
+                <div className="corporate-card p-4 sm:p-5 md:p-6 h-full">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 bg-foreground/10 rounded-lg flex-shrink-0"></div>
                     <div className="flex-1 space-y-2">
@@ -145,12 +146,12 @@ export function Projects() {
             ))
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
-            <motion.div key={project.title} variants={itemVariants} whileHover={{ y: -4 }} className="group">
-              <div className="corporate-card p-5 sm:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300">
+            <motion.div key={project.title} variants={itemVariants} className="group relative">
+              <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Image Thumbnail */}
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-lg transition-shadow">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
@@ -161,35 +162,44 @@ export function Projects() {
                     {project.gallery && project.gallery.length > 0 && (
                       <button
                         onClick={() => openGallery(project)}
-                        className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                        className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1"
+                        aria-label="Ver galeria"
                       >
-                        <FiImage className="w-5 h-5 text-primary" />
+                        <FiImage className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                        <span className="text-[10px] font-medium text-primary">{project.gallery.length}</span>
                       </button>
                     )}
                   </div>
 
                   {/* Title, Status, Meta */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                    <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                         {project.title}
                       </h3>
                       {project.featured && (
-                        <div className="w-7 h-7 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                          <FiStar className="w-3.5 h-3.5 text-secondary" />
-                        </div>
+                        <motion.div 
+                          initial={{ scale: 0, rotate: -180 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ type: "spring", delay: 0.2 }}
+                          className="flex-shrink-0"
+                        >
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center border border-secondary/30">
+                            <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-secondary fill-secondary/50" />
+                          </div>
+                        </motion.div>
                       )}
                     </div>
                     
                     {/* Status + Category */}
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
                       {project.status && (
-                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${getStatusColor(project.status)}`}>
+                        <span className={`px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium ${getStatusColor(project.status)}`}>
                           {getStatusText(project.status)}
                         </span>
                       )}
                       {project.category && (
-                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-foreground/5 text-accent">
+                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent">
                           {project.category.replace('-', ' ')}
                         </span>
                       )}
@@ -197,8 +207,8 @@ export function Projects() {
 
                     {/* Date */}
                     {(project.startDate || project.endDate) && (
-                      <div className="flex items-center gap-1.5 text-xs text-accent">
-                        <FiCalendar className="w-3 h-3" />
+                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent">
+                        <FiCalendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         <span>
                           {formatDate(project.startDate)}
                           {project.startDate && project.endDate && ' - '}
@@ -210,59 +220,66 @@ export function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-accent leading-relaxed mb-4">
+                <p className="text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20"
+                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20 hover:bg-primary/20 transition-colors"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="px-2 py-1 text-xs font-medium bg-foreground/5 text-accent rounded">
+                    <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded">
                       +{project.technologies.length - 4}
                     </span>
                   )}
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-2 mt-auto pt-4 border-t border-foreground/10">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-foreground/10">
                   {project.link && project.link !== '#' && (
-                    <a
+                    <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <FiExternalLink className="w-3 h-3" />
+                      <FiExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       <span>Demo</span>
-                    </a>
+                    </motion.a>
                   )}
                   {project.github && project.github !== '#' && (
-                    <a
+                    <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-foreground/5 text-foreground rounded hover:bg-foreground/10 transition-colors"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <FiGithub className="w-3 h-3" />
+                      <FiGithub className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       <span>Código</span>
-                    </a>
+                    </motion.a>
                   )}
                   {project.gallery && project.gallery.length > 0 && (
-                    <button
+                    <motion.button
                       onClick={() => openGallery(project)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-foreground/5 text-foreground rounded hover:bg-foreground/10 transition-colors ml-auto"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 ml-auto active:scale-95"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <FiImage className="w-3 h-3" />
-                      <span>{project.gallery.length} fotos</span>
-                    </button>
+                      <FiImage className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span className="hidden xs:inline">{project.gallery.length} fotos</span>
+                      <span className="xs:hidden">{project.gallery.length}</span>
+                    </motion.button>
                   )}
                 </div>
 
@@ -292,9 +309,9 @@ export function Projects() {
             href={profileData?.social?.github || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/20 hover:bg-primary hover:text-background hover:border-primary transition-all duration-300"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold bg-gradient-to-r from-foreground/10 to-foreground/5 text-foreground rounded-lg border border-foreground/20 hover:bg-gradient-to-r hover:from-primary hover:to-primary hover:text-background hover:border-primary transition-all duration-300 active:scale-95"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="hidden xs:inline">Ver Mais no GitHub</span>
@@ -312,31 +329,33 @@ export function Projects() {
             onClick={closeGallery}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl w-full max-h-[90vh] sm:max-h-[85vh] bg-background rounded-lg sm:rounded-xl overflow-hidden"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] bg-gradient-to-br from-background via-background/95 to-background/90 rounded-xl sm:rounded-2xl overflow-hidden border border-foreground/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-3 sm:p-4 border-b border-foreground/10">
+              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-background/50 backdrop-blur-sm">
                 <div className="flex-1 min-w-0 pr-2">
-                  <h3 className="text-sm sm:text-lg font-bold text-foreground truncate">{selectedProject.title}</h3>
-                  <p className="text-xs sm:text-sm text-accent">
-                    {selectedImageIndex + 1} de {selectedProject.gallery.length} imagens
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground truncate">{selectedProject.title}</h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-accent">
+                    {selectedImageIndex + 1} de {selectedProject.gallery.length}
                   </p>
                 </div>
-                <button
+                <motion.button
                   onClick={closeGallery}
-                  className="flex-shrink-0 p-1.5 sm:p-2 rounded-lg bg-foreground/10 text-foreground hover:bg-foreground/20 transition-colors"
+                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-foreground/10 text-foreground hover:bg-foreground/20 transition-colors active:scale-90"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
                   aria-label="Fechar galeria"
                 >
                   <FiX className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
+                </motion.button>
               </div>
 
               {/* Image Display */}
-              <div className="relative h-[50vh] sm:h-[60vh] bg-background">
+              <div className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] bg-black/50">
                 <Image
                   src={urlFor(selectedProject.gallery[selectedImageIndex].asset).width(1200).height(800).url()}
                   alt={selectedProject.gallery[selectedImageIndex].caption || `${selectedProject.title} - Imagem ${selectedImageIndex + 1}`}
@@ -345,46 +364,52 @@ export function Projects() {
                 />
                 
                 {/* Navigation Arrows */}
-                {selectedProject.gallery.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => setSelectedImageIndex(prev => prev > 0 ? prev - 1 : selectedProject.gallery.length - 1)}
-                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-background/70 text-foreground hover:bg-background/90 transition-colors text-lg sm:text-xl"
-                      aria-label="Imagem anterior"
-                    >
-                      ←
-                    </button>
-                    <button
-                      onClick={() => setSelectedImageIndex(prev => prev < selectedProject.gallery.length - 1 ? prev + 1 : 0)}
-                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-background/70 text-foreground hover:bg-background/90 transition-colors text-lg sm:text-xl"
-                      aria-label="Próxima imagem"
-                    >
-                      →
-                    </button>
-                  </>
-                )}
+              {selectedProject.gallery.length > 1 && (
+                <>
+                  <motion.button
+                    onClick={() => setSelectedImageIndex(prev => prev > 0 ? prev - 1 : selectedProject.gallery.length - 1)}
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    whileHover={{ scale: 1.1, x: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Imagem anterior"
+                  >
+                    ←
+                  </motion.button>
+                  <motion.button
+                    onClick={() => setSelectedImageIndex(prev => prev < selectedProject.gallery.length - 1 ? prev + 1 : 0)}
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    whileHover={{ scale: 1.1, x: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Próxima imagem"
+                  >
+                    →
+                  </motion.button>
+                </>
+              )}  
               </div>
 
               {/* Caption */}
-              {selectedProject.gallery[selectedImageIndex].caption && (
-                <div className="p-3 sm:p-4 border-t border-foreground/10">
-                  <p className="text-xs sm:text-sm text-accent text-center">
-                    {selectedProject.gallery[selectedImageIndex].caption}
-                  </p>
-                </div>
-              )}
+            {selectedProject.gallery[selectedImageIndex].caption && (
+              <div className="p-3 sm:p-4 border-t border-foreground/10 bg-background/50 backdrop-blur-sm">
+                <p className="text-[11px] sm:text-xs md:text-sm text-accent text-center leading-relaxed">
+                  {selectedProject.gallery[selectedImageIndex].caption}
+                </p>
+              </div>
+            )}  
 
               {/* Thumbnails */}
               {selectedProject.gallery.length > 1 && (
-                <div className="p-2 sm:p-4 border-t border-foreground/10">
-                  <div className="flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-foreground/20 scrollbar-track-transparent pb-1">
+                <div className="p-2 sm:p-3 md:p-4 border-t border-foreground/10 bg-background/50 backdrop-blur-sm">
+                  <div className="flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide pb-1">
                     {selectedProject.gallery.map((img: any, index: number) => (
-                      <button
+                      <motion.button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
-                        className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-md sm:rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
-                          index === selectedImageIndex ? 'border-primary scale-105' : 'border-foreground/10 hover:border-foreground/30'
+                        className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
+                          index === selectedImageIndex ? 'border-primary shadow-lg shadow-primary/20' : 'border-foreground/10 hover:border-foreground/30'
                         }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         <Image
                           src={urlFor(img.asset).width(80).height(80).url()}
@@ -392,7 +417,7 @@ export function Projects() {
                           fill
                           className="object-cover"
                         />
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </div>

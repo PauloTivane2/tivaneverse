@@ -45,16 +45,10 @@ export const siteSettings = defineType({
       name: 'logo',
       title: 'Logo do Site',
       type: 'image',
-      description: 'Logo ou marca pessoal que aparece no cabeçalho do site. Recomendado: PNG transparente, tamanho máximo 200x60px para melhor visualização.',
+      description: 'Logo ou marca pessoal que aparece no cabeçalho do site. Recomendado: PNG transparente, tamanho máximo 200x60px para melhor visualização. NOTA: O favicon sempre usa /logo.png do diretório public.',
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'favicon',
-      title: 'Favicon',
-      type: 'image',
-      description: ' Ícone pequeno que aparece na aba do navegador ao lado do título. Recomendado: 32x32px ou 16x16px, formato ICO ou PNG. Representa sua marca.',
     }),
     defineField({
       name: 'ogImage',

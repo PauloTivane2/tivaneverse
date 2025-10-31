@@ -74,16 +74,15 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       document.head.appendChild(meta)
     }
 
-    // Update favicon
-    if (siteSettings.favicon) {
-      let favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement
-      if (!favicon) {
-        favicon = document.createElement('link')
-        favicon.rel = 'icon'
-        document.head.appendChild(favicon)
-      }
-      favicon.href = siteSettings.favicon
+    // Update favicon - Sempre usa /logo.png
+    let favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement
+    if (!favicon) {
+      favicon = document.createElement('link')
+      favicon.rel = 'icon'
+      document.head.appendChild(favicon)
     }
+    // Força uso de /logo.png
+    favicon.href = '/logo.png'
 
     // Update Open Graph meta tags
     // OG Image forçada para usar /og-image.png local (não do Sanity)
@@ -296,7 +295,7 @@ export default function RootLayout({
         <head>
           <title>{siteSettings.title || 'Site em Manutenção'}</title>
           <meta name="description" content={siteSettings.maintenance.message || 'Site temporariamente indisponível'} />
-          {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}
+          <link rel="icon" href="/logo.png" />
         </head>
         <body className="antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent', fontFamily: 'var(--font-space-mono), "Space Mono", monospace' }}>
           <ThemeProvider 
@@ -352,8 +351,8 @@ export default function RootLayout({
         <meta name="twitter:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
         <meta name="twitter:image" content="https://tivaneverse.vercel.app/og-image.png" />
         
-        {/* Favicon */}
-        {siteSettings.favicon && <link rel="icon" href={siteSettings.favicon} />}
+        {/* Favicon - Sempre usa /logo.png */}
+        <link rel="icon" href="/logo.png" />
         
         {/* Theme Colors */}
         <meta name="theme-color" content="#CFFF04" />

@@ -126,21 +126,23 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       icon: "☕",
       color: "#007396",
       code: [
-        `// ☕ Java: Enterprise Grade, Rock Solid!`,
-        `@Service`,
-        `public class ArquitetoSolucoes {`,
-        `    @Autowired`,
-        `    private final String arquiteto = "${profileName}";`,
-        `    private final int experiencia = 10; // anos`,
+        `// ☕ Java: POO em ação!`,
+        `public abstract class Desenvolvedor {`,
+        `    protected String nome;`,
+        `    protected int experiencia;`,
         `    `,
-        `    @Transactional`,
-        `    public void revolucionarMercado() {`,
-        `        Stream.of("Microsserviços", "Cloud", "APIs")`,
-        `              .parallel()`,
-        `              .forEach(tech -> {`,
-        `                  System.out.println("🚀 Dominando: " + tech);`,
-        `              });`,
-        `        return "Escalação global alcançada! 🌍";`,
+        `    public abstract void codificar();`,
+        `}`,
+        ``,
+        `public class FullStackDev extends Desenvolvedor {`,
+        `    public FullStackDev(String nome) {`,
+        `        this.nome = "${profileName}";`,
+        `        this.experiencia = 10;`,
+        `    }`,
+        `    `,
+        `    @Override`,
+        `    public void codificar() {`,
+        `        System.out.println("🚀 Codificando com POO!");`,
         `    }`,
         `}`
       ]
@@ -152,72 +154,28 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       color: "#00758F",
       code: [
         `-- 🐬 MySQL: Onde os dados ganham vida!`,
-        `CREATE DATABASE portfolio_magico;`,
-        `USE portfolio_magico;`,
+        `CREATE DATABASE IF NOT EXISTS portfolio;`,
+        `USE portfolio;`,
         ``,
-        `CREATE TABLE desenvolvedores_lendarios (`,
+        `CREATE TABLE usuarios (`,
         `    id INT AUTO_INCREMENT PRIMARY KEY,`,
-        `    nome VARCHAR(100) DEFAULT '${profileName}',`,
-        `    nivel_epicness ENUM('Jedi', 'Mestre', 'Deus') DEFAULT 'Deus',`,
-        `    projetos_completos INT DEFAULT 9999,`,
-        `    cafe_litros DECIMAL(10,2) DEFAULT 999.99`,
+        `    nome VARCHAR(100) NOT NULL,`,
+        `    email VARCHAR(150) UNIQUE,`,
+        `    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP`,
         `);`,
         ``,
-        `INSERT INTO desenvolvedores_lendarios (nome, nivel_epicness)`,
-        `VALUES ('${profileName}', 'Deus'); -- 🚀`,
+        `CREATE TABLE projetos (`,
+        `    id INT AUTO_INCREMENT PRIMARY KEY,`,
+        `    titulo VARCHAR(200),`,
+        `    usuario_id INT,`,
+        `    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)`,
+        `);`,
         ``,
-        `SELECT * FROM desenvolvedores_lendarios`,
-        `WHERE nivel_epicness = 'Deus'`,
-        `ORDER BY projetos_completos DESC; -- 💪`
-      ]
-    },
-    {
-      language: "C#",
-      extension: "cs",
-      icon: "🎮",
-      color: "#239120",
-      code: [
-        `// 🎮 C#: O poder do .NET em suas mãos!`,
-        `using System.Linq;`,
-        ``,
-        `public record DesenvolvedorGamer(`,
-        `    string Nome = "${profileName}",`,
-        `    bool Unity3DExpert = true,`,
-        `    int ProjetosCriados = 100`,
-        `) {`,
-        `    public async Task<string> CriarExperiencia() =>`,
-        `        await Task.Run(() => {`,
-        `            var tecnologias = new[] { "Blazor", "MAUI", "Unity" };`,
-        `            return string.Join(" + ",`,
-        `                tecnologias.Select(t => $"🚀 {t}"));`,
-        `        });`,
-        `}`,
-        `// LINQ é poesia! ❤️`
-      ]
-    },
-    {
-      language: "Ruby",
-      extension: "rb",
-      icon: "💎",
-      color: "#CC342D",
-      code: [
-        `# 💎 Ruby: Feito para a felicidade do desenvolvedor!`,
-        ``,
-        `class ArtistaDoCodigo`,
-        `  attr_accessor :nome, :frameworks, :filosofia`,
-        `  `,
-        `  def initialize(nome = '${profileName}')`,
-        `    @nome = nome`,
-        `    @frameworks = %w[Rails Sinatra Hanami]`,
-        `    @filosofia = 'Menos é mais, beleza importa! 🌸'`,
-        `  end`,
-        `  `,
-        `  def criar_com_amor`,
-        `    puts "✨ Código que parece poesia..."`,
-        `    puts "🚀 Rails: Convention over Configuration!"`,
-        `    [:felicidade, :produtividade, :elegancia].each(&:maximize!)`,
-        `  end`,
-        `end`
+        `SELECT u.nome, COUNT(p.id) as total_projetos`,
+        `FROM usuarios u`,
+        `LEFT JOIN projetos p ON u.id = p.usuario_id`,
+        `WHERE u.nome = '${profileName}'`,
+        `GROUP BY u.id;`
       ]
     }
   ]
@@ -239,14 +197,14 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
 
     if (isTyping && displayedCode.length < targetLine.length) {
       // Typing effect - Mais rápido em mobile
-      const typingSpeed = isMobile ? 2 : 4 // Mobile: 2ms, Desktop: 4ms
+      const typingSpeed = isMobile ? 3 : 4 // Mobile: 3ms, Desktop: 4ms
       const timer = setTimeout(() => {
         setDisplayedCode(targetLine.slice(0, displayedCode.length + 1))
       }, typingSpeed)
       return () => clearTimeout(timer)
     } else if (displayedCode.length === targetLine.length) {
       // Move to next line - Mais rápido em mobile
-      const lineDelay = isMobile ? 50 : 100 // Mobile: 50ms, Desktop: 100ms
+      const lineDelay = isMobile ? 70 : 100 // Mobile: 70ms, Desktop: 100ms
       const timer = setTimeout(() => {
         setCurrentLine((prev) => prev + 1)
         setDisplayedCode("")

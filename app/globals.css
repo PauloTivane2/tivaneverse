@@ -420,3 +420,31 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 }
+
+/* Scrollbar utilities */
+@layer utilities {
+  /* Esconder scrollbar mas manter funcionalidade */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Smooth scroll para mobile */
+  .scrollbar-hide {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Snap scroll para categorias em mobile */
+  .scroll-snap-x {
+    scroll-snap-type: x proximity;
+  }
+  
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+}

@@ -522,6 +522,16 @@
   .corporate-form-actions .corporate-button {
     width: 100%;
   }
+  
+  /* Garantir responsividade de todos os botões corporativos em mobile */
+  .corporate-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /* =====================================================

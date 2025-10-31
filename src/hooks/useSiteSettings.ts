@@ -4,13 +4,13 @@ import { client, urlFor } from '@/src/lib/sanity'
 // Query GROQ para buscar todas as configurações do site do Sanity CMS
 // Inclui informações básicas, tema, SEO e performance
 // NOTA: Informações de contato e redes sociais estão no schema 'profile.ts'
+// NOTA: Favicon sempre usa /logo.png estático do public, não vem do Sanity
 const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   // Informações básicas do site
   title,
   description,
   keywords,
   logo,
-  favicon,
   ogImage,
   
   // Configurações de tema e tipografia
@@ -64,13 +64,14 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0] {
 // Interface TypeScript para configurações gerais do site
 // Inclui tipos para SEO, tipografia e performance
 // NOTA: Contato e redes sociais estão em 'profile.ts' - use useProfile() hook
+// NOTA: Favicon sempre será /logo.png (não configurável via Sanity)
 export interface SiteSettings {
   // Informações básicas do site
   title?: string
   description?: string
   keywords?: string[]
   logo?: any
-  favicon?: any
+  favicon?: string  // Sempre /logo.png
   ogImage?: any
   
   // Configurações de tema visual
@@ -150,7 +151,8 @@ export function useSiteSettings() {
                   : data.keywords)
               : ['desenvolvedor', 'full-stack', 'react', 'typescript', 'moçambique'],
             logo: data.logo ? urlFor(data.logo).width(200).height(200).url() : null,
-            favicon: data.favicon ? urlFor(data.favicon).width(32).height(32).url() : null,
+            // Favicon sempre usa logo.png estático do public
+            favicon: '/logo.png',
             ogImage: data.ogImage ? urlFor(data.ogImage).width(1200).height(630).url() : null,
             
             // Configurações de tema e tipografia

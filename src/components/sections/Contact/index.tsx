@@ -172,18 +172,18 @@ export function Contact() {
               <motion.button
                 type="submit"
                 disabled={status === "sending" || status === "success"}
-                className="corporate-button corporate-button-primary w-full"
+                className="corporate-button corporate-button-primary w-full text-sm sm:text-base px-4 py-3 sm:px-6 sm:py-3"
                 whileHover={{ scale: status === "sending" || status === "success" ? 1 : 1.02 }}
                 whileTap={{ scale: status === "sending" || status === "success" ? 1 : 0.98 }}
               >
                 {status === "sending" ? (
                   <>
                     <motion.div
-                      className="w-5 h-5 border-2 border-black border-t-transparent rounded-full"
+                      className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent rounded-full"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     />
-                    A enviar...
+                    <span className="text-sm sm:text-base">A enviar...</span>
                   </>
                 ) : status === "success" ? (
                   <>
@@ -191,15 +191,16 @@ export function Contact() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200 }}
+                      className="text-lg sm:text-xl"
                     >
                       ✓
                     </motion.div>
-                    Mensagem Enviada!
+                    <span className="text-sm sm:text-base">Mensagem Enviada!</span>
                   </>
                 ) : (
                   <>
-                    <FiSend />
-                    Enviar Mensagem
+                    <FiSend className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-sm sm:text-base">Enviar Mensagem</span>
                   </>
                 )}
               </motion.button>
