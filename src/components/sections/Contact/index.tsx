@@ -78,20 +78,20 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="corporate-section bg-black relative" ref={ref}>
+    <section id="contact" className="corporate-section bg-black relative landscape:py-12 landscape:md:py-20" ref={ref}>
       {/* Gradient Transition from previous section */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-48 landscape:h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
       
       {/* Gradient Transition to footer */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-black pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 landscape:h-24 bg-gradient-to-b from-transparent to-black pointer-events-none" />
       
-      <div className="corporate-container relative z-10">
+      <div className="corporate-container relative z-10 landscape:max-h-screen landscape:overflow-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="corporate-section-header"
+          className="corporate-section-header landscape:mb-6 landscape:space-y-2"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
@@ -109,7 +109,7 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 landscape:gap-6 landscape:lg:gap-8">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -163,7 +163,7 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="corporate-form-textarea"
+                  className="corporate-form-textarea landscape:!min-h-[80px] landscape:!max-h-[120px]"
                   placeholder="Fale-me sobre o seu projecto..."
                 />
               </div>
@@ -238,14 +238,14 @@ export function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-8 landscape:space-y-4"
           >
             {/* Info Cards - Profissional e Compacto */}
-            <div className="space-y-3">
+            <div className="space-y-3 landscape:space-y-2">
               {/* Email */}
               <motion.a
                 href={`mailto:${contactInfo?.email || 'contact@example.com'}`}
-                className="group flex items-center gap-3 p-4 rounded-lg bg-background border border-white/10 hover:border-primary/40 transition-all duration-200"
+                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-background border border-white/10 hover:border-primary/40 transition-all duration-200"
                 whileHover={{ x: 4 }}
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
@@ -261,7 +261,7 @@ export function Contact() {
 
               {/* Location */}
               <motion.div
-                className="group flex items-center gap-3 p-4 rounded-lg bg-background border border-white/10"
+                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-background border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                   <FiMapPin className="w-4 h-4 text-accent" />
@@ -303,7 +303,7 @@ export function Contact() {
             </div>
 
             {/* Availability Badge - Simples */}
-            <div className="p-4 rounded-lg bg-white/5 border border-primary/20">
+            <div className="p-4 landscape:p-3 rounded-lg bg-white/5 border border-primary/20">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-sm font-semibold text-primary">Disponível para Trabalho</span>

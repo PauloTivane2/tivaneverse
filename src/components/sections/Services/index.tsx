@@ -2,13 +2,15 @@
 
 import { motion, useInView } from "framer-motion"
 import { useServices } from "@/src/hooks/useServices"
-import { useRef } from "react"
-import { FiCheck, FiClock, FiDollarSign, FiStar, FiCode, FiZap, FiArrowRight } from "react-icons/fi"
+import { useRef, useState } from "react"
+import { FiCheck, FiClock, FiDollarSign, FiStar, FiCode, FiZap, FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi"
 
 export function Services() {
   const { servicesData, loading, error } = useServices()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,6 +34,27 @@ export function Services() {
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       },
     },
+  }
+
+  const scrollToIndex = (index: number) => {
+    if (carouselRef.current) {
+      const cardWidth = carouselRef.current.scrollWidth / servicesData.length
+      carouselRef.current.scrollTo({
+        left: cardWidth * index,
+        behavior: 'smooth'
+      })
+      setCurrentIndex(index)
+    }
+  }
+
+  const nextSlide = () => {
+    const newIndex = currentIndex >= servicesData.length - 1 ? 0 : currentIndex + 1
+    scrollToIndex(newIndex)
+  }
+
+  const prevSlide = () => {
+    const newIndex = currentIndex <= 0 ? servicesData.length - 1 : currentIndex - 1
+    scrollToIndex(newIndex)
   }
 
   return (
@@ -67,18 +90,62 @@ export function Services() {
           </p>
         </motion.div>
 
-        {/* Services Grid - Premium Layout */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
-        >
+        {/* Carousel Navigation */}
+        {!loading && servicesData.length > 0 && (
+          <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+            <motion.button
+              onClick={prevSlide}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.button>
+            
+            {/* Dots Indicator */}
+            <div className="flex gap-2">
+              {servicesData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToIndex(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                      ? 'w-8 bg-primary' 
+                      : 'w-2 bg-primary/30 hover:bg-primary/50'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <motion.button
+              onClick={nextSlide}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.button>
+          </div>
+        )}
+
+        {/* Services Carousel - Horizontal Scroll */}
+        <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+          <motion.div
+            ref={carouselRef}
+            drag="x"
+            dragConstraints={{ left: -100, right: 0 }}
+            dragElastic={0.1}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 cursor-grab active:cursor-grabbing"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
           {loading ? (
             // Loading skeleton - Premium Layout
-            Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="animate-pulse">
-                <div className="relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/10">
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center">
+                <div className="animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/10">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-foreground/5 rounded-t-2xl"></div>
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-14 h-14 rounded-xl bg-foreground/10"></div>
@@ -104,7 +171,7 @@ export function Services() {
               <motion.div 
                 key={service.title} 
                 variants={itemVariants} 
-                className="group relative h-full"
+                className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
                 <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/10 backdrop-blur-sm flex flex-col overflow-hidden transition-all duration-500 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.15)] active:scale-[0.99] sm:active:scale-100">
@@ -240,11 +307,12 @@ export function Services() {
             ))
           ) : (
             // Empty state
-            <div className="col-span-full text-center py-8">
+            <div className="flex-shrink-0 w-full text-center py-8">
               <p className="text-accent">No services available</p>
             </div>
           )}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -18,7 +18,14 @@ export const expertise = defineType({
       name: 'iconName',
       title: 'Nome do Ícone',
       type: 'string',
-      description: 'Nome do ícone React Icons (ex: FaReact, SiTypescript, FiCode). Consulte: react-icons.github.io',
+      description: '⚠️ IMPORTANTE: Use o nome EXATO do ícone (case-sensitive).\n\n' +
+        '📋 Exemplos populares:\n' +
+        '• SiReact, SiTypescript, SiJavascript, SiNextdotjs\n' +
+        '• FaReact, FaNodeJs, FaPython, FaJava, FaDocker\n' +
+        '• TbBrandVscode, TbBrandFigma, TbBrandGithub\n' +
+        '• FiCode, FiDatabase, FiServer, FiTool\n\n' +
+        '📖 Ver lista completa: /ICONES_DISPONIVEIS.md\n' +
+        '🔗 Galeria: react-icons.github.io/react-icons',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
