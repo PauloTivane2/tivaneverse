@@ -4,7 +4,7 @@ export interface ExpertiseItem {
   name: string
   icon: IconType
   color: string
-  category?: string
+  categories?: string[]
   proficiencyLevel?: number
   yearsOfExperience?: number
   description?: string

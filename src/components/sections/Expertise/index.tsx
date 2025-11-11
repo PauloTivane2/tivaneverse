@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useExpertise } from "@/src/hooks/useExpertise"
 import { useRef, useState, useMemo } from "react"
-import { FiStar, FiTrendingUp, FiCode, FiServer, FiDatabase, FiTool, FiPackage, FiZap } from "react-icons/fi"
+import { FiStar, FiTrendingUp, FiCode, FiServer, FiDatabase, FiTool, FiPackage, FiZap, FiChevronLeft, FiChevronRight } from "react-icons/fi"
 
 // Categorias disponíveis com icons e labels
 const categories = [
@@ -13,7 +13,6 @@ const categories = [
   { id: 'backend', label: 'Backend', icon: FiServer },
   { id: 'database', label: 'Base de Dados', icon: FiDatabase },
   { id: 'tools', label: 'Ferramentas', icon: FiTool },
-  { id: 'devops', label: 'DevOps', icon: FiServer },
 ]
 
 export function Expertise() {
@@ -21,19 +20,37 @@ export function Expertise() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [activeCategory, setActiveCategory] = useState('all')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
-  // Filtrar skills por categoria
+  // Filtrar skills por categoria - agora suporta múltiplas categorias
   const filteredSkills = useMemo(() => {
-    if (activeCategory === 'all') return expertiseData
-    return expertiseData.filter(skill => skill.category === activeCategory)
+    console.log('🔍 [FILTER] Categoria ativa:', activeCategory)
+    console.log('🔍 [FILTER] Total de skills:', expertiseData.length)
+    
+    if (activeCategory === 'all') {
+      console.log('✅ [FILTER] Mostrando TODAS as skills:', expertiseData.length)
+      return expertiseData
+    }
+    
+    const filtered = expertiseData.filter(skill => {
+      const hasCategory = skill.categories && skill.categories.includes(activeCategory)
+      console.log(`🔍 [FILTER] ${skill.name}: categorias=${skill.categories?.join(',') || 'vazio'}, tem "${activeCategory}"? ${hasCategory}`)
+      return hasCategory
+    })
+    
+    console.log(`✅ [FILTER] Filtrado para "${activeCategory}":`, filtered.length, 'skills')
+    return filtered
   }, [expertiseData, activeCategory])
 
-  // Contar skills por categoria
+  // Contar skills por categoria - agora conta corretamente múltiplas categorias
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: expertiseData.length }
     expertiseData.forEach(skill => {
-      if (skill.category) {
-        counts[skill.category] = (counts[skill.category] || 0) + 1
+      if (skill.categories && skill.categories.length > 0) {
+        skill.categories.forEach(category => {
+          counts[category] = (counts[category] || 0) + 1
+        })
       }
     })
     return counts
@@ -60,6 +77,35 @@ export function Expertise() {
       },
     },
   }
+
+  // Funções de navegação do carrossel
+  const scrollToIndex = (index: number) => {
+    if (carouselRef.current && filteredSkills.length > 0) {
+      const cardWidth = carouselRef.current.scrollWidth / filteredSkills.length
+      carouselRef.current.scrollTo({
+        left: cardWidth * index,
+        behavior: 'smooth'
+      })
+      setCurrentIndex(index)
+    }
+  }
+
+  const nextSlide = () => {
+    if (filteredSkills.length > 0) {
+      const newIndex = currentIndex >= filteredSkills.length - 1 ? 0 : currentIndex + 1
+      scrollToIndex(newIndex)
+    }
+  }
+
+  const prevSlide = () => {
+    if (filteredSkills.length > 0) {
+      const newIndex = currentIndex <= 0 ? filteredSkills.length - 1 : currentIndex - 1
+      scrollToIndex(newIndex)
+    }
+  }
+
+  // Layout condicional baseado na categoria
+  const isCarouselMode = activeCategory === 'all'
 
   return (
     <section id="expertise" className="corporate-section bg-background relative" ref={ref}>
@@ -155,20 +201,63 @@ export function Expertise() {
           </div>
         </motion.div>
 
-        {/* Skills Grid - Enterprise Layout com Filtro */}
-        <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
-        >
+        {/* Carousel Navigation - Apenas quando "Todos" estiver selecionado */}
+        {isCarouselMode && !loading && filteredSkills.length > 0 && (
+          <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+            <motion.button
+              onClick={prevSlide}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.button>
+            
+            {/* Dots Indicator */}
+            <div className="flex gap-2">
+              {filteredSkills.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToIndex(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                      ? 'w-8 bg-primary' 
+                      : 'w-2 bg-primary/30 hover:bg-primary/50'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <motion.button
+              onClick={nextSlide}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.button>
+          </div>
+        )}
+
+        {/* Skills Layout - Carrossel ou Grid conforme categoria */}
+        {isCarouselMode ? (
+          /* MODO CARROSSEL - Horizontal quando "Todos" */
+          <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+            <motion.div
+              ref={carouselRef}
+              key={activeCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+              style={{ scrollSnapType: 'x mandatory' }}
+            >
           {loading ? (
-            // Loading skeleton - Enterprise Layout
-            Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="animate-pulse">
-                <div className="p-5 sm:p-6 rounded-xl bg-background border border-foreground/10 h-full">
+            // Loading skeleton - Carrossel
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[450px] snap-center">
+                <div className="animate-pulse p-5 sm:p-6 rounded-xl bg-background border border-foreground/10 h-full">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-foreground/10 rounded-lg flex-shrink-0"></div>
                     <div className="flex-1 space-y-2">
@@ -193,7 +282,7 @@ export function Expertise() {
               key={skill.name}
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="group relative"
+              className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[450px] snap-center group relative"
             >
               <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300 active:scale-[0.98] sm:active:scale-100">
                 {/* Header com Icon e Título */}
@@ -203,15 +292,31 @@ export function Expertise() {
                     <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
                   </div>
 
-                  {/* Título e Categoria */}
+                  {/* Título e Categorias */}
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors leading-tight">
                       {skill.name}
                     </h3>
-                    {skill.category && (
-                      <span className="inline-block px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded">
-                        {skill.category}
-                      </span>
+                    {skill.categories && skill.categories.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {skill.categories.map((category) => {
+                          const categoryLabels: Record<string, string> = {
+                            languages: '📝 Linguagens',
+                            frontend: '📦 Frontend',
+                            backend: '🖥️ Backend',
+                            database: '💾 Database',
+                            tools: '🛠️ Ferramentas',
+                          }
+                          return (
+                            <span 
+                              key={category}
+                              className="inline-block px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
+                            >
+                              {categoryLabels[category] || category}
+                            </span>
+                          )
+                        })}
+                      </div>
                     )}
                   </div>
 
@@ -265,7 +370,7 @@ export function Expertise() {
           ))
           ) : (
             // Empty state por categoria
-            <div className="col-span-full text-center py-12 sm:py-16">
+            <div className="flex-shrink-0 w-full text-center py-12 sm:py-16">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -286,7 +391,158 @@ export function Expertise() {
               </motion.div>
             </div>
           )}
-        </motion.div>
+            </motion.div>
+          </div>
+        ) : (
+          /* MODO GRID - Vertical quando categoria específica */
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
+          >
+            {loading ? (
+              // Loading skeleton - Grid
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="animate-pulse">
+                  <div className="p-5 sm:p-6 rounded-xl bg-background border border-foreground/10 h-full">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-foreground/10 rounded-lg flex-shrink-0"></div>
+                      <div className="flex-1 space-y-2">
+                        <div className="h-5 bg-foreground/10 rounded w-3/4"></div>
+                        <div className="h-3 bg-foreground/10 rounded w-1/2"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-2 mb-4">
+                      <div className="h-2 bg-foreground/10 rounded"></div>
+                      <div className="h-3 bg-foreground/10 rounded w-16"></div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-3 bg-foreground/10 rounded"></div>
+                      <div className="h-3 bg-foreground/10 rounded w-5/6"></div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : filteredSkills.length > 0 ? (
+              filteredSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  variants={itemVariants}
+                  whileHover={{ y: -4 }}
+                  className="group relative"
+                >
+                  <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300 active:scale-[0.98] sm:active:scale-100">
+                    {/* Header com Icon e Título */}
+                    <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                      {/* Icon Container */}
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                        <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                      </div>
+
+                      {/* Título e Categorias */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors leading-tight">
+                          {skill.name}
+                        </h3>
+                        {skill.categories && skill.categories.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {skill.categories.map((category) => {
+                              const categoryLabels: Record<string, string> = {
+                                languages: '📝 Linguagens',
+                                frontend: '📦 Frontend',
+                                backend: '🖥️ Backend',
+                                database: '💾 Database',
+                                tools: '🛠️ Ferramentas',
+                              }
+                              return (
+                                <span 
+                                  key={category}
+                                  className="inline-block px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
+                                >
+                                  {categoryLabels[category] || category}
+                                </span>
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Featured Badge */}
+                      {skill.featured && (
+                        <div className="flex-shrink-0 hidden sm:flex">
+                          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                            <FiStar className="w-3.5 h-3.5 text-primary" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Proficiency Bar */}
+                    {skill.proficiencyLevel && (
+                      <div className="mb-3 sm:mb-4">
+                        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                          <span className="text-[10px] sm:text-xs font-medium text-accent">Proficiência</span>
+                          <span className="text-xs sm:text-sm font-bold text-primary">{skill.proficiencyLevel * 10}%</span>
+                        </div>
+                        <div className="h-1.5 sm:h-2 bg-foreground/10 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full rounded-full bg-gradient-to-r from-primary/70 via-primary to-secondary"
+                            initial={{ width: 0 }}
+                            animate={isInView ? { width: `${skill.proficiencyLevel * 10}%` } : {}}
+                            transition={{ duration: 1, delay: index * 0.1 }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Experiência */}
+                    {skill.yearsOfExperience && (
+                      <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent mb-2 sm:mb-3">
+                        <FiTrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+                        <span><span className="font-semibold text-foreground">{skill.yearsOfExperience}</span> anos de experiência</span>
+                      </div>
+                    )}
+
+                    {/* Descrição */}
+                    {skill.description && (
+                      <p className="text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mt-auto">
+                        {skill.description}
+                      </p>
+                    )}
+
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              // Empty state por categoria
+              <div className="col-span-full text-center py-12 sm:py-16">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="max-w-md mx-auto"
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-foreground/5 flex items-center justify-center">
+                    {(() => {
+                      const CategoryIcon = categories.find(c => c.id === activeCategory)?.icon
+                      return CategoryIcon ? <CategoryIcon className="w-8 h-8 text-accent" /> : null
+                    })()}
+                  </div>
+                  <p className="text-lg font-medium text-foreground/70 mb-2">
+                    Nenhuma competência nesta categoria
+                  </p>
+                  <p className="text-sm text-accent">
+                    Seleccione outra categoria para ver mais competências
+                  </p>
+                </motion.div>
+              </div>
+            )}
+          </motion.div>
+        )}
       </div>
     </section>
   )
