@@ -120,10 +120,10 @@ export function Services() {
                 <button
                   key={index}
                   onClick={() => scrollToIndex(index)}
-                  className={`h-1 rounded-full transition-all duration-300 ${
+                  className={`h-0.5 sm:h-1 rounded-full transition-all duration-300 ${
                     currentIndex === index 
-                      ? 'w-4 sm:w-6 md:w-8 bg-primary' 
-                      : 'w-1 bg-primary/30 hover:bg-primary/50'
+                      ? 'w-3 sm:w-4 md:w-6 bg-primary' 
+                      : 'w-0.5 sm:w-1 bg-primary/30 hover:bg-primary/50'
                   }`}
                 />
               ))}

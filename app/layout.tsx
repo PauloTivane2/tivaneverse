@@ -255,16 +255,19 @@ export default function RootLayout({
         <meta property="og:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tivaneverse.me" />
-        <meta property="og:image" content="https://tivaneverse.vercel.app/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image" content="https://tivaneverse.me/logo.png" />
+        <meta property="og:image:secure_url" content="https://tivaneverse.me/logo.png" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
         <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="Paulo Tivane - Software Engineer Logo" />
         
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'} />
         <meta name="twitter:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
-        <meta name="twitter:image" content="https://tivaneverse.vercel.app/og-image.png" />
+        <meta name="twitter:image" content="https://tivaneverse.me/logo.png" />
+        <meta name="twitter:image:alt" content="Paulo Tivane - Software Engineer Logo" />
         
         {/* Favicon - Sempre usa /logo.png */}
         <link rel="icon" href="/logo.png" />
