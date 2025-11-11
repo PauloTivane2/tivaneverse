@@ -450,48 +450,48 @@
   
   /* Indicadores de paginação dos carrosséis - tamanho reduzido */
   .carousel-dot {
-    height: 2px !important;
+    height: 1px !important;
     border-radius: 9999px;
     transition: all 0.3s ease;
   }
   
   .carousel-dot-inactive {
-    width: 2px !important;
+    width: 1px !important;
     background-color: rgba(207, 255, 4, 0.3);
   }
   
   .carousel-dot-active {
-    width: 12px !important;
+    width: 6px !important;
     background-color: #CFFF04;
   }
   
   /* Responsivo para tablets */
   @media (min-width: 640px) {
     .carousel-dot {
-      height: 3px !important;
+      height: 1.5px !important;
     }
     
     .carousel-dot-inactive {
-      width: 3px !important;
+      width: 1.5px !important;
     }
     
     .carousel-dot-active {
-      width: 16px !important;
+      width: 8px !important;
     }
   }
   
   /* Responsivo para desktop */
   @media (min-width: 768px) {
     .carousel-dot {
-      height: 4px !important;
+      height: 2px !important;
     }
     
     .carousel-dot-inactive {
-      width: 4px !important;
+      width: 2px !important;
     }
     
     .carousel-dot-active {
-      width: 24px !important;
+      width: 12px !important;
     }
   }
 }
