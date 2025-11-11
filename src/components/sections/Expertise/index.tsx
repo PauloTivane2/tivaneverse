@@ -300,19 +300,24 @@ export function Expertise() {
                     {skill.categories && skill.categories.length > 0 && (
                       <div className="flex flex-wrap gap-1">
                         {skill.categories.map((category) => {
-                          const categoryLabels: Record<string, string> = {
-                            languages: '📝 Linguagens',
-                            frontend: '📦 Frontend',
-                            backend: '🖥️ Backend',
-                            database: '💾 Database',
-                            tools: '🛠️ Ferramentas',
+                          const categoryConfig: Record<string, { label: string; icon: any }> = {
+                            languages: { label: 'Linguagens', icon: FiCode },
+                            frontend: { label: 'Frontend', icon: FiPackage },
+                            backend: { label: 'Backend', icon: FiServer },
+                            database: { label: 'Database', icon: FiDatabase },
+                            tools: { label: 'Ferramentas', icon: FiTool },
                           }
+                          const config = categoryConfig[category]
+                          if (!config) return null
+                          const CategoryIcon = config.icon
+                          
                           return (
                             <span 
                               key={category}
-                              className="inline-block px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
+                              className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
                             >
-                              {categoryLabels[category] || category}
+                              <CategoryIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                              <span>{config.label}</span>
                             </span>
                           )
                         })}
@@ -450,19 +455,24 @@ export function Expertise() {
                         {skill.categories && skill.categories.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {skill.categories.map((category) => {
-                              const categoryLabels: Record<string, string> = {
-                                languages: '📝 Linguagens',
-                                frontend: '📦 Frontend',
-                                backend: '🖥️ Backend',
-                                database: '💾 Database',
-                                tools: '🛠️ Ferramentas',
+                              const categoryConfig: Record<string, { label: string; icon: any }> = {
+                                languages: { label: 'Linguagens', icon: FiCode },
+                                frontend: { label: 'Frontend', icon: FiPackage },
+                                backend: { label: 'Backend', icon: FiServer },
+                                database: { label: 'Database', icon: FiDatabase },
+                                tools: { label: 'Ferramentas', icon: FiTool },
                               }
+                              const config = categoryConfig[category]
+                              if (!config) return null
+                              const CategoryIcon = config.icon
+                              
                               return (
                                 <span 
                                   key={category}
-                                  className="inline-block px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
+                                  className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded"
                                 >
-                                  {categoryLabels[category] || category}
+                                  <CategoryIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                                  <span>{config.label}</span>
                                 </span>
                               )
                             })}
