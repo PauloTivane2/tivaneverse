@@ -295,6 +295,7 @@ export default function RootLayout({
         <head>
           <title>{siteSettings.title || 'Site em Manutenção'}</title>
           <meta name="description" content={siteSettings.maintenance.message || 'Site temporariamente indisponível'} />
+          <meta name="google-site-verification" content="WQ8tnzf9nZiS4nWV6liBibr3R2iR2_7wQiV5vXUvQYU" />
           <link rel="icon" href="/logo.png" />
         </head>
         <body className="antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent', fontFamily: 'var(--font-space-mono), "Space Mono", monospace' }}>
@@ -327,6 +328,7 @@ export default function RootLayout({
           content={siteSettings.keywords?.join(', ') || 'Software Engineer, IT Professional, Web Developer, Paulo Tivane'} 
         />
         <meta name="generator" content="v0.app" />
+        <meta name="google-site-verification" content="WQ8tnzf9nZiS4nWV6liBibr3R2iR2_7wQiV5vXUvQYU" />
         
         {/* Mobile Optimization Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
@@ -339,7 +341,7 @@ export default function RootLayout({
         <meta property="og:title" content={siteSettings.title || 'Paulo Babucho Issaca Tivane | Software Engineer'} />
         <meta property="og:description" content={siteSettings.description || 'Professional portfolio of Paulo Babucho Issaca Tivane'} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tivaneverse.vercel.app" />
+        <meta property="og:url" content="https://tivaneverse.me" />
         <meta property="og:image" content="https://tivaneverse.vercel.app/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
