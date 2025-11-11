@@ -447,4 +447,51 @@
   .scroll-snap-start {
     scroll-snap-align: start;
   }
+  
+  /* Indicadores de paginação dos carrosséis - tamanho reduzido */
+  .carousel-dot {
+    height: 2px !important;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-dot-inactive {
+    width: 2px !important;
+    background-color: rgba(207, 255, 4, 0.3);
+  }
+  
+  .carousel-dot-active {
+    width: 12px !important;
+    background-color: #CFFF04;
+  }
+  
+  /* Responsivo para tablets */
+  @media (min-width: 640px) {
+    .carousel-dot {
+      height: 3px !important;
+    }
+    
+    .carousel-dot-inactive {
+      width: 3px !important;
+    }
+    
+    .carousel-dot-active {
+      width: 16px !important;
+    }
+  }
+  
+  /* Responsivo para desktop */
+  @media (min-width: 768px) {
+    .carousel-dot {
+      height: 4px !important;
+    }
+    
+    .carousel-dot-inactive {
+      width: 4px !important;
+    }
+    
+    .carousel-dot-active {
+      width: 24px !important;
+    }
+  }
 }
