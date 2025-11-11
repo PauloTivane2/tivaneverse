@@ -16,18 +16,7 @@ export function SiteSettingsProvider({ children }: { children: React.ReactNode }
 
   // Aplicar configurações de CSS customizadas
   useEffect(() => {
-    if (!siteSettings.theme) return
-
     const root = document.documentElement
-
-    // Aplicar velocidade de animação
-    const animationDuration = {
-      slow: '0.8s',
-      normal: '0.5s',
-      fast: '0.3s'
-    }[siteSettings.theme.animationSpeed || 'normal']
-
-    root.style.setProperty('--animation-duration', animationDuration)
 
     // Aplicar configurações de movimento reduzido
     if (siteSettings.performance?.reducedMotion) {

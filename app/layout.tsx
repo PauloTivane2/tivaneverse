@@ -84,17 +84,6 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
     // Força uso de /logo.png
     favicon.href = '/logo.png'
 
-    // Update Open Graph meta tags
-    // OG Image forçada para usar /og-image.png local (não do Sanity)
-    // if (siteSettings.ogImage) {
-    //   let ogImage = document.querySelector('meta[property="og:image"]')
-    //   if (!ogImage) {
-    //     ogImage = document.createElement('meta')
-    //     ogImage.setAttribute('property', 'og:image')
-    //     document.head.appendChild(ogImage)
-    //   }
-    //   ogImage.setAttribute('content', siteSettings.ogImage)
-    // }
 
     if (siteSettings.title) {
       let ogTitle = document.querySelector('meta[property="og:title"]')
@@ -116,53 +105,6 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       ogDescription.setAttribute('content', siteSettings.description)
     }
 
-    // Aplicar fontes personalizadas como variáveis CSS e carregar do Google Fonts
-    // Permite usar var(--font-heading), var(--font-body), var(--font-code)
-    if (siteSettings.theme?.customFonts) {
-      const root = document.documentElement
-      const fonts = siteSettings.theme.customFonts
-      
-      // Coletar todas as fontes necessárias
-      const fontsToLoad: string[] = []
-      
-      if (fonts.headingFont && fonts.headingFont !== 'system-ui') {
-        root.style.setProperty('--font-heading', `'${fonts.headingFont}', sans-serif`)
-        fontsToLoad.push(fonts.headingFont)
-      }
-      if (fonts.bodyFont && fonts.bodyFont !== 'system-ui') {
-        root.style.setProperty('--font-body', `'${fonts.bodyFont}', sans-serif`)
-        fontsToLoad.push(fonts.bodyFont)
-      }
-      if (fonts.codeFont && !['Consolas', 'Monaco'].includes(fonts.codeFont)) {
-        root.style.setProperty('--font-code', `'${fonts.codeFont}', monospace`)
-        fontsToLoad.push(fonts.codeFont)
-      }
-      
-      // Carregar fontes do Google Fonts dinamicamente
-      if (fontsToLoad.length > 0) {
-        // Remover link anterior se existir
-        const oldLink = document.querySelector('link[data-google-fonts]')
-        if (oldLink) {
-          oldLink.remove()
-        }
-        
-        // Criar URL do Google Fonts com todas as fontes
-        const uniqueFonts = [...new Set(fontsToLoad)]
-        const fontFamilies = uniqueFonts.map(font => 
-          font.replace(/ /g, '+') + ':wght@300;400;500;600;700;800;900'
-        ).join('&family=')
-        
-        const googleFontsUrl = `https://fonts.googleapis.com/css2?family=${fontFamilies}&display=swap`
-        
-        // Adicionar link ao head
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = googleFontsUrl
-        link.setAttribute('data-google-fonts', 'true')
-        document.head.appendChild(link)
-      }
-    }
-    
     // Aplicar meta tags de SEO avançado
     if (siteSettings.seo) {
       // URL canônica para evitar conteúdo duplicado
@@ -229,36 +171,7 @@ function DynamicHead({ siteSettings }: { siteSettings: SiteSettings }): null {
       }
     }
     
-    // Aplicar configurações de compressão baseadas na performance
-    if (siteSettings.performance?.compressionLevel) {
-      const compressionMap = {
-        high: '95', // Máxima qualidade
-        medium: '80', // Balanceado
-        low: '60' // Máxima velocidade
-      }
-      const quality = compressionMap[siteSettings.performance.compressionLevel]
-      document.documentElement.style.setProperty('--image-quality', quality)
-    }
-
-    // Aplicar velocidade global de animações
-    if (siteSettings.theme?.animationSpeed) {
-      const speedMap: Record<string, string> = {
-        slow: '1.5s', // Animações mais lentas e elegantes
-        normal: '1s', // Velocidade padrão equilibrada
-        fast: '0.5s' // Animações rápidas e dinâmicas
-      }
-      document.documentElement.style.setProperty(
-        '--global-animation-speed', 
-        speedMap[siteSettings.theme.animationSpeed] || '1s'
-      )
-    }
     
-    // Log das configurações aplicadas para debug
-    console.log('🎨 [DYNAMIC HEAD] Configurações aplicadas:', {
-      theme: siteSettings.theme,
-      seo: siteSettings.seo,
-      performance: siteSettings.performance
-    })
   }, [siteSettings])
 
   return null
@@ -301,7 +214,7 @@ export default function RootLayout({
         <body className="antialiased text-foreground overflow-x-hidden" style={{ background: 'transparent', fontFamily: 'var(--font-space-mono), "Space Mono", monospace' }}>
           <ThemeProvider 
             attribute="class" 
-            defaultTheme={siteSettings.theme?.darkMode ? "dark" : "light"} 
+            defaultTheme="dark" 
             enableSystem={false}
           >
             <MaintenanceMode message={siteSettings.maintenance.message || 'Site em manutenção'} />
@@ -363,14 +276,12 @@ export default function RootLayout({
         className={`antialiased text-foreground overflow-x-hidden ${spaceMono.variable} ${inter.variable} ${firaCode.variable}`}
         style={{
           background: 'transparent',
-          fontFamily: 'var(--font-space-mono), "Space Mono", monospace',
-          '--global-animation-speed': siteSettings.theme?.animationSpeed === 'slow' ? '1.5s' : 
-                                     siteSettings.theme?.animationSpeed === 'fast' ? '0.5s' : '1s'
+          fontFamily: 'var(--font-space-mono), "Space Mono", monospace'
         } as React.CSSProperties}
       >
         <ThemeProvider 
           attribute="class" 
-          defaultTheme={siteSettings.theme?.darkMode ? "dark" : "light"} 
+          defaultTheme="dark" 
           enableSystem={false}
         >
           {/* Dynamic Head Updates */}

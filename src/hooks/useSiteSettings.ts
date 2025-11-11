@@ -13,17 +13,6 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   logo,
   ogImage,
   
-  // Configurações de tema e tipografia
-  theme {
-    darkMode,
-    animationSpeed,
-    customFonts {
-      headingFont,
-      bodyFont,
-      codeFont
-    }
-  },
-  
   
   // Configurações avançadas de SEO
   seo {
@@ -44,7 +33,6 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0] {
     enableLazyLoading,
     enableImageOptimization,
     enableAnimations,
-    compressionLevel,
     reducedMotion
   },
   
@@ -74,17 +62,6 @@ export interface SiteSettings {
   favicon?: string  // Sempre /logo.png
   ogImage?: any
   
-  // Configurações de tema visual
-  theme?: {
-    darkMode?: boolean
-    animationSpeed?: 'slow' | 'normal' | 'fast'
-    customFonts?: {
-      headingFont?: string
-      bodyFont?: string
-      codeFont?: string
-    }
-  }
-  
   
   // Configurações de SEO
   seo?: {
@@ -105,7 +82,6 @@ export interface SiteSettings {
     enableLazyLoading?: boolean
     enableImageOptimization?: boolean
     enableAnimations?: boolean
-    compressionLevel?: 'high' | 'medium' | 'low'
     reducedMotion?: boolean
   }
   
@@ -155,17 +131,6 @@ export function useSiteSettings() {
             favicon: '/logo.png',
             ogImage: data.ogImage ? urlFor(data.ogImage).width(1200).height(630).url() : null,
             
-            // Configurações de tema e tipografia
-            theme: {
-              darkMode: data.theme?.darkMode ?? true,
-              animationSpeed: data.theme?.animationSpeed || 'normal',
-              customFonts: {
-                headingFont: data.theme?.customFonts?.headingFont || 'Inter',
-                bodyFont: data.theme?.customFonts?.bodyFont || 'Inter',
-                codeFont: data.theme?.customFonts?.codeFont || 'Fira Code'
-              }
-            },
-            
             
             // Configurações de SEO
             seo: {
@@ -186,7 +151,6 @@ export function useSiteSettings() {
               enableLazyLoading: data.performance?.enableLazyLoading ?? true,
               enableImageOptimization: data.performance?.enableImageOptimization ?? true,
               enableAnimations: data.performance?.enableAnimations ?? true,
-              compressionLevel: data.performance?.compressionLevel || 'medium',
               reducedMotion: data.performance?.reducedMotion ?? true
             },
             
