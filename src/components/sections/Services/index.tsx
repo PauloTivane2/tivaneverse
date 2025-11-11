@@ -57,6 +57,18 @@ export function Services() {
     scrollToIndex(newIndex)
   }
 
+  // Sincronizar dots com scroll touch
+  const handleScroll = () => {
+    if (carouselRef.current && servicesData.length > 0) {
+      const scrollLeft = carouselRef.current.scrollLeft
+      const cardWidth = carouselRef.current.scrollWidth / servicesData.length
+      const newIndex = Math.round(scrollLeft / cardWidth)
+      if (newIndex !== currentIndex) {
+        setCurrentIndex(newIndex)
+      }
+    }
+  }
+
   return (
     <section id="services" className="corporate-section bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
@@ -92,26 +104,26 @@ export function Services() {
 
         {/* Carousel Navigation */}
         {!loading && servicesData.length > 0 && (
-          <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
             <motion.button
               onClick={prevSlide}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FiChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </motion.button>
             
             {/* Dots Indicator */}
-            <div className="flex gap-2">
+            <div className="flex gap-1 sm:gap-1.5">
               {servicesData.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => scrollToIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
+                  className={`h-1 sm:h-1.5 md:h-2 rounded-full transition-all duration-300 ${
                     currentIndex === index 
-                      ? 'w-8 bg-primary' 
-                      : 'w-2 bg-primary/30 hover:bg-primary/50'
+                      ? 'w-4 sm:w-6 md:w-8 bg-primary' 
+                      : 'w-1 sm:w-1.5 md:w-2 bg-primary/30 hover:bg-primary/50'
                   }`}
                 />
               ))}
@@ -119,11 +131,11 @@ export function Services() {
             
             <motion.button
               onClick={nextSlide}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FiChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </motion.button>
           </div>
         )}
@@ -140,6 +152,7 @@ export function Services() {
             animate={isInView ? "visible" : "hidden"}
             className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 cursor-grab active:cursor-grabbing"
             style={{ scrollSnapType: 'x mandatory' }}
+            onScroll={handleScroll}
           >
           {loading ? (
             // Loading skeleton - Premium Layout
