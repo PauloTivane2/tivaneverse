@@ -218,23 +218,23 @@ export function Expertise() {
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8">
             <motion.button
               onClick={prevSlide}
-              className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              <FiChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </motion.button>
             
             {/* Dots Indicator */}
-            <div className="flex gap-0.5 sm:gap-1">
+            <div className="flex gap-1">
               {filteredSkills.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => scrollToIndex(index)}
-                  className={`h-0.5 sm:h-1 md:h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-1 rounded-full transition-all duration-300 ${
                     currentIndex === index 
-                      ? 'w-3 sm:w-5 md:w-7 bg-primary' 
-                      : 'w-0.5 sm:w-1 md:w-1.5 bg-primary/30 hover:bg-primary/50'
+                      ? 'w-4 sm:w-6 md:w-8 bg-primary' 
+                      : 'w-1 bg-primary/30 hover:bg-primary/50'
                   }`}
                 />
               ))}
@@ -242,11 +242,11 @@ export function Expertise() {
             
             <motion.button
               onClick={nextSlide}
-              className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              <FiChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </motion.button>
           </div>
         )}
