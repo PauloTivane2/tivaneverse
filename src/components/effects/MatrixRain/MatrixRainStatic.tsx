@@ -1,15 +1,39 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface MatrixRainStaticProps {
-  intensity?: number;
-  speed?: number;
+  intensity?: number; // quanto mais alto, mais gotas visíveis
+  speed?: number; // velocidade das gotas
 }
 
 export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStaticProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Detectar se é mobile e redimensionar canvas
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window === 'undefined') return;
+
+      setIsMobile(window.innerWidth < 768);
+
+      const canvas = canvasRef.current;
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Lógica de animação
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -17,88 +41,62 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Detectar mobile
-    const isMobile = window.innerWidth < 768;
-
-    // Set canvas size
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
-
-    // Caracteres que vão cair - apenas 0 e 1 com espaço
-    const chars = ['0', '1'];
-    
-    // Fonte menor em mobile para mais economia
     const fontSize = isMobile ? 24 : 30;
-    
-    // Espaçamento entre colunas - dobrado para mais espaço
     const columnSpacing = fontSize * 2;
     const columns = Math.floor(canvas.width / columnSpacing);
-    
-    // Intervalo de animação muito mais lento para queda suave
-    const animationInterval = isMobile ? 150 : 120;
 
-    // Array de gotas (uma por coluna) - APENAS 5% das colunas têm gotas
+    const chars = ['0', '1'];
     const drops: number[] = [];
+
+    // Inicializa drops com base na intensidade
     for (let i = 0; i < columns; i++) {
-      // Apenas 5% das colunas iniciam com gotas
-      drops[i] = Math.random() > 0.95 ? 1 : -100;
+      drops[i] = Math.random() < intensity / 100 ? 1 : -100; // ajusta visibilidade pela intensidade
     }
 
-    // Função de desenho
-    function draw() {
+    let animationFrameId: number;
+
+    const draw = () => {
       if (!ctx || !canvas) return;
-      
-      // Fundo preto semi-transparente para criar trail (mais fade para ser sutil)
+
+      // Fundo semi-transparente para efeito trail
       ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = fontSize + 'px monospace';
+      ctx.font = `${fontSize}px monospace`;
 
-      // Loop através das gotas
       for (let i = 0; i < drops.length; i++) {
         const text = chars[Math.floor(Math.random() * chars.length)];
         const x = i * columnSpacing;
         const y = drops[i] * fontSize;
+
         ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';
-        
-        // Só desenhar se a gota estiver visível
-        if (drops[i] > 0) {
-          ctx.fillText(text, x, y);
-        }
 
-        // Resetar gota ao topo aleatoriamente depois de cair (extremamente esparso)
+        if (drops[i] > 0) ctx.fillText(text, x, y);
+
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.995) {
-          drops[i] = Math.random() > 0.9 ? 0 : -100; // 90% chance de não resetar
+          drops[i] = Math.random() > 0.9 ? 0 : -100;
         }
 
-        // Incrementar Y baseado na velocidade (só se estiver visível)
-        if (drops[i] > 0) {
-          drops[i] += speed * 0.1;
-        }
+        if (drops[i] > 0) drops[i] += speed * 0.1;
       }
-    }
 
-    // Animar com intervalo definido acima
-    const interval = setInterval(draw, animationInterval);
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
-      clearInterval(interval);
-      window.removeEventListener('resize', setCanvasSize);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [intensity, speed]);
+  }, [isMobile, intensity, speed]);
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none"
-      style={{ 
+      style={{
         zIndex: 1,
-        opacity: window.innerWidth < 768 ? 0.1 : 0.15 // Mais sutil em mobile
+        opacity: isMobile ? 0.1 : 0.15, // mais sutil no mobile
       }}
     />
   );
