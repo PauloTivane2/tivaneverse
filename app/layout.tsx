@@ -1,9 +1,8 @@
-"use client"
-
 import type React from "react"
+import type { Metadata, Viewport } from "next"
 import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "next-themes"
+import { ThemeProvider } from "@/src/components/layout/theme-provider"
 import Script from "next/script"
 
 const inter = Inter({
@@ -25,6 +24,61 @@ const spaceMono = Space_Mono({
   display: "swap",
 })
 
+export const metadata: Metadata = {
+  metadataBase: new URL("https://tivaneverse.me"),
+  title: {
+    default: "Paulo Babucho Issaca Tivane | Software Engineer",
+    template: "%s | Paulo Tivane",
+  },
+  description:
+    "Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions.",
+  keywords: [
+    "Paulo Tivane",
+    "Software Engineer",
+    "IT Professional",
+    "Web Developer",
+    "Next.js Developer",
+    "Moçambique",
+    "React",
+    "TypeScript",
+    "Portfolio",
+  ],
+  alternates: { canonical: "https://tivaneverse.me" },
+  openGraph: {
+    type: "website",
+    url: "https://tivaneverse.me",
+    title: "Paulo Babucho Issaca Tivane | Software Engineer",
+    description:
+      "Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions.",
+    siteName: "Tivaneverse",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Paulo Tivane - Software Engineer Logo",
+      },
+    ],
+    locale: "pt_PT",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Paulo Babucho Issaca Tivane | Software Engineer",
+    description:
+      "Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions.",
+    images: ["/logo.png"],
+  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/logo.png" },
+  verification: {
+    google: "WQ8tnzf9nZiS4nWV6liBibr3R2iR2_7wQiV5vXUvQYU",
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#CFFF04",
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -38,38 +92,12 @@ export default function RootLayout({
     >
       <head>
         {/* SEO PRINCIPAL */}
-        <title>Paulo Babucho Issaca Tivane | Software Engineer</title>
-        <meta
-          name="description"
-          content="Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions."
-        />
-        <meta
-          name="keywords"
-          content="Paulo Tivane, Software Engineer, IT Professional, Web Developer, Portfolio, Moçambique, Next.js Developer"
-        />
-        <meta name="author" content="Paulo Babucho Issaca Tivane" />
-        <meta name="robots" content="index, follow" />
-        <meta name="google-site-verification" content="WQ8tnzf9nZiS4nWV6liBibr3R2iR2_7wQiV5vXUvQYU" />
 
         {/* OPEN GRAPH */}
-        <meta property="og:title" content="Paulo Babucho Issaca Tivane | Software Engineer" />
-        <meta property="og:description" content="Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tivaneverse.me" />
-        <meta property="og:image" content="https://tivaneverse.me/logo.png" />
-        <meta property="og:image:alt" content="Paulo Tivane - Software Engineer Logo" />
 
         {/* TWITTER CARD */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Paulo Babucho Issaca Tivane | Software Engineer" />
-        <meta name="twitter:description" content="Professional portfolio of Paulo Babucho Issaca Tivane - Software Engineer and IT Professional specializing in web development and technical solutions." />
-        <meta name="twitter:image" content="https://tivaneverse.me/logo.png" />
 
         {/* OUTROS META */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#CFFF04" />
-        <link rel="canonical" href="https://tivaneverse.me" />
-        <link rel="icon" href="/logo.png" />
 
         {/* FONTES */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

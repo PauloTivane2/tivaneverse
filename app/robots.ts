@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
     },
     sitemap: 'https://tivaneverse.me/sitemap.xml',
+    host: 'https://tivaneverse.me',
   }
 }
