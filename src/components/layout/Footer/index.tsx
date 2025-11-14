@@ -5,11 +5,11 @@ import { FiGithub, FiLinkedin, FiMail, FiTwitter } from "react-icons/fi"
 import { useContact } from "@/src/hooks/useContact"
 
 const quickLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Expertise", href: "#expertise" },
-  { name: "Projects", href: "#projects" },
-  { name: "Services", href: "#services" },
-  { name: "Contact", href: "#contact" },
+  { name: "Início", href: "#home" },
+  { name: "Competências", href: "#expertise" },
+  { name: "Projetos", href: "#projects" },
+  { name: "Serviços", href: "#services" },
+  { name: "Contacto", href: "#contact" },
 ]
 
 export function Footer() {
