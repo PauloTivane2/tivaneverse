@@ -120,11 +120,11 @@ export const metadata: Metadata = {
       "Portfólio profissional de Paulo Babucho Issaca Tivane — Engenheiro Informático e Software Engineer especializado em desenvolvimento web, automação e soluções digitais em Moçambique.",
     images: [
       {
-        url: "/favicon.svg",
-        width: 512,
-        height: 512,
+        url: "/favicon-64x64.png",
+        width: 64,
+        height: 64,
         alt: "Paulo Babucho Issaca Tivane - Software Engineer Portfolio",
-        type: "image/svg+xml",
+        type: "image/png",
       },
       {
         url: "/favicon.svg",
@@ -144,7 +144,7 @@ export const metadata: Metadata = {
     title: "Paulo Babucho Issaca Tivane | Software Engineer & IT Professional",
     description:
       "Portfólio profissional — Engenheiro Informático e Software Engineer especializado em desenvolvimento web, automação e soluções digitais em Moçambique.",
-    images: ["/favicon.svg"],
+    images: ["/favicon-64x64.png"],
   },
   
   // Robots e indexação (otimizado para Google)
