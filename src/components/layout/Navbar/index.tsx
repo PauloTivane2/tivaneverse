@@ -96,21 +96,15 @@ export function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {siteSettings?.logo ? (
-              <div className="relative w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10">
-                <Image
-                  src={siteSettings.logo}
-                  alt={siteSettings.title || "Logo"}
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            ) : (
-              <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
-                PT
-              </span>
-            )}
+            <div className="relative w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10">
+              <Image
+                src="/favicon.svg"
+                alt="Paulo Tivane Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </motion.button>
 
           {/* Desktop Navigation - Aparecer apenas acima de 768px */}
