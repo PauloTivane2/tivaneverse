@@ -184,8 +184,7 @@ export function Expertise() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <category.icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 ${isActive ? '' : 'group-hover:scale-110 transition-transform'}`} />
-                    <span className="hidden xs:inline">{category.label}</span>
-                    <span className="xs:hidden">{category.label.length > 8 ? category.label.slice(0, 8) + '.' : category.label}</span>
+                    <span>{category.label}</span>
                     {count > 0 && (
                       <span className={`
                         px-1.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold flex-shrink-0

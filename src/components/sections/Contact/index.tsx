@@ -172,7 +172,7 @@ export function Contact() {
               <motion.button
                 type="submit"
                 disabled={status === "sending" || status === "success"}
-                className="corporate-button corporate-button-primary w-full landscape:w-auto landscape:min-w-[200px] landscape:self-start text-sm sm:text-base px-4 py-2.5 landscape:py-2 sm:px-6 sm:py-3"
+                className="corporate-button corporate-button-primary w-auto min-w-[160px] max-w-[200px] self-start landscape:min-w-[200px] text-sm sm:text-base px-4 py-2.5 landscape:py-2 sm:px-6 sm:py-3"
                 whileHover={{ scale: status === "sending" || status === "success" ? 1 : 1.02 }}
                 whileTap={{ scale: status === "sending" || status === "success" ? 1 : 0.98 }}
               >
