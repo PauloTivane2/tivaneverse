@@ -120,18 +120,18 @@ export const metadata: Metadata = {
       "Portfólio profissional de Paulo Babucho Issaca Tivane — Engenheiro Informático e Software Engineer especializado em desenvolvimento web, automação e soluções digitais em Moçambique.",
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/favicon.svg",
+        width: 512,
+        height: 512,
         alt: "Paulo Babucho Issaca Tivane - Software Engineer Portfolio",
-        type: "image/png",
+        type: "image/svg+xml",
       },
       {
-        url: "/logo.png",
+        url: "/favicon.svg",
         width: 512,
         height: 512,
         alt: "Paulo Tivane Logo",
-        type: "image/png",
+        type: "image/svg+xml",
       }
     ],
   },
@@ -144,7 +144,7 @@ export const metadata: Metadata = {
     title: "Paulo Babucho Issaca Tivane | Software Engineer & IT Professional",
     description:
       "Portfólio profissional — Engenheiro Informático e Software Engineer especializado em desenvolvimento web, automação e soluções digitais em Moçambique.",
-    images: ["/og-image.png"],
+    images: ["/favicon.svg"],
   },
   
   // Robots e indexação (otimizado para Google)
@@ -162,9 +162,12 @@ export const metadata: Metadata = {
   
   // Icons
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", sizes: "any" }
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   
   // Manifest PWA
@@ -222,6 +225,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
+        {/* FAVICON */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+
         {/* DADOS ESTRUTURADOS (Schema.org) - JSON-LD para Rich Snippets */}
         <script
           type="application/ld+json"
@@ -236,7 +244,7 @@ export default function RootLayout({
                   name: "Paulo Babucho Issaca Tivane",
                   alternateName: "Paulo Tivane",
                   url: "https://tivaneverse.me",
-                  image: "https://tivaneverse.me/logo.png",
+                  image: "https://tivaneverse.me/favicon.svg",
                   jobTitle: [
                     "Software Engineer",
                     "Engenheiro Informático",
@@ -301,7 +309,7 @@ export default function RootLayout({
                   "@type": "ProfessionalService",
                   "@id": "https://tivaneverse.me/#service",
                   name: "Paulo Tivane - Software Development Services",
-                  image: "https://tivaneverse.me/logo.png",
+                  image: "https://tivaneverse.me/favicon.svg",
                   description: "Serviços profissionais de desenvolvimento de software, aplicações web e soluções digitais.",
                   provider: {
                     "@id": "https://tivaneverse.me/#person"
