@@ -49,7 +49,7 @@ export function getContactEmailTemplate({
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  background: #FFFFFF;
+  background: #CAE7F7;
   color: #000000;
 ">
   <div class="container" style="
@@ -63,7 +63,7 @@ export function getContactEmailTemplate({
   ">
     <!-- Header Profissional -->
     <div class="header" style="
-      background: #F2F2F2;
+      background: #000000;
       padding: 48px 32px;
       text-align: center;
     ">
@@ -71,7 +71,9 @@ export function getContactEmailTemplate({
         margin: 0 0 8px;
         font-size: 28px;
         font-weight: 700;
-        color: #000000;
+        background: linear-gradient(90deg, #B4FF00, #CFFF04);
+        -webkit-background-clip: text;
+        color: transparent;
         letter-spacing: -0.5px;
       ">
         Nova Mensagem Recebida
@@ -219,7 +221,7 @@ export function getContactEmailTemplate({
 
     <!-- Footer Elegante -->
     <div class="footer" style="
-      background: #F8F9FA;
+      background: #000000;
       padding: 28px 32px;
       text-align: center;
       border-top: 1px solid #E0E0E0;
@@ -227,24 +229,26 @@ export function getContactEmailTemplate({
       <p style="
         margin: 0 0 12px;
         font-size: 13px;
-        color: rgba(0, 0, 0, 0.6);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1.5px;
+        background: linear-gradient(90deg, #B4FF00, #CFFF04);
+        -webkit-background-clip: text;
+        color: transparent;
       ">
         Formulário de Contato
       </p>
       <p style="
         margin: 0 0 6px;
         font-size: 12px;
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(255, 255, 255, 0.8);
       ">
         © ${currentYear} Paulo Tivane
       </p>
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.7);
       ">
         Seja a mudança que deseja ver no mundo
       </p>
@@ -371,7 +375,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
   ">
     <!-- Header Success -->
     <div class="header" style="
-      background: #F2F2F2;
+      background: #000000;
       padding: 48px 32px;
       text-align: center;
     ">
@@ -379,7 +383,9 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         margin: 0 0 12px;
         font-size: 30px;
         font-weight: 700;
-        color: #000000;
+        background: linear-gradient(90deg, #B4FF00, #CFFF04);
+        -webkit-background-clip: text;
+        color: transparent;
         letter-spacing: -0.5px;
       ">
         Mensagem Recebida com Sucesso!
@@ -539,7 +545,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
 
     <!-- Footer -->
     <div class="footer" style="
-      background: #F8F9FA;
+      background: #000000;
       padding: 28px 32px;
       text-align: center;
       border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -547,15 +553,17 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0 0 8px;
         font-size: 14px;
-        color: #000000;
         font-weight: 600;
+        background: linear-gradient(90deg, #B4FF00, #CFFF04);
+        -webkit-background-clip: text;
+        color: transparent;
       ">
         Paulo Babucho Issaca Tivane
       </p>
       <p style="
         margin: 0 0 4px;
         font-size: 12px;
-        color: #0066CC;
+        color: #FFFFFF;
         font-weight: 500;
       ">
         Seja a mudança que deseja ver no mundo
@@ -563,7 +571,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(255, 255, 255, 0.7);
       ">
         Moçambique | © ${currentYear} Todos os direitos reservados
       </p>
