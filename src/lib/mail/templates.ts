@@ -71,9 +71,7 @@ export function getContactEmailTemplate({
         margin: 0 0 8px;
         font-size: 28px;
         font-weight: 700;
-        background: linear-gradient(90deg, #B4FF00, #CFFF04);
-        -webkit-background-clip: text;
-        color: transparent;
+        color: #B4FF00;
         letter-spacing: -0.5px;
       ">
         Nova Mensagem Recebida
@@ -232,9 +230,7 @@ export function getContactEmailTemplate({
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        background: linear-gradient(90deg, #B4FF00, #CFFF04);
-        -webkit-background-clip: text;
-        color: transparent;
+        color: #B4FF00;
       ">
         Formulário de Contato
       </p>
@@ -383,9 +379,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         margin: 0 0 12px;
         font-size: 30px;
         font-weight: 700;
-        background: linear-gradient(90deg, #B4FF00, #CFFF04);
-        -webkit-background-clip: text;
-        color: transparent;
+        color: #B4FF00;
         letter-spacing: -0.5px;
       ">
         Mensagem Recebida com Sucesso!
@@ -554,9 +548,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         margin: 0 0 8px;
         font-size: 14px;
         font-weight: 600;
-        background: linear-gradient(90deg, #B4FF00, #CFFF04);
-        -webkit-background-clip: text;
-        color: transparent;
+        color: #B4FF00;
       ">
         Paulo Babucho Issaca Tivane
       </p>
