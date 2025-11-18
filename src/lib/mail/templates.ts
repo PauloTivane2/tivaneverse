@@ -22,6 +22,8 @@ export function getContactEmailTemplate({
   subject,
   message,
 }: EmailTemplateProps): string {
+  const currentYear = new Date().getFullYear()
+
   return `
 <!DOCTYPE html>
 <html lang="pt">
@@ -54,10 +56,10 @@ export function getContactEmailTemplate({
     max-width: 650px;
     margin: 40px auto;
     background: #FFFFFF;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid #E0E0E0;
   ">
     <!-- Header Profissional -->
     <div class="header" style="
@@ -89,8 +91,8 @@ export function getContactEmailTemplate({
       <!-- Card do Remetente -->
       <div class="card" style="
         background: #F8F9FA;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 16px;
+        border: 1px solid #E0E0E0;
+        border-radius: 0;
         padding: 24px;
         margin-bottom: 24px;
       ">
@@ -148,7 +150,7 @@ export function getContactEmailTemplate({
             display: inline-block;
             padding: 8px 14px;
             background: #F0F7FF;
-            border-radius: 8px;
+            border-radius: 0;
             border: 1px solid #CAE7F7;
             transition: all 0.2s;
           ">
@@ -180,8 +182,8 @@ export function getContactEmailTemplate({
       <!-- Card da Mensagem -->
       <div class="card" style="
         background: #F8F9FA;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 16px;
+        border: 1px solid #E0E0E0;
+        border-radius: 0;
         padding: 24px;
       ">
         <div style="
@@ -206,9 +208,9 @@ export function getContactEmailTemplate({
           word-wrap: break-word;
           background: #FFFFFF;
           padding: 20px;
-          border-radius: 12px;
+          border-radius: 0;
           border-left: 3px solid #CAE7F7;
-          border: 1px solid rgba(0, 0, 0, 0.1);
+          border: 1px solid #E0E0E0;
         ">
           ${message}
         </div>
@@ -220,7 +222,7 @@ export function getContactEmailTemplate({
       background: #F8F9FA;
       padding: 28px 32px;
       text-align: center;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-top: 1px solid #E0E0E0;
     ">
       <p style="
         margin: 0 0 12px;
@@ -237,7 +239,7 @@ export function getContactEmailTemplate({
         font-size: 12px;
         color: rgba(0, 0, 0, 0.5);
       ">
-        © 2024 Paulo Tivane
+        © ${currentYear} Paulo Tivane
       </p>
       <p style="
         margin: 0;
@@ -259,8 +261,8 @@ export function getContactEmailTemplate({
       display: inline-block;
       padding: 12px 24px;
       background: #F8F9FA;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+      border: 1px solid #E0E0E0;
+      border-radius: 0;
     ">
       <p style="
         margin: 0;
@@ -287,6 +289,8 @@ export function getContactEmailText({
   subject,
   message,
 }: EmailTemplateProps): string {
+  const currentYear = new Date().getFullYear()
+
   return `
 Nova Mensagem de Contato - Portfólio Paulo Tivane
 =====================================
@@ -301,7 +305,7 @@ ${message}
 
 ---
 Mensagem enviada através do formulário de contato do portfólio.
-© 2024 Paulo Tivane
+© ${currentYear} Paulo Tivane
   `.trim()
 }
 
@@ -360,10 +364,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
     max-width: 650px;
     margin: 40px auto;
     background: #FFFFFF;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid #E0E0E0;
   ">
     <!-- Header Success -->
     <div class="header" style="
@@ -423,8 +427,8 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <!-- Card de Info -->
       <div class="card" style="
         background: #F8F9FA;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 16px;
+        border: 1px solid #E0E0E0;
+        border-radius: 0;
         padding: 24px;
         margin-bottom: 32px;
       ">
@@ -480,8 +484,8 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         text-align: center;
         padding: 24px;
         background: #F8F9FA;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        border: 1px solid #E0E0E0;
       ">
         <p style="
           margin: 0 0 16px;
@@ -502,7 +506,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
             padding: 12px 20px;
             background: #FFFFFF;
             border: 2px solid #CAE7F7;
-            border-radius: 8px;
+            border-radius: 0;
             color: #0066CC;
             text-decoration: none;
             font-size: 14px;
@@ -519,7 +523,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
             padding: 12px 20px;
             background: #FFFFFF;
             border: 2px solid #CAE7F7;
-            border-radius: 8px;
+            border-radius: 0;
             color: #0066CC;
             text-decoration: none;
             font-size: 14px;
