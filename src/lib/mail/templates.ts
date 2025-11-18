@@ -46,7 +46,7 @@ export function getContactEmailTemplate({
 <body style="
   margin: 0;
   padding: 0;
-  font-family: 'Space Mono', 'Courier New', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   background: #FFFFFF;
   color: #000000;
 ">
@@ -54,14 +54,14 @@ export function getContactEmailTemplate({
     max-width: 650px;
     margin: 40px auto;
     background: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.1);
   ">
     <!-- Header Profissional -->
     <div class="header" style="
-      background: #CAE7F7;
+      background: #F2F2F2;
       padding: 48px 32px;
       text-align: center;
     ">
@@ -77,10 +77,8 @@ export function getContactEmailTemplate({
       <p style="
         margin: 0;
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(0, 0, 0, 0.65);
         font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
       ">
         Portfólio Paulo Tivane
       </p>
@@ -99,15 +97,13 @@ export function getContactEmailTemplate({
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
+          border-bottom: 1px solid #E0E0E0;
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #CFFF04;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #333333;
           ">
             Informações do Contato
           </h2>
@@ -191,15 +187,13 @@ export function getContactEmailTemplate({
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
+          border-bottom: 1px solid #E0E0E0;
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #CFFF04;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #333333;
           ">
             Mensagem
           </h2>
@@ -250,7 +244,7 @@ export function getContactEmailTemplate({
         font-size: 11px;
         color: rgba(0, 0, 0, 0.4);
       ">
-        Desenvolvedor Full-Stack | Moçambique
+        Seja a mudança que deseja ver no mundo
       </p>
     </div>
   </div>
@@ -358,7 +352,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
 <body style="
   margin: 0;
   padding: 0;
-  font-family: 'Space Mono', 'Courier New', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   background: #FFFFFF;
   color: #000000;
 ">
@@ -366,14 +360,14 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
     max-width: 650px;
     margin: 40px auto;
     background: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.1);
   ">
     <!-- Header Success -->
     <div class="header" style="
-      background: #CAE7F7;
+      background: #F2F2F2;
       padding: 48px 32px;
       text-align: center;
     ">
@@ -389,9 +383,8 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0;
         font-size: 15px;
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(0, 0, 0, 0.65);
         font-weight: 500;
-        letter-spacing: 0.5px;
       ">
         Obrigado por entrar em contato
       </p>
@@ -438,15 +431,13 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         <div style="
           margin-bottom: 20px;
           padding-bottom: 12px;
-          border-bottom: 2px solid rgba(207, 255, 4, 0.2);
+          border-bottom: 1px solid #E0E0E0;
         ">
           <h3 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #CFFF04;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #333333;
           ">
             O Que Acontece Agora?
           </h3>
@@ -456,7 +447,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0;
           padding: 0 0 0 20px;
           list-style: decimal;
-          color: #CFFF04;
+          color: #333333;
         ">
           <li style="
             margin-bottom: 12px;
@@ -538,40 +529,6 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           ">
             LinkedIn
           </a>` : ''}
-          
-          ${social?.github ? `
-          <a href="${social.github}" target="_blank" style="
-            display: inline-block;
-            padding: 12px 20px;
-            background: #FFFFFF;
-            border: 2px solid #CAE7F7;
-            border-radius: 8px;
-            color: #0066CC;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-          ">
-            GitHub
-          </a>` : ''}
-          
-          ${social?.twitter ? `
-          <a href="${social.twitter}" target="_blank" style="
-            display: inline-block;
-            padding: 12px 20px;
-            background: #FFFFFF;
-            border: 2px solid #CAE7F7;
-            border-radius: 8px;
-            color: #0066CC;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-          ">
-            Twitter
-          </a>` : ''}
         </div>
       </div>
     </div>
@@ -597,7 +554,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         color: #0066CC;
         font-weight: 500;
       ">
-        Desenvolvedor Full-Stack
+        Seja a mudança que deseja ver no mundo
       </p>
       <p style="
         margin: 0;
@@ -638,8 +595,6 @@ export function getAutoReplyText(data: AutoReplyData): string {
   let socialLinks = ''
   if (phone) socialLinks += `WhatsApp: https://wa.me/${phone.replace(/[^0-9]/g, '')}\n`
   if (social?.linkedin) socialLinks += `LinkedIn: ${social.linkedin}\n`
-  if (social?.github) socialLinks += `GitHub: ${social.github}\n`
-  if (social?.twitter) socialLinks += `Twitter: ${social.twitter}\n`
   
   return `
 Mensagem Recebida com Sucesso!
@@ -659,7 +614,7 @@ O QUE ACONTECE AGORA?
 ${socialLinks ? `ENCONTRE-ME EM:\n${socialLinks}` : ''}
 ---
 Paulo Babucho Issaca Tivane
-Desenvolvedor Full-Stack
+Seja a mudança que deseja ver no mundo
 Moçambique
 
 © ${currentYear} Todos os direitos reservados
