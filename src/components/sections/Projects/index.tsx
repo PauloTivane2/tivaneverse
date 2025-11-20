@@ -109,12 +109,12 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Projects Grid - Enterprise Layout */}
+        {/* Projects Grid - Enterprise Layout (Carrossel em mobile) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 grid-flow-col md:grid-flow-row auto-cols-[88%] sm:auto-cols-[75%] md:auto-cols-auto gap-4 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-2 -mx-4 px-1 md:mx-0 md:px-0 scrollbar-hide"
         >
           {loading ? (
             // Loading skeleton - Enterprise Layout
@@ -146,7 +146,7 @@ export function Projects() {
             ))
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
-            <motion.div key={project.title} variants={itemVariants} className="group relative">
+            <motion.div key={project.title} variants={itemVariants} className="group relative snap-center">
               <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -213,6 +213,16 @@ export function Projects() {
                           {formatDate(project.startDate)}
                           {project.startDate && project.endDate && ' - '}
                           {formatDate(project.endDate)}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Client */}
+                    {project.client && (
+                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent mt-0.5">
+                        <FiUser className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                        <span className="truncate max-w-[120px] sm:max-w-[160px]">
+                          {project.client}
                         </span>
                       </div>
                     )}

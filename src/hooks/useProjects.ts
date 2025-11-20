@@ -45,10 +45,26 @@ export function useProjects() {
             client: item.client,
             order: item.order
           }))
+
+          // Ordena usando o campo "order" definido no schema; usa datas como fallback
+          const sortedData: Project[] = [...transformedData].sort((a, b) => {
+            if (a.order != null && b.order != null) return a.order - b.order
+            if (a.order != null) return -1
+            if (b.order != null) return 1
+
+            const aDate = a.endDate || a.startDate
+            const bDate = b.endDate || b.startDate
+
+            if (aDate && bDate) {
+              return new Date(bDate).getTime() - new Date(aDate).getTime()
+            }
+
+            return 0
+          })
           
-          setProjectsData(transformedData)
-          console.log('✅ [PROJECTS] Dados carregados do Sanity CMS:', transformedData.length, 'projetos')
-          console.log('📊 [PROJECTS] Projetos encontrados:', transformedData.map(p => p.title))
+          setProjectsData(sortedData)
+          console.log('✅ [PROJECTS] Dados carregados do Sanity CMS:', sortedData.length, 'projetos')
+          console.log('📊 [PROJECTS] Projetos encontrados:', sortedData.map(p => p.title))
         } else {
           console.warn('❌ [PROJECTS] NENHUM PROJETO encontrado no Sanity CMS')
           console.warn('📝 [PROJECTS] Você precisa criar documentos "Project" no Sanity Studio')
