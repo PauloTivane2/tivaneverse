@@ -109,7 +109,7 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 landscape:gap-6 landscape:lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 landscape:gap-6 landscape:lg:gap-8">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -172,18 +172,18 @@ export function Contact() {
               <motion.button
                 type="submit"
                 disabled={status === "sending" || status === "success"}
-                className="corporate-button corporate-button-primary w-auto min-w-[160px] max-w-[200px] self-start landscape:min-w-[200px] text-sm sm:text-base px-4 py-2.5 landscape:py-2 sm:px-6 sm:py-3"
+                className="corporate-button corporate-button-primary w-full flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base px-4 py-2 landscape:py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3"
                 whileHover={{ scale: status === "sending" || status === "success" ? 1 : 1.02 }}
                 whileTap={{ scale: status === "sending" || status === "success" ? 1 : 0.98 }}
               >
                 {status === "sending" ? (
                   <>
                     <motion.div
-                      className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent rounded-full"
+                      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 border-2 border-black border-t-transparent rounded-full"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     />
-                    <span className="text-sm sm:text-base">A enviar...</span>
+                    <span className="text-xs sm:text-sm md:text-base">A enviar...</span>
                   </>
                 ) : status === "success" ? (
                   <>
@@ -191,16 +191,16 @@ export function Contact() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200 }}
-                      className="text-lg sm:text-xl"
+                      className="text-base sm:text-lg md:text-xl"
                     >
                       ✓
                     </motion.div>
-                    <span className="text-sm sm:text-base">Mensagem Enviada!</span>
+                    <span className="text-xs sm:text-sm md:text-base">Mensagem Enviada!</span>
                   </>
                 ) : (
                   <>
-                    <FiSend className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="text-sm sm:text-base">Enviar Mensagem</span>
+                    <FiSend className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                    <span className="text-xs sm:text-sm md:text-base">Enviar Mensagem</span>
                   </>
                 )}
               </motion.button>

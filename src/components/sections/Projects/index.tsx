@@ -13,7 +13,11 @@ export function Projects() {
   const { profileData } = useProfile()
   const [selectedProject, setSelectedProject] = useState<any>(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [detailsProject, setDetailsProject] = useState<any>(null)
+  const [activeSlide, setActiveSlide] = useState(0)
   const ref = useRef(null)
+  const carouselRef = useRef<HTMLDivElement | null>(null)
+  const carouselItemRefs = useRef<(HTMLDivElement | null)[]>([])
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   // Helper functions
@@ -45,6 +49,72 @@ export function Projects() {
     }
   }
 
+  const renderLongDescription = (blocks?: any[]) => {
+    if (!blocks || !Array.isArray(blocks)) return null
+
+    return blocks.map((block, index) => {
+      if (block._type === 'block') {
+        const text = block.children?.map((child: any) => child.text).join('') || ''
+
+        if (!text) return null
+
+        if (block.style === 'h2') {
+          return (
+            <h3 key={index} className="text-base sm:text-lg md:text-xl font-semibold text-foreground mt-4 mb-2">
+              {text}
+            </h3>
+          )
+        }
+
+        if (block.style === 'h3') {
+          return (
+            <h4 key={index} className="text-sm sm:text-base md:text-lg font-semibold text-foreground mt-3 mb-1.5">
+              {text}
+            </h4>
+          )
+        }
+
+        if (block.style === 'blockquote') {
+          return (
+            <blockquote
+              key={index}
+              className="border-l-2 border-primary/40 pl-3 sm:pl-4 py-1.5 text-xs sm:text-sm md:text-base text-accent italic my-3 sm:my-4"
+            >
+              {text}
+            </blockquote>
+          )
+        }
+
+        return (
+          <p
+            key={index}
+            className="text-xs sm:text-sm md:text-base text-accent leading-relaxed mb-2 sm:mb-3"
+          >
+            {text}
+          </p>
+        )
+      }
+
+      if (block._type === 'image' && block.asset) {
+        return (
+          <div
+            key={index}
+            className="relative w-full h-40 sm:h-52 md:h-64 rounded-xl overflow-hidden border border-foreground/10 bg-background/40 my-3 sm:my-4"
+          >
+            <Image
+              src={urlFor(block.asset).width(1200).height(800).url()}
+              alt={block.alt || 'Imagem do projeto'}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )
+      }
+
+      return null
+    })
+  }
+
   const openGallery = (project: any) => {
     setSelectedProject(project)
     setSelectedImageIndex(0)
@@ -53,6 +123,41 @@ export function Projects() {
   const closeGallery = () => {
     setSelectedProject(null)
     setSelectedImageIndex(0)
+  }
+
+  const closeDetails = () => {
+    setDetailsProject(null)
+  }
+
+  const scrollToSlide = (index: number) => {
+    if (!carouselRef.current || !carouselItemRefs.current[index]) return
+
+    const container = carouselRef.current
+    const item = carouselItemRefs.current[index]
+    if (!item) return
+
+    const containerRect = container.getBoundingClientRect()
+    const itemRect = item.getBoundingClientRect()
+    const offset = itemRect.left - containerRect.left - (containerRect.width - itemRect.width) / 2
+
+    container.scrollTo({
+      left: container.scrollLeft + offset,
+      behavior: 'smooth',
+    })
+
+    setActiveSlide(index)
+  }
+
+  const goToNextSlide = () => {
+    if (!projectsData || projectsData.length === 0) return
+    const nextIndex = (activeSlide + 1) % projectsData.length
+    scrollToSlide(nextIndex)
+  }
+
+  const goToPrevSlide = () => {
+    if (!projectsData || projectsData.length === 0) return
+    const prevIndex = (activeSlide - 1 + projectsData.length) % projectsData.length
+    scrollToSlide(prevIndex)
   }
 
   const containerVariants = {
@@ -114,7 +219,8 @@ export function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 grid-flow-col md:grid-flow-row auto-cols-[88%] sm:auto-cols-[75%] md:auto-cols-auto gap-4 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-2 -mx-4 px-1 md:mx-0 md:px-0 scrollbar-hide"
+          ref={carouselRef}
+          className="flex md:grid md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-3 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
         >
           {loading ? (
             // Loading skeleton - Enterprise Layout
@@ -146,7 +252,12 @@ export function Projects() {
             ))
           ) : projectsData.length > 0 ? (
             projectsData.map((project, index) => (
-            <motion.div key={project.title} variants={itemVariants} className="group relative snap-center">
+            <motion.div
+              key={project.title}
+              variants={itemVariants}
+              ref={(el) => { carouselItemRefs.current[index] = el }}
+              className="group relative snap-center min-w-[88%] sm:min-w-[75%] md:min-w-0 flex-shrink-0"
+            >
               <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -279,6 +390,17 @@ export function Projects() {
                       <span>Código</span>
                     </motion.a>
                   )}
+                  {project.longDescription && project.longDescription.length > 0 && (
+                    <motion.button
+                      onClick={() => setDetailsProject(project)}
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 active:scale-95"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FiTag className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span>Detalhes</span>
+                    </motion.button>
+                  )}
                   {project.gallery && project.gallery.length > 0 && (
                     <motion.button
                       onClick={() => openGallery(project)}
@@ -307,6 +429,42 @@ export function Projects() {
             </div>
           )}
         </motion.div>
+
+        {projectsData.length > 1 && (
+          <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
+            <button
+              type="button"
+              onClick={goToPrevSlide}
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              aria-label="Projeto anterior"
+            >
+              ←
+            </button>
+            <div className="flex items-center gap-1.5">
+              {projectsData.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => scrollToSlide(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === activeSlide
+                      ? 'bg-primary w-4'
+                      : 'bg-foreground/30 w-2'
+                  }`}
+                  aria-label={`Ir para projeto ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={goToNextSlide}
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              aria-label="Próximo projeto"
+            >
+              →
+            </button>
+          </div>
+        )}
 
         {/* View More */}
         <motion.div
@@ -432,6 +590,139 @@ export function Projects() {
                   </div>
                 </div>
               )}
+            </motion.div>
+          </motion.div>
+        )}
+
+        {detailsProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+            onClick={closeDetails}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] bg-gradient-to-br from-background via-background/95 to-background/90 rounded-xl sm:rounded-2xl overflow-hidden border border-foreground/10 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-background/50 backdrop-blur-sm">
+                <div className="flex-1 min-w-0 pr-2">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground truncate">
+                    {detailsProject.title}
+                  </h3>
+                  <div className="mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent">
+                    {detailsProject.status && (
+                      <span className={`px-1.5 py-0.5 rounded font-medium ${getStatusColor(detailsProject.status)}`}>
+                        {getStatusText(detailsProject.status)}
+                      </span>
+                    )}
+                    {detailsProject.category && (
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5 text-accent">
+                        <FiTag className="w-3 h-3" />
+                        <span>{detailsProject.category.replace('-', ' ')}</span>
+                      </span>
+                    )}
+                    {(detailsProject.startDate || detailsProject.endDate) && (
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5">
+                        <FiCalendar className="w-3 h-3" />
+                        <span>
+                          {formatDate(detailsProject.startDate)}
+                          {detailsProject.startDate && detailsProject.endDate && ' - '}
+                          {formatDate(detailsProject.endDate)}
+                        </span>
+                      </span>
+                    )}
+                    {detailsProject.client && (
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5">
+                        <FiUser className="w-3 h-3" />
+                        <span>{detailsProject.client}</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <motion.button
+                  onClick={closeDetails}
+                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-foreground/10 text-foreground hover:bg-foreground/20 transition-colors active:scale-90"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Fechar detalhes"
+                >
+                  <FiX className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] gap-4 sm:gap-6 p-3 sm:p-4 md:p-5 overflow-y-auto max-h-[calc(92vh-4rem)] sm:max-h-[calc(88vh-4rem)]">
+                <div className="space-y-3 sm:space-y-4">
+                  {detailsProject.image && (
+                    <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-xl overflow-hidden border border-foreground/10 bg-background/40">
+                      <Image
+                        src={detailsProject.image}
+                        alt={detailsProject.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  {detailsProject.technologies && detailsProject.technologies.length > 0 && (
+                    <div>
+                      <p className="text-[11px] sm:text-xs font-semibold text-accent mb-1.5">
+                        Tecnologias
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {detailsProject.technologies.map((tech: string) => (
+                          <span
+                            key={tech}
+                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {detailsProject.link && detailsProject.link !== '#' && (
+                      <motion.a
+                        href={detailsProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        <span>Ver Demo</span>
+                      </motion.a>
+                    )}
+                    {detailsProject.github && detailsProject.github !== '#' && (
+                      <motion.a
+                        href={detailsProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiGithub className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        <span>Código Fonte</span>
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+
+                <div className="border-t md:border-t-0 md:border-l border-foreground/10 pt-3 md:pt-0 md:pl-4">
+                  {detailsProject.description && (
+                    <p className="text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4">
+                      {detailsProject.description}
+                    </p>
+                  )}
+                  {renderLongDescription(detailsProject.longDescription)}
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}
