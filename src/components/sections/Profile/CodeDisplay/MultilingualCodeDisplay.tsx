@@ -186,12 +186,15 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
     
     if (!targetLine) {
       // Finished typing all lines, quick switch
+      const isHighlightedLanguage = ["Flutter (Dart)", "MySQL", "LaTeX"].includes(snippet.language)
+      const baseDelay = isMobile ? 2500 : 1500
+      const extraDelay = isHighlightedLanguage ? (isMobile ? 1500 : 1000) : 0
       const timer = setTimeout(() => {
         setCurrentLanguage((prev) => (prev + 1) % codeSnippets.length)
         setDisplayedCode("")
         setCurrentLine(0)
         setIsTyping(true)
-      }, 1000)
+      }, baseDelay + extraDelay)
       return () => clearTimeout(timer)
     }
 

@@ -138,7 +138,7 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-medium break-words">
+              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-semibold break-words">
                 {displayedText}
                 <span className="inline-block w-0.5 h-4 sm:h-5 bg-primary ml-1 animate-pulse" />
               </p>
@@ -148,7 +148,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl break-words"
+              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl break-words font-medium sm:font-semibold"
             >
               {profileData.bio}
             </motion.p>
@@ -177,14 +177,14 @@ export function Profile() {
                     className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary hover:bg-foreground/10 transition-all duration-200 group"
                   >
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="font-medium text-foreground/70 group-hover:text-primary break-words">
+                    <span className="font-semibold text-foreground/70 group-hover:text-primary break-words">
                       {locationText}
                     </span>
                   </a>
                 ) : (
                   <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10">
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-                    <span className="font-medium text-foreground/70 break-words">{locationText}</span>
+                    <span className="font-semibold text-foreground/70 break-words">{locationText}</span>
                   </div>
                 )
               })()}
