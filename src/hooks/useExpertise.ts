@@ -112,6 +112,12 @@ export function useExpertise() {
               console.log(`🎨 [EXPERTISE] Usando ícone customizado "${finalIconName}" para "${item.name}"`)
             }
             
+            // URL de ícone customizado via upload
+            const iconUrl = item.customIconUrl || undefined
+            if (item.iconName === 'CUSTOM' && iconUrl) {
+              console.log(`🖼️ [EXPERTISE] Usando ícone uploadado para "${item.name}"`)
+            }
+            
             // Busca o ícone no iconMap
             const iconExists = finalIconName in iconMap
             const selectedIcon = iconMap[finalIconName]
@@ -140,7 +146,8 @@ export function useExpertise() {
               yearsOfExperience: item.yearsOfExperience,
               description: item.description,
               order: item.order,
-              featured: item.featured || false
+              featured: item.featured || false,
+              iconUrl,
             }
           })
           

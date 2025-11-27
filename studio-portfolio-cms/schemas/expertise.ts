@@ -211,9 +211,18 @@ export const expertise = defineType({
       name: 'customIconName',
       title: 'Ícone Customizado',
       type: 'string',
-      description: '✏️ Se selecionou "Customizado" acima, digite o nome EXATO do ícone React Icons aqui (ex: SiFlutter, FaDocker, TbBrandVscode). Consulte: react-icons.github.io/react-icons',
+      description: ' OPCIONAL: Se preferir usar um ícone do React Icons em vez de upload, digite aqui o nome EXATO (ex: SiFlutter, FaDocker, TbBrandVscode). Caso contrário, basta fazer upload do ícone no campo abaixo.',
+      hidden: true,
+    }),
+    defineField({
+      name: 'customIcon',
+      title: 'Ícone Customizado (Upload)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
       hidden: ({ parent }) => parent?.iconName !== 'CUSTOM',
-      validation: (Rule) => 
+      validation: (Rule) =>
         Rule.custom((customIcon, context) => {
           const iconName = (context.parent as any)?.iconName
           if (iconName === 'CUSTOM' && !customIcon) {

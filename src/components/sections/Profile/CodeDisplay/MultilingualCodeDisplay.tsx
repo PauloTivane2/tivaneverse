@@ -234,14 +234,14 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
 
     if (isTyping && displayedCode.length < targetLine.length) {
       // Typing effect - Mais rápido em mobile
-      const typingSpeed = isMobile ? 3 : 4 // Mobile: 3ms, Desktop: 4ms
+      const typingSpeed = isMobile ? 4 : 5 // Mobile: 4ms, Desktop: 5ms
       const timer = setTimeout(() => {
         setDisplayedCode(targetLine.slice(0, displayedCode.length + 1))
       }, typingSpeed)
       return () => clearTimeout(timer)
     } else if (displayedCode.length === targetLine.length) {
       // Move to next line - Mais rápido em mobile
-      const lineDelay = isMobile ? 70 : 100 // Mobile: 70ms, Desktop: 100ms
+      const lineDelay = isMobile ? 80 : 100 // Mobile: 80ms, Desktop: 100ms
       const timer = setTimeout(() => {
         setCurrentLine((prev) => prev + 1)
         setDisplayedCode("")

@@ -301,7 +301,15 @@ export function Expertise() {
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Icon Container */}
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                    <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                    {skill.iconUrl ? (
+                      <img
+                        src={skill.iconUrl}
+                        alt={skill.name}
+                        className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain"
+                      />
+                    ) : (
+                      <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                    )}
                   </div>
 
                   {/* Título e Categorias */}
@@ -456,7 +464,15 @@ export function Expertise() {
                     <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                       {/* Icon Container */}
                       <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                        <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                        {skill.iconUrl ? (
+                          <img
+                            src={skill.iconUrl}
+                            alt={skill.name}
+                            className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain"
+                          />
+                        ) : (
+                          <skill.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+                        )}
                       </div>
 
                       {/* Título e Categorias */}
