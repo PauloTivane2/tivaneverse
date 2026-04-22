@@ -216,9 +216,8 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
 
   useEffect(() => {
     const snippet = codeSnippets[currentLanguage]
-    const targetLine = snippet.code[currentLine]
     
-    if (!targetLine) {
+    if (currentLine >= snippet.code.length) {
       // Finished typing all lines, quick switch
       const isHighlightedLanguage = ["Flutter (Dart)", "MySQL", "LaTeX"].includes(snippet.language)
       const baseDelay = isMobile ? 2500 : 1500
@@ -231,6 +230,8 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       }, baseDelay + extraDelay)
       return () => clearTimeout(timer)
     }
+
+    const targetLine = snippet.code[currentLine]
 
     if (isTyping && displayedCode.length < targetLine.length) {
       // Typing effect - Mais rápido em mobile
