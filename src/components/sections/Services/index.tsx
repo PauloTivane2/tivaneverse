@@ -2,11 +2,13 @@
 
 import { motion, useInView } from "framer-motion"
 import { useServices } from "@/src/hooks/useServices"
+import { useProfile } from "@/src/hooks/useProfile"
 import { useRef, useState } from "react"
 import { FiCheck, FiClock, FiDollarSign, FiStar, FiCode, FiZap, FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi"
 
 export function Services() {
   const { servicesData, loading, error } = useServices()
+  const { profileData } = useProfile()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -69,6 +71,13 @@ export function Services() {
     }
   }
 
+  const handleWhatsAppClick = (serviceTitle: string) => {
+    const phone = profileData?.phone?.replace(/[^0-9]/g, '')
+    const message = `Olá! Gostaria de saber mais sobre o serviço de *${serviceTitle}*.`
+    const url = `https://wa.me/${phone || ''}?text=${encodeURIComponent(message)}`
+    window.open(url, '_blank')
+  }
+
   return (
     <section id="services" className="corporate-section bg-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
@@ -89,7 +98,7 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 border border-primary/20 mb-3 sm:mb-4"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 border border-primary/20 mb-4 sm:mb-6"
           >
             <FiZap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
             <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">Serviços Premium</span>
@@ -107,7 +116,7 @@ export function Services() {
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8">
             <motion.button
               onClick={prevSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -131,7 +140,7 @@ export function Services() {
             
             <motion.button
               onClick={nextSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -158,7 +167,7 @@ export function Services() {
             // Loading skeleton - Premium Layout
             Array.from({ length: 3 }).map((_, index) => (
               <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center">
-                <div className="animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/10">
+                <div className="animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-foreground/5 rounded-t-2xl"></div>
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-14 h-14 rounded-xl bg-foreground/10"></div>
@@ -187,10 +196,10 @@ export function Services() {
                 className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
-                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/10 backdrop-blur-sm flex flex-col overflow-hidden transition-all duration-500 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.15)] active:scale-[0.99] sm:active:scale-100">
+                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_rgba(207,255,4,0.1)]">
                   
                   {/* Top Accent Bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/20'}`}></div>
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
                   
                   {/* Featured Badge - Top Right */}
                   {service.featured && (
@@ -212,7 +221,7 @@ export function Services() {
 
                   {/* Icon Container - Large and Premium */}
                   <motion.div 
-                    className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 sm:mb-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border border-primary/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+                    className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 sm:mb-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 z-10 overflow-hidden"
                     whileHover={{ rotate: [0, -5, 5, 0] }}
                     transition={{ duration: 0.5 }}
                   >
@@ -264,7 +273,7 @@ export function Services() {
                         {service.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary/20 transition-colors"
+                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-background transition-colors cursor-default"
                           >
                             {tech}
                           </span>
@@ -302,7 +311,8 @@ export function Services() {
 
                     {/* CTA Button */}
                     <motion.button
-                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 group/btn active:scale-95"
+                      onClick={() => handleWhatsAppClick(service.title)}
+                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-semibold text-xs sm:text-sm md:text-base hover:from-primary hover:to-primary/90 hover:text-background transition-all duration-300 flex items-center justify-center gap-2 group/btn relative overflow-hidden"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.96 }}
                     >
