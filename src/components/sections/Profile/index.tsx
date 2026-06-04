@@ -65,7 +65,6 @@ export function Profile() {
             <div className="h-6 bg-foreground/10 rounded-lg mb-6 mx-auto max-w-sm"></div>
             <div className="h-4 bg-foreground/10 rounded-lg mb-2 mx-auto max-w-lg"></div>
             <div className="h-4 bg-foreground/10 rounded-lg mb-8 mx-auto max-w-md"></div>
-            <p className="text-foreground/50">Carregando dados do Sanity CMS...</p>
           </div>
         </div>
       </section>
@@ -174,7 +173,7 @@ export function Profile() {
                     href={mapLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary hover:bg-foreground/10 transition-all duration-200 group"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 group"
                   >
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
                     <span className="font-semibold text-foreground/70 group-hover:text-primary break-words">
@@ -194,7 +193,7 @@ export function Profile() {
                 <a
                   href={`tel:${profileData.phone.replace(/\s/g, '')}`}
                   title={`Ligar: ${profileData.phone}`}
-                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-foreground/5 border border-foreground/10 hover:border-secondary hover:bg-foreground/10 transition-all duration-200 group flex-shrink-0"
+                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-foreground/5 border border-foreground/10 hover:border-secondary hover:bg-foreground/10 transition-all duration-200 group"
                 >
                   <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:scale-125 transition-transform" />
                 </a>
@@ -226,7 +225,7 @@ export function Profile() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
-                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/30 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/20"
                     >
                       {skill}
                     </motion.span>
@@ -252,7 +251,7 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/25 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -266,7 +265,7 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-secondary via-secondary to-primary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-secondary via-secondary to-primary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/25 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -281,7 +280,7 @@ export function Profile() {
                 <motion.button
                   onClick={handleResumeDownload}
                   title="Baixar CV"
-                  className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:shadow-foreground/10 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -327,7 +326,7 @@ export function Profile() {
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
                         >
                           <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -337,7 +336,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
                         >
                           <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -347,9 +346,9 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
                         >
-                          <FiTwitter className="w-4 h-4 sm:w-5 sm:h-5" />
+                          <FiTwitter className="w-4 h-4 sm:w-5 sm:h--5" />
                         </a>
                       )}
                       {profileData.social.instagram && (
@@ -357,7 +356,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
                         >
                           <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
