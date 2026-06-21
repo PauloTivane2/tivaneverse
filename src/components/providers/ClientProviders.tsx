@@ -8,12 +8,12 @@ import { ThemeProvider } from "next-themes"
 // Maintenance Mode Component
 function MaintenanceMode({ message }: { message: string }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
+    <div className="min-h-screen flex items-center justify-center bg-light-background dark:bg-dark-background text-light-foreground dark:text-dark-foreground">
       <div className="text-center space-y-4 p-8">
         <div className="text-6xl mb-4">🔧</div>
         <h1 className="text-2xl font-bold">Site em Manutenção</h1>
-        <p className="text-muted-foreground max-w-md">{message}</p>
-        <div className="text-sm text-muted-foreground mt-8">
+        <p className="text-light-foreground/60 dark:text-dark-foreground/60-foreground max-w-md">{message}</p>
+        <div className="text-sm text-light-foreground/60 dark:text-dark-foreground/60-foreground mt-8">
           Volte em breve!
         </div>
       </div>
@@ -132,7 +132,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-light-primary dark:border-dark-primary"></div>
       </div>
     )
   }

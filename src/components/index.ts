@@ -1,7 +1,7 @@
 // Layout Components
 export { Navbar } from './layout/Navbar'
 export { Footer } from './layout/Footer'
-export { ThemeProvider } from './layout/theme-provider'
+export { ThemeProvider } from './theme-provider'
 
 // Section Components  
 export { Profile } from './sections/Profile'

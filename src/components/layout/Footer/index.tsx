@@ -39,21 +39,21 @@ export function Footer() {
         <div className="corporate-footer-grid">
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold text-primary mb-4">
+            <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary mb-4">
               {loading ? (
                 <div className="h-6 bg-black rounded animate-pulse w-32"></div>
               ) : (
                 contactInfo?.name || 'Paulo Tivane'
               )}
             </h3>
-            <p className="text-sm text-accent leading-relaxed">
+            <p className="text-sm text-light-accent dark:text-dark-accent leading-relaxed">
               Software Engineer & IT Professional crafting innovative digital solutions.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-secondary mb-4">Links Rápidos</h4>
+            <h4 className="text-sm font-bold text-light-secondary dark:text-dark-secondary mb-4">Links Rápidos</h4>
             <div className="flex flex-col gap-2">
               {quickLinks.map((link) => (
                 <a
@@ -63,7 +63,7 @@ export function Footer() {
                     e.preventDefault()
                     scrollToSection(link.href)
                   }}
-                  className="text-sm text-accent hover:text-primary transition-colors"
+                  className="text-sm text-light-accent dark:text-dark-accent hover:text-light-primary dark:text-dark-primary transition-colors"
                 >
                   {link.name}
                 </a>
@@ -73,7 +73,7 @@ export function Footer() {
 
           {/* Social Links - Profissional */}
           <div>
-            <h4 className="text-sm font-bold text-accent mb-4">Conecte-se</h4>
+            <h4 className="text-sm font-bold text-light-accent dark:text-dark-accent mb-4">Conecte-se</h4>
             <div className="flex flex-wrap gap-2">
               {loading ? (
                 // Loading skeleton for social links
@@ -87,7 +87,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-primary hover:border-primary/40 hover:bg-white/10 transition-all"
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-light-accent dark:text-dark-accent hover:text-light-primary dark:text-dark-primary hover:border-light-primary/40 dark:border-dark-primary/40 hover:bg-white/10 transition-all"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
@@ -96,7 +96,7 @@ export function Footer() {
                   </motion.a>
                 ))
               ) : (
-                <p className="text-accent/60 text-sm">No social links available</p>
+                <p className="text-light-accent/60 dark:text-dark-accent/60 text-sm">No social links available</p>
               )}
             </div>
           </div>
@@ -104,13 +104,13 @@ export function Footer() {
 
         {/* Copyright - Melhor Visibilidade */}
         <div className="corporate-footer-bottom">
-          <p className="text-sm text-accent text-center">
+          <p className="text-sm text-light-accent dark:text-dark-accent text-center">
             © {new Date().getFullYear()}{' '}
-            <span className="font-semibold text-primary">
+            <span className="font-semibold text-light-primary dark:text-dark-primary">
               {contactInfo?.name || 'Paulo Babucho Issaca Tivane'}
             </span>
             {'. '}
-            <span className="text-accent/60">Todos os direitos reservados.</span>
+            <span className="text-light-accent/60 dark:text-dark-accent/60">Todos os direitos reservados.</span>
           </p>
         </div>
       </div>

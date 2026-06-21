@@ -58,18 +58,23 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
     const draw = () => {
       if (!ctx || !canvas) return;
 
-      // Fundo semi-transparente para efeito trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      // Fundo semi-transparente para efeito trail (sincronizado com o tema)
+      const isDarkTheme = document.documentElement.classList.contains('dark');
+      ctx.fillStyle = isDarkTheme ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px monospace`;
+
+      const style = window.getComputedStyle(document.documentElement);
+      const primaryColor = style.getPropertyValue('--color-primary').trim() || '#b4ff00';
+      const accentColor = style.getPropertyValue('--color-accent').trim() || '#cae7f7';
 
       for (let i = 0; i < drops.length; i++) {
         const text = chars[Math.floor(Math.random() * chars.length)];
         const x = i * columnSpacing;
         const y = drops[i] * fontSize;
 
-        ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';
+        ctx.fillStyle = Math.random() > 0.3 ? primaryColor : accentColor;
 
         if (drops[i] > 0) ctx.fillText(text, x, y);
 

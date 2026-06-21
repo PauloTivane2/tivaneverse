@@ -6,7 +6,6 @@ import Image from "next/image"
 import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiPhone } from "react-icons/fi"
 import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
-import { MultilingualCodeDisplay } from "./CodeDisplay"
 
 export function Profile() {
   const { profileData: sanityData, loading, error } = useProfile()
@@ -58,14 +57,14 @@ export function Profile() {
   // Show loading state if no data yet - AFTER all hooks
   if (!profileData) {
     return (
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-light-background dark:bg-dark-background">
         <div className="max-w-7xl mx-auto w-full text-center">
           <div className="animate-pulse">
-            <div className="h-12 bg-foreground/10 rounded-lg mb-4 mx-auto max-w-md"></div>
-            <div className="h-6 bg-foreground/10 rounded-lg mb-6 mx-auto max-w-sm"></div>
-            <div className="h-4 bg-foreground/10 rounded-lg mb-2 mx-auto max-w-lg"></div>
-            <div className="h-4 bg-foreground/10 rounded-lg mb-8 mx-auto max-w-md"></div>
-            <p className="text-foreground/50">Carregando dados do Sanity CMS...</p>
+            <div className="h-12 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded-lg mb-4 mx-auto max-w-md"></div>
+            <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded-lg mb-6 mx-auto max-w-sm"></div>
+            <div className="h-4 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded-lg mb-2 mx-auto max-w-lg"></div>
+            <div className="h-4 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded-lg mb-8 mx-auto max-w-md"></div>
+            <p className="text-light-foreground/50 dark:text-dark-foreground/50">Carregando dados do Sanity CMS...</p>
           </div>
         </div>
       </section>
@@ -101,7 +100,7 @@ export function Profile() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 relative bg-background">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 relative bg-light-background dark:bg-dark-background">
       {/* Gradient Transition to next section */}
       <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none" />
       
@@ -118,7 +117,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-light-foreground dark:text-dark-foreground mb-3 sm:mb-4 md:mb-6 leading-tight"
             >
               {profileData.name}
             </motion.h1>
@@ -127,7 +126,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground/80 mb-3 sm:mb-4 md:mb-6 break-words"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-light-foreground/80 dark:text-dark-foreground/80 mb-3 sm:mb-4 md:mb-6 break-words"
             >
               {profileData.title}
             </motion.h2>
@@ -138,9 +137,9 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-semibold break-words">
+              <p className="text-sm sm:text-base md:text-lg text-light-primary dark:text-dark-primary font-mono font-semibold break-words">
                 {displayedText}
-                <span className="inline-block w-0.5 h-4 sm:h-5 bg-primary ml-1 animate-pulse" />
+                <span className="inline-block w-0.5 h-4 sm:h-5 bg-light-primary dark:bg-dark-primary ml-1 animate-pulse" />
               </p>
             </motion.div>
 
@@ -148,7 +147,7 @@ export function Profile() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl break-words font-medium sm:font-semibold"
+              className="text-sm sm:text-base md:text-lg text-light-foreground/70 dark:text-dark-foreground/70 mb-5 sm:mb-6 md:mb-8 leading-relaxed max-w-2xl break-words font-medium sm:font-semibold"
             >
               {profileData.bio}
             </motion.p>
@@ -174,17 +173,17 @@ export function Profile() {
                     href={mapLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary hover:bg-foreground/10 transition-all duration-200 group"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10 hover:border-light-primary dark:border-dark-primary hover:bg-light-foreground/10 dark:bg-dark-foreground/10 transition-all duration-200 group"
                   >
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="font-semibold text-foreground/70 group-hover:text-primary break-words">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-light-primary dark:text-dark-primary group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <span className="font-semibold text-light-foreground/70 dark:text-dark-foreground/70 group-hover:text-light-primary dark:text-dark-primary break-words">
                       {locationText}
                     </span>
                   </a>
                 ) : (
-                  <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10">
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-                    <span className="font-semibold text-foreground/70 break-words">{locationText}</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10">
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-light-primary dark:text-dark-primary flex-shrink-0" />
+                    <span className="font-semibold text-light-foreground/70 dark:text-dark-foreground/70 break-words">{locationText}</span>
                   </div>
                 )
               })()}
@@ -194,17 +193,17 @@ export function Profile() {
                 <a
                   href={`tel:${profileData.phone.replace(/\s/g, '')}`}
                   title={`Ligar: ${profileData.phone}`}
-                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-foreground/5 border border-foreground/10 hover:border-secondary hover:bg-foreground/10 transition-all duration-200 group flex-shrink-0"
+                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10 hover:border-light-secondary dark:border-dark-secondary hover:bg-light-foreground/10 dark:bg-dark-foreground/10 transition-all duration-200 group flex-shrink-0"
                 >
-                  <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:scale-125 transition-transform" />
+                  <FiPhone className="w-3 h-3 sm:w-4 sm:h-4 text-light-secondary dark:text-dark-secondary group-hover:scale-125 transition-transform" />
                 </a>
               )}
               
               {/* Availability Badge */}
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
-                <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-primary/10 border border-primary/30">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0"></div>
-                  <span className="font-semibold text-primary">
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-light-primary/10 dark:bg-dark-primary/10 border border-light-primary/30 dark:border-dark-primary/30">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-light-primary dark:bg-dark-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-light-primary/60 dark:shadow-dark-primary/60 flex-shrink-0"></div>
+                  <span className="font-semibold text-light-primary dark:text-dark-primary">
                     {profileData.availability.message || 'Disponível'}
                   </span>
                 </div>
@@ -226,13 +225,13 @@ export function Profile() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
-                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/30 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-primary rounded-md sm:rounded-lg border border-light-primary/30 dark:border-dark-primary/30 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </motion.span>
                   ))}
                   {profileData.skills.length > 8 && (
-                    <span className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-foreground/5 text-foreground/70 rounded-md sm:rounded-lg border border-foreground/10">
+                    <span className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-foreground/70 dark:text-dark-foreground/70 rounded-md sm:rounded-lg border border-foreground/10">
                       +{profileData.skills.length - 8}
                     </span>
                   )}
@@ -252,12 +251,12 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-light-primary dark:from-dark-primary via-light-primary dark:via-dark-primary to-light-secondary dark:to-dark-secondary text-light-background dark:text-dark-background flex items-center justify-center shadow-lg hover:shadow-light-primary/50 dark:shadow-dark-primary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 font-bold" />
-                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-light-foreground/70 dark:text-dark-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Ver Projetos
                 </span>
               </motion.button>
@@ -266,12 +265,12 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-secondary via-secondary to-primary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-light-secondary dark:from-dark-secondary via-light-secondary dark:via-dark-secondary to-light-primary dark:to-dark-primary text-light-background dark:text-dark-background flex items-center justify-center shadow-lg hover:shadow-light-secondary/50 dark:shadow-dark-secondary/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FiMail className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-light-foreground/70 dark:text-dark-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Contactar
                 </span>
               </motion.button>
@@ -281,12 +280,12 @@ export function Profile() {
                 <motion.button
                   onClick={handleResumeDownload}
                   title="Baixar CV"
-                  className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-foreground/5 border-2 border-foreground/20 text-foreground flex items-center justify-center shadow-lg hover:border-accent hover:bg-accent/10 hover:shadow-accent/30 transition-all duration-300"
+                  className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-light-foreground/5 dark:bg-dark-foreground/5 border-2 border-foreground/20 text-light-foreground dark:text-dark-foreground flex items-center justify-center shadow-lg hover:border-light-accent dark:border-dark-accent hover:bg-light-accent/10 dark:bg-dark-accent/10 hover:shadow-light-accent/30 dark:shadow-dark-accent/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <FiDownload className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                  <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-light-foreground/70 dark:text-dark-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Baixar CV
                   </span>
                 </motion.button>
@@ -307,7 +306,7 @@ export function Profile() {
               transition={{ duration: 0.3 }}
             >
               {/* Sombra sutil profissional */}
-              <div className="absolute inset-0 rounded-full bg-primary/5 blur-xl sm:blur-2xl" />
+              <div className="absolute inset-0 rounded-full bg-light-primary/5 dark:bg-dark-primary/5 blur-xl sm:blur-2xl" />
 
               <div className="relative w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-foreground/10 shadow-2xl">
                 <Image
@@ -320,14 +319,14 @@ export function Profile() {
                 
                 {/* Social Links Overlay - Profissional */}
                 {profileData.social && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-background/60 backdrop-blur-sm z-10">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-light-background/60 dark:bg-dark-background/60 backdrop-blur-sm z-10">
                     <div className="flex gap-2 sm:gap-3">
                       {profileData.social.github && (
                         <a
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 border border-foreground/20 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -337,7 +336,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 border border-foreground/20 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -347,7 +346,7 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 border border-foreground/20 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiTwitter className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -357,7 +356,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 border border-foreground/20 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-all duration-200 shadow-lg backdrop-blur-sm"
                         >
                           <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -370,8 +369,6 @@ export function Profile() {
           </motion.div>
         </div>
 
-        {/* Creative Multilingual Code Typewriter - Área Criativa de Código */}
-        <MultilingualCodeDisplay profileName={profileData.name} />
       </div>
     </section>
   )

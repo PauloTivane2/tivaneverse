@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { FiMenu, FiX, FiArrowUp } from "react-icons/fi"
 import Image from "next/image"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
   { name: "Início", href: "#home" },
@@ -81,7 +82,7 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 shadow-lg" 
+          ? "bg-light-background/90 dark:bg-dark-background/90 backdrop-blur-md border-b border-foreground/10 shadow-lg" 
           : "bg-transparent"
       }`}
     >
@@ -118,8 +119,8 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={link.name === "Contacto" 
-                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-background text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
-                  : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
+                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-light-secondary dark:bg-dark-secondary text-light-background dark:text-dark-background text-sm lg:text-base font-semibold hover:bg-light-secondary/90 dark:bg-dark-secondary/90 transition-all duration-300 shadow-lg shadow-light-secondary/20 dark:shadow-dark-secondary/20"
+                  : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-light-foreground/80 dark:text-dark-foreground/80 hover:text-light-primary dark:text-dark-primary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,13 +131,16 @@ export function Navbar() {
                 {link.name}
               </motion.a>
             ))}
+            <div className="ml-2 flex items-center">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button - Aparecer apenas ABAIXO de 768px */}
           <div className="md:hidden relative z-50">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
+              className="p-2 rounded-lg bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10 text-light-foreground dark:text-dark-foreground hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-light-primary/50 dark:border-dark-primary/50 transition-all duration-300"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -158,7 +162,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-light-background/80 dark:bg-dark-background/80 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -168,20 +172,23 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[75vw] max-w-[280px] sm:max-w-[320px] bg-background border-l border-foreground/10 shadow-2xl z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-[75vw] max-w-[280px] sm:max-w-[320px] bg-light-background dark:bg-dark-background border-l border-foreground/10 shadow-2xl z-50 md:hidden"
             >
               {/* Sidebar Header */}
               <div className="flex items-center justify-between p-4 sm:p-5 border-b border-foreground/10">
-                <span className="text-base sm:text-lg font-bold text-primary">Menu</span>
-                <motion.button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Close menu"
-                >
-                  <FiX size={20} />
-                </motion.button>
+                <span className="text-base sm:text-lg font-bold text-light-primary dark:text-dark-primary">Menu</span>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <motion.button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-lg bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10 text-light-foreground dark:text-dark-foreground hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-light-primary/50 dark:border-dark-primary/50 transition-all duration-300"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Close menu"
+                  >
+                    <FiX size={20} />
+                  </motion.button>
+                </div>
               </div>
 
               {/* Navigation Links */}
@@ -195,8 +202,8 @@ export function Navbar() {
                       scrollToSection(link.href)
                     }}
                     className={link.name === "Contacto" 
-                      ? "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-background text-sm sm:text-base font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
-                      : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-foreground/80 hover:text-primary hover:bg-foreground/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
+                      ? "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg bg-gradient-to-r from-light-secondary dark:from-dark-secondary to-light-secondary/80 dark:to-dark-secondary/80 text-light-background dark:text-dark-background text-sm sm:text-base font-bold hover:from-light-secondary/90 dark:from-dark-secondary/90 hover:to-light-secondary/70 dark:to-dark-secondary/70 transition-all duration-300 shadow-lg shadow-light-secondary/30 dark:shadow-dark-secondary/30 text-center"
+                      : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-light-foreground/80 dark:text-dark-foreground/80 hover:text-light-primary dark:text-dark-primary hover:bg-light-foreground/5 dark:bg-dark-foreground/5 transition-all duration-300 border border-transparent hover:border-light-primary/30 dark:border-dark-primary/30 text-left"
                     }
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -212,7 +219,7 @@ export function Navbar() {
 
               {/* Sidebar Footer - Optional branding */}
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 border-t border-foreground/10">
-                <p className="text-xs text-foreground/40 text-center">
+                <p className="text-xs text-light-foreground/40 dark:text-dark-foreground/40 text-center">
                   © 2024 Paulo Tivane
                 </p>
               </div>
@@ -234,7 +241,7 @@ export function Navbar() {
                 behavior: "smooth"
               })
             }}
-            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-light-primary dark:from-dark-primary via-light-primary dark:via-dark-primary to-light-secondary dark:to-dark-secondary text-light-background dark:text-dark-background flex items-center justify-center shadow-lg hover:shadow-light-primary/50 dark:shadow-dark-primary/50 transition-all duration-300"
             whileHover={{ scale: 1.1, y: -4 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Voltar ao topo"

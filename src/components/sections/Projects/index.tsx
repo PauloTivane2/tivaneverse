@@ -31,11 +31,11 @@ export function Projects() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'completed': return 'text-primary bg-primary/10'
-      case 'in-progress': return 'text-accent bg-accent/10'
-      case 'on-hold': return 'text-secondary bg-secondary/10'
-      case 'concept': return 'text-secondary bg-secondary/10'
-      default: return 'text-accent bg-background/50'
+      case 'completed': return 'text-light-primary dark:text-dark-primary bg-light-primary/10 dark:bg-dark-primary/10'
+      case 'in-progress': return 'text-light-accent dark:text-dark-accent bg-light-accent/10 dark:bg-dark-accent/10'
+      case 'on-hold': return 'text-light-secondary dark:text-dark-secondary bg-light-secondary/10 dark:bg-dark-secondary/10'
+      case 'concept': return 'text-light-secondary dark:text-dark-secondary bg-light-secondary/10 dark:bg-dark-secondary/10'
+      default: return 'text-light-accent dark:text-dark-accent bg-light-background/50 dark:bg-dark-background/50'
     }
   }
 
@@ -60,7 +60,7 @@ export function Projects() {
 
         if (block.style === 'h2') {
           return (
-            <h3 key={index} className="text-base sm:text-lg md:text-xl font-semibold text-foreground mt-4 mb-2">
+            <h3 key={index} className="text-base sm:text-lg md:text-xl font-semibold text-light-foreground dark:text-dark-foreground mt-4 mb-2">
               {text}
             </h3>
           )
@@ -68,7 +68,7 @@ export function Projects() {
 
         if (block.style === 'h3') {
           return (
-            <h4 key={index} className="text-sm sm:text-base md:text-lg font-semibold text-foreground mt-3 mb-1.5">
+            <h4 key={index} className="text-sm sm:text-base md:text-lg font-semibold text-light-foreground dark:text-dark-foreground mt-3 mb-1.5">
               {text}
             </h4>
           )
@@ -78,7 +78,7 @@ export function Projects() {
           return (
             <blockquote
               key={index}
-              className="border-l-2 border-primary/40 pl-3 sm:pl-4 py-1.5 text-xs sm:text-sm md:text-base text-accent italic my-3 sm:my-4"
+              className="border-l-2 border-light-primary/40 dark:border-dark-primary/40 pl-3 sm:pl-4 py-1.5 text-xs sm:text-sm md:text-base text-light-accent dark:text-dark-accent italic my-3 sm:my-4"
             >
               {text}
             </blockquote>
@@ -88,7 +88,7 @@ export function Projects() {
         return (
           <p
             key={index}
-            className="text-xs sm:text-sm md:text-base text-accent leading-relaxed mb-2 sm:mb-3"
+            className="text-xs sm:text-sm md:text-base text-light-accent dark:text-dark-accent leading-relaxed mb-2 sm:mb-3"
           >
             {text}
           </p>
@@ -99,7 +99,7 @@ export function Projects() {
         return (
           <div
             key={index}
-            className="relative w-full h-40 sm:h-52 md:h-64 rounded-xl overflow-hidden border border-foreground/10 bg-background/40 my-3 sm:my-4"
+            className="relative w-full h-40 sm:h-52 md:h-64 rounded-xl overflow-hidden border border-foreground/10 bg-light-background/40 dark:bg-dark-background/40 my-3 sm:my-4"
           >
             <Image
               src={urlFor(block.asset).width(1200).height(800).url()}
@@ -182,7 +182,7 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="corporate-section bg-background relative" ref={ref}>
+    <section id="projects" className="corporate-section bg-light-background dark:bg-dark-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
@@ -201,10 +201,10 @@ export function Projects() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-secondary/10 via-secondary/5 to-primary/10 border border-secondary/20 mb-3 sm:mb-4"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-light-secondary/10 dark:from-dark-secondary/10 via-light-secondary/5 dark:via-dark-secondary/5 to-light-primary/10 dark:to-dark-primary/10 border border-light-secondary/20 dark:border-dark-secondary/20 mb-3 sm:mb-4"
           >
-            <FiStar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary" />
-            <span className="text-xs sm:text-sm font-semibold text-secondary uppercase tracking-wider">Portfólio</span>
+            <FiStar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-light-secondary dark:text-dark-secondary" />
+            <span className="text-xs sm:text-sm font-semibold text-light-secondary dark:text-dark-secondary uppercase tracking-wider">Portfólio</span>
           </motion.div>
           <h2 className="corporate-section-title">
             Projectos em Destaque
@@ -228,24 +228,24 @@ export function Projects() {
               <div key={index} className="animate-pulse">
                 <div className="corporate-card p-4 sm:p-5 md:p-6 h-full">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-foreground/10 rounded-lg flex-shrink-0"></div>
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded-lg flex-shrink-0"></div>
                     <div className="flex-1 space-y-2">
-                      <div className="h-6 bg-foreground/10 rounded w-3/4"></div>
-                      <div className="h-4 bg-foreground/10 rounded w-1/2"></div>
+                      <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-3/4"></div>
+                      <div className="h-4 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-1/2"></div>
                       <div className="flex gap-2 mt-2">
-                        <div className="h-5 bg-foreground/10 rounded w-16"></div>
-                        <div className="h-5 bg-foreground/10 rounded w-20"></div>
+                        <div className="h-5 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-16"></div>
+                        <div className="h-5 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-20"></div>
                       </div>
                     </div>
                   </div>
                   <div className="space-y-2 mb-4">
-                    <div className="h-3 bg-foreground/10 rounded"></div>
-                    <div className="h-3 bg-foreground/10 rounded w-5/6"></div>
+                    <div className="h-3 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded"></div>
+                    <div className="h-3 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-5/6"></div>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    <div className="h-6 bg-foreground/10 rounded w-16"></div>
-                    <div className="h-6 bg-foreground/10 rounded w-20"></div>
-                    <div className="h-6 bg-foreground/10 rounded w-14"></div>
+                    <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-16"></div>
+                    <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-20"></div>
+                    <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-14"></div>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,7 @@ export function Projects() {
               ref={(el) => { carouselItemRefs.current[index] = el }}
               className="group relative snap-center min-w-[88%] sm:min-w-[75%] md:min-w-0 flex-shrink-0"
             >
-              <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100">
+              <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-light-primary/30 dark:border-dark-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Image Thumbnail */}
@@ -273,11 +273,11 @@ export function Projects() {
                     {project.gallery && project.gallery.length > 0 && (
                       <button
                         onClick={() => openGallery(project)}
-                        className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1"
+                        className="absolute inset-0 bg-light-background/80 dark:bg-dark-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1"
                         aria-label="Ver galeria"
                       >
-                        <FiImage className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                        <span className="text-[10px] font-medium text-primary">{project.gallery.length}</span>
+                        <FiImage className="w-4 h-4 sm:w-5 sm:h-5 text-light-primary dark:text-dark-primary" />
+                        <span className="text-[10px] font-medium text-light-primary dark:text-dark-primary">{project.gallery.length}</span>
                       </button>
                     )}
                   </div>
@@ -285,7 +285,7 @@ export function Projects() {
                   {/* Title, Status, Meta */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-light-foreground dark:text-dark-foreground group-hover:text-light-primary dark:text-dark-primary transition-colors leading-tight">
                         {project.title}
                       </h3>
                       {project.featured && (
@@ -295,8 +295,8 @@ export function Projects() {
                           transition={{ type: "spring", delay: 0.2 }}
                           className="flex-shrink-0"
                         >
-                          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center border border-secondary/30">
-                            <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-secondary fill-secondary/50" />
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-light-secondary/20 dark:from-dark-secondary/20 to-light-secondary/10 dark:to-dark-secondary/10 flex items-center justify-center border border-light-secondary/30 dark:border-dark-secondary/30">
+                            <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-light-secondary dark:text-dark-secondary fill-secondary/50" />
                           </div>
                         </motion.div>
                       )}
@@ -310,7 +310,7 @@ export function Projects() {
                         </span>
                       )}
                       {project.category && (
-                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent">
+                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-accent dark:text-dark-accent">
                           {project.category.replace('-', ' ')}
                         </span>
                       )}
@@ -318,7 +318,7 @@ export function Projects() {
 
                     {/* Date */}
                     {(project.startDate || project.endDate) && (
-                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent">
+                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-light-accent dark:text-dark-accent">
                         <FiCalendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         <span>
                           {formatDate(project.startDate)}
@@ -330,7 +330,7 @@ export function Projects() {
 
                     {/* Client */}
                     {project.client && (
-                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent mt-0.5">
+                      <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-light-accent dark:text-dark-accent mt-0.5">
                         <FiUser className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         <span className="truncate max-w-[120px] sm:max-w-[160px]">
                           {project.client}
@@ -341,7 +341,7 @@ export function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4">
+                <p className="text-[11px] sm:text-xs md:text-sm text-light-accent dark:text-dark-accent leading-relaxed mb-3 sm:mb-4">
                   {project.description}
                 </p>
 
@@ -350,13 +350,13 @@ export function Projects() {
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20 hover:bg-primary/20 transition-colors"
+                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-primary rounded border border-light-primary/20 dark:border-dark-primary/20 hover:bg-light-primary/20 dark:bg-dark-primary/20 transition-colors"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded">
+                    <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-accent dark:text-dark-accent rounded">
                       +{project.technologies.length - 4}
                     </span>
                   )}
@@ -369,7 +369,7 @@ export function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-light-primary/15 dark:from-dark-primary/15 to-light-primary/5 dark:to-dark-primary/5 text-light-primary dark:text-dark-primary rounded-lg border border-light-primary/30 dark:border-dark-primary/30 hover:from-light-primary dark:from-dark-primary hover:to-light-primary dark:to-dark-primary hover:text-light-background dark:text-dark-background transition-all duration-300 active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -382,7 +382,7 @@ export function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-foreground dark:text-dark-foreground rounded-lg border border-foreground/10 hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -393,7 +393,7 @@ export function Projects() {
                   {project.longDescription && project.longDescription.length > 0 && (
                     <motion.button
                       onClick={() => setDetailsProject(project)}
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-accent dark:text-dark-accent rounded-lg border border-foreground/10 hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-light-accent/30 dark:border-dark-accent/30 hover:text-light-primary dark:text-dark-primary transition-all duration-300 active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -404,7 +404,7 @@ export function Projects() {
                   {project.gallery && project.gallery.length > 0 && (
                     <motion.button
                       onClick={() => openGallery(project)}
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 ml-auto active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-accent dark:text-dark-accent rounded-lg border border-foreground/10 hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-light-accent/30 dark:border-dark-accent/30 hover:text-light-primary dark:text-dark-primary transition-all duration-300 ml-auto active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -417,7 +417,7 @@ export function Projects() {
 
                 {/* Hover Glow */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-light-primary/10 dark:from-dark-primary/10 via-transparent to-light-secondary/10 dark:to-dark-secondary/10" />
                 </div>
               </div>
             </motion.div>
@@ -425,7 +425,7 @@ export function Projects() {
           ) : (
             // Empty state
             <div className="col-span-full text-center py-8">
-              <p className="text-accent">No projects available</p>
+              <p className="text-light-accent dark:text-dark-accent">No projects available</p>
             </div>
           )}
         </motion.div>
@@ -435,7 +435,7 @@ export function Projects() {
             <button
               type="button"
               onClick={goToPrevSlide}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-light-background/70 dark:bg-dark-background/70 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-colors text-sm"
               aria-label="Projeto anterior"
             >
               ←
@@ -448,8 +448,8 @@ export function Projects() {
                   onClick={() => scrollToSlide(index)}
                   className={`h-2 rounded-full transition-all ${
                     index === activeSlide
-                      ? 'bg-primary w-4'
-                      : 'bg-foreground/30 w-2'
+                      ? 'bg-light-primary dark:bg-dark-primary w-4'
+                      : 'bg-light-foreground/30 dark:bg-dark-foreground/30 w-2'
                   }`}
                   aria-label={`Ir para projeto ${index + 1}`}
                 />
@@ -458,7 +458,7 @@ export function Projects() {
             <button
               type="button"
               onClick={goToNextSlide}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-light-background/70 dark:bg-dark-background/70 text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-colors text-sm"
               aria-label="Próximo projeto"
             >
               →
@@ -477,7 +477,7 @@ export function Projects() {
             href={profileData?.social?.github || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold bg-gradient-to-r from-foreground/10 to-foreground/5 text-foreground rounded-lg border border-foreground/20 hover:bg-gradient-to-r hover:from-primary hover:to-primary hover:text-background hover:border-primary transition-all duration-300 active:scale-95"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold bg-gradient-to-r from-foreground/10 to-foreground/5 text-light-foreground dark:text-dark-foreground rounded-lg border border-foreground/20 hover:bg-gradient-to-r hover:from-light-primary dark:from-dark-primary hover:to-light-primary dark:to-dark-primary hover:text-light-background dark:text-dark-background hover:border-light-primary dark:border-dark-primary transition-all duration-300 active:scale-95"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -493,7 +493,7 @@ export function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 bg-light-background/90 dark:bg-dark-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
             onClick={closeGallery}
           >
             <motion.div
@@ -504,16 +504,16 @@ export function Projects() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-background/50 backdrop-blur-sm">
+              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-light-background/50 dark:bg-dark-background/50 backdrop-blur-sm">
                 <div className="flex-1 min-w-0 pr-2">
-                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground truncate">{selectedProject.title}</h3>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-accent">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-light-foreground dark:text-dark-foreground truncate">{selectedProject.title}</h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-light-accent dark:text-dark-accent">
                     {selectedImageIndex + 1} de {selectedProject.gallery.length}
                   </p>
                 </div>
                 <motion.button
                   onClick={closeGallery}
-                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-foreground/10 text-foreground hover:bg-foreground/20 transition-colors active:scale-90"
+                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 text-light-foreground dark:text-dark-foreground hover:bg-light-foreground/20 dark:bg-dark-foreground/20 transition-colors active:scale-90"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Fechar galeria"
@@ -536,7 +536,7 @@ export function Projects() {
                 <>
                   <motion.button
                     onClick={() => setSelectedImageIndex(prev => prev > 0 ? prev - 1 : selectedProject.gallery.length - 1)}
-                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-light-background/80 dark:bg-dark-background/80 backdrop-blur-sm text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background border border-foreground/20 hover:border-light-primary dark:border-dark-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
                     whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Imagem anterior"
@@ -545,7 +545,7 @@ export function Projects() {
                   </motion.button>
                   <motion.button
                     onClick={() => setSelectedImageIndex(prev => prev < selectedProject.gallery.length - 1 ? prev + 1 : 0)}
-                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-light-background/80 dark:bg-dark-background/80 backdrop-blur-sm text-light-foreground dark:text-dark-foreground hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background border border-foreground/20 hover:border-light-primary dark:border-dark-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
                     whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Próxima imagem"
@@ -558,8 +558,8 @@ export function Projects() {
 
               {/* Caption */}
             {selectedProject.gallery[selectedImageIndex].caption && (
-              <div className="p-3 sm:p-4 border-t border-foreground/10 bg-background/50 backdrop-blur-sm">
-                <p className="text-[11px] sm:text-xs md:text-sm text-accent text-center leading-relaxed">
+              <div className="p-3 sm:p-4 border-t border-foreground/10 bg-light-background/50 dark:bg-dark-background/50 backdrop-blur-sm">
+                <p className="text-[11px] sm:text-xs md:text-sm text-light-accent dark:text-dark-accent text-center leading-relaxed">
                   {selectedProject.gallery[selectedImageIndex].caption}
                 </p>
               </div>
@@ -567,14 +567,14 @@ export function Projects() {
 
               {/* Thumbnails */}
               {selectedProject.gallery.length > 1 && (
-                <div className="p-2 sm:p-3 md:p-4 border-t border-foreground/10 bg-background/50 backdrop-blur-sm">
+                <div className="p-2 sm:p-3 md:p-4 border-t border-foreground/10 bg-light-background/50 dark:bg-dark-background/50 backdrop-blur-sm">
                   <div className="flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide pb-1">
                     {selectedProject.gallery.map((img: any, index: number) => (
                       <motion.button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
                         className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
-                          index === selectedImageIndex ? 'border-primary shadow-lg shadow-primary/20' : 'border-foreground/10 hover:border-foreground/30'
+                          index === selectedImageIndex ? 'border-light-primary dark:border-dark-primary shadow-lg shadow-light-primary/20 dark:shadow-dark-primary/20' : 'border-foreground/10 hover:border-foreground/30'
                         }`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -599,7 +599,7 @@ export function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 bg-light-background/90 dark:bg-dark-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
             onClick={closeDetails}
           >
             <motion.div
@@ -609,25 +609,25 @@ export function Projects() {
               className="relative max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] bg-gradient-to-br from-background via-background/95 to-background/90 rounded-xl sm:rounded-2xl overflow-hidden border border-foreground/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-background/50 backdrop-blur-sm">
+              <div className="flex items-center justify-between p-3 sm:p-4 md:p-5 border-b border-foreground/10 bg-light-background/50 dark:bg-dark-background/50 backdrop-blur-sm">
                 <div className="flex-1 min-w-0 pr-2">
-                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground truncate">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-light-foreground dark:text-dark-foreground truncate">
                     {detailsProject.title}
                   </h3>
-                  <div className="mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent">
+                  <div className="mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-light-accent dark:text-dark-accent">
                     {detailsProject.status && (
                       <span className={`px-1.5 py-0.5 rounded font-medium ${getStatusColor(detailsProject.status)}`}>
                         {getStatusText(detailsProject.status)}
                       </span>
                     )}
                     {detailsProject.category && (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5 text-accent">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-accent dark:text-dark-accent">
                         <FiTag className="w-3 h-3" />
                         <span>{detailsProject.category.replace('-', ' ')}</span>
                       </span>
                     )}
                     {(detailsProject.startDate || detailsProject.endDate) && (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-light-foreground/5 dark:bg-dark-foreground/5">
                         <FiCalendar className="w-3 h-3" />
                         <span>
                           {formatDate(detailsProject.startDate)}
@@ -637,7 +637,7 @@ export function Projects() {
                       </span>
                     )}
                     {detailsProject.client && (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-foreground/5">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-light-foreground/5 dark:bg-dark-foreground/5">
                         <FiUser className="w-3 h-3" />
                         <span>{detailsProject.client}</span>
                       </span>
@@ -646,7 +646,7 @@ export function Projects() {
                 </div>
                 <motion.button
                   onClick={closeDetails}
-                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-foreground/10 text-foreground hover:bg-foreground/20 transition-colors active:scale-90"
+                  className="flex-shrink-0 p-2 sm:p-2.5 rounded-lg bg-light-foreground/10 dark:bg-dark-foreground/10 text-light-foreground dark:text-dark-foreground hover:bg-light-foreground/20 dark:bg-dark-foreground/20 transition-colors active:scale-90"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Fechar detalhes"
@@ -658,7 +658,7 @@ export function Projects() {
               <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] gap-4 sm:gap-6 p-3 sm:p-4 md:p-5 overflow-y-auto max-h-[calc(92vh-4rem)] sm:max-h-[calc(88vh-4rem)]">
                 <div className="space-y-3 sm:space-y-4">
                   {detailsProject.image && (
-                    <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-xl overflow-hidden border border-foreground/10 bg-background/40">
+                    <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-xl overflow-hidden border border-foreground/10 bg-light-background/40 dark:bg-dark-background/40">
                       <Image
                         src={detailsProject.image}
                         alt={detailsProject.title}
@@ -669,14 +669,14 @@ export function Projects() {
                   )}
                   {detailsProject.technologies && detailsProject.technologies.length > 0 && (
                     <div>
-                      <p className="text-[11px] sm:text-xs font-semibold text-accent mb-1.5">
+                      <p className="text-[11px] sm:text-xs font-semibold text-light-accent dark:text-dark-accent mb-1.5">
                         Tecnologias
                       </p>
                       <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {detailsProject.technologies.map((tech: string) => (
                           <span
                             key={tech}
-                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20"
+                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-primary rounded border border-light-primary/20 dark:border-dark-primary/20"
                           >
                             {tech}
                           </span>
@@ -690,7 +690,7 @@ export function Projects() {
                         href={detailsProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-light-primary/15 dark:from-dark-primary/15 to-light-primary/5 dark:to-dark-primary/5 text-light-primary dark:text-dark-primary rounded-lg border border-light-primary/30 dark:border-dark-primary/30 hover:from-light-primary dark:from-dark-primary hover:to-light-primary dark:to-dark-primary hover:text-light-background dark:text-dark-background transition-all duration-300 active:scale-95"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -703,7 +703,7 @@ export function Projects() {
                         href={detailsProject.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
+                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-light-foreground/5 dark:bg-dark-foreground/5 text-light-foreground dark:text-dark-foreground rounded-lg border border-foreground/10 hover:bg-light-foreground/10 dark:bg-dark-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -716,7 +716,7 @@ export function Projects() {
 
                 <div className="border-t md:border-t-0 md:border-l border-foreground/10 pt-3 md:pt-0 md:pl-4">
                   {detailsProject.description && (
-                    <p className="text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-light-accent dark:text-dark-accent leading-relaxed mb-3 sm:mb-4">
                       {detailsProject.description}
                     </p>
                   )}

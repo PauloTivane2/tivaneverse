@@ -79,7 +79,7 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="corporate-section bg-background relative" ref={ref}>
+    <section id="services" className="corporate-section bg-light-background dark:bg-dark-background relative" ref={ref}>
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
@@ -98,10 +98,10 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 border border-primary/20 mb-4 sm:mb-6"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-light-primary/10 dark:from-dark-primary/10 via-light-primary/5 dark:via-dark-primary/5 to-light-secondary/10 dark:to-dark-secondary/10 border border-light-primary/20 dark:border-dark-primary/20 mb-4 sm:mb-6"
           >
-            <FiZap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
-            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">Serviços Premium</span>
+            <FiZap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-light-primary dark:text-dark-primary" />
+            <span className="text-xs sm:text-sm font-semibold text-light-primary dark:text-dark-primary uppercase tracking-wider">Serviços Premium</span>
           </motion.div>
           <h2 className="corporate-section-title bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
             Soluções que Elevam o Seu Negócio
@@ -116,7 +116,7 @@ export function Services() {
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8">
             <motion.button
               onClick={prevSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-light-primary/10 dark:bg-dark-primary/10 border border-light-primary/30 dark:border-dark-primary/30 flex items-center justify-center text-light-primary dark:text-dark-primary hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -132,7 +132,7 @@ export function Services() {
                   className={`carousel-dot ${
                     currentIndex === index 
                       ? 'carousel-dot-active' 
-                      : 'carousel-dot-inactive hover:bg-primary/50'
+                      : 'carousel-dot-inactive hover:bg-light-primary/50 dark:bg-dark-primary/50'
                   }`}
                 />
               ))}
@@ -140,7 +140,7 @@ export function Services() {
             
             <motion.button
               onClick={nextSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-light-primary/10 dark:bg-dark-primary/10 border border-light-primary/30 dark:border-dark-primary/30 flex items-center justify-center text-light-primary dark:text-dark-primary hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -168,22 +168,22 @@ export function Services() {
             Array.from({ length: 3 }).map((_, index) => (
               <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center">
                 <div className="animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-foreground/5 rounded-t-2xl"></div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded-t-2xl"></div>
                   <div className="flex items-start justify-between mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-foreground/10"></div>
-                    <div className="w-6 h-6 rounded-full bg-foreground/5"></div>
+                    <div className="w-14 h-14 rounded-xl bg-light-foreground/10 dark:bg-dark-foreground/10"></div>
+                    <div className="w-6 h-6 rounded-full bg-light-foreground/5 dark:bg-dark-foreground/5"></div>
                   </div>
                   <div className="space-y-3 mb-6">
-                    <div className="h-6 bg-foreground/10 rounded w-3/4"></div>
-                    <div className="h-4 bg-foreground/5 rounded w-1/2"></div>
+                    <div className="h-6 bg-light-foreground/10 dark:bg-dark-foreground/10 rounded w-3/4"></div>
+                    <div className="h-4 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded w-1/2"></div>
                   </div>
                   <div className="space-y-2 mb-4">
-                    <div className="h-3 bg-foreground/5 rounded"></div>
-                    <div className="h-3 bg-foreground/5 rounded w-5/6"></div>
+                    <div className="h-3 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded"></div>
+                    <div className="h-3 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded w-5/6"></div>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <div className="h-6 w-16 bg-foreground/5 rounded"></div>
-                    <div className="h-6 w-20 bg-foreground/5 rounded"></div>
+                    <div className="h-6 w-16 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded"></div>
+                    <div className="h-6 w-20 bg-light-foreground/5 dark:bg-dark-foreground/5 rounded"></div>
                   </div>
                 </div>
               </div>
@@ -196,10 +196,10 @@ export function Services() {
                 className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
-                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_rgba(207,255,4,0.1)]">
+                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-light-primary/30 dark:border-dark-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_rgba(207,255,4,0.1)]">
                   
                   {/* Top Accent Bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-light-secondary dark:from-dark-secondary via-light-primary dark:via-dark-primary to-light-secondary dark:to-dark-secondary' : 'bg-gradient-to-r from-light-primary/50 dark:from-dark-primary/50 to-light-primary/10 dark:to-dark-primary/10'}`}></div>
                   
                   {/* Featured Badge - Top Right */}
                   {service.featured && (
@@ -210,10 +210,10 @@ export function Services() {
                       transition={{ type: "spring", delay: 0.3 }}
                     >
                       <div className="relative">
-                        <div className="absolute inset-0 bg-secondary blur-lg opacity-40 rounded-full"></div>
-                        <div className="relative px-2 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-secondary to-secondary/90 rounded-full flex items-center gap-1 sm:gap-1.5 shadow-lg">
-                          <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-background fill-background" />
-                          <span className="text-[9px] sm:text-[10px] font-bold text-background uppercase tracking-wider">Top</span>
+                        <div className="absolute inset-0 bg-light-secondary dark:bg-dark-secondary blur-lg opacity-40 rounded-full"></div>
+                        <div className="relative px-2 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-light-secondary dark:from-dark-secondary to-light-secondary/90 dark:to-dark-secondary/90 rounded-full flex items-center gap-1 sm:gap-1.5 shadow-lg">
+                          <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-light-background dark:text-dark-background fill-background" />
+                          <span className="text-[9px] sm:text-[10px] font-bold text-light-background dark:text-dark-background uppercase tracking-wider">Top</span>
                         </div>
                       </div>
                     </motion.div>
@@ -221,36 +221,36 @@ export function Services() {
 
                   {/* Icon Container - Large and Premium */}
                   <motion.div 
-                    className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 sm:mb-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 z-10 overflow-hidden"
+                    className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 sm:mb-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-light-primary/20 dark:from-dark-primary/20 via-light-primary/10 dark:via-dark-primary/10 to-transparent border border-light-primary/20 dark:border-dark-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 z-10 overflow-hidden"
                     whileHover={{ rotate: [0, -5, 5, 0] }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary drop-shadow-[0_0_8px_rgba(207,255,4,0.4)]" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-light-primary/20 dark:from-dark-primary/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-light-primary dark:text-dark-primary drop-shadow-[0_0_8px_rgba(207,255,4,0.4)]" />
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-light-foreground dark:text-dark-foreground mb-2 sm:mb-3 group-hover:text-light-primary dark:text-dark-primary transition-colors duration-300 leading-tight">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm md:text-base text-accent/90 leading-relaxed mb-4 sm:mb-5">
+                  <p className="text-xs sm:text-sm md:text-base text-light-accent/90 dark:text-dark-accent/90 leading-relaxed mb-4 sm:mb-5">
                     {service.description}
                   </p>
 
                   {/* Meta Info - Delivery + Pricing */}
                   <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-5">
                     {service.deliveryTime && (
-                      <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-foreground/5 border border-foreground/10">
-                        <FiClock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent" />
-                        <span className="text-[10px] sm:text-xs font-medium text-accent">{service.deliveryTime}</span>
+                      <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-light-foreground/5 dark:bg-dark-foreground/5 border border-foreground/10">
+                        <FiClock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-light-accent dark:text-dark-accent" />
+                        <span className="text-[10px] sm:text-xs font-medium text-light-accent dark:text-dark-accent">{service.deliveryTime}</span>
                       </div>
                     )}
                     {service.pricing && service.pricing.startingPrice && (
-                      <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/30">
-                        <FiDollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-                        <span className="text-[10px] sm:text-xs font-bold text-primary">
+                      <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-r from-light-primary/15 dark:from-dark-primary/15 to-light-primary/5 dark:to-dark-primary/5 border border-light-primary/30 dark:border-dark-primary/30">
+                        <FiDollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-light-primary dark:text-dark-primary" />
+                        <span className="text-[10px] sm:text-xs font-bold text-light-primary dark:text-dark-primary">
                           {service.pricing.currency === 'USD' && '$'}
                           {service.pricing.currency === 'EUR' && '€'}
                           {service.pricing.currency === 'MZN' && 'MT'}
@@ -266,20 +266,20 @@ export function Services() {
                   {service.technologies && service.technologies.length > 0 && (
                     <div className="mb-4 sm:mb-5">
                       <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                        <FiCode className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-                        <span className="text-[10px] sm:text-[11px] font-bold text-primary uppercase tracking-widest">Stack</span>
+                        <FiCode className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-light-primary dark:text-dark-primary" />
+                        <span className="text-[10px] sm:text-[11px] font-bold text-light-primary dark:text-dark-primary uppercase tracking-widest">Stack</span>
                       </div>
                       <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {service.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-background transition-colors cursor-default"
+                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-primary rounded border sm:rounded-md border-light-primary/20 dark:border-dark-primary/20 hover:bg-light-primary dark:bg-dark-primary hover:text-light-background dark:text-dark-background transition-colors cursor-default"
                           >
                             {tech}
                           </span>
                         ))}
                         {service.technologies.length > 4 && (
-                          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold text-accent/60">
+                          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold text-light-accent/60 dark:text-dark-accent/60">
                             +{service.technologies.length - 4}
                           </span>
                         )}
@@ -291,14 +291,14 @@ export function Services() {
                   <div className="space-y-2 sm:space-y-2.5 mb-auto">
                     {service.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2 sm:gap-2.5">
-                        <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <FiCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-primary" />
+                        <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-light-primary/15 dark:bg-dark-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <FiCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-light-primary dark:text-dark-primary" />
                         </div>
-                        <span className="text-[11px] sm:text-xs md:text-sm text-foreground/80 leading-snug">{feature}</span>
+                        <span className="text-[11px] sm:text-xs md:text-sm text-light-foreground/80 dark:text-dark-foreground/80 leading-snug">{feature}</span>
                       </div>
                     ))}
                     {service.features.length > 3 && (
-                      <p className="text-[10px] sm:text-xs text-accent/60 pl-5.5 sm:pl-6.5">+{service.features.length - 3} mais</p>
+                      <p className="text-[10px] sm:text-xs text-light-accent/60 dark:text-dark-accent/60 pl-5.5 sm:pl-6.5">+{service.features.length - 3} mais</p>
                     )}
                   </div>
 
@@ -306,13 +306,13 @@ export function Services() {
                   <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-foreground/10">
                     {/* Pricing Note */}
                     {service.pricing?.note && (
-                      <p className="text-[10px] sm:text-xs text-accent/70 italic mb-3 sm:mb-4">{service.pricing.note}</p>
+                      <p className="text-[10px] sm:text-xs text-light-accent/70 dark:text-dark-accent/70 italic mb-3 sm:mb-4">{service.pricing.note}</p>
                     )}
 
                     {/* CTA Button */}
                     <motion.button
                       onClick={() => handleWhatsAppClick(service.title)}
-                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-semibold text-xs sm:text-sm md:text-base hover:from-primary hover:to-primary/90 hover:text-background transition-all duration-300 flex items-center justify-center gap-2 group/btn relative overflow-hidden"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-light-primary/10 dark:from-dark-primary/10 to-light-primary/5 dark:to-dark-primary/5 border border-light-primary/30 dark:border-dark-primary/30 text-light-primary dark:text-dark-primary font-semibold text-xs sm:text-sm md:text-base hover:from-light-primary dark:from-dark-primary hover:to-light-primary/90 dark:to-dark-primary/90 hover:text-light-background dark:text-dark-background transition-all duration-300 flex items-center justify-center gap-2 group/btn relative overflow-hidden"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.96 }}
                     >
@@ -323,7 +323,7 @@ export function Services() {
 
                   {/* Animated Glow Effect */}
                   <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 pointer-events-none">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-light-primary/10 dark:from-dark-primary/10 via-transparent to-light-secondary/10 dark:to-dark-secondary/10 blur-3xl"></div>
                   </div>
                 </div>
               </motion.div>
@@ -331,7 +331,7 @@ export function Services() {
           ) : (
             // Empty state
             <div className="flex-shrink-0 w-full text-center py-8">
-              <p className="text-accent">No services available</p>
+              <p className="text-light-accent dark:text-dark-accent">No services available</p>
             </div>
           )}
           </motion.div>

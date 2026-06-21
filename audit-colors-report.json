@@ -1,0 +1,2168 @@
+[
+  {
+    "normalized": "10px",
+    "count": 34,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 190,
+        "raw": "10px",
+        "context": "px-1.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold flex-shrink-0"
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 345,
+        "raw": "10px",
+        "context": "className=\"inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded\""
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 370,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] sm:text-xs font-medium text-accent\">Proficiência</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 386,
+        "raw": "10px",
+        "context": "<div className=\"flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent mb-2 sm:mb-3\">"
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 516,
+        "raw": "10px",
+        "context": "className=\"inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded\""
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 541,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] sm:text-xs font-medium text-accent\">Proficiência</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 557,
+        "raw": "10px",
+        "context": "<div className=\"flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent mb-2 sm:mb-3\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 293,
+        "raw": "10px",
+        "context": "className=\"text-[10px] xs:text-xs sm:text-sm ml-2 sm:ml-4 font-mono flex items-center gap-1 sm:gap-2\""
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 333,
+        "raw": "10px",
+        "context": "<span className=\"text-foreground/50 select-none w-4 sm:w-6 text-right opacity-60 group-hover:opacity-100 transition-opacity text-[10px] sm:text-xs\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 343,
+        "raw": "10px",
+        "context": "<span className=\"text-foreground/50 select-none w-4 sm:w-6 text-right text-[10px] sm:text-xs\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 365,
+        "raw": "10px",
+        "context": "<div className=\"mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[10px] sm:text-xs\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 229,
+        "raw": "10px",
+        "context": "className=\"px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/30 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-default\""
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 235,
+        "raw": "10px",
+        "context": "<span className=\"px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-foreground/5 text-foreground/70 rounded-md sm:rounded-lg border border-foreground/10\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 260,
+        "raw": "10px",
+        "context": "<span className=\"absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 274,
+        "raw": "10px",
+        "context": "<span className=\"absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 289,
+        "raw": "10px",
+        "context": "<span className=\"absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-medium text-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 280,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] font-medium text-primary\">{project.gallery.length}</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 308,
+        "raw": "10px",
+        "context": "<span className={`px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium ${getStatusColor(project.status)}`}>"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 313,
+        "raw": "10px",
+        "context": "<span className=\"px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 321,
+        "raw": "10px",
+        "context": "<div className=\"flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 333,
+        "raw": "10px",
+        "context": "<div className=\"flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-accent mt-0.5\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 353,
+        "raw": "10px",
+        "context": "className=\"px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20 hover:bg-primary/20 transition-colors\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 359,
+        "raw": "10px",
+        "context": "<span className=\"px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent rounded\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 510,
+        "raw": "10px",
+        "context": "<p className=\"text-[10px] sm:text-xs md:text-sm text-accent\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 617,
+        "raw": "10px",
+        "context": "<div className=\"mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-accent\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 679,
+        "raw": "10px",
+        "context": "className=\"px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20\""
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 216,
+        "raw": "10px",
+        "context": "<span className=\"text-[9px] sm:text-[10px] font-bold text-background uppercase tracking-wider\">Top</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 247,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] sm:text-xs font-medium text-accent\">{service.deliveryTime}</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 253,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] sm:text-xs font-bold text-primary\">"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 270,
+        "raw": "10px",
+        "context": "<span className=\"text-[10px] sm:text-[11px] font-bold text-primary uppercase tracking-widest\">Stack</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 276,
+        "raw": "10px",
+        "context": "className=\"px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-background transition-colors cursor-default\""
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 282,
+        "raw": "10px",
+        "context": "<span className=\"px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold text-accent/60\">"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 301,
+        "raw": "10px",
+        "context": "<p className=\"text-[10px] sm:text-xs text-accent/60 pl-5.5 sm:pl-6.5\">+{service.features.length - 3} mais</p>"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 309,
+        "raw": "10px",
+        "context": "<p className=\"text-[10px] sm:text-xs text-accent/70 italic mb-3 sm:mb-4\">{service.pricing.note}</p>"
+      }
+    ]
+  },
+  {
+    "normalized": "#000000",
+    "count": 27,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 190,
+        "raw": "#000000",
+        "context": "* - Background: #000000 (Preto Absoluto)"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 196,
+        "raw": "#000000",
+        "context": "--color-bg-deep: #000000;       /* Preto absoluto */"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 204,
+        "raw": "#000000",
+        "context": "--color-text-dark: #000000;     /* Preto */"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 14,
+        "raw": "#000000",
+        "context": "* Background: #000000 (Preto Absoluto)"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 22,
+        "raw": "#000000",
+        "context": "--color-background: #000000;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 49,
+        "raw": "#000000",
+        "context": "background-color: #000000;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 92,
+        "raw": "#000000",
+        "context": "background-color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 5,
+        "raw": "#000000",
+        "context": "* Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 53,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 66,
+        "raw": "#000000",
+        "context": "background: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 128,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 175,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 206,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 222,
+        "raw": "#000000",
+        "context": "background: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 270,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 361,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 374,
+        "raw": "#000000",
+        "context": "background: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 405,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 413,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 421,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 460,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 462,
+        "raw": "#000000",
+        "context": "<span style=\"color: #000000;\">Analisarei sua mensagem com atenção</span>"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 468,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 470,
+        "raw": "#000000",
+        "context": "<span style=\"color: #000000;\">Prepararei uma resposta personalizada</span>"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 475,
+        "raw": "#000000",
+        "context": "color: #000000;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 477,
+        "raw": "#000000",
+        "context": "<span style=\"color: #000000;\">Entrarei em contato em breve</span>"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 542,
+        "raw": "#000000",
+        "context": "background: #000000;"
+      }
+    ]
+  },
+  {
+    "normalized": "3px",
+    "count": 21,
+    "occurrences": [
+      {
+        "file": "src\\components\\ui\\accordion.tsx",
+        "line": 38,
+        "raw": "3px",
+        "context": "'focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180',"
+      },
+      {
+        "file": "src\\components\\ui\\badge.tsx",
+        "line": 8,
+        "raw": "3px",
+        "context": "'inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden',"
+      },
+      {
+        "file": "src\\components\\ui\\button.tsx",
+        "line": 8,
+        "raw": "3px",
+        "context": "\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\","
+      },
+      {
+        "file": "src\\components\\ui\\calendar.tsx",
+        "line": 73,
+        "raw": "3px",
+        "context": "'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md',"
+      },
+      {
+        "file": "src\\components\\ui\\calendar.tsx",
+        "line": 204,
+        "raw": "3px",
+        "context": "'data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70',"
+      },
+      {
+        "file": "src\\components\\ui\\checkbox.tsx",
+        "line": 17,
+        "raw": "3px",
+        "context": "'peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',"
+      },
+      {
+        "file": "src\\components\\ui\\input-group.tsx",
+        "line": 26,
+        "raw": "3px",
+        "context": "'has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px]',"
+      },
+      {
+        "file": "src\\components\\ui\\input-otp.tsx",
+        "line": 54,
+        "raw": "3px",
+        "context": "'data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]',"
+      },
+      {
+        "file": "src\\components\\ui\\input.tsx",
+        "line": 11,
+        "raw": "3px",
+        "context": "default: 'dark:bg-input/30 border-input bg-transparent focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',"
+      },
+      {
+        "file": "src\\components\\ui\\input.tsx",
+        "line": 12,
+        "raw": "3px",
+        "context": "corporate: 'bg-[var(--corp-bg-deepest)] border-[var(--corp-border-subtle)] text-[var(--corp-text-primary)] placeholder-[var(--corp-text-tertiary)] focus:border-[var(--corp-primary-base)] focus:ring-[3px] focus:ring-[var(--corp-primary-subtle)]',"
+      },
+      {
+        "file": "src\\components\\ui\\item.tsx",
+        "line": 34,
+        "raw": "3px",
+        "context": "'group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a&]:hover:bg-accent/50 [a&]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',"
+      },
+      {
+        "file": "src\\components\\ui\\navigation-menu.tsx",
+        "line": 62,
+        "raw": "3px",
+        "context": "'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1',"
+      },
+      {
+        "file": "src\\components\\ui\\navigation-menu.tsx",
+        "line": 130,
+        "raw": "3px",
+        "context": "\"data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4\","
+      },
+      {
+        "file": "src\\components\\ui\\radio-group.tsx",
+        "line": 30,
+        "raw": "3px",
+        "context": "'border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',"
+      },
+      {
+        "file": "src\\components\\ui\\scroll-area.tsx",
+        "line": 21,
+        "raw": "3px",
+        "context": "className=\"focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1\""
+      },
+      {
+        "file": "src\\components\\ui\\select.tsx",
+        "line": 40,
+        "raw": "3px",
+        "context": "\"border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\","
+      },
+      {
+        "file": "src\\components\\ui\\switch.tsx",
+        "line": 16,
+        "raw": "3px",
+        "context": "'peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',"
+      },
+      {
+        "file": "src\\components\\ui\\tabs.tsx",
+        "line": 45,
+        "raw": "3px",
+        "context": "\"data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\","
+      },
+      {
+        "file": "src\\components\\ui\\textarea.tsx",
+        "line": 11,
+        "raw": "3px",
+        "context": "default: 'border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 bg-transparent focus-visible:ring-[3px]',"
+      },
+      {
+        "file": "src\\components\\ui\\textarea.tsx",
+        "line": 12,
+        "raw": "3px",
+        "context": "corporate: 'bg-[var(--corp-bg-deepest)] border-[var(--corp-border-subtle)] text-[var(--corp-text-primary)] placeholder-[var(--corp-text-tertiary)] focus:border-[var(--corp-primary-base)] focus:ring-[3px] focus:ring-[var(--corp-primary-subtle)] resize-vertical',"
+      },
+      {
+        "file": "src\\components\\ui\\toggle.tsx",
+        "line": 10,
+        "raw": "3px",
+        "context": "\"inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap\","
+      }
+    ]
+  },
+  {
+    "normalized": "11px",
+    "count": 17,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 394,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mt-auto\">"
+      },
+      {
+        "file": "src\\components\\sections\\Expertise\\index.tsx",
+        "line": 565,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mt-auto\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 321,
+        "raw": "11px",
+        "context": "<div className=\"font-mono text-[11px] xs:text-xs sm:text-sm md:text-base min-h-[240px] sm:min-h-[280px] md:min-h-[320px] transition-all duration-300\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 344,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 372,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 385,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 396,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 407,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 ml-auto active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 562,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs md:text-sm text-accent text-center leading-relaxed\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 672,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs font-semibold text-accent mb-1.5\">"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 693,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 706,
+        "raw": "11px",
+        "context": "className=\"flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-foreground rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300 active:scale-95\""
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 719,
+        "raw": "11px",
+        "context": "<p className=\"text-[11px] sm:text-xs md:text-sm text-accent leading-relaxed mb-3 sm:mb-4\">"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 270,
+        "raw": "11px",
+        "context": "<span className=\"text-[10px] sm:text-[11px] font-bold text-primary uppercase tracking-widest\">Stack</span>"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 276,
+        "raw": "11px",
+        "context": "className=\"px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-background transition-colors cursor-default\""
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 282,
+        "raw": "11px",
+        "context": "<span className=\"px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold text-accent/60\">"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 297,
+        "raw": "11px",
+        "context": "<span className=\"text-[11px] sm:text-xs md:text-sm text-foreground/80 leading-snug\">{feature}</span>"
+      }
+    ]
+  },
+  {
+    "normalized": "#cfff04",
+    "count": 14,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 187,
+        "raw": "#CFFF04",
+        "context": "* - Primary: #CFFF04 (Verde Limão)"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 209,
+        "raw": "#CFFF04",
+        "context": "--color-primary: #CFFF04;       /* Verde Limão */"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 213,
+        "raw": "#CFFF04",
+        "context": "--color-primary-500: #CFFF04;"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 425,
+        "raw": "#CFFF04",
+        "context": "background: linear-gradient(135deg, #B4FF00 0%, #CFFF04 100%);"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 431,
+        "raw": "#CFFF04",
+        "context": "background: linear-gradient(135deg, #CFFF04 0%, #B4FF00 100%);"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 11,
+        "raw": "#CFFF04",
+        "context": "* Primary: #CFFF04"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 19,
+        "raw": "#CFFF04",
+        "context": "--color-primary: #CFFF04;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 465,
+        "raw": "#CFFF04",
+        "context": "background-color: #CFFF04;"
+      },
+      {
+        "file": "app\\layout.tsx",
+        "line": 195,
+        "raw": "#CFFF04",
+        "context": "{ media: \"(prefers-color-scheme: light)\", color: \"#CFFF04\" },"
+      },
+      {
+        "file": "app\\layout.tsx",
+        "line": 196,
+        "raw": "#CFFF04",
+        "context": "{ media: \"(prefers-color-scheme: dark)\", color: \"#CFFF04\" }"
+      },
+      {
+        "file": "app\\metadata.ts",
+        "line": 167,
+        "raw": "#CFFF04",
+        "context": "{ media: '(prefers-color-scheme: light)', color: '#CFFF04' },"
+      },
+      {
+        "file": "app\\metadata.ts",
+        "line": 168,
+        "raw": "#CFFF04",
+        "context": "{ media: '(prefers-color-scheme: dark)', color: '#CFFF04' }"
+      },
+      {
+        "file": "src\\components\\effects\\MatrixRain\\MatrixRainStatic.tsx",
+        "line": 72,
+        "raw": "#CFFF04",
+        "context": "ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 5,
+        "raw": "#CFFF04",
+        "context": "* Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7"
+      }
+    ]
+  },
+  {
+    "normalized": "#cae7f7",
+    "count": 14,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 189,
+        "raw": "#CAE7F7",
+        "context": "* - Accent: #CAE7F7 (Azul Claro)"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 223,
+        "raw": "#CAE7F7",
+        "context": "--color-accent: #CAE7F7;        /* Azul Claro */"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 226,
+        "raw": "#CAE7F7",
+        "context": "--color-accent-500: #CAE7F7;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 13,
+        "raw": "#CAE7F7",
+        "context": "* Accent: #CAE7F7"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 21,
+        "raw": "#CAE7F7",
+        "context": "--color-accent: #CAE7F7;"
+      },
+      {
+        "file": "src\\components\\effects\\MatrixRain\\MatrixRainStatic.tsx",
+        "line": 72,
+        "raw": "#CAE7F7",
+        "context": "ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';"
+      },
+      {
+        "file": "src\\hooks\\useExpertise.ts",
+        "line": 143,
+        "raw": "#CAE7F7",
+        "context": "color: item.color || '#CAE7F7',"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 5,
+        "raw": "#CAE7F7",
+        "context": "* Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 17,
+        "raw": "#CAE7F7",
+        "context": "* Design profissional minimalista com cores Accent (#CAE7F7)"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 52,
+        "raw": "#CAE7F7",
+        "context": "background: #CAE7F7;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 154,
+        "raw": "#CAE7F7",
+        "context": "border: 1px solid #CAE7F7;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 212,
+        "raw": "#CAE7F7",
+        "context": "border-left: 3px solid #CAE7F7;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 508,
+        "raw": "#CAE7F7",
+        "context": "border: 2px solid #CAE7F7;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 525,
+        "raw": "#CAE7F7",
+        "context": "border: 2px solid #CAE7F7;"
+      }
+    ]
+  },
+  {
+    "normalized": "#ffffff",
+    "count": 13,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 191,
+        "raw": "#FFFFFF",
+        "context": "* - Foreground: #FFFFFF (Branco Absoluto)"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 201,
+        "raw": "#FFFFFF",
+        "context": "--color-text-light: #FFFFFF;    /* Branco absoluto */"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 15,
+        "raw": "#FFFFFF",
+        "context": "* Foreground: #FFFFFF (Branco Absoluto)"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 23,
+        "raw": "#FFFFFF",
+        "context": "--color-foreground: #FFFFFF;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 50,
+        "raw": "#FFFFFF",
+        "context": "color: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 5,
+        "raw": "#FFFFFF",
+        "context": "* Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 58,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 209,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 360,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 366,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 507,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 524,
+        "raw": "#FFFFFF",
+        "context": "background: #FFFFFF;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 558,
+        "raw": "#FFFFFF",
+        "context": "color: #FFFFFF;"
+      }
+    ]
+  },
+  {
+    "normalized": "#e0e0e0",
+    "count": 13,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 202,
+        "raw": "#E0E0E0",
+        "context": "--color-text-soft: #E0E0E0;     /* Branco suave */"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 62,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 94,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 102,
+        "raw": "#E0E0E0",
+        "context": "border-bottom: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 185,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 192,
+        "raw": "#E0E0E0",
+        "context": "border-bottom: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 213,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 225,
+        "raw": "#E0E0E0",
+        "context": "border-top: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 264,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 370,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 430,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 438,
+        "raw": "#E0E0E0",
+        "context": "border-bottom: 1px solid #E0E0E0;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 488,
+        "raw": "#E0E0E0",
+        "context": "border: 1px solid #E0E0E0;"
+      }
+    ]
+  },
+  {
+    "normalized": "#b4ff00",
+    "count": 7,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 425,
+        "raw": "#B4FF00",
+        "context": "background: linear-gradient(135deg, #B4FF00 0%, #CFFF04 100%);"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 431,
+        "raw": "#B4FF00",
+        "context": "background: linear-gradient(135deg, #CFFF04 0%, #B4FF00 100%);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 5,
+        "raw": "#B4FF00",
+        "context": "* Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 74,
+        "raw": "#B4FF00",
+        "context": "color: #B4FF00;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 233,
+        "raw": "#B4FF00",
+        "context": "color: #B4FF00;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 382,
+        "raw": "#B4FF00",
+        "context": "color: #B4FF00;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 551,
+        "raw": "#B4FF00",
+        "context": "color: #B4FF00;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.08)",
+    "count": 6,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 133,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "0 2px 4px rgba(0, 0, 0, 0.08),"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 144,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "0 12px 24px rgba(0, 0, 0, 0.08);"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 153,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "--shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.08);"
+      },
+      {
+        "file": "src\\components\\effects\\MatrixRain\\MatrixRainStatic.tsx",
+        "line": 62,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 61,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 369,
+        "raw": "rgba(0, 0, 0, 0.08)",
+        "context": "box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
+      }
+    ]
+  },
+  {
+    "normalized": "#0066cc",
+    "count": 6,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 148,
+        "raw": "#0066CC",
+        "context": "color: #0066CC;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 274,
+        "raw": "#0066CC",
+        "context": "Responda clicando em <strong style=\"color: #0066CC;\">\"Responder\"</strong> para entrar em contato direto"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 423,
+        "raw": "#0066CC",
+        "context": "Sua mensagem é importante para mim e <strong style=\"color: #0066CC;\">responderei o mais breve possível</strong>, geralmente dentro de <span style=\"color: #0066CC; font-weight: 600;\">24 horas úteis</span>."
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 423,
+        "raw": "#0066CC",
+        "context": "Sua mensagem é importante para mim e <strong style=\"color: #0066CC;\">responderei o mais breve possível</strong>, geralmente dentro de <span style=\"color: #0066CC; font-weight: 600;\">24 horas úteis</span>."
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 510,
+        "raw": "#0066CC",
+        "context": "color: #0066CC;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 527,
+        "raw": "#0066CC",
+        "context": "color: #0066CC;"
+      }
+    ]
+  },
+  {
+    "normalized": "#fb4d00",
+    "count": 5,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 188,
+        "raw": "#FB4D00",
+        "context": "* - Secondary: #FB4D00 (Laranja)"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 216,
+        "raw": "#FB4D00",
+        "context": "--color-secondary: #FB4D00;     /* Laranja */"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 220,
+        "raw": "#FB4D00",
+        "context": "--color-secondary-500: #FB4D00;"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 12,
+        "raw": "#FB4D00",
+        "context": "* Secondary: #FB4D00"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 20,
+        "raw": "#FB4D00",
+        "context": "--color-secondary: #FB4D00;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.5)",
+    "count": 5,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 278,
+        "raw": "rgba(0,0,0,0.5)",
+        "context": "<div className=\"relative bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_80px_-15px_rgba(0,0,0,0.6)] hover:border-foreground/20\">"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 118,
+        "raw": "rgba(0, 0, 0, 0.5)",
+        "context": "color: rgba(0, 0, 0, 0.5);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 138,
+        "raw": "rgba(0, 0, 0, 0.5)",
+        "context": "color: rgba(0, 0, 0, 0.5);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 165,
+        "raw": "rgba(0, 0, 0, 0.5)",
+        "context": "color: rgba(0, 0, 0, 0.5);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 582,
+        "raw": "rgba(0, 0, 0, 0.5)",
+        "context": "color: rgba(0, 0, 0, 0.5);"
+      }
+    ]
+  },
+  {
+    "normalized": "#f8f9fa",
+    "count": 5,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 93,
+        "raw": "#F8F9FA",
+        "context": "background: #F8F9FA;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 184,
+        "raw": "#F8F9FA",
+        "context": "background: #F8F9FA;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 263,
+        "raw": "#F8F9FA",
+        "context": "background: #F8F9FA;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 429,
+        "raw": "#F8F9FA",
+        "context": "background: #F8F9FA;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 486,
+        "raw": "#F8F9FA",
+        "context": "background: #F8F9FA;"
+      }
+    ]
+  },
+  {
+    "normalized": "#333333",
+    "count": 4,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 108,
+        "raw": "#333333",
+        "context": "color: #333333;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 198,
+        "raw": "#333333",
+        "context": "color: #333333;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 444,
+        "raw": "#333333",
+        "context": "color: #333333;"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 454,
+        "raw": "#333333",
+        "context": "color: #333333;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.1)",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 210,
+        "raw": "rgba(207, 255, 4, 0.1)",
+        "context": "--color-primary-100: rgba(207, 255, 4, 0.1);"
+      },
+      {
+        "file": "src\\components\\sections\\Projects\\index.tsx",
+        "line": 261,
+        "raw": "rgba(207,255,4,0.1)",
+        "context": "<div className=\"corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(207,255,4,0.1)] active:scale-[0.99] sm:active:scale-100\">"
+      },
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 199,
+        "raw": "rgba(207,255,4,0.1)",
+        "context": "<div className=\"relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_rgba(207,255,4,0.1)]\">"
+      }
+    ]
+  },
+  {
+    "normalized": "transparent",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 459,
+        "raw": "transparent",
+        "context": "background: transparent;"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 461,
+        "raw": "transparent",
+        "context": "border-color: transparent;"
+      },
+      {
+        "file": "src\\styles\\corporate-components.css",
+        "line": 108,
+        "raw": "transparent",
+        "context": "background: transparent;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.1)",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 38,
+        "raw": "rgba(255, 255, 255, 0.1)",
+        "context": "border-color: rgba(255, 255, 255, 0.1);"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 166,
+        "raw": "rgba(255, 255, 255, 0.1)",
+        "context": "border: 1px solid rgba(255, 255, 255, 0.1);"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 174,
+        "raw": "rgba(255, 255, 255, 0.1)",
+        "context": "border-top: 1px solid rgba(255, 255, 255, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.2)",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 96,
+        "raw": "rgba(255, 255, 255, 0.2)",
+        "context": "background-color: rgba(255, 255, 255, 0.2);"
+      },
+      {
+        "file": "src\\components\\effects\\EffectsManager\\EffectsManager.tsx",
+        "line": 133,
+        "raw": "rgba(255,255,255,0.2)",
+        "context": "background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 311,
+        "raw": "rgba(255,255,255,0.2)",
+        "context": "backgroundColor: index === currentLanguage ? snippet.color : 'rgba(255,255,255,0.2)',"
+      }
+    ]
+  },
+  {
+    "normalized": "#abb2bf",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 67,
+        "raw": "#ABB2BF",
+        "context": "<span key={`text-${idx}`} className=\"text-[#ABB2BF]\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 84,
+        "raw": "#ABB2BF",
+        "context": "<span key=\"final\" className=\"text-[#ABB2BF]\">"
+      },
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 90,
+        "raw": "#ABB2BF",
+        "context": "return <span className=\"leading-relaxed\">{finalParts.length > 0 ? finalParts : <span className=\"text-[#ABB2BF]\">{code}</span>}</span>"
+      }
+    ]
+  },
+  {
+    "normalized": "#ccc",
+    "count": 3,
+    "occurrences": [
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "line": 58,
+        "raw": "#ccc",
+        "context": "\"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden\","
+      },
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "line": 58,
+        "raw": "#ccc",
+        "context": "\"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden\","
+      },
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "line": 58,
+        "raw": "#ccc",
+        "context": "\"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden\","
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.06)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 128,
+        "raw": "rgba(0, 0, 0, 0.06)",
+        "context": "0 1px 2px rgba(0, 0, 0, 0.06),"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 139,
+        "raw": "rgba(0, 0, 0, 0.06)",
+        "context": "0 6px 12px rgba(0, 0, 0, 0.06);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.05)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 134,
+        "raw": "rgba(0, 0, 0, 0.05)",
+        "context": "0 3px 6px rgba(0, 0, 0, 0.05);"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 154,
+        "raw": "rgba(0, 0, 0, 0.05)",
+        "context": "--shadow-outline: 0 0 0 3px rgba(0, 0, 0, 0.05);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.10)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 138,
+        "raw": "rgba(0, 0, 0, 0.10)",
+        "context": "0 4px 8px rgba(0, 0, 0, 0.10),"
+      },
+      {
+        "file": "app\\corporate-design.css",
+        "line": 149,
+        "raw": "rgba(0, 0, 0, 0.10)",
+        "context": "0 24px 48px rgba(0, 0, 0, 0.10);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.2)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 211,
+        "raw": "rgba(207, 255, 4, 0.2)",
+        "context": "--color-primary-200: rgba(207, 255, 4, 0.2);"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 106,
+        "raw": "rgba(207, 255, 4, 0.2)",
+        "context": "background-color: rgba(207, 255, 4, 0.2);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(251,77,0,0.2)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 218,
+        "raw": "rgba(251, 77, 0, 0.2)",
+        "context": "--color-secondary-200: rgba(251, 77, 0, 0.2);"
+      },
+      {
+        "file": "app\\globals.css",
+        "line": 161,
+        "raw": "rgba(251, 77, 0, 0.2)",
+        "context": "box-shadow: 0 4px 16px rgba(251, 77, 0, 0.2);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.1)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\components\\effects\\EffectsManager\\EffectsManager.tsx",
+        "line": 79,
+        "raw": "rgba(0,0,0,0.1)",
+        "context": "box-shadow: 0 20px 40px rgba(0,0,0,0.1);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 545,
+        "raw": "rgba(0, 0, 0, 0.1)",
+        "context": "border-top: 1px solid rgba(0, 0, 0, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,191,166,0.3)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\components\\effects\\EffectsManager\\EffectsManager.tsx",
+        "line": 91,
+        "raw": "rgba(0, 191, 166, 0.3)",
+        "context": "box-shadow: 0 0 30px rgba(0, 191, 166, 0.3);"
+      },
+      {
+        "file": "src\\components\\ui\\button.tsx",
+        "line": 23,
+        "raw": "rgba(0,191,166,0.3)",
+        "context": "'corporate-primary': 'bg-[var(--corp-primary-base)] text-[var(--corp-text-inverse)] border-2 border-[var(--corp-primary-base)] hover:bg-[var(--corp-primary-light)] hover:border-[var(--corp-primary-light)] hover:shadow-[0_10px_30px_rgba(0,191,166,0.3)]',"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.6)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 278,
+        "raw": "rgba(0,0,0,0.6)",
+        "context": "<div className=\"relative bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_80px_-15px_rgba(0,0,0,0.6)] hover:border-foreground/20\">"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 493,
+        "raw": "rgba(0, 0, 0, 0.6)",
+        "context": "color: rgba(0, 0, 0, 0.6);"
+      }
+    ]
+  },
+  {
+    "normalized": "#fff",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "line": 58,
+        "raw": "#fff",
+        "context": "\"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden\","
+      },
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "line": 58,
+        "raw": "#fff",
+        "context": "\"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden\","
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.65)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 82,
+        "raw": "rgba(0, 0, 0, 0.65)",
+        "context": "color: rgba(0, 0, 0, 0.65);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 390,
+        "raw": "rgba(0, 0, 0, 0.65)",
+        "context": "color: rgba(0, 0, 0, 0.65);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.7)",
+    "count": 2,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 247,
+        "raw": "rgba(255, 255, 255, 0.7)",
+        "context": "color: rgba(255, 255, 255, 0.7);"
+      },
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 566,
+        "raw": "rgba(255, 255, 255, 0.7)",
+        "context": "color: rgba(255, 255, 255, 0.7);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.04)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 129,
+        "raw": "rgba(0, 0, 0, 0.04)",
+        "context": "0 1px 3px rgba(0, 0, 0, 0.04);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.12)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 143,
+        "raw": "rgba(0, 0, 0, 0.12)",
+        "context": "0 8px 16px rgba(0, 0, 0, 0.12),"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.16)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 148,
+        "raw": "rgba(0, 0, 0, 0.16)",
+        "context": "0 16px 32px rgba(0, 0, 0, 0.16),"
+      }
+    ]
+  },
+  {
+    "normalized": "#0a0a0a",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 197,
+        "raw": "#0A0A0A",
+        "context": "--color-bg-night: #0A0A0A;      /* Quase preto */"
+      }
+    ]
+  },
+  {
+    "normalized": "#141414",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 198,
+        "raw": "#141414",
+        "context": "--color-bg-card: #141414;       /* Cinza muito escuro */"
+      }
+    ]
+  },
+  {
+    "normalized": "#1a1a1a",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 199,
+        "raw": "#1A1A1A",
+        "context": "--color-bg-elevated: #1A1A1A;   /* Cinza escuro */"
+      }
+    ]
+  },
+  {
+    "normalized": "#a0a0a0",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 203,
+        "raw": "#A0A0A0",
+        "context": "--color-text-dim: #A0A0A0;      /* Cinza claro */"
+      }
+    ]
+  },
+  {
+    "normalized": "#2a2a2a",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 206,
+        "raw": "#2A2A2A",
+        "context": "--color-border-dark: #2A2A2A;   /* Borda sutil */"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.8)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 212,
+        "raw": "rgba(207, 255, 4, 0.8)",
+        "context": "--color-primary-400: rgba(207, 255, 4, 0.8);"
+      }
+    ]
+  },
+  {
+    "normalized": "#b8e600",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 214,
+        "raw": "#B8E600",
+        "context": "--color-primary-600: #B8E600;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(251,77,0,0.1)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 217,
+        "raw": "rgba(251, 77, 0, 0.1)",
+        "context": "--color-secondary-100: rgba(251, 77, 0, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(251,77,0,0.8)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 219,
+        "raw": "rgba(251, 77, 0, 0.8)",
+        "context": "--color-secondary-400: rgba(251, 77, 0, 0.8);"
+      }
+    ]
+  },
+  {
+    "normalized": "#c23d00",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 221,
+        "raw": "#C23D00",
+        "context": "--color-secondary-600: #C23D00;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(202,231,247,0.1)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 224,
+        "raw": "rgba(202, 231, 247, 0.1)",
+        "context": "--color-accent-100: rgba(202, 231, 247, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(202,231,247,0.2)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 225,
+        "raw": "rgba(202, 231, 247, 0.2)",
+        "context": "--color-accent-200: rgba(202, 231, 247, 0.2);"
+      }
+    ]
+  },
+  {
+    "normalized": "#f59e0b",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 262,
+        "raw": "#F59E0B",
+        "context": "--corp-warning: #F59E0B;"
+      }
+    ]
+  },
+  {
+    "normalized": "#ef4444",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 263,
+        "raw": "#EF4444",
+        "context": "--corp-error: #EF4444;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(245,158,11,0.1)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 268,
+        "raw": "rgba(245, 158, 11, 0.1)",
+        "context": "--corp-bg-warning: rgba(245, 158, 11, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(239,68,68,0.1)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 269,
+        "raw": "rgba(239, 68, 68, 0.1)",
+        "context": "--corp-bg-error: rgba(239, 68, 68, 0.1);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(180,255,0,0.3)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 433,
+        "raw": "rgba(180, 255, 0, 0.3)",
+        "context": "box-shadow: 0 10px 30px rgba(180, 255, 0, 0.3);"
+      }
+    ]
+  },
+  {
+    "normalized": "#40464d",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 760,
+        "raw": "#40464D",
+        "context": "--corp-border-subtle: #40464D;"
+      }
+    ]
+  },
+  {
+    "normalized": "#9ba1a7",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 761,
+        "raw": "#9BA1A7",
+        "context": "--corp-text-tertiary: #9BA1A7;"
+      }
+    ]
+  },
+  {
+    "normalized": "black",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\corporate-design.css",
+        "line": 792,
+        "raw": "black",
+        "context": "color: black;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.5)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 39,
+        "raw": "rgba(255, 255, 255, 0.5)",
+        "context": "outline-color: rgba(255, 255, 255, 0.5);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.3)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 101,
+        "raw": "rgba(255, 255, 255, 0.3)",
+        "context": "background-color: rgba(255, 255, 255, 0.3);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.15)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 151,
+        "raw": "rgba(207, 255, 4, 0.15)",
+        "context": "box-shadow: 0 2px 8px rgba(207, 255, 4, 0.15);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,255,153,0.8)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 408,
+        "raw": "rgba(0, 255, 153, 0.8)",
+        "context": "box-shadow: 0 0 5px rgba(0, 255, 153, 0.8);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(0,0,0,0.2)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 420,
+        "raw": "rgba(0, 0, 0, 0.2)",
+        "context": "box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.3)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "app\\globals.css",
+        "line": 460,
+        "raw": "rgba(207, 255, 4, 0.3)",
+        "context": "background-color: rgba(207, 255, 4, 0.3);"
+      }
+    ]
+  },
+  {
+    "normalized": "#f7df1e",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 38,
+        "raw": "#F7DF1E",
+        "context": "color: \"#F7DF1E\","
+      }
+    ]
+  },
+  {
+    "normalized": "#3776ab",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 56,
+        "raw": "#3776AB",
+        "context": "color: \"#3776AB\","
+      }
+    ]
+  },
+  {
+    "normalized": "#008080",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 78,
+        "raw": "#008080",
+        "context": "color: \"#008080\","
+      }
+    ]
+  },
+  {
+    "normalized": "#0175c2",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 112,
+        "raw": "#0175C2",
+        "context": "color: \"#0175C2\","
+      }
+    ]
+  },
+  {
+    "normalized": "#007396",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 161,
+        "raw": "#007396",
+        "context": "color: \"#007396\","
+      }
+    ]
+  },
+  {
+    "normalized": "#00758f",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 188,
+        "raw": "#00758F",
+        "context": "color: \"#00758F\","
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(34,197,94,0.6)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\MultilingualCodeDisplay.tsx",
+        "line": 370,
+        "raw": "rgba(34,197,94,0.6)",
+        "context": "<span className=\"w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]\"></span>"
+      }
+    ]
+  },
+  {
+    "normalized": "#6a9955",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 18,
+        "raw": "#6A9955",
+        "context": "return <span className=\"text-[#6A9955] italic opacity-80\">{code}</span>"
+      }
+    ]
+  },
+  {
+    "normalized": "#98c379",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 24,
+        "raw": "#98C379",
+        "context": "{ regex: /([\"'`])((?:\\\\.|(?!\\1).)*?)\\1/g, className: 'text-[#98C379] font-normal' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#d19a66",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 26,
+        "raw": "#D19A66",
+        "context": "{ regex: /\\b(\\d+\\.?\\d*|0x[0-9A-Fa-f]+)\\b/g, className: 'text-[#D19A66]' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#c678dd",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 28,
+        "raw": "#C678DD",
+        "context": "{ regex: /\\b(const|let|var|function|class|def|struct|impl|public|private|package|import|using|return|if|else|while|for|async|await|new|type|interface|enum|extends|implements)\\b/g, className: 'text-[#C678DD] font-bold' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#e06c75",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 30,
+        "raw": "#E06C75",
+        "context": "{ regex: /\\b(true|false|null|nil|undefined|None|self|this|MAX|INFINITY)\\b/g, className: 'text-[#E06C75] font-semibold' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#61afef",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 32,
+        "raw": "#61AFEF",
+        "context": "{ regex: /\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()/g, className: 'text-[#61AFEF] font-medium' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#e5c07b",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 34,
+        "raw": "#E5C07B",
+        "context": "{ regex: /\\b([A-Z][a-zA-Z0-9_]*)\\b/g, className: 'text-[#E5C07B]' },"
+      }
+    ]
+  },
+  {
+    "normalized": "#56b6c2",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\CodeDisplay\\SyntaxHighlight.tsx",
+        "line": 36,
+        "raw": "#56B6C2",
+        "context": "{ regex: /\\.([a-zA-Z_][a-zA-Z0-9_]*)/g, className: 'text-[#56B6C2]' },"
+      }
+    ]
+  },
+  {
+    "normalized": "0_0_8px",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Profile\\index.tsx",
+        "line": 206,
+        "raw": "0_0_8px",
+        "context": "<div className=\"w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0\"></div>"
+      }
+    ]
+  },
+  {
+    "normalized": "9px",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 216,
+        "raw": "9px",
+        "context": "<span className=\"text-[9px] sm:text-[10px] font-bold text-background uppercase tracking-wider\">Top</span>"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(207,255,4,0.4)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\components\\sections\\Services\\index.tsx",
+        "line": 229,
+        "raw": "rgba(207,255,4,0.4)",
+        "context": "<service.icon className=\"relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary drop-shadow-[0_0_8px_rgba(207,255,4,0.4)]\" />"
+      }
+    ]
+  },
+  {
+    "normalized": "#f0f7ff",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 152,
+        "raw": "#F0F7FF",
+        "context": "background: #F0F7FF;"
+      }
+    ]
+  },
+  {
+    "normalized": "rgba(255,255,255,0.8)",
+    "count": 1,
+    "occurrences": [
+      {
+        "file": "src\\lib\\mail\\templates.ts",
+        "line": 240,
+        "raw": "rgba(255, 255, 255, 0.8)",
+        "context": "color: rgba(255, 255, 255, 0.8);"
+      }
+    ]
+  }
+]

@@ -1,0 +1,465 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  * {
+    @apply border-light-foreground/10 dark:border-dark-foreground/10 outline-light-foreground/50 dark:outline-dark-foreground/50;
+  }
+  
+  html {
+    font-size: 16px;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  body {
+    @apply bg-light-background text-light-foreground dark:bg-dark-background dark:text-dark-foreground;
+    font-family: var(--font-space-mono), 'Space Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Títulos responsivos */
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: 1.4;
+  }
+  
+  h4 {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    line-height: 1.7;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-background dark:bg-dark-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-light-foreground/10 dark:bg-dark-foreground/10;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection */
+::selection {
+  @apply bg-light-accent/20 dark:bg-dark-accent/20 text-light-primary dark:text-dark-primary;
+}
+
+/* =====================================================
+   ESTILOS CORPORATIVOS ADAPTADOS
+   ===================================================== */
+
+/**
+ * Substituição de efeitos modernos por alternativas corporativas.
+ * Foco em feedback sutil e profissional, sem brilhos ou flutuação.
+ */
+
+/* Texto com ênfase sutil (substitui matrix-glow) */
+.corporate-text-emphasis {
+  @apply text-light-primary dark:text-dark-primary;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Indicador visual discreto (substitui pulse-glow) */
+.corporate-indicator {
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.corporate-indicator::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  @apply bg-light-primary dark:bg-dark-primary;
+  border-radius: 2px;
+}
+
+/* Hover profissional para elementos interativos */
+.corporate-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.corporate-hover:hover {
+  @apply border-light-primary dark:border-dark-primary;
+  box-shadow: 0 2px 8px rgba(207, 255, 4, 0.15);
+}
+
+/* Hover para cards - elevação sutil */
+.corporate-card-interactive {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.corporate-card-interactive:hover {
+  @apply border-light-secondary dark:border-dark-secondary;
+  box-shadow: 0 4px 16px rgba(251, 77, 0, 0.2);
+}
+
+/* Bordas técnicas e estruturais */
+.corporate-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.corporate-border-accent {
+  @apply border-2 border-light-primary dark:border-dark-primary;
+}
+
+.corporate-border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animação funcional mínima para feedback de estado */
+@keyframes corporateFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.corporate-fade-in {
+  animation: corporateFadeIn 0.3s ease-out;
+}
+
+/* Indicador de foco para acessibilidade */
+@keyframes corporatePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.corporate-pulse-subtle {
+  animation: corporatePulse 2s linear infinite;
+}
+
+/* Space Mono Classes - Google Fonts */
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Fonte Space Mono para uso geral */
+.font-space-mono {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+}
+
+/* Tablet Optimizations (Medium screens) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --font-size-base: 15px;
+    --font-size-sm: 13px;
+  }
+  
+  html {
+    font-size: 15px;
+  }
+  
+  body {
+    font-size: 0.95rem;
+  }
+  
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+  }
+  
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+  }
+}
+
+/* Mobile Optimizations (Small screens) */
+@media (max-width: 768px) {
+  :root {
+    /* Tamanhos de fonte ajustados para mobile */
+    --font-size-base: 14px;
+    --font-size-sm: 13px;
+    --font-size-xs: 11px;
+  }
+  
+  html {
+    font-size: 14px;
+    overflow-x: hidden;
+  }
+  
+  body {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Prevenir overflow horizontal em todos os elementos */
+  * {
+    max-width: 100%;
+  }
+  
+  /* Containers devem respeitar a largura da tela */
+  .container, section, main, div {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Títulos mais compactos em mobile */
+  h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: clamp(1.35rem, 5vw, 2rem);
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+    line-height: 1.4;
+  }
+  
+  h4 {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: clamp(0.8rem, 2.5vw, 0.925rem);
+    line-height: 1.65;
+  }
+  
+  /* Reduzir animações em dispositivos móveis */
+  .matrix-glow {
+    animation-duration: 3s;
+  }
+  
+  .pulse-glow {
+    animation-duration: 3s;
+  }
+  
+  /* Melhor performance de scroll */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Otimizar hover states para touch */
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+  }
+  
+  /* Touch-friendly buttons */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Extra Small Mobile (< 400px) */
+@media (max-width: 400px) {
+  :root {
+    --font-size-base: 13px;
+    --font-size-sm: 12px;
+    --font-size-xs: 10px;
+  }
+  
+  html {
+    font-size: 13px;
+  }
+  
+  body {
+    font-size: 0.85rem;
+  }
+  
+  h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+  
+  h2 {
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.1rem, 4.5vw, 1.35rem);
+  }
+  
+  h4 {
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  }
+  
+  p {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .matrix-glow,
+  .pulse-glow {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tech-glow {
+    box-shadow: 0 0 5px rgba(0, 255, 153, 0.8);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Scrollbar utilities */
+@layer utilities {
+  /* Esconder scrollbar mas manter funcionalidade */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Smooth scroll para mobile */
+  .scrollbar-hide {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Snap scroll para categorias em mobile */
+  .scroll-snap-x {
+    scroll-snap-type: x proximity;
+  }
+  
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+  
+  /* Indicadores de paginação dos carrosséis - tamanho reduzido */
+  .carousel-dot {
+    height: 1px !important;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-dot-inactive {
+    width: 1px !important;
+    background-color: rgba(207, 255, 4, 0.3);
+  }
+  
+  .carousel-dot-active {
+    width: 6px !important;
+    @apply bg-light-primary dark:bg-dark-primary;
+  }
+  
+  /* Responsivo para tablets */
+  @media (min-width: 640px) {
+    .carousel-dot {
+      height: 1.5px !important;
+    }
+    
+    .carousel-dot-inactive {
+      width: 1.5px !important;
+    }
+    
+    .carousel-dot-active {
+      width: 8px !important;
+    }
+  }
+  
+  /* Responsivo para desktop */
+  @media (min-width: 768px) {
+    .carousel-dot {
+      height: 2px !important;
+    }
+    
+    .carousel-dot-inactive {
+      width: 2px !important;
+    }
+    
+    .carousel-dot-active {
+      width: 12px !important;
+    }
+  }
+}

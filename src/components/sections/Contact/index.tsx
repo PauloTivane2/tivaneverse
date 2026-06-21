@@ -210,9 +210,9 @@ export function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-lg bg-primary/10 border border-primary/20"
+                  className="p-4 rounded-lg bg-light-primary/10 dark:bg-dark-primary/10 border border-light-primary/20 dark:border-dark-primary/20"
                 >
-                  <p className="text-primary text-sm text-center font-semibold">
+                  <p className="text-light-primary dark:text-dark-primary text-sm text-center font-semibold">
                     ✓ Obrigado! Responderei em breve.
                   </p>
                 </motion.div>
@@ -245,15 +245,15 @@ export function Contact() {
               {/* Email */}
               <motion.a
                 href={`mailto:${contactInfo?.email || 'contact@example.com'}`}
-                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-background border border-white/10 hover:border-primary/40 transition-all duration-200"
+                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-light-background dark:bg-dark-background border border-white/10 hover:border-light-primary/40 dark:border-dark-primary/40 transition-all duration-200"
                 whileHover={{ x: 4 }}
               >
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
-                  <FiMail className="w-4 h-4 text-accent group-hover:text-primary transition-colors" />
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-light-primary/10 dark:bg-dark-primary/10 transition-colors">
+                  <FiMail className="w-4 h-4 text-light-accent dark:text-dark-accent group-hover:text-light-primary dark:text-dark-primary transition-colors" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Email</h3>
-                  <p className="text-sm text-accent truncate">
+                  <h3 className="text-sm font-semibold text-light-foreground dark:text-dark-foreground mb-0.5">Email</h3>
+                  <p className="text-sm text-light-accent dark:text-dark-accent truncate">
                     {contactInfo?.email || 'contact@example.com'}
                   </p>
                 </div>
@@ -261,14 +261,14 @@ export function Contact() {
 
               {/* Location */}
               <motion.div
-                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-background border border-white/10"
+                className="group flex items-center gap-3 p-4 landscape:p-3 rounded-lg bg-light-background dark:bg-dark-background border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
-                  <FiMapPin className="w-4 h-4 text-accent" />
+                  <FiMapPin className="w-4 h-4 text-light-accent dark:text-dark-accent" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-foreground mb-0.5">Localização</h3>
-                  <p className="text-sm text-accent">
+                  <h3 className="text-sm font-semibold text-light-foreground dark:text-dark-foreground mb-0.5">Localização</h3>
+                  <p className="text-sm text-light-accent dark:text-dark-accent">
                     {typeof contactInfo?.location === 'string' 
                       ? contactInfo.location 
                       : (contactInfo?.location as any)?.city || 'Location not available'}
@@ -279,7 +279,7 @@ export function Contact() {
 
             {/* Social Links - Profissional */}
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">Conecte-se Comigo</h3>
+              <h3 className="text-sm font-semibold text-light-foreground dark:text-dark-foreground mb-3">Conecte-se Comigo</h3>
               <div className="flex gap-2">
                 {[
                   { icon: FiGithub, href: contactInfo?.social?.github || "#", label: "GitHub" },
@@ -291,7 +291,7 @@ export function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-primary hover:border-primary/40 hover:bg-white/10 transition-all"
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-light-accent dark:text-dark-accent hover:text-light-primary dark:text-dark-primary hover:border-light-primary/40 dark:border-dark-primary/40 hover:bg-white/10 transition-all"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
@@ -303,12 +303,12 @@ export function Contact() {
             </div>
 
             {/* Availability Badge - Simples */}
-            <div className="p-4 landscape:p-3 rounded-lg bg-white/5 border border-primary/20">
+            <div className="p-4 landscape:p-3 rounded-lg bg-white/5 border border-light-primary/20 dark:border-dark-primary/20">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">Disponível para Trabalho</span>
+                <div className="w-2 h-2 rounded-full bg-light-primary dark:bg-dark-primary animate-pulse" />
+                <span className="text-sm font-semibold text-light-primary dark:text-dark-primary">Disponível para Trabalho</span>
               </div>
-              <p className="text-xs text-accent leading-relaxed">
+              <p className="text-xs text-light-accent dark:text-dark-accent leading-relaxed">
                 Disponível para projectos freelance e oportunidades de consultoria.
               </p>
             </div>
