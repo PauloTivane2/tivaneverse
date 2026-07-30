@@ -53,6 +53,8 @@ const ui = {
   "email-surface": "#f8f9fa",
   "email-text": "#333333",
   "email-text-muted": "rgba(0, 0, 0, 0.5)",
+  "custom-01": "#e0e0e0",
+  "custom-02": "rgba(0, 0, 0, 0.08)",
   "custom-07": "#fb4d00",
   "custom-08": "rgba(255, 255, 255, 0.1)",
   "custom-09": "#ccc",

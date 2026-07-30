@@ -17,19 +17,19 @@ import {
   FaReact, FaNodeJs, FaLinux, FaDocker, FaGitAlt, FaDatabase, FaJs, FaHtml5, FaCss3Alt, FaPython, 
   FaJava, FaPhp, FaAngular, FaVuejs, FaSass, FaBootstrap, FaAws, FaNpm, FaYarn, FaWordpress,
   FaLaravel, FaSymfony, FaRaspberryPi, FaUbuntu, FaWindows, FaApple, FaAndroid, FaChrome,
-  FaFirefox, FaSafari, FaEdge
+  FaFirefox, FaSafari, FaEdge, FaSlack
 } from "react-icons/fa"
 import { 
   SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb, SiPython, SiJavascript, SiReact, SiNodedotjs,
   SiExpress, SiNestjs, SiGraphql, SiRedis, SiDocker, SiKubernetes, SiVercel, SiNetlify, SiGithub, SiGitlab,
-  SiFigma, SiAdobexd, SiIntellijidea, SiPostman, SiSlack, SiNotion, SiTrello, SiVite, SiWebpack,
+  SiFigma, SiIntellijidea, SiPostman, SiNotion, SiTrello, SiVite, SiWebpack,
   SiEslint, SiPrettier, SiJest, SiCypress, SiStorybook, SiMysql, SiSqlite, SiMariadb,
-  SiSupabase, SiFirebase, SiAmazon, SiGooglecloud, SiHeroku, SiRailway,
+  SiSupabase, SiFirebase, SiGooglecloud, SiRailway,
   SiAngular, SiVuedotjs, SiSvelte, SiSolid, SiRemix, SiAstro, SiSanity, SiContentful, SiStrapi,
   SiWordpress, SiDrupal, SiJoomla, SiLaravel, SiDjango, SiFlask, SiFastapi, SiSpring, SiDotnet,
   SiRust, SiGo, SiC, SiCplusplus, SiSharp, SiSwift, SiKotlin, SiDart, SiPhp, SiRuby, SiPerl,
-  SiElixir, SiScala, SiHaskell, SiLua, SiR, SiJulia, SiMarkdown, SiHtml5, SiCss3, SiSass, SiLess,
-  SiStyledcomponents, SiMui, SiChakraui, SiBootstrap, SiFramer, SiThreedotjs, SiD3Dotjs, SiWebgl,
+  SiElixir, SiScala, SiHaskell, SiLua, SiR, SiJulia, SiMarkdown, SiHtml5, SiSass, SiLess,
+  SiStyledcomponents, SiMui, SiChakraui, SiBootstrap, SiFramer, SiThreedotjs, SiD3, SiWebgl,
   SiLatex
 } from "react-icons/si"
 import { 
@@ -58,14 +58,14 @@ const iconMap: Record<string, IconType> = {
   // Simple Icons (Si) - Tecnologias e Frameworks
   SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb, SiPython, SiJavascript, SiReact, SiNodedotjs,
   SiExpress, SiNestjs, SiGraphql, SiRedis, SiDocker, SiKubernetes, SiVercel, SiNetlify, SiGithub, SiGitlab,
-  SiFigma, SiAdobexd, SiIntellijidea, SiPostman, SiSlack, SiNotion, SiTrello, SiVite, SiWebpack,
+  SiFigma, SiIntellijidea, SiPostman, SiNotion, SiTrello, SiVite, SiWebpack,
   SiEslint, SiPrettier, SiJest, SiCypress, SiStorybook, SiMysql, SiSqlite, SiMariadb,
-  SiSupabase, SiFirebase, SiAmazon, SiGooglecloud, SiHeroku, SiRailway,
+  SiSupabase, SiFirebase, SiGooglecloud, SiRailway,
   SiAngular, SiVuedotjs, SiSvelte, SiSolid, SiRemix, SiAstro, SiSanity, SiContentful, SiStrapi,
   SiWordpress, SiDrupal, SiJoomla, SiLaravel, SiDjango, SiFlask, SiFastapi, SiSpring, SiDotnet,
   SiRust, SiGo, SiC, SiCplusplus, SiSharp, SiSwift, SiKotlin, SiDart, SiPhp, SiRuby, SiPerl,
-  SiElixir, SiScala, SiHaskell, SiLua, SiR, SiJulia, SiMarkdown, SiHtml5, SiCss3, SiSass, SiLess,
-  SiStyledcomponents, SiMui, SiChakraui, SiBootstrap, SiFramer, SiThreedotjs, SiD3Dotjs, SiWebgl,
+  SiElixir, SiScala, SiHaskell, SiLua, SiR, SiJulia, SiMarkdown, SiHtml5, SiSass, SiLess,
+  SiStyledcomponents, SiMui, SiChakraui, SiBootstrap, SiFramer, SiThreedotjs, SiD3, SiWebgl,
   SiLatex,
   
   // Tabler Brand Icons (Tb)
