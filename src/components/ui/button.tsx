@@ -20,7 +20,7 @@ const buttonVariants = cva(
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
         // Corporate variants
-        'corporate-primary': 'bg-[var(--corp-primary-base)] text-[var(--corp-text-inverse)] border-2 border-[var(--corp-primary-base)] hover:bg-[var(--corp-primary-light)] hover:border-[var(--corp-primary-light)] hover:shadow-[0_10px_30px_rgba(0,191,166,0.3)]',
+        'corporate-primary': 'bg-[var(--corp-primary-base)] text-[var(--corp-text-inverse)] border-2 border-[var(--corp-primary-base)] hover:bg-[var(--corp-primary-light)] hover:border-[var(--corp-primary-light)] hover:shadow-[0_10px_30px_theme(colors.custom-51)]',
         'corporate-secondary': 'bg-[var(--corp-bg-dark)] text-[var(--corp-text-primary)] border-2 border-[var(--corp-border-subtle)] hover:bg-[var(--corp-bg-medium)] hover:border-[var(--corp-border-primary)]',
         'corporate-text': 'bg-transparent text-[var(--corp-text-secondary)] hover:bg-[var(--corp-bg-medium)] hover:text-[var(--corp-primary-base)]',
       },

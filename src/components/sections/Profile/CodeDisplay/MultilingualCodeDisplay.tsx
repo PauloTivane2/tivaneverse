@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { SyntaxHighlight } from "./SyntaxHighlight"
+import { languageColors, uiColors } from "@/src/lib/colors"
 
 interface MultilingualCodeDisplayProps {
   profileName: string
@@ -10,10 +11,11 @@ interface MultilingualCodeDisplayProps {
 
 /**
  * MultilingualCodeDisplay Component
- * Exibe código em múltiplas linguagens com efeito typewriter
- * 
- * NOTA: Cores de linguagens são hardcoded aqui pois representam
- * as cores oficiais de cada linguagem de programação
+ * Exibe código em múltiplas linguagens com efeito typewriter.
+ *
+ * As cores oficiais de cada linguagem estão centralizadas em
+ * colors.config.js (grupo "languages") e importadas via languageColors —
+ * nunca hex directo neste ficheiro.
  */
 export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplayProps) {
   const [currentLanguage, setCurrentLanguage] = useState(0)
@@ -35,7 +37,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "JavaScript",
       extension: "js",
       icon: "⚡",
-      color: "#F7DF1E",
+      color: languageColors.javascript,
       code: [
         `// 👋 Olá! Bem-vindo ao meu universo digital!`,
         `const desenvolvedor = {`,
@@ -53,7 +55,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "Python",
       extension: "py",
       icon: "🐍",
-      color: "#3776AB",
+      color: languageColors.python,
       code: [
         `# 🐍 Python é amor, Python é vida!`,
         `class MagoDoCode:`,
@@ -75,7 +77,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "LaTeX",
       extension: "tex",
       icon: "📐",
-      color: "#008080",
+      color: languageColors.latex,
       code: [
         `% 📐 LaTeX: Onde a matemática encontra a elegância!`,
         `\\documentclass{article}`,
@@ -109,7 +111,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "Flutter (Dart)",
       extension: "dart",
       icon: "🎨",
-      color: "#0175C2",
+      color: languageColors.dart,
       code: [
         `// 🎨 Flutter: Uma codebase, todos os dispositivos!`,
         `import 'package:flutter/material.dart';`,
@@ -158,7 +160,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "Java",
       extension: "java",
       icon: "☕",
-      color: "#007396",
+      color: languageColors.java,
       code: [
         `// ☕ Java: POO em ação!`,
         `public abstract class Desenvolvedor {`,
@@ -185,7 +187,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
       language: "MySQL",
       extension: "sql",
       icon: "🐬",
-      color: "#00758F",
+      color: languageColors.mysql,
       code: [
         `-- 🐬 MySQL: Onde os dados ganham vida!`,
         `CREATE DATABASE IF NOT EXISTS portfolio;`,
@@ -275,14 +277,14 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
         />
         
         {/* Main Container - Usando cores do Tailwind Config onde possível */}
-        <div className="relative bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_80px_-15px_rgba(0,0,0,0.6)] hover:border-foreground/20">
+        <div className={`relative bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_70px_-15px_theme(colors.custom-52)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_80px_-15px_theme(colors.custom-53)] hover:border-foreground/20`}>
           {/* Terminal Header with Language Indicator */}
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-foreground/10">
             <div className="flex items-center gap-2">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer" />
+                <div className="w-3 h-3 rounded-full bg-legacy-red-500 hover:bg-legacy-red-400 transition-colors cursor-pointer" />
+                <div className="w-3 h-3 rounded-full bg-legacy-yellow-500 hover:bg-legacy-yellow-400 transition-colors cursor-pointer" />
+                <div className="w-3 h-3 rounded-full bg-legacy-green-500 hover:bg-legacy-green-400 transition-colors cursor-pointer" />
               </div>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -308,7 +310,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
                   key={index}
                   className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300"
                   style={{
-                    backgroundColor: index === currentLanguage ? snippet.color : 'rgba(255,255,255,0.2)',
+                    backgroundColor: index === currentLanguage ? snippet.color : uiColors['custom-15'],
                     scale: index === currentLanguage ? 1.3 : 1,
                     boxShadow: index === currentLanguage ? `0 0 8px ${snippet.color}` : 'none'
                   }}
@@ -367,7 +369,7 @@ export function MultilingualCodeDisplay({ profileName }: MultilingualCodeDisplay
               <span className="font-medium">UTF-8</span>
               <span className="hidden xs:inline">•</span>
               <span className="flex items-center gap-1 sm:gap-1.5">
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-legacy-green-500 animate-pulse shadow-[0_0_8px_theme(colors.custom-54)]`}></span>
                 <span className="font-medium">Live</span>
               </span>
               <span className="hidden sm:inline">•</span>

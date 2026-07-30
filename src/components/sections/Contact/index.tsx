@@ -223,9 +223,9 @@ export function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-lg bg-red-500/10 border border-red-500/20"
+                  className="p-4 rounded-lg bg-legacy-red-500/10 border border-legacy-red-500/20"
                 >
-                  <p className="text-red-400 text-sm text-center font-semibold">
+                  <p className="text-legacy-red-400 text-sm text-center font-semibold">
                     ✕ {errorMessage}
                   </p>
                 </motion.div>

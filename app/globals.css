@@ -8,19 +8,19 @@
 
 /**
  * Sistema de Cores Simplificado
- * Primary: #CFFF04
- * Secondary: #FB4D00
- * Accent: #CAE7F7
- * Background: #000000 (Preto Absoluto)
- * Foreground: #FFFFFF (Branco Absoluto)
+ * Primary: theme('colors.secondary')
+ * Secondary: theme('colors.custom-07')
+ * Accent: theme('colors.accent')
+ * Background: theme('colors.background') (Preto Absoluto)
+ * Foreground: theme('colors.foreground') (Branco Absoluto)
  */
 :root {
   /* Cores principais simplificadas */
-  --color-primary: #CFFF04;
-  --color-secondary: #FB4D00;
-  --color-accent: #CAE7F7;
-  --color-background: #000000;
-  --color-foreground: #FFFFFF;
+  --color-primary: theme('colors.secondary');
+  --color-secondary: theme('colors.custom-07');
+  --color-accent: theme('colors.accent');
+  --color-background: theme('colors.background');
+  --color-foreground: theme('colors.foreground');
   
   /* Radius para compatibilidade */
   --radius: 0.625rem;
@@ -35,8 +35,8 @@
 
 @layer base {
   * {
-    border-color: rgba(255, 255, 255, 0.1);
-    outline-color: rgba(255, 255, 255, 0.5);
+    border-color: theme('colors.custom-08');
+    outline-color: theme('colors.custom-43');
   }
   
   html {
@@ -46,8 +46,8 @@
   }
   
   body {
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: theme('colors.background');
+    color: theme('colors.foreground');
     font-family: var(--font-space-mono), 'Space Mono', monospace;
     font-size: 1rem;
     line-height: 1.6;
@@ -89,21 +89,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #000000;
+  background-color: theme('colors.background');
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: theme('colors.custom-44');
   border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: theme('colors.custom-45');
 }
 
 /* Selection */
 ::selection {
-  background-color: rgba(207, 255, 4, 0.2);
+  background-color: theme('colors.custom-13');
   color: var(--color-primary);
 }
 
@@ -148,7 +148,7 @@
 
 .corporate-hover:hover {
   border-color: var(--color-primary);
-  box-shadow: 0 2px 8px rgba(207, 255, 4, 0.15);
+  box-shadow: 0 2px 8px theme('colors.custom-46');
 }
 
 /* Hover para cards - elevação sutil */
@@ -158,12 +158,12 @@
 
 .corporate-card-interactive:hover {
   border-color: var(--color-secondary);
-  box-shadow: 0 4px 16px rgba(251, 77, 0, 0.2);
+  box-shadow: 0 4px 16px theme('colors.custom-14');
 }
 
 /* Bordas técnicas e estruturais */
 .corporate-border {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid theme('colors.custom-08');
 }
 
 .corporate-border-accent {
@@ -171,7 +171,7 @@
 }
 
 .corporate-border-top {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid theme('colors.custom-08');
 }
 
 /* Animação funcional mínima para feedback de estado */
@@ -405,7 +405,7 @@
 /* High contrast mode */
 @media (prefers-contrast: high) {
   .tech-glow {
-    box-shadow: 0 0 5px rgba(0, 255, 153, 0.8);
+    box-shadow: 0 0 5px theme('colors.custom-47');
   }
 }
 
@@ -417,7 +417,7 @@
   
   .card-hover:hover {
     transform: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px theme('colors.custom-48');
   }
 }
 
@@ -457,12 +457,12 @@
   
   .carousel-dot-inactive {
     width: 1px !important;
-    background-color: rgba(207, 255, 4, 0.3);
+    background-color: theme('colors.custom-49');
   }
   
   .carousel-dot-active {
     width: 6px !important;
-    background-color: #CFFF04;
+    background-color: theme('colors.secondary');
   }
   
   /* Responsivo para tablets */

@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { uiColors } from '@/src/lib/colors'
 
 /**
  * Metadados SEO completos e otimizados para indexação
@@ -164,8 +165,8 @@ export const siteMetadata: Metadata = {
   
   // Tema
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#CFFF04' },
-    { media: '(prefers-color-scheme: dark)', color: '#CFFF04' }
+    { media: '(prefers-color-scheme: light)', color: uiColors.secondary },
+    { media: '(prefers-color-scheme: dark)', color: uiColors.secondary }
   ],
   
   // Viewport

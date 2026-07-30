@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { uiColors } from '@/src/lib/colors';
 
 interface MatrixRainStaticProps {
   intensity?: number; // quanto mais alto, mais gotas visíveis
@@ -59,7 +60,7 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
       if (!ctx || !canvas) return;
 
       // Fundo semi-transparente para efeito trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      ctx.fillStyle = uiColors['effect-canvas-trail'];
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px monospace`;
@@ -69,7 +70,7 @@ export function MatrixRainStatic({ intensity = 15, speed = 1.5 }: MatrixRainStat
         const x = i * columnSpacing;
         const y = drops[i] * fontSize;
 
-        ctx.fillStyle = Math.random() > 0.3 ? '#CFFF04' : '#CAE7F7';
+        ctx.fillStyle = Math.random() > 0.3 ? uiColors.secondary : uiColors.accent;
 
         if (drops[i] > 0) ctx.fillText(text, x, y);
 

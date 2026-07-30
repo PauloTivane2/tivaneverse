@@ -282,3 +282,5 @@ storybook-static/
 # /src/temp/
 # /public/uploads/
 # /docs/private/
+# Relatórios gerados pelos scripts de cores (reproduzíveis, não versionados)
+scripts/output/

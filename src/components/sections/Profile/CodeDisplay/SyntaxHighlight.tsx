@@ -2,10 +2,11 @@
 
 /**
  * SyntaxHighlight Component
- * Componente especializado para highlighting de código com cores hardcoded
- * 
- * NOTA: Este é o ÚNICO lugar onde cores hardcoded são permitidas,
- * pois simula um editor de código profissional (VSCode theme)
+ * Componente especializado para highlighting de código, estilo editor (VSCode theme).
+ *
+ * As cores do tema de sintaxe estão centralizadas em colors.config.js
+ * (grupo "syntax-*") e expostas como classes Tailwind (text-syntax-comment,
+ * text-syntax-string, etc.) — nunca hex directo neste ficheiro.
  */
 
 interface SyntaxHighlightProps {
@@ -15,25 +16,25 @@ interface SyntaxHighlightProps {
 export function SyntaxHighlight({ code }: SyntaxHighlightProps) {
   // Comentários - Cinza Itálico
   if (code.trim().startsWith('//') || code.trim().startsWith('#') || code.trim().startsWith('/*')) {
-    return <span className="text-[#6A9955] italic opacity-80">{code}</span>
+    return <span className="text-syntax-comment italic opacity-80">{code}</span>
   }
   
   // Regex patterns com cores específicas de syntax highlighting
   const patterns = [
     // Strings (verde vibrante)
-    { regex: /(["'`])((?:\\.|(?!\1).)*?)\1/g, className: 'text-[#98C379] font-normal' },
+    { regex: /(["'`])((?:\\.|(?!\1).)*?)\1/g, className: 'text-syntax-string font-normal' },
     // Números (laranja)
-    { regex: /\b(\d+\.?\d*|0x[0-9A-Fa-f]+)\b/g, className: 'text-[#D19A66]' },
+    { regex: /\b(\d+\.?\d*|0x[0-9A-Fa-f]+)\b/g, className: 'text-syntax-number' },
     // Keywords (roxo forte)
-    { regex: /\b(const|let|var|function|class|def|struct|impl|public|private|package|import|using|return|if|else|while|for|async|await|new|type|interface|enum|extends|implements)\b/g, className: 'text-[#C678DD] font-bold' },
+    { regex: /\b(const|let|var|function|class|def|struct|impl|public|private|package|import|using|return|if|else|while|for|async|await|new|type|interface|enum|extends|implements)\b/g, className: 'text-syntax-keyword font-bold' },
     // Booleans/Null (vermelho)
-    { regex: /\b(true|false|null|nil|undefined|None|self|this|MAX|INFINITY)\b/g, className: 'text-[#E06C75] font-semibold' },
+    { regex: /\b(true|false|null|nil|undefined|None|self|this|MAX|INFINITY)\b/g, className: 'text-syntax-boolean font-semibold' },
     // Funções (azul ciano)
-    { regex: /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, className: 'text-[#61AFEF] font-medium' },
+    { regex: /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, className: 'text-syntax-function font-medium' },
     // Tipos/Classes (amarelo dourado)
-    { regex: /\b([A-Z][a-zA-Z0-9_]*)\b/g, className: 'text-[#E5C07B]' },
+    { regex: /\b([A-Z][a-zA-Z0-9_]*)\b/g, className: 'text-syntax-type' },
     // Propriedades (ciano claro)
-    { regex: /\.([a-zA-Z_][a-zA-Z0-9_]*)/g, className: 'text-[#56B6C2]' },
+    { regex: /\.([a-zA-Z_][a-zA-Z0-9_]*)/g, className: 'text-syntax-property' },
   ]
 
   // Detectar e colorir cada parte
@@ -64,7 +65,7 @@ export function SyntaxHighlight({ code }: SyntaxHighlightProps) {
     // Adicionar texto antes
     if (item.start > lastEnd) {
       finalParts.push(
-        <span key={`text-${idx}`} className="text-[#ABB2BF]">
+        <span key={`text-${idx}`} className="text-syntax-text">
           {code.substring(lastEnd, item.start)}
         </span>
       )
@@ -81,11 +82,11 @@ export function SyntaxHighlight({ code }: SyntaxHighlightProps) {
   // Adicionar texto final
   if (lastEnd < code.length) {
     finalParts.push(
-      <span key="final" className="text-[#ABB2BF]">
+      <span key="final" className="text-syntax-text">
         {code.substring(lastEnd)}
       </span>
     )
   }
 
-  return <span className="leading-relaxed">{finalParts.length > 0 ? finalParts : <span className="text-[#ABB2BF]">{code}</span>}</span>
+  return <span className="leading-relaxed">{finalParts.length > 0 ? finalParts : <span className="text-syntax-text">{code}</span>}</span>
 }

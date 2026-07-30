@@ -3,6 +3,7 @@ import { client } from '@/src/lib/sanity'
 import { expertiseQuery } from '@/src/lib/queries/expertise'
 import { ExpertiseItem } from '@/src/components/sections/Expertise/types'
 import { IconType } from 'react-icons'
+import { uiColors } from '@/src/lib/colors'
 
 // Icon mapping - import available icons
 // ⚠️ IMPORTANTE: Apenas ícones do react-icons são suportados
@@ -140,7 +141,7 @@ export function useExpertise() {
             return {
               name: item.name || 'Unknown Skill',
               icon: selectedIcon || TbCode, // Fallback to generic code icon
-              color: item.color || '#CAE7F7',
+              color: item.color || uiColors.accent,
               categories: categories,
               proficiencyLevel: item.proficiencyLevel,
               yearsOfExperience: item.yearsOfExperience,

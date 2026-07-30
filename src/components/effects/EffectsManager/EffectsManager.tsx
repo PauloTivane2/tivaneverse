@@ -5,6 +5,7 @@ import MatrixRain from "../MatrixRain"
 import ParticleSystem from "../ParticleSystem"
 import CustomCursor from "../CustomCursor"
 import { useEffect } from "react"
+import { uiColors } from "@/src/lib/colors"
 
 export default function EffectsManager() {
   const { visualEffects, loading, deviceType, prefersReducedMotion } = useVisualEffects()
@@ -76,7 +77,7 @@ export default function EffectsManager() {
       ${visualEffects.hoverEffects.cardHover === 'lift' ? `
         .effect-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          box-shadow: 0 20px 40px ${uiColors['custom-50']};
         }
       ` : ''}
       
@@ -88,7 +89,7 @@ export default function EffectsManager() {
       
       ${visualEffects.hoverEffects.cardHover === 'glow' ? `
         .effect-card:hover {
-          box-shadow: 0 0 30px rgba(0, 191, 166, 0.3);
+          box-shadow: 0 0 30px ${uiColors['custom-51']};
         }
       ` : ''}
       
@@ -130,7 +131,7 @@ export default function EffectsManager() {
           left: -100%;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          background: linear-gradient(90deg, transparent, ${uiColors['custom-15']}, transparent);
           transition: left 0.5s;
         }
         .effect-button:hover::before {

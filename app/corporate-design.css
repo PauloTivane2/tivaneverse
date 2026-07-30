@@ -125,33 +125,33 @@
   --shadow-none: none;
   
   --shadow-1: 
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 1px 3px rgba(0, 0, 0, 0.04);
+    0 1px 2px theme('colors.custom-10'),
+    0 1px 3px theme('colors.custom-20');
   /* Leve contato com a superfície */
   
   --shadow-2: 
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    0 3px 6px rgba(0, 0, 0, 0.05);
+    0 2px 4px theme('colors.custom-02'),
+    0 3px 6px theme('colors.custom-11');
   /* Elevação de cards padrão */
   
   --shadow-3: 
-    0 4px 8px rgba(0, 0, 0, 0.10),
-    0 6px 12px rgba(0, 0, 0, 0.06);
+    0 4px 8px theme('colors.custom-12'),
+    0 6px 12px theme('colors.custom-10');
   /* Elementos destacados */
   
   --shadow-4: 
-    0 8px 16px rgba(0, 0, 0, 0.12),
-    0 12px 24px rgba(0, 0, 0, 0.08);
+    0 8px 16px theme('colors.custom-21'),
+    0 12px 24px theme('colors.custom-02');
   /* Modais e overlays */
   
   --shadow-5: 
-    0 16px 32px rgba(0, 0, 0, 0.16),
-    0 24px 48px rgba(0, 0, 0, 0.10);
+    0 16px 32px theme('colors.custom-22'),
+    0 24px 48px theme('colors.custom-12');
   /* Máxima elevação */
   
   /* Sombras especiais para contextos específicos */
-  --shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-outline: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  --shadow-inset: inset 0 1px 3px theme('colors.custom-02');
+  --shadow-outline: 0 0 0 3px theme('colors.custom-11');
 }
 
 /* =====================================================
@@ -184,46 +184,46 @@
 
 /**
  * Sistema de cores simplificado:
- * - Primary: #CFFF04 (Verde Limão)
- * - Secondary: #FB4D00 (Laranja)
- * - Accent: #CAE7F7 (Azul Claro)
- * - Background: #000000 (Preto Absoluto)
- * - Foreground: #FFFFFF (Branco Absoluto)
+ * - Primary: theme('colors.secondary') (Verde Limão)
+ * - Secondary: theme('colors.custom-07') (Laranja)
+ * - Accent: theme('colors.accent') (Azul Claro)
+ * - Background: theme('colors.background') (Preto Absoluto)
+ * - Foreground: theme('colors.foreground') (Branco Absoluto)
  */
 
 :root {
   /* Cores Base */
-  --color-bg-deep: #000000;       /* Preto absoluto */
-  --color-bg-night: #0A0A0A;      /* Quase preto */
-  --color-bg-card: #141414;       /* Cinza muito escuro */
-  --color-bg-elevated: #1A1A1A;   /* Cinza escuro */
+  --color-bg-deep: theme('colors.background');       /* Preto absoluto */
+  --color-bg-night: theme('colors.custom-23');      /* Quase preto */
+  --color-bg-card: theme('colors.custom-24');       /* Cinza muito escuro */
+  --color-bg-elevated: theme('colors.custom-25');   /* Cinza escuro */
   
-  --color-text-light: #FFFFFF;    /* Branco absoluto */
-  --color-text-soft: #E0E0E0;     /* Branco suave */
-  --color-text-dim: #A0A0A0;      /* Cinza claro */
-  --color-text-dark: #000000;     /* Preto */
+  --color-text-light: theme('colors.foreground');    /* Branco absoluto */
+  --color-text-soft: theme('colors.custom-01');     /* Branco suave */
+  --color-text-dim: theme('colors.custom-26');      /* Cinza claro */
+  --color-text-dark: theme('colors.background');     /* Preto */
   
-  --color-border-dark: #2A2A2A;   /* Borda sutil */
+  --color-border-dark: theme('colors.custom-27');   /* Borda sutil */
   
   /* Cores Principais - Simplificadas */
-  --color-primary: #CFFF04;       /* Verde Limão */
-  --color-primary-100: rgba(207, 255, 4, 0.1);
-  --color-primary-200: rgba(207, 255, 4, 0.2);
-  --color-primary-400: rgba(207, 255, 4, 0.8);
-  --color-primary-500: #CFFF04;
-  --color-primary-600: #B8E600;
+  --color-primary: theme('colors.secondary');       /* Verde Limão */
+  --color-primary-100: theme('colors.custom-28');
+  --color-primary-200: theme('colors.custom-13');
+  --color-primary-400: theme('colors.custom-29');
+  --color-primary-500: theme('colors.secondary');
+  --color-primary-600: theme('colors.custom-30');
   
-  --color-secondary: #FB4D00;     /* Laranja */
-  --color-secondary-100: rgba(251, 77, 0, 0.1);
-  --color-secondary-200: rgba(251, 77, 0, 0.2);
-  --color-secondary-400: rgba(251, 77, 0, 0.8);
-  --color-secondary-500: #FB4D00;
-  --color-secondary-600: #C23D00;
+  --color-secondary: theme('colors.custom-07');     /* Laranja */
+  --color-secondary-100: theme('colors.custom-31');
+  --color-secondary-200: theme('colors.custom-14');
+  --color-secondary-400: theme('colors.custom-32');
+  --color-secondary-500: theme('colors.custom-07');
+  --color-secondary-600: theme('colors.custom-33');
   
-  --color-accent: #CAE7F7;        /* Azul Claro */
-  --color-accent-100: rgba(202, 231, 247, 0.1);
-  --color-accent-200: rgba(202, 231, 247, 0.2);
-  --color-accent-500: #CAE7F7;
+  --color-accent: theme('colors.accent');        /* Azul Claro */
+  --color-accent-100: theme('colors.custom-34');
+  --color-accent-200: theme('colors.custom-35');
+  --color-accent-500: theme('colors.accent');
   
   /* Escala Corporativa - Backgrounds */
   --corp-bg-deepest: var(--color-bg-deep);
@@ -259,14 +259,14 @@
   
   /* Cores Funcionais */
   --corp-success: var(--color-primary);
-  --corp-warning: #F59E0B;
-  --corp-error: #EF4444;
+  --corp-warning: theme('colors.custom-36');
+  --corp-error: theme('colors.legacy-red-500');
   --corp-info: var(--color-accent);
   
   /* Backgrounds funcionais */
   --corp-bg-success: var(--color-primary-100);
-  --corp-bg-warning: rgba(245, 158, 11, 0.1);
-  --corp-bg-error: rgba(239, 68, 68, 0.1);
+  --corp-bg-warning: theme('colors.custom-38');
+  --corp-bg-error: theme('colors.custom-39');
   --corp-bg-info: var(--color-accent-100);
 }
 
@@ -422,15 +422,15 @@
 }
 
 .corporate-button-primary {
-  background: linear-gradient(135deg, #B4FF00 0%, #CFFF04 100%);
+  background: linear-gradient(135deg, theme('colors.primary') 0%, theme('colors.secondary') 100%);
   color: var(--corp-text-inverse);
   border-color: var(--corp-primary-base);
 }
 
 .corporate-button-primary:hover {
-  background: linear-gradient(135deg, #CFFF04 0%, #B4FF00 100%);
+  background: linear-gradient(135deg, theme('colors.secondary') 0%, theme('colors.primary') 100%);
   border-color: var(--corp-primary-light);
-  box-shadow: 0 10px 30px rgba(180, 255, 0, 0.3);
+  box-shadow: 0 10px 30px theme('colors.custom-40');
 }
 
 .corporate-button-primary:active {
@@ -757,8 +757,8 @@
 /* Modo de alto contraste */
 @media (prefers-contrast: high) {
   :root {
-    --corp-border-subtle: #40464D;
-    --corp-text-tertiary: #9BA1A7;
+    --corp-border-subtle: theme('colors.custom-41');
+    --corp-text-tertiary: theme('colors.custom-42');
   }
   
   .corporate-button-primary {

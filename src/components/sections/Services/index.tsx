@@ -196,7 +196,7 @@ export function Services() {
                 className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
-                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_rgba(207,255,4,0.1)]">
+                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_theme(colors.custom-16)]">
                   
                   {/* Top Accent Bar */}
                   <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
@@ -226,7 +226,7 @@ export function Services() {
                     transition={{ duration: 0.5 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary drop-shadow-[0_0_8px_rgba(207,255,4,0.4)]" />
+                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary drop-shadow-[0_0_8px_theme(colors.custom-55)]" />
                   </motion.div>
 
                   {/* Title */}

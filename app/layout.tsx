@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/src/components/layout/theme-provider"
+import { uiColors } from "@/src/lib/colors"
 import Script from "next/script"
 
 const inter = Inter({
@@ -192,8 +193,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#CFFF04" },
-    { media: "(prefers-color-scheme: dark)", color: "#CFFF04" }
+    { media: "(prefers-color-scheme: light)", color: uiColors.secondary },
+    { media: "(prefers-color-scheme: dark)", color: uiColors.secondary }
   ],
   width: "device-width",
   initialScale: 1,

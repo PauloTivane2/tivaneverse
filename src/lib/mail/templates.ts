@@ -2,8 +2,10 @@
  * Email Templates
  * 
  * Templates HTML para emails enviados pelo sistema.
- * Cores Tailwind: background #000000, foreground #FFFFFF, primary #B4FF00, secondary #CFFF04, accent #CAE7F7
+ * Cores: ver colors.config.js (fonte única da verdade — background, foreground, primary, secondary, accent, email-*)
  */
+
+import { uiColors } from "@/src/lib/colors"
 
 interface EmailTemplateProps {
   name: string
@@ -14,7 +16,7 @@ interface EmailTemplateProps {
 
 /**
  * Template HTML para email de contato recebido
- * Design profissional minimalista com cores Accent (#CAE7F7)
+ * Design profissional minimalista com cor Accent (ver colors.config.js)
  */
 export function getContactEmailTemplate({
   name,
@@ -49,21 +51,21 @@ export function getContactEmailTemplate({
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  background: #CAE7F7;
-  color: #000000;
+  background: ${uiColors.accent};
+  color: ${uiColors.background};
 ">
   <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
-    background: #FFFFFF;
+    background: ${uiColors.foreground};
     border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #E0E0E0;
+    box-shadow: 0 4px 12px ${uiColors['email-shadow']};
+    border: 1px solid ${uiColors['email-border']};
   ">
     <!-- Header Profissional -->
     <div class="header" style="
-      background: #000000;
+      background: ${uiColors.background};
       padding: 48px 32px;
       text-align: center;
     ">
@@ -71,7 +73,7 @@ export function getContactEmailTemplate({
         margin: 0 0 8px;
         font-size: 28px;
         font-weight: 700;
-        color: #B4FF00;
+        color: ${uiColors.primary};
         letter-spacing: -0.5px;
       ">
         Nova Mensagem Recebida
@@ -79,7 +81,7 @@ export function getContactEmailTemplate({
       <p style="
         margin: 0;
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.65);
+        color: ${uiColors['email-text-secondary']};
         font-weight: 500;
       ">
         Portfólio Paulo Tivane
@@ -90,8 +92,8 @@ export function getContactEmailTemplate({
     <div class="content" style="padding: 32px;">
       <!-- Card do Remetente -->
       <div class="card" style="
-        background: #F8F9FA;
-        border: 1px solid #E0E0E0;
+        background: ${uiColors['email-surface']};
+        border: 1px solid ${uiColors['email-border']};
         border-radius: 0;
         padding: 24px;
         margin-bottom: 24px;
@@ -99,13 +101,13 @@ export function getContactEmailTemplate({
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 1px solid #E0E0E0;
+          border-bottom: 1px solid ${uiColors['email-border']};
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #333333;
+            color: ${uiColors['email-text']};
           ">
             Informações do Contato
           </h2>
@@ -115,7 +117,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(0, 0, 0, 0.5);
+            color: ${uiColors['email-text-muted']};
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -125,7 +127,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 17px;
             font-weight: 500;
-            color: #000000;
+            color: ${uiColors.background};
           ">
             ${name}
           </div>
@@ -135,7 +137,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(0, 0, 0, 0.5);
+            color: ${uiColors['email-text-muted']};
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -145,13 +147,13 @@ export function getContactEmailTemplate({
           <a href="mailto:${email}" style="
             font-size: 16px;
             font-weight: 500;
-            color: #0066CC;
+            color: ${uiColors['email-link']};
             text-decoration: none;
             display: inline-block;
             padding: 8px 14px;
-            background: #F0F7FF;
+            background: ${uiColors['email-surface-accent']};
             border-radius: 0;
-            border: 1px solid #CAE7F7;
+            border: 1px solid ${uiColors.accent};
             transition: all 0.2s;
           ">
             ${email}
@@ -162,7 +164,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 11px;
             font-weight: 600;
-            color: rgba(0, 0, 0, 0.5);
+            color: ${uiColors['email-text-muted']};
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -172,7 +174,7 @@ export function getContactEmailTemplate({
           <div style="
             font-size: 15px;
             font-weight: 500;
-            color: #000000;
+            color: ${uiColors.background};
           ">
             ${subject}
           </div>
@@ -181,21 +183,21 @@ export function getContactEmailTemplate({
 
       <!-- Card da Mensagem -->
       <div class="card" style="
-        background: #F8F9FA;
-        border: 1px solid #E0E0E0;
+        background: ${uiColors['email-surface']};
+        border: 1px solid ${uiColors['email-border']};
         border-radius: 0;
         padding: 24px;
       ">
         <div style="
           margin-bottom: 20px;
           padding-bottom: 16px;
-          border-bottom: 1px solid #E0E0E0;
+          border-bottom: 1px solid ${uiColors['email-border']};
         ">
           <h2 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #333333;
+            color: ${uiColors['email-text']};
           ">
             Mensagem
           </h2>
@@ -203,14 +205,14 @@ export function getContactEmailTemplate({
         <div style="
           font-size: 15px;
           line-height: 1.8;
-          color: #000000;
+          color: ${uiColors.background};
           white-space: pre-wrap;
           word-wrap: break-word;
-          background: #FFFFFF;
+          background: ${uiColors.foreground};
           padding: 20px;
           border-radius: 0;
-          border-left: 3px solid #CAE7F7;
-          border: 1px solid #E0E0E0;
+          border-left: 3px solid ${uiColors.accent};
+          border: 1px solid ${uiColors['email-border']};
         ">
           ${message}
         </div>
@@ -219,10 +221,10 @@ export function getContactEmailTemplate({
 
     <!-- Footer Elegante -->
     <div class="footer" style="
-      background: #000000;
+      background: ${uiColors.background};
       padding: 28px 32px;
       text-align: center;
-      border-top: 1px solid #E0E0E0;
+      border-top: 1px solid ${uiColors['email-border']};
     ">
       <p style="
         margin: 0 0 12px;
@@ -230,21 +232,21 @@ export function getContactEmailTemplate({
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        color: #B4FF00;
+        color: ${uiColors.primary};
       ">
         Formulário de Contato
       </p>
       <p style="
         margin: 0 0 6px;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.8);
+        color: ${uiColors['email-text-on-dark-strong']};
       ">
         © ${currentYear} Paulo Tivane
       </p>
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.7);
+        color: ${uiColors['email-text-on-dark']};
       ">
         Seja a mudança que deseja ver no mundo
       </p>
@@ -260,18 +262,18 @@ export function getContactEmailTemplate({
     <div class="cta" style="
       display: inline-block;
       padding: 12px 24px;
-      background: #F8F9FA;
-      border: 1px solid #E0E0E0;
+      background: ${uiColors['email-surface']};
+      border: 1px solid ${uiColors['email-border']};
       border-radius: 0;
     ">
       <p style="
         margin: 0;
         font-size: 14px;
-        color: #000000;
+        color: ${uiColors.background};
         font-weight: 500;
         line-height: 1.6;
       ">
-        Responda clicando em <strong style="color: #0066CC;">"Responder"</strong> para entrar em contato direto
+        Responda clicando em <strong style="color: ${uiColors['email-link']};">"Responder"</strong> para entrar em contato direto
       </p>
     </div>
   </div>
@@ -357,21 +359,21 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  background: #FFFFFF;
-  color: #000000;
+  background: ${uiColors.foreground};
+  color: ${uiColors.background};
 ">
   <div class="container" style="
     max-width: 650px;
     margin: 40px auto;
-    background: #FFFFFF;
+    background: ${uiColors.foreground};
     border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #E0E0E0;
+    box-shadow: 0 4px 12px ${uiColors['email-shadow']};
+    border: 1px solid ${uiColors['email-border']};
   ">
     <!-- Header Success -->
     <div class="header" style="
-      background: #000000;
+      background: ${uiColors.background};
       padding: 48px 32px;
       text-align: center;
     ">
@@ -379,7 +381,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         margin: 0 0 12px;
         font-size: 30px;
         font-weight: 700;
-        color: #B4FF00;
+        color: ${uiColors.primary};
         letter-spacing: -0.5px;
       ">
         Mensagem Recebida com Sucesso!
@@ -387,7 +389,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0;
         font-size: 15px;
-        color: rgba(0, 0, 0, 0.65);
+        color: ${uiColors['email-text-secondary']};
         font-weight: 500;
       ">
         Obrigado por entrar em contato
@@ -402,7 +404,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0 0 16px;
           font-size: 22px;
           font-weight: 600;
-          color: #000000;
+          color: ${uiColors.background};
         ">
           Olá ${name}!
         </h2>
@@ -410,7 +412,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0 0 16px;
           font-size: 16px;
           line-height: 1.7;
-          color: #000000;
+          color: ${uiColors.background};
         ">
           Recebi sua mensagem através do meu portfólio e quero agradecer pelo interesse em entrar em contato comigo.
         </p>
@@ -418,16 +420,16 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0;
           font-size: 16px;
           line-height: 1.7;
-          color: #000000;
+          color: ${uiColors.background};
         ">
-          Sua mensagem é importante para mim e <strong style="color: #0066CC;">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: #0066CC; font-weight: 600;">24 horas úteis</span>.
+          Sua mensagem é importante para mim e <strong style="color: ${uiColors['email-link']};">responderei o mais breve possível</strong>, geralmente dentro de <span style="color: ${uiColors['email-link']}; font-weight: 600;">24 horas úteis</span>.
         </p>
       </div>
 
       <!-- Card de Info -->
       <div class="card" style="
-        background: #F8F9FA;
-        border: 1px solid #E0E0E0;
+        background: ${uiColors['email-surface']};
+        border: 1px solid ${uiColors['email-border']};
         border-radius: 0;
         padding: 24px;
         margin-bottom: 32px;
@@ -435,13 +437,13 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
         <div style="
           margin-bottom: 20px;
           padding-bottom: 12px;
-          border-bottom: 1px solid #E0E0E0;
+          border-bottom: 1px solid ${uiColors['email-border']};
         ">
           <h3 style="
             margin: 0;
             font-size: 16px;
             font-weight: 700;
-            color: #333333;
+            color: ${uiColors['email-text']};
           ">
             O Que Acontece Agora?
           </h3>
@@ -451,30 +453,30 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           margin: 0;
           padding: 0 0 0 20px;
           list-style: decimal;
-          color: #333333;
+          color: ${uiColors['email-text']};
         ">
           <li style="
             margin-bottom: 12px;
             font-size: 15px;
             line-height: 1.7;
-            color: #000000;
+            color: ${uiColors.background};
           ">
-            <span style="color: #000000;">Analisarei sua mensagem com atenção</span>
+            <span style="color: ${uiColors.background};">Analisarei sua mensagem com atenção</span>
           </li>
           <li style="
             margin-bottom: 12px;
             font-size: 15px;
             line-height: 1.7;
-            color: #000000;
+            color: ${uiColors.background};
           ">
-            <span style="color: #000000;">Prepararei uma resposta personalizada</span>
+            <span style="color: ${uiColors.background};">Prepararei uma resposta personalizada</span>
           </li>
           <li style="
             font-size: 15px;
             line-height: 1.7;
-            color: #000000;
+            color: ${uiColors.background};
           ">
-            <span style="color: #000000;">Entrarei em contato em breve</span>
+            <span style="color: ${uiColors.background};">Entrarei em contato em breve</span>
           </li>
         </ol>
       </div>
@@ -483,14 +485,14 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <div style="
         text-align: center;
         padding: 24px;
-        background: #F8F9FA;
+        background: ${uiColors['email-surface']};
         border-radius: 0;
-        border: 1px solid #E0E0E0;
+        border: 1px solid ${uiColors['email-border']};
       ">
         <p style="
           margin: 0 0 16px;
           font-size: 13px;
-          color: rgba(0, 0, 0, 0.6);
+          color: ${uiColors['email-overlay']};
         ">
           Enquanto isso, você pode me encontrar em:
         </p>
@@ -504,10 +506,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" target="_blank" style="
             display: inline-block;
             padding: 12px 20px;
-            background: #FFFFFF;
-            border: 2px solid #CAE7F7;
+            background: ${uiColors.foreground};
+            border: 2px solid ${uiColors.accent};
             border-radius: 0;
-            color: #0066CC;
+            color: ${uiColors['email-link']};
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -521,10 +523,10 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
           <a href="${social.linkedin}" target="_blank" class="social-link" style="
             display: inline-block;
             padding: 12px 20px;
-            background: #FFFFFF;
-            border: 2px solid #CAE7F7;
+            background: ${uiColors.foreground};
+            border: 2px solid ${uiColors.accent};
             border-radius: 0;
-            color: #0066CC;
+            color: ${uiColors['email-link']};
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -539,23 +541,23 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
 
     <!-- Footer -->
     <div class="footer" style="
-      background: #000000;
+      background: ${uiColors.background};
       padding: 28px 32px;
       text-align: center;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-top: 1px solid ${uiColors['email-shadow-soft']};
     ">
       <p style="
         margin: 0 0 8px;
         font-size: 14px;
         font-weight: 600;
-        color: #B4FF00;
+        color: ${uiColors.primary};
       ">
         Paulo Babucho Issaca Tivane
       </p>
       <p style="
         margin: 0 0 4px;
         font-size: 12px;
-        color: #FFFFFF;
+        color: ${uiColors.foreground};
         font-weight: 500;
       ">
         Seja a mudança que deseja ver no mundo
@@ -563,7 +565,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
       <p style="
         margin: 0;
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.7);
+        color: ${uiColors['email-text-on-dark']};
       ">
         Moçambique | © ${currentYear} Todos os direitos reservados
       </p>
@@ -579,7 +581,7 @@ export function getAutoReplyTemplate(data: AutoReplyData): string {
     <p style="
       margin: 0;
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.5);
+      color: ${uiColors['email-text-muted']};
     ">
       Esta é uma mensagem automática de confirmação. Por favor, não responda a este email.
     </p>

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { ui } = require('./colors.config');
+
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -24,11 +26,7 @@ module.exports = {
         'fira-code': ['var(--font-fira-code)', 'Fira Code', 'monospace'],
       },
       colors: {
-        background: '#000000',
-        foreground: '#FFFFFF',
-        primary: '#B4FF00',
-        secondary: '#CFFF04',
-        accent: '#CAE7F7',
+        ...ui,
       },
       borderRadius: {
         lg: 'var(--radius)',
