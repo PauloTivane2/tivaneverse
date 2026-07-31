@@ -539,7 +539,7 @@
    ===================================================== */
 
 .corporate-footer {
-  background: var(--corp-bg-deepest);
+  background: transparent;
   color: var(--corp-text-tertiary);
   padding: var(--space-20) var(--space-6) var(--space-8);
 }

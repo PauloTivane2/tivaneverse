@@ -78,7 +78,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="corporate-section bg-black relative landscape:py-12 landscape:md:py-20" ref={ref}>
+    <section id="contact" className="corporate-section bg-transparent relative landscape:py-12 landscape:md:py-20" ref={ref}>
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-48 landscape:h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
       

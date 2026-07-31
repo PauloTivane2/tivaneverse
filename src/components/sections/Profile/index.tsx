@@ -57,7 +57,7 @@ export function Profile() {
   // Show loading state if no data yet - AFTER all hooks
   if (!profileData) {
     return (
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-transparent">
         <div className="max-w-7xl mx-auto w-full text-center">
           <div className="animate-pulse">
             <div className="h-12 bg-foreground/10 rounded-lg mb-4 mx-auto max-w-md"></div>
