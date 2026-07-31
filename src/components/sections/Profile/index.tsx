@@ -6,7 +6,6 @@ import Image from "next/image"
 import { FiArrowRight, FiMail, FiDownload, FiMapPin, FiPhone } from "react-icons/fi"
 import { FiGithub, FiLinkedin, FiTwitter, FiInstagram } from "react-icons/fi"
 import { useProfile } from "@/src/hooks/useProfile"
-import { MultilingualCodeDisplay } from "./CodeDisplay"
 
 export function Profile() {
   const { profileData: sanityData, loading, error } = useProfile()
@@ -368,9 +367,6 @@ export function Profile() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Creative Multilingual Code Typewriter - Área Criativa de Código */}
-        <MultilingualCodeDisplay profileName={profileData.name} />
       </div>
     </section>
   )

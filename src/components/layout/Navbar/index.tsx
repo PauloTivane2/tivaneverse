@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { FiMenu, FiX, FiArrowUp } from "react-icons/fi"
 import Image from "next/image"
 import { useSiteSettings } from "@/src/hooks/useSiteSettings"
+import { ThemeToggle } from "@/src/components/layout/ThemeToggle"
 
 const navLinks = [
   { name: "Início", href: "#home" },
@@ -132,8 +133,14 @@ export function Navbar() {
             ))}
           </div>
 
+          {/* Theme Toggle - Desktop */}
+          <div className="hidden md:flex items-center ml-1 lg:ml-2">
+            <ThemeToggle />
+          </div>
+
           {/* Mobile Menu Button - Aparecer apenas ABAIXO de 768px */}
-          <div className="md:hidden relative z-50">
+          <div className="md:hidden relative z-50 flex items-center gap-2">
+            <ThemeToggle />
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
