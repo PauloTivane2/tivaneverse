@@ -186,8 +186,6 @@ export function Projects() {
       {/* Gradient Transition from previous section */}
       <div className="absolute inset-x-0 top-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       
-      {/* Gradient Transition to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-transparent to-background/50 pointer-events-none" />
       
       <div className="corporate-container relative z-10">
         {/* Section Header */}
