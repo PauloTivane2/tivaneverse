@@ -112,12 +112,16 @@ const ui = {
   "grid-line": "rgba(255, 255, 255, 0.05)",
   "grid-glow": "rgba(180, 255, 0, 0.06)",
 
-  // Cartão 3D (profundidade em camadas, sem cor/neon — só sombra e luz)
-  "card-shadow-ambient": "rgba(0, 0, 0, 0.5)",
-  "card-shadow-contact": "rgba(0, 0, 0, 0.35)",
-  "card-edge-top": "rgba(255, 255, 255, 0.07)",
-  "card-edge-top-hover": "rgba(255, 255, 255, 0.12)",
-  "card-surface-tint": "rgba(255, 255, 255, 0.025)",
+  // Cartão 3D (profundidade em camadas — superfície clara + brilho, não
+  // sombra escura, porque sombra preta é invisível sobre fundo já preto)
+  "card-surface": "#1c1d22",
+  "card-surface-hover": "#212228",
+  "card-surface-top": "rgba(255, 255, 255, 0.06)",
+  "card-edge-top": "rgba(255, 255, 255, 0.14)",
+  "card-edge-top-hover": "rgba(255, 255, 255, 0.22)",
+  "card-glow-ambient": "rgba(255, 255, 255, 0.05)",
+  "card-glow-ambient-hover": "rgba(255, 255, 255, 0.09)",
+  "card-shadow-contact": "rgba(0, 0, 0, 0.5)",
 };
 
 // Cores de marca de linguagens de programação — são DADOS (não classes
