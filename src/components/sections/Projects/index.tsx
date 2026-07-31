@@ -224,7 +224,7 @@ export function Projects() {
             // Loading skeleton - Enterprise Layout
             Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="corporate-card p-4 sm:p-5 md:p-6 h-full">
+                <div className="card-3d p-4 sm:p-5 md:p-6 h-full">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 bg-foreground/10 rounded-lg flex-shrink-0"></div>
                     <div className="flex-1 space-y-2">
@@ -256,7 +256,7 @@ export function Projects() {
               ref={(el) => { carouselItemRefs.current[index] = el }}
               className="group relative snap-center min-w-[88%] sm:min-w-[75%] md:min-w-0 flex-shrink-0"
             >
-              <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_theme(colors.custom-16)] active:scale-[0.99] sm:active:scale-100">
+              <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Image Thumbnail */}

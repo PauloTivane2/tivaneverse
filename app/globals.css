@@ -52,6 +52,41 @@
   }
 }
 
+/* Cartão 3D — profundidade em camadas (sombra ambiente + sombra de contacto)
+   e um realce fino no topo (luz a "bater" na borda superior), como usado
+   em produtos como Linear/Stripe. Sem cor/neon: a profundidade vem só da
+   sombra e da luz, não de um brilho colorido — mantém-se profissional. */
+.card-3d {
+  position: relative;
+  background-color: var(--corp-bg-medium, #0d0d0d);
+  background-image: linear-gradient(180deg, theme('colors.card-surface-tint'), transparent 45%);
+  border: 1px solid theme('colors.card-edge-top');
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 theme('colors.card-edge-top'),
+    0 10px 15px -8px theme('colors.card-shadow-contact'),
+    0 24px 48px -16px theme('colors.card-shadow-ambient');
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
+}
+
+.card-3d:hover {
+  transform: translateY(-3px);
+  border-color: theme('colors.card-edge-top-hover');
+  box-shadow:
+    inset 0 1px 0 theme('colors.card-edge-top-hover'),
+    0 14px 20px -8px theme('colors.card-shadow-contact'),
+    0 32px 64px -16px theme('colors.card-shadow-ambient');
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-3d {
+    transition: none;
+  }
+  .card-3d:hover {
+    transform: none;
+  }
+}
+
 @layer base {
   * {
     border-color: theme('colors.custom-08');

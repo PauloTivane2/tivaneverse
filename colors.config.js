@@ -111,6 +111,13 @@ const ui = {
   // Grid background (fundo técnico com grelha + glow subtil)
   "grid-line": "rgba(255, 255, 255, 0.05)",
   "grid-glow": "rgba(180, 255, 0, 0.06)",
+
+  // Cartão 3D (profundidade em camadas, sem cor/neon — só sombra e luz)
+  "card-shadow-ambient": "rgba(0, 0, 0, 0.5)",
+  "card-shadow-contact": "rgba(0, 0, 0, 0.35)",
+  "card-edge-top": "rgba(255, 255, 255, 0.07)",
+  "card-edge-top-hover": "rgba(255, 255, 255, 0.12)",
+  "card-surface-tint": "rgba(255, 255, 255, 0.025)",
 };
 
 // Cores de marca de linguagens de programação — são DADOS (não classes

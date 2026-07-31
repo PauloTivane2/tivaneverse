@@ -294,7 +294,7 @@ export function Expertise() {
               whileHover={{ y: -4 }}
               className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[450px] snap-center group relative"
             >
-              <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300 active:scale-[0.98] sm:active:scale-100">
+              <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.98] sm:active:scale-100">
                 {/* Header com Icon e Título */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Icon Container */}
@@ -465,7 +465,7 @@ export function Expertise() {
                   whileHover={{ y: -4 }}
                   className="group relative"
                 >
-                  <div className="corporate-card p-4 sm:p-5 md:p-6 h-full flex flex-col hover:border-primary/30 transition-all duration-300 active:scale-[0.98] sm:active:scale-100">
+                  <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.98] sm:active:scale-100">
                     {/* Header com Icon e Título */}
                     <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                       {/* Icon Container */}

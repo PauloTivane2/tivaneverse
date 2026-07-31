@@ -194,7 +194,7 @@ export function Services() {
                 className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
-                <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col hover:shadow-[0_0_40px_-10px_theme(colors.custom-16)]">
+                <div className="card-3d relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl overflow-hidden flex flex-col">
                   
                   {/* Top Accent Bar */}
                   <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
