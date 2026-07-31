@@ -20,6 +20,9 @@
   --color-accent: theme('colors.accent');
   --color-background: theme('colors.background');
   --color-foreground: theme('colors.foreground');
+  --grid-line: theme('colors.grid-line');
+  --grid-glow: theme('colors.grid-glow');
+  --grid-size: 48px;
   
   /* Radius para compatibilidade */
   --radius: 0.625rem;
@@ -30,6 +33,23 @@
   --font-size-xs: 12px;
   --font-size-lg: 18px;
   --font-size-xl: 20px;
+}
+
+/* Grid Background — fundo técnico (grelha + glow), 100% CSS, sem JS.
+   Ver /grid-background-guide.md para o princípio geral. */
+.grid-field {
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 50% 0%, var(--grid-glow, transparent), transparent 60%),
+    linear-gradient(to right, var(--grid-line, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, var(--grid-size, 48px) var(--grid-size, 48px), var(--grid-size, 48px) var(--grid-size, 48px);
+}
+
+@media (max-width: 640px) {
+  .grid-field {
+    --grid-size: 32px;
+  }
 }
 
 @layer base {

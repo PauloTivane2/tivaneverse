@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Fira_Code, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/src/components/layout/theme-provider"
+import { GridBackground } from "@/src/components/layout/GridBackground"
 import { uiColors } from "@/src/lib/colors"
 import Script from "next/script"
 
@@ -387,6 +388,7 @@ export default function RootLayout({
         }}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <GridBackground />
           <div className="relative z-10 bg-transparent">{children}</div>
         </ThemeProvider>
 

@@ -107,6 +107,10 @@ const ui = {
   "email-text-on-dark-strong": "rgba(255, 255, 255, 0.8)",
   "email-overlay": "rgba(0, 0, 0, 0.6)",
   "email-shadow-soft": "rgba(0, 0, 0, 0.1)",
+
+  // Grid background (fundo técnico com grelha + glow subtil)
+  "grid-line": "rgba(255, 255, 255, 0.05)",
+  "grid-glow": "rgba(180, 255, 0, 0.06)",
 };
 
 // Cores de marca de linguagens de programação — são DADOS (não classes
