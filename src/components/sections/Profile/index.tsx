@@ -316,7 +316,7 @@ export function Profile() {
                 
                 {/* Social Links Overlay - Profissional */}
                 {profileData.social && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-background/60 backdrop-blur-sm z-10">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-all duration-300 bg-background/60 backdrop-blur-sm z-10 pointer-events-none sm:pointer-events-auto">
                     <div className="flex gap-2 sm:gap-3">
                       {profileData.social.github && (
                         <a

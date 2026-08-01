@@ -1,30 +1,15 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Fira_Code, Space_Mono } from "next/font/google"
+// TEMP
 import "./globals.css"
 import { ThemeProvider } from "@/src/components/layout/theme-provider"
 import { GridBackground } from "@/src/components/layout/GridBackground"
 import { uiColors } from "@/src/lib/colors"
 import Script from "next/script"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
-  display: "swap",
-})
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-  weight: ["400", "700"],
-  display: "swap",
-})
+const inter = { variable: "--font-inter" }
+const firaCode = { variable: "--font-fira-code" }
+const spaceMono = { variable: "--font-space-mono" }
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tivaneverse.me"),
