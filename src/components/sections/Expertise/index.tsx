@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useExpertise } from "@/src/hooks/useExpertise"
 import { useRef, useState, useMemo } from "react"
 import { FiStar, FiTrendingUp, FiCode, FiServer, FiDatabase, FiTool, FiPackage, FiZap, FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { Card3D } from "@/src/components/ui/Card3D"
 
 // Categorias disponíveis com icons e labels
 const categories = [
@@ -294,6 +295,7 @@ export function Expertise() {
               whileHover={{ y: -4 }}
               className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[450px] snap-center group relative"
             >
+              <Card3D>
               <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.98] sm:active:scale-100">
                 {/* Header com Icon e Título */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -397,6 +399,7 @@ export function Expertise() {
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
               </div>
+              </Card3D>
             </motion.div>
           ))
           ) : (
@@ -465,6 +468,7 @@ export function Expertise() {
                   whileHover={{ y: -4 }}
                   className="group relative"
                 >
+                  <Card3D>
                   <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.98] sm:active:scale-100">
                     {/* Header com Icon e Título */}
                     <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -568,6 +572,7 @@ export function Expertise() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
                   </div>
+                  </Card3D>
                 </motion.div>
               ))
             ) : (

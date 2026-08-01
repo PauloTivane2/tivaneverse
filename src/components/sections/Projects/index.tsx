@@ -7,6 +7,7 @@ import { useProjects } from "@/src/hooks/useProjects"
 import { useProfile } from "@/src/hooks/useProfile"
 import { urlFor } from "@/src/lib/sanity"
 import { useRef, useState } from "react"
+import { Card3D } from "@/src/components/ui/Card3D"
 
 export function Projects() {
   const { projectsData, loading, error } = useProjects()
@@ -256,6 +257,7 @@ export function Projects() {
               ref={(el) => { carouselItemRefs.current[index] = el }}
               className="group relative snap-center min-w-[88%] sm:min-w-[75%] md:min-w-0 flex-shrink-0"
             >
+              <Card3D>
               <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.99] sm:active:scale-100">
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -418,6 +420,7 @@ export function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
                 </div>
               </div>
+              </Card3D>
             </motion.div>
           ))
           ) : (

@@ -5,6 +5,7 @@ import { useServices } from "@/src/hooks/useServices"
 import { useProfile } from "@/src/hooks/useProfile"
 import { useRef, useState } from "react"
 import { FiCheck, FiClock, FiDollarSign, FiStar, FiCode, FiZap, FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { Card3D } from "@/src/components/ui/Card3D"
 
 export function Services() {
   const { servicesData, loading, error } = useServices()
@@ -194,6 +195,7 @@ export function Services() {
                 className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center group relative h-full"
               >
                 {/* Card Container - Premium Design */}
+                <Card3D>
                 <div className="card-3d relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl overflow-hidden flex flex-col">
                   
                   {/* Top Accent Bar */}
@@ -324,6 +326,7 @@ export function Services() {
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-3xl"></div>
                   </div>
                 </div>
+                </Card3D>
               </motion.div>
             ))
           ) : (

@@ -1,5 +1,6 @@
 @import "./corporate-design.css";
 @import "../src/styles/corporate-components.css";
+@import "atropos/css";
 
 @tailwind base;
 @tailwind components;
@@ -79,6 +80,13 @@
     inset 0 1px 0 theme('colors.card-edge-top-hover'),
     0 40px 72px -18px theme('colors.card-glow-ambient-hover'),
     0 14px 24px -8px theme('colors.card-shadow-contact');
+}
+
+/* Atropos usa sombra preta por defeito (#000, blur) — invisível sobre o
+   fundo preto do site. Substituída por um brilho claro, consistente com
+   .card-3d, para a profundidade ser realmente visível. */
+.atropos-shadow {
+  background: theme('colors.card-glow-ambient-hover') !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
