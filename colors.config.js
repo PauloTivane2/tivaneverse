@@ -125,6 +125,23 @@ const ui = {
   "card-shadow-contact": "rgba(0, 0, 0, 0.6)",
 };
 
+// Tokens semânticos (guia de cores, secção 6) — derivados da paleta base,
+// nunca duplicam valor: mudar primary/secondary/accent/neutral-bg aqui em
+// cima já actualiza automaticamente estes.
+Object.assign(ui, {
+  "brand-bg": ui.primary,
+  "brand-fg": ui["neutral-bg"],
+
+  "cta-bg": ui.secondary,
+  "cta-fg": ui.primary,
+
+  "support-bg": ui.accent,
+  "support-fg": ui.primary,
+
+  "page-bg": ui["neutral-bg"],
+  "page-fg": ui.primary,
+});
+
 // Cores de marca de linguagens de programação — são DADOS (não classes
 // Tailwind), usadas dinamicamente em MultilingualCodeDisplay.tsx.
 const languages = {

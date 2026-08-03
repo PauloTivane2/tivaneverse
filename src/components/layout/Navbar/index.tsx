@@ -118,7 +118,7 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={link.name === "Contacto" 
-                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-background text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
+                  ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-primary text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
                   : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
