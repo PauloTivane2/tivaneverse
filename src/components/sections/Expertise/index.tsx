@@ -37,7 +37,7 @@ function SkillCard({ skill }: { skill: any }) {
               }}
             />
           ) : (
-            <skill.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+            <skill.icon className="w-6 h-6 sm:w-7 sm:h-7 text-secondary" />
           )}
         </div>
 
@@ -68,7 +68,7 @@ function SkillCard({ skill }: { skill: any }) {
         {skill.featured && (
           <div className="flex-shrink-0 hidden sm:flex">
             <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
-              <FiStar className="w-3.5 h-3.5 text-primary" />
+              <FiStar className="w-3.5 h-3.5 text-secondary" />
             </div>
           </div>
         )}
@@ -78,7 +78,7 @@ function SkillCard({ skill }: { skill: any }) {
         <div>
           <div className="flex items-center justify-between mb-1.5 sm:mb-2">
             <span className="text-[10px] sm:text-xs font-medium text-accent">Proficiência</span>
-            <span className="text-xs sm:text-sm font-bold text-primary">{skill.proficiencyLevel * 10}%</span>
+            <span className="text-xs sm:text-sm font-bold text-secondary">{skill.proficiencyLevel * 10}%</span>
           </div>
           <div className="h-1.5 sm:h-2 bg-foreground/10 rounded-full overflow-hidden">
             <motion.div
@@ -250,7 +250,7 @@ export function Expertise() {
                             }}
                           />
                         ) : Icon ? (
-                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary/60" />
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-secondary/60" />
                         ) : null}
                       </div>
                       <h3 className="text-sm sm:text-base font-bold text-foreground/50 leading-tight pt-1.5">

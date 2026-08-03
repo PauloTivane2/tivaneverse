@@ -172,7 +172,7 @@ export function Navbar() {
             >
               {/* Sidebar Header */}
               <div className="flex items-center justify-between p-4 sm:p-5 border-b border-foreground/10">
-                <span className="text-base sm:text-lg font-bold text-primary">Menu</span>
+                <span className="text-base sm:text-lg font-bold text-secondary">Menu</span>
                 <motion.button
                   onClick={() => setIsOpen(false)}
                   className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"

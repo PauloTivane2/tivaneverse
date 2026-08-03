@@ -212,7 +212,7 @@ export function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   className="p-4 rounded-lg bg-primary/10 border border-primary/20"
                 >
-                  <p className="text-primary text-sm text-center font-semibold">
+                  <p className="text-secondary text-sm text-center font-semibold">
                     ✓ Obrigado! Responderei em breve.
                   </p>
                 </motion.div>
@@ -306,7 +306,7 @@ export function Contact() {
             <div className="p-4 landscape:p-3 rounded-lg bg-white/5 border border-primary/20">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">Disponível para Trabalho</span>
+                <span className="text-sm font-semibold text-secondary">Disponível para Trabalho</span>
               </div>
               <p className="text-xs text-accent leading-relaxed">
                 Disponível para projectos freelance e oportunidades de consultoria.

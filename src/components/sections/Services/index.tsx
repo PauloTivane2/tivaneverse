@@ -99,8 +99,8 @@ export function Services() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 border border-primary/20 mb-4 sm:mb-6"
           >
-            <FiZap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
-            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">Serviços Premium</span>
+            <FiZap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary" />
+            <span className="text-xs sm:text-sm font-semibold text-secondary uppercase tracking-wider">Serviços Premium</span>
           </motion.div>
           <h2 className="corporate-section-title bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
             Soluções que Elevam o Seu Negócio
@@ -115,7 +115,7 @@ export function Services() {
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8">
             <motion.button
               onClick={prevSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-secondary hover:bg-primary hover:text-foreground transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -139,7 +139,7 @@ export function Services() {
             
             <motion.button
               onClick={nextSlide}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-colors"
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-secondary hover:bg-primary hover:text-foreground transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -226,7 +226,7 @@ export function Services() {
                     transition={{ duration: 0.5 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary drop-shadow-[0_0_8px_theme(colors.custom-55)]" />
+                    <service.icon className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-secondary drop-shadow-[0_0_8px_theme(colors.custom-55)]" />
                   </motion.div>
 
                   {/* Title */}
@@ -249,8 +249,8 @@ export function Services() {
                     )}
                     {service.pricing && service.pricing.startingPrice && (
                       <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/30">
-                        <FiDollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-                        <span className="text-[10px] sm:text-xs font-bold text-primary">
+                        <FiDollarSign className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-secondary" />
+                        <span className="text-[10px] sm:text-xs font-bold text-secondary">
                           {service.pricing.currency === 'USD' && '$'}
                           {service.pricing.currency === 'EUR' && '€'}
                           {service.pricing.currency === 'MZN' && 'MT'}
@@ -266,14 +266,14 @@ export function Services() {
                   {service.technologies && service.technologies.length > 0 && (
                     <div className="mb-4 sm:mb-5">
                       <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                        <FiCode className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-                        <span className="text-[10px] sm:text-[11px] font-bold text-primary uppercase tracking-widest">Stack</span>
+                        <FiCode className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-secondary" />
+                        <span className="text-[10px] sm:text-[11px] font-bold text-secondary uppercase tracking-widest">Stack</span>
                       </div>
                       <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {service.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-primary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-background transition-colors cursor-default"
+                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold bg-primary/10 text-secondary rounded border sm:rounded-md border-primary/20 hover:bg-primary hover:text-foreground transition-colors cursor-default"
                           >
                             {tech}
                           </span>
@@ -292,7 +292,7 @@ export function Services() {
                     {service.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2 sm:gap-2.5">
                         <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <FiCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-primary" />
+                          <FiCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-secondary" />
                         </div>
                         <span className="text-[11px] sm:text-xs md:text-sm text-foreground/80 leading-snug">{feature}</span>
                       </div>
@@ -312,7 +312,7 @@ export function Services() {
                     {/* CTA Button */}
                     <motion.button
                       onClick={() => handleWhatsAppClick(service.title)}
-                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-semibold text-xs sm:text-sm md:text-base hover:from-primary hover:to-primary/90 hover:text-background transition-all duration-300 flex items-center justify-center gap-2 group/btn relative overflow-hidden"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-secondary font-semibold text-xs sm:text-sm md:text-base hover:from-primary hover:to-primary/90 hover:text-foreground transition-all duration-300 flex items-center justify-center gap-2 group/btn relative overflow-hidden"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.96 }}
                     >

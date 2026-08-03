@@ -39,7 +39,7 @@ export function Footer() {
         <div className="corporate-footer-grid">
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold text-primary mb-4">
+            <h3 className="text-lg font-bold text-secondary mb-4">
               {loading ? (
                 <div className="h-6 bg-black rounded animate-pulse w-32"></div>
               ) : (
@@ -106,7 +106,7 @@ export function Footer() {
         <div className="corporate-footer-bottom">
           <p className="text-sm text-accent text-center">
             © {new Date().getFullYear()}{' '}
-            <span className="font-semibold text-primary">
+            <span className="font-semibold text-secondary">
               {contactInfo?.name || 'Paulo Babucho Issaca Tivane'}
             </span>
             {'. '}

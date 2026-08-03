@@ -134,7 +134,7 @@ export function Profile() {
               transition={{ delay: 0.5 }}
               className="h-6 sm:h-7 md:h-8 mb-4 sm:mb-5 md:mb-6"
             >
-              <p className="text-sm sm:text-base md:text-lg text-primary font-mono font-semibold break-words">
+              <p className="text-sm sm:text-base md:text-lg text-secondary font-mono font-semibold break-words">
                 {displayedText}
                 <span className="inline-block w-0.5 h-4 sm:h-5 bg-primary ml-1 animate-pulse" />
               </p>
@@ -172,14 +172,14 @@ export function Profile() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 group"
                   >
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:scale-110 transition-transform flex-shrink-0" />
                     <span className="font-semibold text-foreground/70 group-hover:text-primary break-words">
                       {locationText}
                     </span>
                   </a>
                 ) : (
                   <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10">
-                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                    <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-secondary flex-shrink-0" />
                     <span className="font-semibold text-foreground/70 break-words">{locationText}</span>
                   </div>
                 )
@@ -200,7 +200,7 @@ export function Profile() {
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
                 <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-primary/10 border border-primary/30">
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0"></div>
-                  <span className="font-semibold text-primary">
+                  <span className="font-semibold text-secondary">
                     {profileData.availability.message || 'Disponível'}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ export function Profile() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
-                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-primary rounded-md sm:rounded-lg border border-primary/20"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold bg-primary/10 text-secondary rounded-md sm:rounded-lg border border-primary/20"
                     >
                       {skill}
                     </motion.span>
@@ -323,7 +323,7 @@ export function Profile() {
                           href={profileData.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-all duration-200"
                         >
                           <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -333,7 +333,7 @@ export function Profile() {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-all duration-200"
                         >
                           <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>
@@ -343,7 +343,7 @@ export function Profile() {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-all duration-200"
                         >
                           <FiTwitter className="w-4 h-4 sm:w-5 sm:h--5" />
                         </a>
@@ -353,7 +353,7 @@ export function Profile() {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-200"
+                          className="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-foreground/10 border border-foreground/20 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-all duration-200"
                         >
                           <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>

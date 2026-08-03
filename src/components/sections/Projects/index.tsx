@@ -32,7 +32,7 @@ export function Projects() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'completed': return 'text-primary bg-primary/10'
+      case 'completed': return 'text-secondary bg-primary/10'
       case 'in-progress': return 'text-accent bg-accent/10'
       case 'on-hold': return 'text-secondary bg-secondary/10'
       case 'concept': return 'text-secondary bg-secondary/10'
@@ -276,8 +276,8 @@ export function Projects() {
                         className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1"
                         aria-label="Ver galeria"
                       >
-                        <FiImage className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                        <span className="text-[10px] font-medium text-primary">{project.gallery.length}</span>
+                        <FiImage className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
+                        <span className="text-[10px] font-medium text-secondary">{project.gallery.length}</span>
                       </button>
                     )}
                   </div>
@@ -350,7 +350,7 @@ export function Projects() {
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20 hover:bg-primary/20 transition-colors"
+                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-secondary rounded border border-primary/20 hover:bg-primary/20 transition-colors"
                     >
                       {tech}
                     </span>
@@ -369,7 +369,7 @@ export function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-secondary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-foreground transition-all duration-300 active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -436,7 +436,7 @@ export function Projects() {
             <button
               type="button"
               onClick={goToPrevSlide}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-colors text-sm"
               aria-label="Projeto anterior"
             >
               ←
@@ -459,7 +459,7 @@ export function Projects() {
             <button
               type="button"
               onClick={goToNextSlide}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-background hover:border-primary transition-colors text-sm"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-foreground/20 bg-background/70 text-foreground hover:bg-primary hover:text-foreground hover:border-primary transition-colors text-sm"
               aria-label="Próximo projeto"
             >
               →
@@ -478,7 +478,7 @@ export function Projects() {
             href={profileData?.social?.github || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold bg-gradient-to-r from-foreground/10 to-foreground/5 text-foreground rounded-lg border border-foreground/20 hover:bg-gradient-to-r hover:from-primary hover:to-primary hover:text-background hover:border-primary transition-all duration-300 active:scale-95"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold bg-gradient-to-r from-foreground/10 to-foreground/5 text-foreground rounded-lg border border-foreground/20 hover:bg-gradient-to-r hover:from-primary hover:to-primary hover:text-foreground hover:border-primary transition-all duration-300 active:scale-95"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -537,7 +537,7 @@ export function Projects() {
                 <>
                   <motion.button
                     onClick={() => setSelectedImageIndex(prev => prev > 0 ? prev - 1 : selectedProject.gallery.length - 1)}
-                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-foreground border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
                     whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Imagem anterior"
@@ -546,7 +546,7 @@ export function Projects() {
                   </motion.button>
                   <motion.button
                     onClick={() => setSelectedImageIndex(prev => prev < selectedProject.gallery.length - 1 ? prev + 1 : 0)}
-                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-background border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 md:p-4 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-foreground border border-foreground/20 hover:border-primary transition-all text-base sm:text-lg md:text-xl shadow-lg active:scale-90"
                     whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Próxima imagem"
@@ -677,7 +677,7 @@ export function Projects() {
                         {detailsProject.technologies.map((tech: string) => (
                           <span
                             key={tech}
-                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-primary rounded border border-primary/20"
+                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-secondary rounded border border-primary/20"
                           >
                             {tech}
                           </span>
@@ -691,7 +691,7 @@ export function Projects() {
                         href={detailsProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-primary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-background transition-all duration-300 active:scale-95"
+                        className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-primary/15 to-primary/5 text-secondary rounded-lg border border-primary/30 hover:from-primary hover:to-primary hover:text-foreground transition-all duration-300 active:scale-95"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
