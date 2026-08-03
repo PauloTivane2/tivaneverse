@@ -41,7 +41,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold text-secondary mb-4">
               {loading ? (
-                <div className="h-6 bg-black rounded animate-pulse w-32"></div>
+                <div className="h-6 bg-background rounded animate-pulse w-32"></div>
               ) : (
                 contactInfo?.name || 'Paulo Tivane'
               )}

@@ -242,7 +242,7 @@ export default function EffectsManager() {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/50">
         <div className="text-white text-lg">Carregando efeitos visuais...</div>
       </div>
     )

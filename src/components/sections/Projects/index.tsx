@@ -524,7 +524,7 @@ export function Projects() {
               </div>
 
               {/* Image Display */}
-              <div className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] bg-black/50">
+              <div className="relative h-[45vh] sm:h-[55vh] md:h-[60vh] bg-background/50">
                 <Image
                   src={urlFor(selectedProject.gallery[selectedImageIndex].asset).width(1200).height(800).url()}
                   alt={selectedProject.gallery[selectedImageIndex].caption || `${selectedProject.title} - Imagem ${selectedImageIndex + 1}`}
