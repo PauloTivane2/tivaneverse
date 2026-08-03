@@ -17,9 +17,10 @@
 const ui = {
   background: "#000000",
   foreground: "#ffffff",
-  primary: "#b4ff00",
-  secondary: "#cfff04",
-  accent: "#cae7f7",
+  primary: "#203627",
+  secondary: "#E8FF40",
+  accent: "#9DC4D5",
+  "neutral-bg": "#EFEFEF",
 
   // Tema de sintaxe (estilo editor de código) — usado em SyntaxHighlight.tsx
   "syntax-comment": "#6A9955",
