@@ -15,7 +15,7 @@
 
 // Cores de interface (viram classes Tailwind: bg-primary, text-syntax-comment, etc.)
 const ui = {
-  background: "#000000",
+  background: "#203627", // igual a 'primary' — verde escuro, a pedido (deixou de ser preto)
   foreground: "#ffffff",
   primary: "#203627",
   secondary: "#E8FF40",
