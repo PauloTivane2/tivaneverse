@@ -7,20 +7,20 @@
 @tailwind utilities;
 
 /**
- * Sistema de Cores Simplificado
- * Primary: theme('colors.secondary')
- * Secondary: theme('colors.custom-07')
- * Accent: theme('colors.accent')
- * Background: theme('colors.background') (Preto Absoluto)
- * Foreground: theme('colors.foreground') (Branco Absoluto)
+ * Este ficheiro e corporate-design.css chegaram a declarar as duas o
+ * mesmo nome de variável (--color-primary/-secondary/-accent), com
+ * valores nem sempre iguais — o import mais tardio (este ficheiro)
+ * ganhava sempre a cascata, tornando o outro ficheiro enganador. Aqui
+ * ficam só as duas variáveis com consumidor real: --color-primary
+ * (::selection, mais abaixo) e --color-background (.grid-field).
+ * --color-primary aponta para theme('colors.secondary') (o lima) e
+ * não para theme('colors.primary') porque o verde escuro de
+ * colors.config é igual ao fundo do site — ilegível como cor de
+ * texto/ícone sobre esse fundo.
  */
 :root {
-  /* Cores principais simplificadas */
   --color-primary: theme('colors.secondary');
-  --color-secondary: theme('colors.custom-07');
-  --color-accent: theme('colors.accent');
   --color-background: theme('colors.background');
-  --color-foreground: theme('colors.foreground');
   --grid-line: theme('colors.grid-line');
   --grid-glow: theme('colors.grid-glow');
   --grid-size: 48px;
@@ -177,62 +177,15 @@
    ===================================================== */
 
 /**
- * Substituição de efeitos modernos por alternativas corporativas.
- * Foco em feedback sutil e profissional, sem brilhos ou flutuação.
+ * Bordas técnicas e estruturais — únicas classes deste bloco com
+ * consumidor real. As restantes (.corporate-text-emphasis,
+ * .corporate-indicator, .corporate-hover, .corporate-card-interactive,
+ * .corporate-border-accent) foram removidas: nenhum componente React
+ * as usava, e eram mais um sítio a apontar para --color-primary/
+ * --color-secondary sem necessidade.
  */
-
-/* Texto com ênfase sutil (substitui matrix-glow) */
-.corporate-text-emphasis {
-  color: var(--color-primary);
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-/* Indicador visual discreto (substitui pulse-glow) */
-.corporate-indicator {
-  position: relative;
-  transition: box-shadow 0.3s ease;
-}
-
-.corporate-indicator::before {
-  content: '';
-  position: absolute;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 60%;
-  background: var(--color-primary);
-  border-radius: 2px;
-}
-
-/* Hover profissional para elementos interativos */
-.corporate-hover {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.corporate-hover:hover {
-  border-color: var(--color-primary);
-  box-shadow: 0 2px 8px theme('colors.custom-46');
-}
-
-/* Hover para cards - elevação sutil */
-.corporate-card-interactive {
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.corporate-card-interactive:hover {
-  border-color: var(--color-secondary);
-  box-shadow: 0 4px 16px theme('colors.custom-14');
-}
-
-/* Bordas técnicas e estruturais */
 .corporate-border {
   border: 1px solid theme('colors.custom-08');
-}
-
-.corporate-border-accent {
-  border: 2px solid var(--color-primary);
 }
 
 .corporate-border-top {

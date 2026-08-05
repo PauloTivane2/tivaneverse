@@ -173,7 +173,7 @@ export function Profile() {
                     className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-foreground/5 border border-foreground/10 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 group"
                   >
                     <FiMapPin className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="font-semibold text-foreground/70 group-hover:text-primary break-words">
+                    <span className="font-semibold text-foreground/70 group-hover:text-secondary break-words">
                       {locationText}
                     </span>
                   </a>
@@ -199,7 +199,7 @@ export function Profile() {
               {/* Availability Badge */}
               {typeof profileData.availability === 'object' && profileData.availability.isAvailable && (
                 <div className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm bg-primary/10 border border-primary/30">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px] shadow-primary/60 flex-shrink-0"></div>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-secondary rounded-full animate-pulse shadow-[0_0_8px] shadow-secondary/60 flex-shrink-0"></div>
                   <span className="font-semibold text-secondary">
                     {profileData.availability.message || 'Disponível'}
                   </span>
@@ -248,7 +248,7 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#projects")}
                 title="Ver Projetos"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-foreground flex items-center justify-center shadow-lg hover:shadow-secondary/25 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -262,7 +262,7 @@ export function Profile() {
               <motion.button
                 onClick={() => scrollToSection("#contact")}
                 title="Contactar"
-                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-secondary via-secondary to-primary text-background flex items-center justify-center shadow-lg hover:shadow-secondary/25 transition-all duration-300"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-secondary via-secondary to-primary text-foreground flex items-center justify-center shadow-lg hover:shadow-secondary/25 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >

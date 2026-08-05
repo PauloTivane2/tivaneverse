@@ -230,7 +230,7 @@ export function Services() {
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-secondary transition-colors duration-300 leading-tight">
                     {service.title}
                   </h3>
 

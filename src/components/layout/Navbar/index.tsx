@@ -119,7 +119,7 @@ export function Navbar() {
                 }}
                 className={link.name === "Contacto" 
                   ? "px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg bg-secondary text-primary text-sm lg:text-base font-semibold hover:bg-secondary/90 transition-all duration-300 shadow-lg shadow-secondary/20"
-                  : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
+                  : "px-3 py-2 lg:px-4 lg:py-2.5 text-sm lg:text-base font-medium text-foreground/80 hover:text-secondary transition-colors duration-200 relative group"
                 }
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export function Navbar() {
           <div className="md:hidden relative z-50">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
+              className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-secondary/50 transition-all duration-300"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -175,7 +175,7 @@ export function Navbar() {
                 <span className="text-base sm:text-lg font-bold text-secondary">Menu</span>
                 <motion.button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/50 transition-all duration-300"
+                  className="p-2 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-secondary/50 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Close menu"
@@ -196,7 +196,7 @@ export function Navbar() {
                     }}
                     className={link.name === "Contacto" 
                       ? "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg bg-gradient-to-r from-secondary to-secondary/80 text-background text-sm sm:text-base font-bold hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg shadow-secondary/30 text-center"
-                      : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-foreground/80 hover:text-primary hover:bg-foreground/5 transition-all duration-300 border border-transparent hover:border-primary/30 text-left"
+                      : "w-full px-5 py-3 sm:px-6 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold text-foreground/80 hover:text-secondary hover:bg-foreground/5 transition-all duration-300 border border-transparent hover:border-secondary/30 text-left"
                     }
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -234,7 +234,7 @@ export function Navbar() {
                 behavior: "smooth"
               })
             }}
-            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-background flex items-center justify-center shadow-lg hover:shadow-primary/50 transition-all duration-300"
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-primary via-primary to-secondary text-foreground flex items-center justify-center shadow-lg hover:shadow-secondary/50 transition-all duration-300"
             whileHover={{ scale: 1.1, y: -4 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Voltar ao topo"

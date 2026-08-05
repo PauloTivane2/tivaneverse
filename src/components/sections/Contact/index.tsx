@@ -249,7 +249,7 @@ export function Contact() {
                 whileHover={{ x: 4 }}
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
-                  <FiMail className="w-4 h-4 text-accent group-hover:text-primary transition-colors" />
+                  <FiMail className="w-4 h-4 text-accent group-hover:text-secondary transition-colors" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold text-foreground mb-0.5">Email</h3>
@@ -291,7 +291,7 @@ export function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-primary hover:border-primary/40 hover:bg-white/10 transition-all"
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent hover:text-secondary hover:border-secondary/40 hover:bg-white/10 transition-all"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
@@ -305,7 +305,7 @@ export function Contact() {
             {/* Availability Badge - Simples */}
             <div className="p-4 landscape:p-3 rounded-lg bg-white/5 border border-primary/20">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
                 <span className="text-sm font-semibold text-secondary">Disponível para Trabalho</span>
               </div>
               <p className="text-xs text-accent leading-relaxed">

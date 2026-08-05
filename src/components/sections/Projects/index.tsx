@@ -285,7 +285,7 @@ export function Projects() {
                   {/* Title, Status, Meta */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground group-hover:text-secondary transition-colors leading-tight">
                         {project.title}
                       </h3>
                       {project.featured && (
@@ -393,7 +393,7 @@ export function Projects() {
                   {project.longDescription && project.longDescription.length > 0 && (
                     <motion.button
                       onClick={() => setDetailsProject(project)}
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-secondary transition-all duration-300 active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -404,7 +404,7 @@ export function Projects() {
                   {project.gallery && project.gallery.length > 0 && (
                     <motion.button
                       onClick={() => openGallery(project)}
-                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-primary transition-all duration-300 ml-auto active:scale-95"
+                      className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs font-semibold bg-foreground/5 text-accent rounded-lg border border-foreground/10 hover:bg-foreground/10 hover:border-accent/30 hover:text-secondary transition-all duration-300 ml-auto active:scale-95"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -449,7 +449,7 @@ export function Projects() {
                   onClick={() => scrollToSlide(index)}
                   className={`h-2 rounded-full transition-all ${
                     index === activeSlide
-                      ? 'bg-primary w-4'
+                      ? 'bg-secondary w-4'
                       : 'bg-foreground/30 w-2'
                   }`}
                   aria-label={`Ir para projeto ${index + 1}`}
