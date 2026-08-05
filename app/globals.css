@@ -1,6 +1,5 @@
 @import "./corporate-design.css";
 @import "../src/styles/corporate-components.css";
-@import "atropos/css";
 
 @tailwind base;
 @tailwind components;
@@ -93,7 +92,13 @@
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.card-3d:hover {
+/* :not(.flip-card-face) — os cartões com flip (Projectos/Serviços) têm o
+   próprio hover-lift no wrapper .flip-card (ver abaixo); aplicar também
+   aqui duplicava a propriedade transform no mesmo elemento que a Atropos
+   um dia usou para o tilt 3D, e o mais específico ganhava sempre,
+   cancelando a rotação Y da face de trás (ficava sempre virada para a
+   frente mesmo com o cartão "virado"). */
+.card-3d:hover:not(.flip-card-face) {
   transform: translateY(-4px);
   background-color: theme('colors.card-surface-hover');
   border-color: theme('colors.card-edge-top-hover');
@@ -103,18 +108,54 @@
     0 14px 24px -8px theme('colors.card-shadow-contact');
 }
 
-/* Atropos usa sombra preta por defeito (#000, blur) — invisível sobre o
-   fundo preto do site. Substituída por um brilho claro, consistente com
-   .card-3d, para a profundidade ser realmente visível. */
-.atropos-shadow {
-  background: theme('colors.card-glow-ambient-hover') !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .card-3d {
     transition: none;
   }
-  .card-3d:hover {
+  .card-3d:hover:not(.flip-card-face) {
+    transform: none;
+  }
+}
+
+/* Cartão com flip (efeito "moeda") — usado em Projectos e Serviços.
+   Técnica de grid-stacking: as duas faces ocupam a mesma célula de grid,
+   por isso o contentor cresce sempre para a face mais alta das duas, sem
+   precisar de altura fixa nem de JS a medir nada. */
+.flip-card {
+  perspective: 1600px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-card:hover {
+  transform: translateY(-4px);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  transform-style: preserve-3d;
+  outline: none;
+}
+
+.flip-card-inner:focus-visible {
+  box-shadow: 0 0 0 2px theme('colors.secondary');
+  border-radius: 14px;
+}
+
+.flip-card-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card:hover {
     transform: none;
   }
 }
