@@ -14,9 +14,6 @@ importers:
       '@sanity/image-url':
         specifier: ^2.1.1
         version: 2.1.1
-      atropos:
-        specifier: 2.0.2
-        version: 2.0.2
       autoprefixer:
         specifier: ^10.5.4
         version: 10.5.4(postcss@8.5.25)
@@ -2830,10 +2827,6 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-
-  atropos@2.0.2:
-    resolution: {integrity: sha512-8f0u0hEOlBTWTSvzY17TcHuQjxUIpkTBq70/I4+UF5B43ORtOoRjm8TPBYEgLM8Ba9AWf6PDtkagbYoybdjaKg==}
-    engines: {node: '>= 12.0.0'}
 
   autoprefixer@10.5.4:
     resolution: {integrity: sha512-MaU0U/za7N3r6brxD4YB/l4NSrFzLPlANv6wEuQVaIPlD3L4W9rFcQPbL/EilY9BHhHvhfcz3gInDLrEtWT4EA==}
@@ -9188,8 +9181,6 @@ snapshots:
   async@3.2.6: {}
 
   asynckit@0.4.0: {}
-
-  atropos@2.0.2: {}
 
   autoprefixer@10.5.4(postcss@8.5.25):
     dependencies:
