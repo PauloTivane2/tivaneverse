@@ -32,13 +32,15 @@ export function Projects() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
-      // Estados "lima" partilham sempre o mesmo par bg/text — só
+      // Estados "lima" partilham sempre o mesmo trio bg/border/text — só
       // "in-progress" foge à família para se destacar como estado activo.
-      case 'completed': return 'text-secondary bg-primary/10'
-      case 'on-hold': return 'text-secondary bg-primary/10'
-      case 'concept': return 'text-secondary bg-primary/10'
-      case 'in-progress': return 'text-accent bg-accent/10'
-      default: return 'text-accent bg-background/50'
+      // Mesma lógica de chip com borda que o resto dos cards já usa
+      // (ex: chip de preço em Serviços).
+      case 'completed': return 'text-secondary bg-primary/10 border border-primary/20'
+      case 'on-hold': return 'text-secondary bg-primary/10 border border-primary/20'
+      case 'concept': return 'text-secondary bg-primary/10 border border-primary/20'
+      case 'in-progress': return 'text-accent bg-accent/10 border border-accent/20'
+      default: return 'text-accent bg-background/50 border border-foreground/10'
     }
   }
 
@@ -261,6 +263,9 @@ export function Projects() {
             >
               <Card3D>
               <div className="card-3d p-4 sm:p-5 md:p-6 h-full flex flex-col active:scale-[0.99] sm:active:scale-100">
+                {/* Top Accent Bar — mesmo tratamento dos cards de Serviços */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${project.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`} />
+
                 {/* Header: Image + Title + Badges */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Image Thumbnail */}
@@ -297,8 +302,8 @@ export function Projects() {
                           transition={{ type: "spring", delay: 0.2 }}
                           className="flex-shrink-0"
                         >
-                          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center border border-secondary/30">
-                            <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-secondary fill-secondary/50" />
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-secondary flex items-center justify-center ring-2 ring-card-surface shadow-lg shadow-secondary/30">
+                            <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-primary fill-primary" />
                           </div>
                         </motion.div>
                       )}
@@ -312,7 +317,7 @@ export function Projects() {
                         </span>
                       )}
                       {project.category && (
-                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent">
+                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded text-[10px] sm:text-xs font-medium bg-foreground/5 text-accent border border-foreground/10">
                           {project.category.replace('-', ' ')}
                         </span>
                       )}

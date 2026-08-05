@@ -74,13 +74,18 @@
    não de sombra escura (sombra preta é invisível sobre fundo já preto).
    Mais um realce fino de 1px no topo, simulando luz a bater na borda. */
 .card-3d {
+  /* Raio único e autoritativo: qualquer rounded-xl/2xl do Tailwind posto
+     no mesmo elemento é ignorado (esta regra vem depois na cascata, por
+     sair depois de @tailwind utilities na ordem do ficheiro-fonte) — por
+     isso deixou de se escrever essa classe morta nos componentes. */
   position: relative;
   background-color: theme('colors.card-surface');
   background-image:
     radial-gradient(120% 100% at 0% 0%, theme('colors.card-surface-top'), transparent 60%),
     linear-gradient(180deg, theme('colors.card-surface-top'), transparent 55%);
   border: 1.5px solid theme('colors.card-edge-top');
-  border-radius: 10px;
+  border-radius: 14px;
+  overflow: hidden;
   box-shadow:
     inset 0 1px 0 theme('colors.card-edge-top'),
     0 32px 56px -18px theme('colors.card-glow-ambient'),

@@ -166,8 +166,7 @@ export function Services() {
             // Loading skeleton - Premium Layout
             Array.from({ length: 3 }).map((_, index) => (
               <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[500px] snap-center">
-                <div className="animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-foreground/5">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-foreground/5 rounded-t-2xl"></div>
+                <div className="card-3d animate-pulse relative h-full min-h-[380px] sm:min-h-[420px] p-4 sm:p-5 md:p-6">
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-14 h-14 rounded-xl bg-foreground/10"></div>
                     <div className="w-6 h-6 rounded-full bg-foreground/5"></div>
@@ -196,25 +195,21 @@ export function Services() {
               >
                 {/* Card Container - Premium Design */}
                 <Card3D>
-                <div className="card-3d relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl overflow-hidden flex flex-col">
+                <div className="card-3d relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 flex flex-col">
                   
                   {/* Top Accent Bar */}
                   <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
                   
-                  {/* Featured Badge - Top Right */}
+                  {/* Featured Badge - Top Right (mesmo desenho do badge de Projectos) */}
                   {service.featured && (
-                    <motion.div 
+                    <motion.div
                       className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10"
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ type: "spring", delay: 0.3 }}
                     >
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-secondary blur-lg opacity-40 rounded-full"></div>
-                        <div className="relative px-2 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-secondary to-secondary/90 rounded-full flex items-center gap-1 sm:gap-1.5 shadow-lg">
-                          <FiStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-background fill-background" />
-                          <span className="text-[9px] sm:text-[10px] font-bold text-background uppercase tracking-wider">Top</span>
-                        </div>
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-secondary flex items-center justify-center ring-2 ring-card-surface shadow-lg shadow-secondary/30">
+                        <FiStar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" />
                       </div>
                     </motion.div>
                   )}
