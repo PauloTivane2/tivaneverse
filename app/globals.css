@@ -23,8 +23,10 @@
   --color-background: theme('colors.background');
   --grid-line: theme('colors.grid-line');
   --grid-glow: theme('colors.grid-glow');
-  --grid-size: 48px;
-  
+  --grid-glow-accent: theme('colors.grid-glow-accent');
+  --page-vignette: theme('colors.page-vignette');
+  --grid-size: 64px;
+
   /* Radius para compatibilidade */
   --radius: 0.625rem;
   
@@ -36,20 +38,34 @@
   --font-size-xl: 20px;
 }
 
-/* Grid Background — fundo técnico (grelha + glow), 100% CSS, sem JS.
-   Ver /grid-background-guide.md para o princípio geral. */
+/* Grid Background — fundo técnico premium (grelha fina + dois glows +
+   vinheta), 100% CSS, sem JS. Ver /grid-background-guide.md para o
+   princípio geral.
+   - Glow principal (lima) no topo, glow secundário (accent) no canto
+     oposto — assimetria sutil dá profundidade em vez de um halo
+     centrado e óbvio.
+   - Vinheta nos cantos escurece ligeiramente as bordas, para o
+     conteúdo ao centro "respirar" mais — truque comum em dashboards
+     premium (Linear, Vercel) para o fundo nunca competir com o texto. */
 .grid-field {
   background-color: var(--color-background);
   background-image:
-    radial-gradient(ellipse 70% 55% at 50% 0%, var(--grid-glow, transparent), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 50% 0%, var(--grid-glow, transparent), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, var(--grid-glow-accent, transparent), transparent 70%),
+    radial-gradient(ellipse 140% 100% at 50% 50%, transparent 55%, var(--page-vignette, transparent) 100%),
     linear-gradient(to right, var(--grid-line, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line, transparent) 1px, transparent 1px);
-  background-size: 100% 100%, var(--grid-size, 48px) var(--grid-size, 48px), var(--grid-size, 48px) var(--grid-size, 48px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    var(--grid-size, 64px) var(--grid-size, 64px),
+    var(--grid-size, 64px) var(--grid-size, 64px);
 }
 
 @media (max-width: 640px) {
   .grid-field {
-    --grid-size: 32px;
+    --grid-size: 36px;
   }
 }
 

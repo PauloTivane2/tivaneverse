@@ -235,7 +235,7 @@ export function Services() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm md:text-base text-accent/90 leading-relaxed mb-4 sm:mb-5">
+                  <p className="text-xs sm:text-sm md:text-base text-accent leading-relaxed mb-4 sm:mb-5">
                     {service.description}
                   </p>
 

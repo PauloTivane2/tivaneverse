@@ -32,10 +32,12 @@ export function Projects() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
+      // Estados "lima" partilham sempre o mesmo par bg/text — só
+      // "in-progress" foge à família para se destacar como estado activo.
       case 'completed': return 'text-secondary bg-primary/10'
+      case 'on-hold': return 'text-secondary bg-primary/10'
+      case 'concept': return 'text-secondary bg-primary/10'
       case 'in-progress': return 'text-accent bg-accent/10'
-      case 'on-hold': return 'text-secondary bg-secondary/10'
-      case 'concept': return 'text-secondary bg-secondary/10'
       default: return 'text-accent bg-background/50'
     }
   }
@@ -350,7 +352,7 @@ export function Projects() {
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-secondary rounded border border-primary/20 hover:bg-primary/20 transition-colors"
+                      className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium bg-primary/10 text-secondary rounded border border-primary/20 hover:bg-primary hover:text-foreground transition-colors"
                     >
                       {tech}
                     </span>

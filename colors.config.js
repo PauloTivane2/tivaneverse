@@ -77,9 +77,14 @@ const ui = {
   "email-overlay": "rgba(0, 0, 0, 0.6)",
   "email-shadow-soft": "rgba(0, 0, 0, 0.1)",
 
-  // Grid background (fundo técnico com grelha + glow subtil)
-  "grid-line": "rgba(255, 255, 255, 0.05)",
-  "grid-glow": "rgba(180, 255, 0, 0.06)",
+  // Grid background (fundo técnico com grelha + glow subtil) — afinado
+  // para um look mais "premium": linhas mais finas, glow mais suave e
+  // difuso, um segundo glow em accent (azul) para dar profundidade sem
+  // introduzir uma cor nova, e uma vinheta nos cantos.
+  "grid-line": "rgba(255, 255, 255, 0.035)",
+  "grid-glow": "rgba(180, 255, 0, 0.05)",
+  "grid-glow-accent": "rgba(157, 196, 213, 0.05)",
+  "page-vignette": "rgba(0, 0, 0, 0.4)",
 
   // Cartão 3D (profundidade em camadas — superfície clara + brilho, não
   // sombra escura, porque sombra preta é invisível sobre fundo já preto)
