@@ -112,7 +112,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const front = (
     <div className="relative p-4 sm:p-5 md:p-6 h-full flex flex-col">
       {/* Top Accent Bar */}
-      <div className={`absolute top-0 left-0 right-0 h-1 ${project.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`} />
+      <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-[13px] ${project.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`} />
 
       {/* Header: Image + Title + Badges */}
       <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -241,7 +241,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   const back = (
     <div className="relative p-4 sm:p-5 md:p-6 h-full flex flex-col">
-      <div className={`absolute top-0 left-0 right-0 h-1 ${project.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`} />
+      <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-[13px] ${project.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`} />
 
       <div className="flex items-start justify-between gap-2 mb-3">
         <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground leading-tight">

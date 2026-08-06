@@ -27,7 +27,7 @@ export function ServiceCard({ service, onWhatsAppClick }: ServiceCardProps) {
 
   const front = (
     <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 flex flex-col">
-      <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
+      <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-[13px] ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
 
       {service.featured && (
         <motion.div
@@ -128,7 +128,7 @@ export function ServiceCard({ service, onWhatsAppClick }: ServiceCardProps) {
 
   const back = (
     <div className="relative h-full min-h-[420px] sm:min-h-[450px] p-4 sm:p-6 md:p-7 flex flex-col">
-      <div className={`absolute top-0 left-0 right-0 h-1 ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
+      <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-[13px] ${service.featured ? 'bg-gradient-to-r from-secondary via-primary to-secondary' : 'bg-gradient-to-r from-primary/50 to-primary/10'}`}></div>
 
       <div className="flex items-start justify-between gap-2 mb-3 sm:mb-4">
         <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground leading-tight">
