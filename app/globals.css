@@ -118,9 +118,13 @@
 }
 
 /* Cartão com flip (efeito "moeda") — usado em Projectos e Serviços.
-   Técnica de grid-stacking: as duas faces ocupam a mesma célula de grid,
-   por isso o contentor cresce sempre para a face mais alta das duas, sem
-   precisar de altura fixa nem de JS a medir nada. */
+   A face da frente fica em fluxo normal (é ela que define a altura do
+   cartão); a face de trás sobrepõe-se exactamente por cima com
+   position:absolute. Esta é a técnica clássica, mais testada em browsers
+   móveis do que sobrepor via CSS grid — essa combinação (grid-area +
+   preserve-3d + backface-visibility) mostrou-se pouco fiável em Chrome
+   Android: via-se a face da frente espelhada (rodada mas não escondida)
+   em vez do conteúdo real do verso. */
 .flip-card {
   perspective: 1600px;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
@@ -134,7 +138,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  display: grid;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   outline: none;
@@ -146,21 +149,19 @@
 }
 
 .flip-card-face {
-  grid-area: 1 / 1;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  /* .card-3d traz overflow:hidden (para clipar imagens/gradientes nos
-     cartões normais, que não viram) — mas combinar overflow:hidden com
-     uma face em rotação 3D é um bug conhecido: o Chrome/WebKit "achata"
-     o contexto 3D e o backface-visibility deixa de esconder a face
-     virada ao contrário, mostrando o verso da FRENTE espelhado em vez
-     do conteúdo real de trás. Esta regra vem depois de .card-3d na
-     cascata, por isso ganha. As barras/imagens internas têm o seu
+  /* .card-3d traz overflow:hidden — mas numa face em rotação 3D isso
+     ajuda a "achatar" o bug acima. As barras/imagens internas têm o seu
      próprio arredondamento, por isso não se nota falta de clipping aqui. */
   overflow: visible;
 }
 
 .flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   transform: rotateY(180deg);
 }
 
